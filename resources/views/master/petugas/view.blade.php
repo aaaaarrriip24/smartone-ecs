@@ -26,60 +26,35 @@
                 <h5 class="card-title mb-0">Petugas</h5>
             </div>
             <div class="card-body">
-                <table id="fixed-header" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                <table id="dt_petugas" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                     style="width:100%">
                     <thead>
-                        <tr>
-                            <th scope="col" style="width: 10px;">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
-                                </div>
-                            </th>
-                            <th>No.</th>
-                            <th>Nama Petugas</th>
-                            <th>Action</th>
-                        </tr>
+                        <th>No.</th>
+                        <th>Nama Petugas</th>
+                        <th>Action</th>
                     </thead>
-                    <tbody>
-                        @foreach( $data as $d )
-                        <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll"
-                                        value="option1">
-                                </div>
-                            </th>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $d->nama_petugas }}</td>
-                            <td>
-                                <div class="dropdown d-inline-block">
-                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ri-more-fill align-middle"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a href="#!" class="dropdown-item"><i
-                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                        <li><a class="dropdown-item edit-item-btn"><i
-                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item remove-item-btn">
-                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
 @endsection
-@section('js')
 
-@endsection
+@push('scripts')
+<script>
+$(function() {
+    $('#dt_petugas').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: base_url + "master/petugas",
+        columns: [
+            { data: 'id', name: 'id' },
+            { data: 'name', name: 'name' },
+            { data: 'email', name: 'email' },
+            { data: 'created_at', name: 'created_at' },
+            { data: 'updated_at', name: 'updated_at' }
+        ]
+    });
+});
+</script>
+@endpush

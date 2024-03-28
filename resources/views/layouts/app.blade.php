@@ -6,6 +6,10 @@
 
     <meta charset="utf-8" />
     <title>CRM | Velzon - Admin & Dashboard Template</title>
+    <!-- csrf -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- base_url -->
+    <meta name="base_url" content="{{ url('') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -22,7 +26,8 @@
     <link href="{{ asset('assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
-
+    <!-- Datatables -->
+    
 
 </head>
 
@@ -116,7 +121,7 @@
                                     <span class="align-middle">Indonesia</span>
                                 </a>
 
-                                
+
                             </div>
                         </div>
 
@@ -711,7 +716,8 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="{{ asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
+                                        <span
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
                                         <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
                                     </span>
                                 </span>
@@ -826,14 +832,17 @@
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('master/perusahaan') }}" class="nav-link" data-key="t-perusahaan">
+                                        <a href="{{ url('master/perusahaan') }}" class="nav-link"
+                                            data-key="t-perusahaan">
                                             Perusahaan </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-petugas"> Petugas </a>
+                                        <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-petugas">
+                                            Petugas </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/kategori_konsultasi') }}" class="nav-link" data-key="t-kategori-konsultasi"> Kategori Konsultasi </a>
+                                        <a href="{{ url('master/kategori_konsultasi') }}" class="nav-link"
+                                            data-key="t-kategori-konsultasi"> Kategori Konsultasi </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-topik"> Topik
@@ -850,16 +859,20 @@
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('master/perusahaan') }}" class="nav-link" data-key="t-konsultasi"> Konsultasi </a>
+                                        <a href="{{ url('master/perusahaan') }}" class="nav-link"
+                                            data-key="t-konsultasi"> Konsultasi </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-bm"> Business Matching </a>
+                                        <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-bm"> Business
+                                            Matching </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/kategori_konsultasi') }}" class="nav-link" data-key="t-inquiry"> Profile Inquiry </a>
+                                        <a href="{{ url('master/kategori_konsultasi') }}" class="nav-link"
+                                            data-key="t-inquiry"> Profile Inquiry </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-export"> Realisasi Export </a>
+                                        <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-export">
+                                            Realisasi Export </a>
                                     </li>
                                 </ul>
                             </div>
@@ -1737,7 +1750,6 @@
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
     <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
@@ -1752,6 +1764,11 @@
 
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
+    <!-- Base Url -->
+    <script>
+        var base_url = document.querySelector('meta[name="base_url"]').getAttribute('content') + '/';
+
+    </script>
 </body>
 
 </html>

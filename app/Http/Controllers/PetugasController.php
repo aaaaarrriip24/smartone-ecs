@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Petugas;
 use Illuminate\Http\Request;
+use DataTables;
 
 class PetugasController extends Controller
 {
@@ -12,12 +13,29 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Petugas::all();
-        return view('master/petugas/view', compact('data'));
+        if ($request->ajax()) {
+            $data = Petugas::select('*');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+     
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+    
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        
+        return view('master/petugas/view');
     }
 
+    public function anyData()
+    {
+        return Datatables::of(Petugas::all())->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *

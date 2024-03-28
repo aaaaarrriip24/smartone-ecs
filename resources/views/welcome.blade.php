@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    to login
+    Iki Home
 </body>
 </html>
