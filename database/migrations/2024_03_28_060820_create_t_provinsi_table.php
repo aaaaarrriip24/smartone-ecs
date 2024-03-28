@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('t_provinsi', function (Blueprint $table) {
-            $table->string('id_provinsi')->primary();
+            $table->id();
             $table->string('nama_provinsi');
         });
 

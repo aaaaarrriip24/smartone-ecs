@@ -13,19 +13,19 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('perusahaan_export', function (Blueprint $table) {
+        Schema::create('profile_bm', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_perusahaan');
-            $table->foreign('id_perusahaan')->references('id_perusahaan')->on('master_perusahaan');
-            $table->date('tanggal_transaksi');
-            $table->string('produk');
-            $table->integer('nilai_transaksi');
-            $table->integer('negara_tujuan');
+            $table->string('kode_bm');
+            $table->date('tanggal_bm');
+            $table->string('pelaksanaan_bm');
+            $table->unsignedBigInteger('id_negara_buyer');
+            $table->foreign('id_negara_buyer')->references('id')->on('t_negara');
+            $table->string('info_asal_buyer');
             $table->string('nama_buyer');
             $table->string('email_buyer');
             $table->string('telp_buyer');
-            $table->string('dok_pendukung');
-            $table->string('bukti_dok');
+            $table->string('foto_kegiatan');
+            $table->string('catatan');
         });
 
         Schema::enableForeignKeyConstraints();
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perusahaan_export');
+        Schema::dropIfExists('profile_bm');
     }
 };

@@ -15,10 +15,10 @@ return new class extends Migration
 
         Schema::create('perusahaan_penerima_inquiry', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_inquiry');
-            $table->foreign('id_inquiry')->references('id_inquiry')->on('profile_inquiry');
-            $table->bigInteger('id_perusahaan');
-            $table->foreign('id_perusahaan')->references('id_perusahaan')->on('master_perusahaan');
+            $table->unsignedBigInteger('id_inquiry');
+            $table->foreign('id_inquiry')->references('id')->on('profile_inquiry');
+            $table->unsignedBigInteger('id_perusahaan');
+            $table->foreign('id_perusahaan')->references('id')->on('master_perusahaan');
         });
 
         Schema::enableForeignKeyConstraints();

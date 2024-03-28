@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('master_perusahaan', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_perusahaan');
             $table->string('nama_perusahaan');
             $table->string('tipe_perusahaan');
             $table->integer('alamat_provinsi');
@@ -25,6 +24,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('website');
             $table->string('status_kepemilikan');
+            $table->string('skala_perusahaan');
             $table->string('jumlah_karyawan');
             $table->string('kategori_produk');
             $table->string('detail_produk_utama');
@@ -38,10 +38,7 @@ return new class extends Migration
             $table->string('foto_produk_2');
             $table->date('tanggal_regis');
             $table->integer('petugas_verifikator');
-            $table->foreign('petugas_verifikator')->references('id_petugas')->on('t_petugas_admin');
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

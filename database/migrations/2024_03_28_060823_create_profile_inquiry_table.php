@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('profile_bm', function (Blueprint $table) {
+        Schema::create('profile_inquiry', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_bm');
-            $table->string('pelaksanaan_bm');
-            $table->bigInteger('id_negara_buyer');
-            $table->foreign('id_negara_buyer')->references('id_negara')->on('t_negara');
-            $table->string('info_asal_buyer');
+            $table->string('kode_inquiry');
+            $table->date('tanggal_inquiry');
+            $table->string('produk_yang_diminta');
+            $table->integer('qty');
+            $table->string('satuan_qty');
+            $table->unsignedBigInteger('id_negara_asal_inquiry');
+            $table->string('pihak_buyer');
             $table->string('nama_buyer');
             $table->string('email_buyer');
             $table->string('telp_buyer');
-            $table->string('foto_kegiatan');
-            $table->string('catatan');
         });
 
         Schema::enableForeignKeyConstraints();
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profile_bm');
+        Schema::dropIfExists('profile_inquiry');
     }
 };

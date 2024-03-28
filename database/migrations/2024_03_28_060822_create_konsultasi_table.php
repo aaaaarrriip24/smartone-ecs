@@ -15,15 +15,15 @@ return new class extends Migration
 
         Schema::create('konsultasi', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_perusahaan');
-            $table->foreign('id_perusahaan')->references('id_perusahaan')->on('master_perusahaan');
+            $table->string('kode_konsultasi');
+            $table->unsignedBigInteger('id_perusahaan');
+            $table->foreign('id_perusahaan')->references('id')->on('master_perusahaan');
             $table->date('tanggal_konsultasi');
-            $table->integer('id_topik');
-            $table->foreign('id_topik')->references('id_topik')->on('master_topik');
+            $table->unsignedBigInteger('id_topik');
+            $table->foreign('id_topik')->references('id')->on('master_topik');
             $table->string('isi_konsultasi');
             $table->string('foto_pertemuan');
-            $table->bigInteger('id_petugas');
-            $table->foreign('id_petugas')->references('id_petugas')->on('t_petugas_admin');
+            $table->unsignedBigInteger('id_petugas');
         });
 
         Schema::enableForeignKeyConstraints();
