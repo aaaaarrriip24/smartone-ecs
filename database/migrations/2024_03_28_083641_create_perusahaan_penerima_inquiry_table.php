@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('perusahaan_peserta_inaexport', function (Blueprint $table) {
+        Schema::create('perusahaan_penerima_inquiry', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_inquiry');
+            $table->foreign('id_inquiry')->references('id')->on('profile_inquiry');
             $table->unsignedBigInteger('id_perusahaan');
             $table->foreign('id_perusahaan')->references('id')->on('master_perusahaan');
-            $table->date('tanggal_registrasi_inaexport');
-            $table->unsignedBigInteger('id_petugas');
-            $table->foreign('id_petugas')->references('id')->on('t_petugas_admin');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perusahaan_peserta_inaexport');
+        Schema::dropIfExists('perusahaan_penerima_inquiry');
     }
 };

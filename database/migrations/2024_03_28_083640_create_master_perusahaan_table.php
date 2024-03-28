@@ -38,6 +38,9 @@ return new class extends Migration
             $table->string('foto_produk_2');
             $table->date('tanggal_regis');
             $table->integer('petugas_verifikator');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 

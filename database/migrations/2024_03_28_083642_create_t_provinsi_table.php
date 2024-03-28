@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('t_negara', function (Blueprint $table) {
+        Schema::create('t_provinsi', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_negara');
+            $table->string('nama_provinsi');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('t_negara');
+        Schema::dropIfExists('t_provinsi');
     }
 };

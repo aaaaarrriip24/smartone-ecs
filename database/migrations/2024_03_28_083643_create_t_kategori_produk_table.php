@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('master_topik', function (Blueprint $table) {
+        Schema::create('t_kategori_produk', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_topik');
+            $table->string('nama_kategori_produk');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('master_topik');
+        Schema::dropIfExists('t_kategori_produk');
     }
 };

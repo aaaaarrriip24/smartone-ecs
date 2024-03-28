@@ -19,6 +19,9 @@ return new class extends Migration
             $table->foreign('id_provinsi')->references('id')->on('t_provinsi');
             $table->bigInteger('id_kabupaten_kota');
             $table->string('nama_kabupaten_kota');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();

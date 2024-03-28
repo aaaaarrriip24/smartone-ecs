@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('telp_buyer');
             $table->string('dok_pendukung');
             $table->string('bukti_dok');
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
         });
 
         Schema::enableForeignKeyConstraints();
