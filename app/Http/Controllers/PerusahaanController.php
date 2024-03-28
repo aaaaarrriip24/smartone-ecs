@@ -14,7 +14,7 @@ class PerusahaanController extends Controller
      */
     public function index()
     {
-        //
+        return view('master/perusahaan/view');
     }
 
     /**

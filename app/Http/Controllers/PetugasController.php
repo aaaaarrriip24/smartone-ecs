@@ -14,7 +14,8 @@ class PetugasController extends Controller
      */
     public function index()
     {
-        //
+        $data = Petugas::all();
+        return view('master/petugas/view', compact('data'));
     }
 
     /**
