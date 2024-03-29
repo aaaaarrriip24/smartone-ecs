@@ -36,11 +36,13 @@ class PerusahaanController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $url = url('perusahaan/destroy/'. $row->id);
+                        $urlEdit = url('perusahaan/show/'. $row->id);
+                        $urlDetail = url('perusahaan/detail/'. $row->id);
+                        $urlDelete = url('perusahaan/destroy/'. $row->id);
                         $button = '';
-                        $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id."'>Edit</button>";
-                        $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id."'>Detail</button>";
-                        $button .= " <button data-href='".$url."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
+                        $button .= " <a href='".$urlEdit."' class='btn btn-outline-warning btn-sm btn-edit'>Edit</a>";
+                        $button .= " <a href='".$urlDetail."' class='btn btn-outline-primary btn-sm btn-detail'>Detail</a>";
+                        $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
                         return $button;
                     })
                     ->rawColumns(['action'])
@@ -83,32 +85,25 @@ class PerusahaanController extends Controller
      */
     public function show($id)
     {
-        // $provinsi = Provinsi::all();
-        // $kabkota = DB::table('t_kabupaten_kota as ta')
-        // ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
-        // ->whereNull('ta.deleted_at')
-        // ->whereNull('tb.deleted_at')
-        // ->get();
+        $provinsi = Provinsi::all();
+        $kabkota = DB::table('t_kabupaten_kota as ta')
+        ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->get();
         
-        // $tipe = Tipe::all();
-        // $petugas = Petugas::all();
+        $tipe = Tipe::all();
+        $petugas = Petugas::all();
 
         $data = DB::table('master_perusahaan as ta')
         ->leftJoin('master_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
-        ->select('ta.*', 'tb.nama_tipe')
         ->where('ta.id', $id)
+        ->select('ta.*', 'tb.nama_tipe')
         ->get();
         
-        return response()->json([
-            "status"=> 200,
-            "data"=> $data,
-            // "provinsi"=> $provinsi,
-            // "kabkota"=> $kabkota,
-            // "tipe"=> $tipe, 
-            // "petugas"=> $petugas,
-        ]);
+        return view('master/perusahaan/edit', compact('data', 'provinsi', 'kabkota', 'tipe', 'petugas'));
     }
 
     /**

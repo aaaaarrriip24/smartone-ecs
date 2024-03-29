@@ -30,7 +30,9 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
-
+    <!-- Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    @routes
 </head>
 
 <body>
@@ -718,8 +720,7 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="{{ asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        <span
-                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Name</span>
+                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Name</span>
                                         <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
                                     </span>
                                 </span>
@@ -1752,6 +1753,9 @@
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+
+    <!-- Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
