@@ -38,34 +38,7 @@ class PetugasController extends Controller
         
         return view('master/petugas/view');
     }
-
-    public function getDataTableData(){
-        $employees = Employees::select('*');
-
-        return Datatables::of($employees)
-           ->addIndexColumn()
-           ->addColumn('status', function($row){
-
-                if($row->status == 1){
-                     return "Active";
-                }else{
-                     return "Inactive";
-                }
-
-           }) 
-           ->addColumn('action', function($row){
-
-                // Update Button
-                $updateButton = "<button class='btn btn-sm btn-info updateUser' data-id='".$row->id."' data-bs-toggle='modal' data-bs-target='#updateModal' ><i class='fa-solid fa-pen-to-square'></i></button>";
-
-                // Delete Button
-                $deleteButton = "<button class='btn btn-sm btn-danger deleteUser' data-id='".$row->id."'><i class='fa-solid fa-trash'></i></button>";
-
-                return $updateButton." ".$deleteButton;
-
-           }) 
-           ->make();
-    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -99,6 +72,7 @@ class PetugasController extends Controller
      */
     public function show($id)
     {
+        
         $data = Petugas::findOrFail($id);
         return response()->json([
             "status"=>200,

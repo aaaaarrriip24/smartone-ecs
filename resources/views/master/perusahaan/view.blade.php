@@ -35,7 +35,10 @@
                     style="width:100%">
                     <thead>
                         <th>No. </th>
+                        <th>Kode</th>
                         <th>Nama Perusahaan</th>
+                        <th>Tipe</th>
+                        <th>Alamat</th>
                         <th>Action</th>
                     </thead>
                 </table>
@@ -149,8 +152,23 @@
                     width: '5%'
                 },
                 {
+                    data: 'kode_perusahaan',
+                    name: 'kode_perusahaan',
+                    orderable: true,
+                },
+                {
                     data: 'nama_perusahaan',
                     name: 'nama_perusahaan',
+                    orderable: true,
+                },
+                {
+                    data: 'nama_tipe',
+                    name: 'nama_tipe',
+                    orderable: true,
+                },
+                {
+                    data: 'alamat_perusahaan',
+                    name: 'alamat_perusahaan',
                     orderable: true,
                 },
                 {

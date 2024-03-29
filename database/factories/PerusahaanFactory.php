@@ -15,10 +15,13 @@ class PerusahaanFactory extends Factory
      */
     public function definition()
     {
+        $kode_perusahaan = 'ABCD1234';
+        $kode  = str_shuffle($kode_perusahaan);
+        $kode = "PT-".$kode;
         return [
-            'kode_perusahaan' => $this->faker->name,
+            'kode_perusahaan' => $kode,
             'nama_perusahaan' => $this->faker->company,
-            'tipe_perusahaan' => rand(301,400),
+            'tipe_perusahaan' => rand(1,100),
             'alamat_provinsi' => 1,
             'alamat_kabkota' => rand(1,50),
             'alamat_perusahaan' => $this->faker->streetAddress,

@@ -3,9 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perusahaan;
+use App\Models\Provinsi;
+use App\Models\KabKota;
+use App\Models\Tipe;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
+use DB;
 
 class PerusahaanController extends Controller
 {
@@ -21,7 +26,12 @@ class PerusahaanController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = Perusahaan::whereNull('deleted_at')->get();
+            $data = Perusahaan::select('*')
+            ->leftJoin('master_tipe_perusahaan', 'master_perusahaan.tipe_perusahaan', '=', 'master_tipe_perusahaan.id')
+            ->whereNull('master_perusahaan.deleted_at')
+            ->whereNull('master_tipe_perusahaan.deleted_at')
+            ->get();
+
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -39,33 +49,6 @@ class PerusahaanController extends Controller
         return view('master/perusahaan/view');
     }
 
-    public function getDataTableData(){
-        $employees = Employees::select('*');
-
-        return Datatables::of($employees)
-           ->addIndexColumn()
-           ->addColumn('status', function($row){
-
-                if($row->status == 1){
-                     return "Active";
-                }else{
-                     return "Inactive";
-                }
-
-           }) 
-           ->addColumn('action', function($row){
-
-                // Update Button
-                $updateButton = "<button class='btn btn-sm btn-info updateUser' data-id='".$row->id."' data-bs-toggle='modal' data-bs-target='#updateModal' ><i class='fa-solid fa-pen-to-square'></i></button>";
-
-                // Delete Button
-                $deleteButton = "<button class='btn btn-sm btn-danger deleteUser' data-id='".$row->id."'><i class='fa-solid fa-trash'></i></button>";
-
-                return $updateButton." ".$deleteButton;
-
-           }) 
-           ->make();
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -99,10 +82,30 @@ class PerusahaanController extends Controller
      */
     public function show($id)
     {
-        $data = Perusahaan::findOrFail($id);
+        $provinsi = Provinsi::all();
+        $kabkota = DB::table('t_kabupaten_kota as ta')
+        ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->get();
+        
+        $tipe = Tipe::all();
+        $petugas = Petugas::all();
+
+        $data = Perusahaan::select('*')
+        ->leftJoin('master_tipe_perusahaan', 'master_perusahaan.tipe_perusahaan', '=', 'master_tipe_perusahaan.id')
+        ->whereNull('master_perusahaan.deleted_at')
+        ->whereNull('master_tipe_perusahaan.deleted_at')
+        ->where('master_perusahaan.id', $id)
+        ->get();
+
         return response()->json([
-            "status"=>200,
-            "data"=>$data
+            "status"=> 200,
+            // "data"=> $data,
+            // "provinsi"=> $provinsi,
+            "kabkota"=> $kabkota,
+            // "tipe"=> $tipe, 
+            // "petugas"=> $petugas,
         ]);
     }
 
