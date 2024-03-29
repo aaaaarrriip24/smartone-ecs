@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    Iki Home
+    <a href="{{ Route('login') }}">Login</a>
 </body>
 </html>

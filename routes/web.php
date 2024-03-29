@@ -22,10 +22,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
 
+Auth::routes();
 Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
 
 Route::get('master/petugas', [PetugasController::class, 'index'])->name('petugas');
+Route::post('petugas/store', [PetugasController::class, 'store']);
+Route::get('petugas/show/{id}', [PetugasController::class, 'show']);
+Route::post('petugas/update', [PetugasController::class, 'update']);
+Route::post('petugas/destroy/{id}', [PetugasController::class, 'destroy']);

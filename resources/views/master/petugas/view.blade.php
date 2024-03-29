@@ -12,7 +12,9 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
                     <li class="breadcrumb-item active">Petugas</li>
                     <li class="breadcrumb-item">
-                        <a href="#">Add</a>
+                        <a href="javascript:void(0);" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Add
+                        </a>
                     </li>
                 </ol>
             </div>
@@ -38,7 +40,84 @@
                     </thead>
                 </table>
             </div>
-            
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Add Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{{ url('petugas/store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Petugas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Petugas</label>
+                        <input type="text" name="nama_petugas" class="form-control form-control-sm"
+                            placeholder="John Doe" required="required">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{{ url('petugas/update') }}" enctype="multipart/form-data">
+                @csrf
+                <input hidden type="text" class="form-control" id="id" name="id">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Petugas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Petugas</label>
+                        <input type="text" name="nama_petugas" class="form-control form-control-sm nama_petugas"
+                            required="required">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Petugas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nama Petugas</label>
+                    <input type="text" name="nama_petugas" class="form-control form-control-sm nama_petugas" disabled
+                        readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+
         </div>
     </div>
 </div>
@@ -46,26 +125,76 @@
 
 @section('js')
 <script>
-$(function() {
-    $('#dt_petugas').DataTable({
-        "autoWidth": false,
-		"responsive": false,
-		"scrollCollapse": true,
-		"processing": true,
-		"serverSide": true,
-		"displayLength": 5,
-		"paginate": true,
-		"lengthChange": true,
-		"filter": true,
-		"sort": true,
-		"info": true,
-        ajax: base_url + "master/petugas",
-        columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, className: 'text-center', width: '5%'},
-            {data: 'nama_petugas', name: 'nama_petugas'},
-            {data: 'action', name: 'action', orderable: false, searchable: false, width: '10%'},
-        ]
+    $(document).ready(function () {
+        $(function () {
+            $('#dt_petugas').DataTable({
+                autoWidth: false,
+                responsive: false,
+                scrollCollapse: true,
+                processing: true,
+                serverSide: true,
+                displayLength: 5,
+                paginate: true,
+                lengthChange: true,
+                filter: true,
+                sort: true,
+                info: true,
+                ajax: base_url + "master/petugas",
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false,
+                        className: 'text-center',
+                        width: '5%'
+                    },
+                    {
+                        data: 'nama_petugas',
+                        name: 'nama_petugas'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
+                        width: '10%'
+                    },
+                ]
+            });
+        });
+
+        $(document).on('click', '.btn-edit', function () {
+            var id = $(this).val();
+            // alert(id);
+            $('#modalEdit').modal('show');
+
+            $.ajax({
+                type: "GET",
+                url: base_url + "petugas/show/" + id,
+                success: function (response) {
+                    console.log(response);
+                    $('#id').val(id);
+                    $('.nama_petugas').val(response.data.nama_petugas);
+                }
+            });
+        });
+
+        $(document).on('click', '.btn-detail', function () {
+            var id = $(this).val();
+            // alert(id);
+            $('#modalDetail').modal('show');
+
+            $.ajax({
+                type: "GET",
+                url: base_url + "petugas/show/" + id,
+                success: function (response) {
+                    console.log(response);
+                    $('#id').val(id);
+                    $('.nama_petugas').val(response.data.nama_petugas);
+                }
+            });
+        });
     });
-});
+
 </script>
 @endsection
