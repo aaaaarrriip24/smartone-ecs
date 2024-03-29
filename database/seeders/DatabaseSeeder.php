@@ -12,12 +12,33 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    // public function run()
+    // {
+    //     \App\Models\Petugas::factory(100)->create();
+    //     \App\Models\Provinsi::factory(1)->create();
+    //     \App\Models\KabKota::factory(50)->create();
+    //     \App\Models\Tipe::factory(100)->create();
+    //     \App\Models\Perusahaan::factory(100)->create();
+    // }
     public function run()
     {
-        \App\Models\Petugas::factory(100)->create();
-        \App\Models\Provinsi::factory(1)->create();
-        \App\Models\KabKota::factory(50)->create();
-        \App\Models\Tipe::factory(100)->create();
-        \App\Models\Perusahaan::factory(100)->create();
+        $this->reset();
+
+        $this->call(ProvincesSeeder::class);
+        $this->call(CitiesSeeder::class);
+        $this->call(DistrictsSeeder::class);
+        $this->call(VillagesSeeder::class);
+    }
+
+    public function reset()
+    {
+        Schema::disableForeignKeyConstraints();
+
+        Kelurahan::truncate();
+        Kecamatan::truncate();
+        Kabupaten::truncate();
+        Provinsi::truncate();
+
+        Schema::disableForeignKeyConstraints();
     }
 }

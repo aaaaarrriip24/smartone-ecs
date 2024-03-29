@@ -33,15 +33,16 @@
                 @foreach($data as $d)
                 <form action="{{ url('perusahaan/edit/'.$d->id) }}" method="post" multipart...>
                     @csrf
-                    <div class="col-lg-4">
-                        <h6 class="fw-semibold">Provinsi</h6>
-                        <select class="select_provinsi" name="provinsi" id="test_select">
-
-                        </select>
-                    </div>
-                    <div class="col-lg-4">
-                        <h6 class="fw-semibold">Kabupaten/Kota</h6>
-                        <select class="select_kabkota" name="kabkota"></select>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <h6 class="fw-semibold">Provinsi</h6>
+                            <select class="select_provinsi" name="provinsi" id="test_select">
+                            </select>
+                        </div>
+                        <div class="col-lg-4">
+                            <h6 class="fw-semibold">Kabupaten/Kota</h6>
+                            <select class="select_kabkota" name="kabkota"></select>
+                        </div>
                     </div>
                 </form>
                 @endforeach
@@ -53,36 +54,65 @@
 @endsection
 
 @section('js')
-<script type="text/javascript">
-    $(document).ready(function () {
+<!-- <script>
+    function onChangeSelect(url, id, name) {
+        // send ajax request to get the cities of the selected province and append to the select tag
+        $.ajax({
+            url: url,
+            type: 'GET',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                console.log(data);
+                $('#' + name).empty();
+                $('#' + name).append('<option>Pilih Salah Satu</option>');
+                $.each(data, function (key, value) {
+                    $('#' + name).append('<option value="' + key + '">' + value + '</option>');
+                });
+            }
+        });
+    }
+    $(function () {
+        $('.select_kabkota').on('change', function () {
+            onChangeSelect('{{ url("cities") }}', $(this).val(), 'kota');
+        });
+    });
+
+</script> -->
+
+<script>
+    $(document).ready(function (url, id, name) {
         $('.select_provinsi').select2({
             placeholder: 'Pilih Provinsi',
             ajax: {
-                url: base_url + 'provinsi/data',
-                dataType: 'json',
+                url: base_url + "provinces",
+                data: {
+                    id: id
+                },
                 processResults: data => {
                     return {
                         results: data.data.map((item) => {
                             return {
-                                text: item.nama_provinsi,
+                                text: item.name,
                                 id: item.id
                             };
                         }),
                     };
                 },
             }
-        })
+        });
 
         $('.select_kabkota').select2({
             placeholder: 'Select an item',
             ajax: {
-                url: base_url + "kabkota/data/",
+                url: base_url + "cities",
                 dataType: 'json',
                 processResults: data => {
                     return {
                         results: data.data.map((item) => {
                             return {
-                                text: item.nama_kabupaten_kota,
+                                text: item.name,
                                 id: item.id
                             };
                         }),

@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Laravolt\Indonesia\ServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
@@ -191,6 +192,7 @@ return [
     */
 
     'aliases' => [
+        'Indonesia' => Laravolt\Indonesia\Facade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Datatables' => yajra\Datatables\Datatables::class,
         'App' => Illuminate\Support\Facades\App::class,

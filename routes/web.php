@@ -28,8 +28,12 @@ Auth::routes();
 Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 // Data
-Route::get('provinsi/data/', [DataController::class, 'provinsi'])->name('get');
-Route::get('kabkota/data/', [DataController::class, 'kabkota']);
+// Route::get('provinsi/data/', [DataController::class, 'provinsi'])->name('get');
+// Route::get('kabkota/data/', [DataController::class, 'kabkota']);
+Route::get('provinces', [DataController::class, 'provinces'])->name('provinces');
+Route::get('cities', [DataController::class, 'cities'])->name('cities');
+Route::get('districts', [DataController::class, 'districts'])->name('districts');
+Route::get('villages', [DataController::class, 'villages'])->name('villages');
 
 // Perusahaan
 Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
