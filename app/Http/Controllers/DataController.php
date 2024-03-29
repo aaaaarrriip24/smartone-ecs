@@ -18,16 +18,13 @@ class DataController extends Controller
     }
     public function kabkota(Request $request)
     {   
-        $data = [];
-        if($request->has('q')){
-            $search = $request->q;
-            $data = DB::table('t_kabupaten_kota as ta')
-            ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
-            ->whereNull('ta.deleted_at')
-            ->whereNull('tb.deleted_at')
-            ->where('nama_kabupaten_kota','LIKE',"%$search%")
-            ->get();
-        }
+        $search = $request->q;
+        $data = DB::table('t_kabupaten_kota as ta')
+        ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->where('nama_kabupaten_kota','LIKE',"%$search%")
+        ->get();
 
         return response()->json([
             "status"=>200,

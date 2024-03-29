@@ -62,59 +62,34 @@
                 dataType: 'json',
                 processResults: data => {
                     return {
-                        results: data.map(res => {
+                        results: data.data.map((item) => {
                             return {
-                                text: res.nama_provinsi,
-                                id: res.id
-                            }
-                        })
-                    }
-                }
+                                text: item.nama_provinsi,
+                                id: item.id
+                            };
+                        }),
+                    };
+                },
             }
         })
-
-        // $('.select_provinsi').select2({
-        //     placeholder: 'Select an item',
-        //     ajax: {
-        //         url: base_url + 'provinsi/data',
-        //         dataType: 'json',
-        //         delay: 250,
-        //         processResults: function (data) {
-        //             console.log(data);
-        //             return {
-        //                 results: $.map(data, function (item) {
-        //                     return {
-        //                         text: item.nama_provinsi,
-        //                         id: item.id,
-        //                     }
-        //                 })
-        //             };
-        //         },
-        //         cache: true
-        //     }
-        // }).on('select2:select', function (e) {
-        //     var d = e.params.data;
-        // });
 
         $('.select_kabkota').select2({
             placeholder: 'Select an item',
             ajax: {
                 url: base_url + "kabkota/data/",
-                method: "POST",
                 dataType: 'json',
-                processResults: function (data) {
+                processResults: data => {
                     return {
-                        results: data.map(function (item) {
-                            item.id = item.id;
-                            item.text = item.nama_kabupaten_kota;
-                            return item;
-                        })
+                        results: data.data.map((item) => {
+                            return {
+                                text: item.nama_kabupaten_kota,
+                                id: item.id
+                            };
+                        }),
                     };
                 },
             }
-        }).on('select2:select', function (e) {
-            var d = e.params.data;
-        });
+        })
     });
 
 </script>
