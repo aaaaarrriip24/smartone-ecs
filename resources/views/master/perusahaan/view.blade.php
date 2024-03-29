@@ -81,7 +81,7 @@
         <div class="modal-content">
             <form method="post" action="{{ url('perusahaan/update') }}" enctype="multipart/form-data">
                 @csrf
-                <input hidden type="text" class="form-control" id="id" name="id">
+                <input type="text" class="form-control" id="id" name="id">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit Perusahaan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

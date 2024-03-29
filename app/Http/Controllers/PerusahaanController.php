@@ -26,10 +26,11 @@ class PerusahaanController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = Perusahaan::select('*')
-            ->leftJoin('master_tipe_perusahaan', 'master_perusahaan.tipe_perusahaan', '=', 'master_tipe_perusahaan.id')
-            ->whereNull('master_perusahaan.deleted_at')
-            ->whereNull('master_tipe_perusahaan.deleted_at')
+            $data = DB::table('master_perusahaan as ta')
+            ->leftJoin('master_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->select('ta.*', 'tb.nama_tipe')
             ->get();
 
             return Datatables::of($data)
@@ -82,28 +83,29 @@ class PerusahaanController extends Controller
      */
     public function show($id)
     {
-        $provinsi = Provinsi::all();
-        $kabkota = DB::table('t_kabupaten_kota as ta')
-        ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
+        // $provinsi = Provinsi::all();
+        // $kabkota = DB::table('t_kabupaten_kota as ta')
+        // ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
+        // ->whereNull('ta.deleted_at')
+        // ->whereNull('tb.deleted_at')
+        // ->get();
+        
+        // $tipe = Tipe::all();
+        // $petugas = Petugas::all();
+
+        $data = DB::table('master_perusahaan as ta')
+        ->leftJoin('master_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
+        ->select('ta.*', 'tb.nama_tipe')
+        ->where('ta.id', $id)
         ->get();
         
-        $tipe = Tipe::all();
-        $petugas = Petugas::all();
-
-        $data = Perusahaan::select('*')
-        ->leftJoin('master_tipe_perusahaan', 'master_perusahaan.tipe_perusahaan', '=', 'master_tipe_perusahaan.id')
-        ->whereNull('master_perusahaan.deleted_at')
-        ->whereNull('master_tipe_perusahaan.deleted_at')
-        ->where('master_perusahaan.id', $id)
-        ->get();
-
         return response()->json([
             "status"=> 200,
-            // "data"=> $data,
+            "data"=> $data,
             // "provinsi"=> $provinsi,
-            "kabkota"=> $kabkota,
+            // "kabkota"=> $kabkota,
             // "tipe"=> $tipe, 
             // "petugas"=> $petugas,
         ]);
