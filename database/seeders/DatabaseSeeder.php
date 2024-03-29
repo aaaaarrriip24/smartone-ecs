@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Petugas::factory(10)->create();
+        \App\Models\Petugas::factory(100)->create();
     }
 }

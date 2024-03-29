@@ -32,7 +32,6 @@ class PetugasController extends Controller
                         $button .= " <button data-href='".$url."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
                         return $button;
                     })
-                    ->setRowId('id')
                     ->rawColumns(['action'])
                     ->make(true);
         }
@@ -130,6 +129,7 @@ class PetugasController extends Controller
         Petugas::where('id', $request->id)
         ->update([
             'nama_petugas' => $request->nama_petugas,
+            'updated_at' => Carbon::now(),
         ]);
         return redirect()->back();
     }
@@ -142,10 +142,8 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        
-        Petugas::where('id',$id)->update([
-            'deleted_at' => date('Y-m-d H:i:s')
-        ]);
+        $post = Petugas::find($id);
+        $post->delete();
         return response()->json([
             "status"=>200, 
         ]);

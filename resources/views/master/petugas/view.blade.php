@@ -150,7 +150,8 @@
                 },
                 {
                     data: 'nama_petugas',
-                    name: 'nama_petugas'
+                    name: 'nama_petugas',
+                    orderable: true,
                 },
                 {
                     data: 'action',
