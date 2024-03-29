@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\Petugas::factory(100)->create();
         \App\Models\Perusahaan::factory(100)->create();
+        // \App\Models\Provinsi::factory(1)->create();
+        // \App\Models\KabKota::factory(50)->create();
+        // \App\Models\Tipe::factory(100)->create();
     }
 }

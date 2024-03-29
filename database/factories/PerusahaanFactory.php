@@ -18,9 +18,9 @@ class PerusahaanFactory extends Factory
         return [
             'kode_perusahaan' => $this->faker->name,
             'nama_perusahaan' => $this->faker->company,
-            'tipe_perusahaan' => $this->faker->text,
-            'alamat_provinsi' => $this->faker->randomDigitNotNull,
-            'alamat_kabkota' => $this->faker->randomDigitNotNull,
+            'tipe_perusahaan' => rand(301,400),
+            'alamat_provinsi' => 1,
+            'alamat_kabkota' => rand(1,50),
             'alamat_perusahaan' => $this->faker->streetAddress,
             'nama_contact_person' => $this->faker->name,
             'telp_contact_person' => $this->faker->phoneNumber,
