@@ -21,15 +21,16 @@ class PetugasController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = Petugas::all();
+            $data = Petugas::whereNull('deleted_at')->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
                         $url = url('petugas/destroy/'. $row->id);
-                        $updateButton = "<button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id."'>Edit</button>";
-                        $detailButton = "<button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id."'>Detail</button>";
-                        $deleteButton = " <a href='".$url."' class='btn btn-outline-danger btn-sm' data-confirm-delete='true'>Delete</a>";
-                        return $updateButton." ".$detailButton." ".$deleteButton;
+                        $button = '';
+                        $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id."'>Edit</button>";
+                        $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id."'>Detail</button>";
+                        $button .= " <button data-href='".$url."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
+                        return $button;
                     })
                     ->setRowId('id')
                     ->rawColumns(['action'])
@@ -139,9 +140,14 @@ class PetugasController extends Controller
      * @param  \App\Models\Petugas  $petugas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Petugas $petugas)
+    public function destroy($id)
     {
-        Petugas::destroy($id);
-        return redirect()->back();
+        
+        Petugas::where('id',$id)->update([
+            'deleted_at' => date('Y-m-d H:i:s')
+        ]);
+        return response()->json([
+            "status"=>200, 
+        ]);
     }
 }

@@ -125,49 +125,47 @@
 
 @section('js')
 <script>
+    let table;
     $(document).ready(function () {
-        $(function () {
-            $('#dt_petugas').DataTable({
-                autoWidth: false,
-                responsive: false,
-                scrollCollapse: true,
-                processing: true,
-                serverSide: true,
-                displayLength: 5,
-                paginate: true,
-                lengthChange: true,
-                filter: true,
-                sort: true,
-                info: true,
-                ajax: base_url + "master/petugas",
-                columns: [{
-                        data: 'DT_RowIndex',
-                        name: 'DT_RowIndex',
-                        orderable: false,
-                        searchable: false,
-                        className: 'text-center',
-                        width: '5%'
-                    },
-                    {
-                        data: 'nama_petugas',
-                        name: 'nama_petugas'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false,
-                        width: '10%'
-                    },
-                ]
-            });
+        table = $('#dt_petugas').DataTable({
+            autoWidth: false,
+            responsive: false,
+            scrollCollapse: true,
+            processing: true,
+            serverSide: true,
+            displayLength: 5,
+            paginate: true,
+            lengthChange: true,
+            filter: true,
+            sort: true,
+            info: true,
+            ajax: base_url + "master/petugas",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
+                    className: 'text-center',
+                    width: '5%'
+                },
+                {
+                    data: 'nama_petugas',
+                    name: 'nama_petugas'
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '10%'
+                },
+            ]
         });
-
         $(document).on('click', '.btn-edit', function () {
             var id = $(this).val();
             // alert(id);
             $('#modalEdit').modal('show');
-
+    
             $.ajax({
                 type: "GET",
                 url: base_url + "petugas/show/" + id,
@@ -178,12 +176,12 @@
                 }
             });
         });
-
+    
         $(document).on('click', '.btn-detail', function () {
             var id = $(this).val();
             // alert(id);
             $('#modalDetail').modal('show');
-
+    
             $.ajax({
                 type: "GET",
                 url: base_url + "petugas/show/" + id,
@@ -194,7 +192,35 @@
                 }
             });
         });
+        $(document).on('click', '.btn-delete', function () {
+            var url = $(this).attr('data-href');
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        success: function (response) {
+                            table.ajax.reload(null, true);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                }
+            });
+        });
     });
+
 
 </script>
 @endsection

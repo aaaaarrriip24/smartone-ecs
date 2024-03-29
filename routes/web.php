@@ -32,4 +32,5 @@ Route::get('master/petugas', [PetugasController::class, 'index'])->name('petugas
 Route::post('petugas/store', [PetugasController::class, 'store']);
 Route::get('petugas/show/{id}', [PetugasController::class, 'show']);
 Route::post('petugas/update', [PetugasController::class, 'update']);
-Route::post('petugas/destroy/{id}', [PetugasController::class, 'destroy']);
+
+Route::get('petugas/destroy/{id}', [PetugasController::class, 'destroy']);
