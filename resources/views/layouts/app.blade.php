@@ -27,7 +27,8 @@
     <!-- custom Css-->
     <link href="{{ asset('assets/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Datatables -->
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
 
 </head>
 
@@ -952,7 +953,7 @@
     </div>
 
     <!-- Theme Settings -->
-    <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
+    <!-- <div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
         <div class="d-flex align-items-center bg-primary bg-gradient p-3 offcanvas-header">
             <h5 class="m-0 me-2 text-white">Theme Customizer</h5>
 
@@ -1042,7 +1043,6 @@
                             </div>
                             <h5 class="fs-13 text-center mt-2">Two Column</h5>
                         </div>
-                        <!-- end col -->
 
                         <div class="col-4">
                             <div class="form-check card-radio">
@@ -1069,7 +1069,6 @@
                             </div>
                             <h5 class="fs-13 text-center mt-2">Semi Box</h5>
                         </div>
-                        <!-- end col -->
                     </div>
 
                     <h6 class="mt-4 mb-0 fw-bold text-uppercase">Color Scheme</h6>
@@ -1570,7 +1569,6 @@
                                 <h5 class="fs-13 text-center mt-2">Gradient</h5>
                             </div>
                         </div>
-                        <!-- end row -->
 
                         <div class="collapse" id="collapseBgGradient">
                             <div class="d-flex gap-2 flex-wrap img-switch p-2 px-3 bg-light rounded">
@@ -1690,13 +1688,13 @@
                                                 </span>
                                             </span>
                                         </span>
-                                        <!-- <div id="preloader"> -->
+
                                         <div id="status" class="d-flex align-items-center justify-content-center">
                                             <div class="spinner-border text-primary avatar-xxs m-auto" role="status">
                                                 <span class="visually-hidden">Loading...</span>
                                             </div>
                                         </div>
-                                        <!-- </div> -->
+
                                     </label>
                                 </div>
                                 <h5 class="fs-13 text-center mt-2">Enable</h5>
@@ -1730,7 +1728,6 @@
                         </div>
 
                     </div>
-                    <!-- end preloader-menu -->
 
                 </div>
             </div>
@@ -1747,7 +1744,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+    <!-- Datatables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>  
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
@@ -1763,12 +1766,12 @@
     <script src="{{ asset('assets/js/pages/dashboard-crm.init.js') }}"></script>
 
     <!-- App js -->
-    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <!-- <script src="{{ asset('assets/js/app.js') }}"></script> -->
     <!-- Base Url -->
     <script>
         var base_url = document.querySelector('meta[name="base_url"]').getAttribute('content') + '/';
-
     </script>
+    @yield('js')
 </body>
 
 </html>

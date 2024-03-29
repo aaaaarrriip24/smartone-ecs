@@ -5,12 +5,15 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Perusahaan</h4>
+            <h4 class="mb-sm-0">Master Petugas</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master</a></li>
-                    <li class="breadcrumb-item active">Perusahaan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
+                    <li class="breadcrumb-item active">Petugas</li>
+                    <li class="breadcrumb-item">
+                        <a href="#">Add</a>
+                    </li>
                 </ol>
             </div>
 
@@ -29,32 +32,40 @@
                 <table id="dt_petugas" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                     style="width:100%">
                     <thead>
-                        <th>No.</th>
+                        <th>No. </th>
                         <th>Nama Petugas</th>
                         <th>Action</th>
                     </thead>
                 </table>
             </div>
+            
         </div>
     </div>
 </div>
 @endsection
 
-@push('scripts')
+@section('js')
 <script>
 $(function() {
     $('#dt_petugas').DataTable({
-        processing: true,
-        serverSide: true,
+        "autoWidth": false,
+		"responsive": false,
+		"scrollCollapse": true,
+		"processing": true,
+		"serverSide": true,
+		"displayLength": 5,
+		"paginate": true,
+		"lengthChange": true,
+		"filter": true,
+		"sort": true,
+		"info": true,
         ajax: base_url + "master/petugas",
         columns: [
-            { data: 'id', name: 'id' },
-            { data: 'name', name: 'name' },
-            { data: 'email', name: 'email' },
-            { data: 'created_at', name: 'created_at' },
-            { data: 'updated_at', name: 'updated_at' }
+            {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, className: 'text-center', width: '5%'},
+            {data: 'nama_petugas', name: 'nama_petugas'},
+            {data: 'action', name: 'action', orderable: false, searchable: false, width: '10%'},
         ]
     });
 });
 </script>
-@endpush
+@endsection
