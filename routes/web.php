@@ -27,10 +27,13 @@ Auth::routes();
 Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
+Route::post('perusahaan/store', [PerusahaanController::class, 'store']);
+Route::get('perusahaan/show/{id}', [PerusahaanController::class, 'show']);
+Route::post('perusahaan/update', [PerusahaanController::class, 'update']);
+Route::get('perusahaan/destroy/{id}', [PerusahaanController::class, 'destroy']);
 
 Route::get('master/petugas', [PetugasController::class, 'index'])->name('petugas');
 Route::post('petugas/store', [PetugasController::class, 'store']);
 Route::get('petugas/show/{id}', [PetugasController::class, 'show']);
 Route::post('petugas/update', [PetugasController::class, 'update']);
-
 Route::get('petugas/destroy/{id}', [PetugasController::class, 'destroy']);

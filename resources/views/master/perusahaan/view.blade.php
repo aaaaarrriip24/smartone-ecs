@@ -5,12 +5,17 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Perusahaan</h4>
+            <h4 class="mb-sm-0">Master Perusahaan</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Master</a></li>
+                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
                     <li class="breadcrumb-item active">Perusahaan</li>
+                    <li class="breadcrumb-item">
+                        <a href="javascript:void(0);" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Add
+                        </a>
+                    </li>
                 </ol>
             </div>
 
@@ -23,74 +28,200 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Fixed Header Datatables</h5>
+                <h5 class="card-title mb-0">Perusahaan</h5>
             </div>
             <div class="card-body">
-                <table id="fixed-header" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                <table id="dt_perusahaan" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                     style="width:100%">
                     <thead>
-                        <tr>
-                            <th scope="col" style="width: 10px;">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" id="checkAll" value="option">
-                                </div>
-                            </th>
-                            <th>SR No.</th>
-                            <th>ID</th>
-                            <th>Purchase ID</th>
-                            <th>Title</th>
-                            <th>User</th>
-                            <th>Assigned To</th>
-                            <th>Created By</th>
-                            <th>Create Date</th>
-                            <th>Status</th>
-                            <th>Priority</th>
-                            <th>Action</th>
-                        </tr>
+                        <th>No. </th>
+                        <th>Nama Perusahaan</th>
+                        <th>Action</th>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">
-                                <div class="form-check">
-                                    <input class="form-check-input fs-15" type="checkbox" name="checkAll"
-                                        value="option1">
-                                </div>
-                            </th>
-                            <td>01</td>
-                            <td>VLZ-452</td>
-                            <td>VLZ1400087402</td>
-                            <td><a href="#!">Post launch reminder/ post list</a></td>
-                            <td>Joseph Parker</td>
-                            <td>Alexis Clarke</td>
-                            <td>Joseph Parker</td>
-                            <td>03 Oct, 2021</td>
-                            <td><span class="badge bg-info-subtle text-info">Re-open</span></td>
-                            <td><span class="badge bg-danger">High</span></td>
-                            <td>
-                                <div class="dropdown d-inline-block">
-                                    <button class="btn btn-soft-secondary btn-sm dropdown" type="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="ri-more-fill align-middle"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a href="#!" class="dropdown-item"><i
-                                                    class="ri-eye-fill align-bottom me-2 text-muted"></i> View</a></li>
-                                        <li><a class="dropdown-item edit-item-btn"><i
-                                                    class="ri-pencil-fill align-bottom me-2 text-muted"></i> Edit</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item remove-item-btn">
-                                                <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
                 </table>
             </div>
+
         </div>
     </div>
 </div>
+
+
+<!-- Add Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{{ url('perusahaan/store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Perusahaan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Perusahaan</label>
+                        <input type="text" name="nama_perusahaan" class="form-control form-control-sm"
+                            placeholder="John Doe" required="required">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{{ url('perusahaan/update') }}" enctype="multipart/form-data">
+                @csrf
+                <input hidden type="text" class="form-control" id="id" name="id">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Perusahaan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Perusahaan</label>
+                        <input type="text" name="nama_perusahaan" class="form-control form-control-sm nama_perusahaan"
+                            required="required">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Detail Perusahaan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nama Perusahaan</label>
+                    <input type="text" name="nama_perusahaan" class="form-control form-control-sm nama_perusahaan" disabled
+                        readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('js')
+<script>
+    let table;
+    $(document).ready(function () {
+        table = $('#dt_perusahaan').DataTable({
+            autoWidth: false,
+            responsive: false,
+            scrollCollapse: true,
+            processing: true,
+            serverSide: true,
+            displayLength: 5,
+            paginate: true,
+            lengthChange: true,
+            filter: true,
+            sort: true,
+            info: true,
+            ajax: base_url + "master/perusahaan",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
+                    className: 'text-center',
+                    width: '5%'
+                },
+                {
+                    data: 'nama_perusahaan',
+                    name: 'nama_perusahaan',
+                    orderable: true,
+                },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '10%'
+                },
+            ]
+        });
+        $(document).on('click', '.btn-edit', function () {
+            var id = $(this).val();
+            // alert(id);
+            $('#modalEdit').modal('show');
+    
+            $.ajax({
+                type: "GET",
+                url: base_url + "perusahaan/show/" + id,
+                success: function (response) {
+                    console.log(response);
+                    $('#id').val(id);
+                    $('.nama_perusahaan').val(response.data.nama_perusahaan);
+                }
+            });
+        });
+    
+        $(document).on('click', '.btn-detail', function () {
+            var id = $(this).val();
+            // alert(id);
+            $('#modalDetail').modal('show');
+    
+            $.ajax({
+                type: "GET",
+                url: base_url + "perusahaan/show/" + id,
+                success: function (response) {
+                    console.log(response);
+                    $('#id').val(id);
+                    $('.nama_perusahaan').val(response.data.nama_perusahaan);
+                }
+            });
+        });
+        $(document).on('click', '.btn-delete', function () {
+            var url = $(this).attr('data-href');
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        success: function (response) {
+                            table.ajax.reload(null, true);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    });
+
+
+</script>
 @endsection
