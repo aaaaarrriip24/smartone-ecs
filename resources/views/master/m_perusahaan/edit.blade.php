@@ -55,7 +55,7 @@
 
 @section('js')
 <script>
-    $(document).ready(function (url, id, name) {
+    $(document).ready(function () {
         $(".province_id").select2({
             placeholder: "Pilih Provinsi",
             width: '100%',

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KKonsultasi;
+use App\Models\Tinquiry;
 use Illuminate\Http\Request;
 
-class KKonsultasiController extends Controller
+class TinquiryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class KKonsultasiController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\KKonsultasi  $kKonsultasi
+     * @param  \App\Models\Tinquiry  $tinquiry
      * @return \Illuminate\Http\Response
      */
-    public function show(KKonsultasi $kKonsultasi)
+    public function show(Tinquiry $tinquiry)
     {
         //
     }
@@ -52,10 +52,10 @@ class KKonsultasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\KKonsultasi  $kKonsultasi
+     * @param  \App\Models\Tinquiry  $tinquiry
      * @return \Illuminate\Http\Response
      */
-    public function edit(KKonsultasi $kKonsultasi)
+    public function edit(Tinquiry $tinquiry)
     {
         //
     }
@@ -64,10 +64,10 @@ class KKonsultasiController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\KKonsultasi  $kKonsultasi
+     * @param  \App\Models\Tinquiry  $tinquiry
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KKonsultasi $kKonsultasi)
+    public function update(Request $request, Tinquiry $tinquiry)
     {
         //
     }
@@ -75,10 +75,10 @@ class KKonsultasiController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\KKonsultasi  $kKonsultasi
+     * @param  \App\Models\Tinquiry  $tinquiry
      * @return \Illuminate\Http\Response
      */
-    public function destroy(KKonsultasi $kKonsultasi)
+    public function destroy(Tinquiry $tinquiry)
     {
         //
     }

@@ -4,11 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
-use App\Http\Controllers\KKonsultasiController;
 use App\Http\Controllers\KProdukController;
 use App\Http\Controllers\TopikController;
 use App\Http\Controllers\TipeController;
+use App\Http\Controllers\SelectController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\TKonsultasiController;
+use App\Http\Controllers\TBmController;
+use App\Http\Controllers\TinquiryController;
+use App\Http\Controllers\TexportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,12 +34,15 @@ Auth::routes();
 Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 // Data
-// Route::get('provinsi/data/', [DataController::class, 'provinsi'])->name('get');
-// Route::get('kabkota/data/', [DataController::class, 'kabkota']);
 Route::get('provinces', [DataController::class, 'provinces'])->name('provinces');
 Route::get('cities', [DataController::class, 'cities'])->name('cities');
-Route::get('districts', [DataController::class, 'districts'])->name('districts');
-Route::get('villages', [DataController::class, 'villages'])->name('villages');
+// Route::get('districts', [DataController::class, 'districts'])->name('districts');
+// Route::get('villages', [DataController::class, 'villages'])->name('villages');
+
+// Select
+Route::get('select/perusahaan', [SelectController::class, 'selectperusahaan']);
+Route::get('select/topik', [SelectController::class, 'selecttopik']);
+Route::get('select/petugas', [SelectController::class, 'selectpetugas']);
 
 // Perusahaan
 Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
@@ -72,3 +79,34 @@ Route::post('k_produk/store', [KProdukController::class, 'store']);
 Route::get('k_produk/show/{id}', [KProdukController::class, 'show']);
 Route::post('k_produk/update', [KProdukController::class, 'update']);
 Route::get('k_produk/destroy/{id}', [KProdukController::class, 'destroy']);
+
+// Transaksi
+// Konsultasi
+Route::get('transaksi/konsultasi', [TKonsultasiController::class, 'index'])->name('tkonsultasi');
+Route::get('konsultasi/add', [TKonsultasiController::class, 'create']);
+Route::get('konsultasi/detail/{id}', [TKonsultasiController::class, 'detail']);
+Route::post('konsultasi/store', [TKonsultasiController::class, 'store']);
+Route::get('konsultasi/show/{id}', [TKonsultasiController::class, 'show']);
+Route::post('konsultasi/update', [TKonsultasiController::class, 'update']);
+Route::get('konsultasi/destroy/{id}', [TKonsultasiController::class, 'destroy']);
+
+// BM
+Route::get('transaksi/bm', [TBmController::class, 'index'])->name('tbm');
+Route::post('bm/store', [TBmController::class, 'store']);
+Route::get('bm/show/{id}', [TBmController::class, 'show']);
+Route::post('bm/update', [TBmController::class, 'update']);
+Route::get('bm/destroy/{id}', [TBmController::class, 'destroy']);
+
+// Inquiry
+Route::get('transaksi/inquiry', [TinquiryController::class, 'index'])->name('tinquiry');
+Route::post('inquiry/store', [TinquiryController::class, 'store']);
+Route::get('inquiry/show/{id}', [TinquiryController::class, 'show']);
+Route::post('inquiry/update', [TinquiryController::class, 'update']);
+Route::get('inquiry/destroy/{id}', [TinquiryController::class, 'destroy']);
+
+// Export
+Route::get('transaksi/export', [TexportController::class, 'index'])->name('texport');
+Route::post('export/store', [TexportController::class, 'store']);
+Route::get('export/show/{id}', [TexportController::class, 'show']);
+Route::post('export/update', [TexportController::class, 'update']);
+Route::get('export/destroy/{id}', [TexportController::class, 'destroy']);

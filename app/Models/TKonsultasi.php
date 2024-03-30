@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class KKonsultasi extends Model
+class TKonsultasi extends Model
 {
     use SoftDeletes;
     
     use HasFactory;
-    protected $table = 'konsultasi';
+    protected $table = 't_konsultasi';
     protected $fillable = ['*'];
 }

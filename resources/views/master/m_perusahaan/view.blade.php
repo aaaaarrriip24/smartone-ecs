@@ -180,36 +180,6 @@
                 },
             ]
         });
-        // Disable Dulu
-        // $(document).on('click', '.btn-edit', function () {
-        //     var id = $(this).val();
-        //     $('#modalEdit').modal('show');
-    
-        //     $.ajax({
-        //         type: "GET",
-        //         url: base_url + "perusahaan/show/" + id,
-        //         success: function (response) {
-        //             console.log(response);
-        //             $('#id').val(id);
-        //             $('.nama_perusahaan').val(response.data.nama_perusahaan);
-        //         }
-        //     });
-        // });
-    
-        // $(document).on('click', '.btn-detail', function () {
-        //     var id = $(this).val();
-        //     $('#modalDetail').modal('show');
-    
-        //     $.ajax({
-        //         type: "GET",
-        //         url: base_url + "perusahaan/show/" + id,
-        //         success: function (response) {
-        //             console.log(response);
-        //             $('#id').val(id);
-        //             $('.nama_perusahaan').val(response.data.nama_perusahaan);
-        //         }
-        //     });
-        // });
 
         $(document).on('click', '.btn-delete', function () {
             var url = $(this).attr('data-href');

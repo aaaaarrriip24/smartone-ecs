@@ -11,6 +11,6 @@ class Petugas extends Model
     use SoftDeletes;
     
     use HasFactory;
-    protected $table = 't_petugas_admin';
+    protected $table = 'm_petugas';
     protected $fillable = ['*'];
 }

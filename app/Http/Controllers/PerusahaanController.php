@@ -8,8 +8,8 @@ use App\Models\KabKota;
 use App\Models\Tipe;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
-use DataTables;
 use Carbon\Carbon;
+use DataTables;
 use DB;
 
 class PerusahaanController extends Controller
@@ -84,18 +84,13 @@ class PerusahaanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        // $kabkota = DB::table('t_kabupaten_kota as ta')
-        // ->leftJoin('indonesia_provinces as tb', 'ta.id_provinsi', '=', 'tb.id')
-        // ->whereNull('ta.deleted_at')
-        // ->whereNull('tb.deleted_at')
-        // ->get();
-        
+    {   
         $provinsi = DB::table('indonesia_provinces')
         ->get();
         
-        $kabkota = DB::table('indonesia_cities ta')
-        ->leftJoin('indonesia_provinces as tb', 'ta.province_code', '=', 'tb.code')
+        $kabkota = DB::table('indonesia_cities as ta')
+        ->leftJoin('indonesia_provinces as tb', 'tb.code', '=', 'ta.province_code')
+        ->select('*')
         ->get();
         
         $tipe = Tipe::all();
@@ -109,7 +104,7 @@ class PerusahaanController extends Controller
         ->select('ta.*', 'tb.nama_tipe')
         ->get();
         
-        return view('master/perusahaan/edit', compact('data', 'provinsi', 'kabkota', 'tipe', 'petugas'));
+        return view('master/m_perusahaan/edit', compact('data', 'provinsi', 'kabkota', 'tipe', 'petugas'));
     }
 
     /**

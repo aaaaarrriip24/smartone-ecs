@@ -844,10 +844,6 @@
                                             Petugas </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/kategori_konsultasi') }}" class="nav-link"
-                                            data-key="t-kategori-konsultasi"> Kategori Konsultasi </a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-topik"> Topik
                                         </a>
                                     </li>
@@ -1786,6 +1782,8 @@
     <!-- Select2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
+    <!-- Moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
     <!-- JAVASCRIPT -->
     <script src="{{ asset('assets/libs/simplebar/simplebar.min.js') }}"></script>
     <script src="{{ asset('assets/libs/node-waves/waves.min.js') }}"></script>
