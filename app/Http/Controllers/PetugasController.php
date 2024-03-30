@@ -36,7 +36,7 @@ class PetugasController extends Controller
                     ->make(true);
         }
         
-        return view('master/petugas/view');
+        return view('master/m_petugas/view');
     }
     
     /**

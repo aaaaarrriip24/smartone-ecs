@@ -865,25 +865,46 @@
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
                                 role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                <i class="bx bxs-dashboard"></i> <span data-key="t-menu2">Masukan</span>
+                                <i class="bx bxs-dashboard"></i> <span data-key="t-menu2">Transaksi</span>
                             </a>
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('master/perusahaan') }}" class="nav-link"
+                                        <a href="{{ url('transaksi/konsultasi') }}" class="nav-link"
                                             data-key="t-konsultasi"> Konsultasi </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-bm"> Business
+                                        <a href="{{ url('transaksi/bm') }}" class="nav-link" data-key="t-bm"> Business
                                             Matching </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/kategori_konsultasi') }}" class="nav-link"
+                                        <a href="{{ url('transaksi/inquiry') }}" class="nav-link"
                                             data-key="t-inquiry"> Profile Inquiry </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-export">
+                                        <a href="{{ url('transaksi/export') }}" class="nav-link" data-key="t-export">
                                             Realisasi Export </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                <i class="bx bxs-dashboard"></i> <span data-key="t-menu2">Extra</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="{{ url('extra/p_bm') }}" class="nav-link"
+                                            data-key="t-konsultasi"> Peserta Business Matching </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('extra/p_inquiry') }}" class="nav-link" data-key="t-bm"> Penerima Inquiry </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('extra/p_inaexport') }}" class="nav-link"
+                                            data-key="t-inquiry"> Peserta InaExport </a>
                                     </li>
                                 </ul>
                             </div>

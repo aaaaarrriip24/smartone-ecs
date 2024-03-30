@@ -49,7 +49,7 @@ class PerusahaanController extends Controller
                     ->make(true);
         }
         
-        return view('master/perusahaan/view');
+        return view('master/m_perusahaan/view');
     }
 
     /**

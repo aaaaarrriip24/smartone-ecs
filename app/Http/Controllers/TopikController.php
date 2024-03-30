@@ -36,7 +36,7 @@ class TopikController extends Controller
                     ->make(true);
         }
         
-        return view('master/topik/view');
+        return view('master/m_topik/view');
     }
     
     /**
