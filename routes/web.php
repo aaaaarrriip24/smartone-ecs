@@ -5,7 +5,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KKonsultasiController;
+use App\Http\Controllers\KProdukController;
 use App\Http\Controllers\TopikController;
+use App\Http\Controllers\TipeController;
 use App\Http\Controllers\DataController;
 
 /*
@@ -56,3 +58,17 @@ Route::post('topik/store', [TopikController::class, 'store']);
 Route::get('topik/show/{id}', [TopikController::class, 'show']);
 Route::post('topik/update', [TopikController::class, 'update']);
 Route::get('topik/destroy/{id}', [TopikController::class, 'destroy']);
+
+// Tipe
+Route::get('master/tipe', [TipeController::class, 'index'])->name('tipe');
+Route::post('tipe/store', [TipeController::class, 'store']);
+Route::get('tipe/show/{id}', [TipeController::class, 'show']);
+Route::post('tipe/update', [TipeController::class, 'update']);
+Route::get('tipe/destroy/{id}', [TipeController::class, 'destroy']);
+
+// Kategori Produk
+Route::get('master/k_produk', [KProdukController::class, 'index'])->name('kproduk');
+Route::post('k_produk/store', [KProdukController::class, 'store']);
+Route::get('k_produk/show/{id}', [KProdukController::class, 'show']);
+Route::post('k_produk/update', [KProdukController::class, 'update']);
+Route::get('k_produk/destroy/{id}', [KProdukController::class, 'destroy']);

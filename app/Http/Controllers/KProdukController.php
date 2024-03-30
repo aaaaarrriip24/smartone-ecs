@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tipe;
+use App\Models\KProduk;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
 
-class TipeController extends Controller
+class KProdukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,16 +16,16 @@ class TipeController extends Controller
      */
     public function index(Request $request)
     {
-        $title = 'Delete Tipe!';
+        $title = 'Delete Kategori Produk!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = Tipe::whereNull('deleted_at')->get();
+            $data = KProduk::whereNull('deleted_at')->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $url = url('tipe/destroy/'. $row->id);
+                        $url = url('k_produk/destroy/'. $row->id);
                         $button = '';
                         $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id."'>Edit</button>";
                         $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id."'>Detail</button>";
@@ -36,7 +36,7 @@ class TipeController extends Controller
                     ->make(true);
         }
         
-        return view('master/m_tipe/view');
+        return view('master/m_k_produk/view');
     }
     
     /**
@@ -57,8 +57,8 @@ class TipeController extends Controller
      */
     public function store(Request $request)
     {
-        Tipe::insert([
-            'nama_tipe' => $request->nama_tipe,
+        KProduk::insert([
+            'nama_kategori_produk' => $request->nama_kategori_produk,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->back();
@@ -67,13 +67,13 @@ class TipeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Tipe  $tipe
+     * @param  \App\Models\KProduk  $kProduk
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         
-        $data = Tipe::findOrFail($id);
+        $data = KProduk::findOrFail($id);
         return response()->json([
             "status"=>200,
             "data"=>$data
@@ -83,10 +83,10 @@ class TipeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Tipe  $tipe
+     * @param  \App\Models\KProduk  $kProduk
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tipe $tipe)
+    public function edit(KProduk $kProduk)
     {
         //
     }
@@ -95,14 +95,14 @@ class TipeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Tipe  $tipe
+     * @param  \App\Models\KProduk  $KProduk
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)
     {
-        Tipe::where('id', $request->id)
+        KProduk::where('id', $request->id)
         ->update([
-            'nama_tipe' => $request->nama_tipe,
+            'nama_kategori_produk' => $request->nama_kategori_produk,
             'updated_at' => Carbon::now(),
         ]);
         return redirect()->back();
@@ -116,7 +116,7 @@ class TipeController extends Controller
      */
     public function destroy($id)
     {
-        $post = Tipe::find($id);
+        $post = KProduk::find($id);
         $post->delete();
         return response()->json([
             "status"=>200, 

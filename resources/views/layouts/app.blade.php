@@ -851,6 +851,14 @@
                                         <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-topik"> Topik
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('master/tipe') }}" class="nav-link" data-key="t-topik"> Tipe
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('master/k_produk') }}" class="nav-link" data-key="t-topik"> Kategori Produk
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>

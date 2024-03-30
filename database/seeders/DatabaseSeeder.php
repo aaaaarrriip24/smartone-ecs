@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
         // \App\Models\KabKota::factory(50)->create();
         // \App\Models\Tipe::factory(100)->create();
         // \App\Models\Perusahaan::factory(100)->create();
-        \App\Models\Topik::factory(5)->create();
+        // \App\Models\Topik::factory(5)->create();
+        \App\Models\KProduk::factory(5)->create();
     }
     // public function run()
     // {
