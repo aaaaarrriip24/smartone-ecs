@@ -36,12 +36,12 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <h6 class="fw-semibold">Provinsi</h6>
-                            <select class="select_provinsi" name="provinsi" id="test_select">
+                            <select class="province_id" name="province_id" id="test_select">
                             </select>
                         </div>
                         <div class="col-lg-4">
                             <h6 class="fw-semibold">Kabupaten/Kota</h6>
-                            <select class="select_kabkota" name="kabkota"></select>
+                            <select class="cities_id" name="cities_id"></select>
                         </div>
                     </div>
                 </form>
@@ -56,7 +56,7 @@
 @section('js')
 <script>
     $(document).ready(function (url, id, name) {
-        $(".select_provinsi").select2({
+        $(".province_id").select2({
             placeholder: "Pilih Provinsi",
             width: '100%',
             allowClear: true,
@@ -78,11 +78,15 @@
             var data = e.params.data;
         });
 
-        $('.select_kabkota').select2({
+        $('.cities_id').select2({
             placeholder: 'Select an item',
             ajax: {
                 url: base_url + "cities",
                 dataType: 'json',
+                data: function (params) {
+                    params.province_id = $('.province_id').val();
+                    return params
+                },
                 processResults: function (data) {
                     return {
                         results: $.map(data, function (item) {
