@@ -8,24 +8,64 @@ use DB;
 
 class DataController extends Controller
 {
-    public function provinces()
+    public function provinces(Request $request)
     {
-        return \Indonesia::allProvinces();
+        $data = DB::table('indonesia_provinces')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('indonesia_provinces')
+            ->where('name', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+
+        return $data;
     }
 
     public function cities(Request $request)
     {
-        return \Indonesia::findProvince($request->id, ['cities'])->cities->pluck('name', 'id');
+        $data = DB::table('indonesia_cities')
+        ->where('province_id', $request->province_id)
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('indonesia_cities')
+            ->where('province_id', $request->province_id)
+            ->where('name', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+
+        return $data;
     }
 
     public function districts(Request $request)
     {
-        return \Indonesia::findCity($request->id, ['districts'])->districts->pluck('name', 'id');
+        $data = DB::table('indonesia_districts')
+        ->where('city_id', $request->city_id)
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('indonesia_districts')
+            ->where('city_id', $request->city_id)
+            ->where('name', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+        return $data;
     }
 
     public function villages(Request $request)
     {
-        return \Indonesia::findDistrict($request->id, ['villages'])->villages->pluck('name', 'id');
+        $data = DB::table('indonesia_villages')
+        ->where('district_id', $request->district_id)
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('indonesia_villages')
+            ->where('district_id', $request->district_id)
+            ->where('name', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+        return $data;
     }
     // public function provinsi(Request $request)
     // {

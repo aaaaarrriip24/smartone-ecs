@@ -54,50 +54,23 @@
 @endsection
 
 @section('js')
-<!-- <script>
-    function onChangeSelect(url, id, name) {
-        // send ajax request to get the cities of the selected province and append to the select tag
-        $.ajax({
-            url: url,
-            type: 'GET',
-            data: {
-                id: id
-            },
-            success: function (data) {
-                console.log(data);
-                $('#' + name).empty();
-                $('#' + name).append('<option>Pilih Salah Satu</option>');
-                $.each(data, function (key, value) {
-                    $('#' + name).append('<option value="' + key + '">' + value + '</option>');
-                });
-            }
-        });
-    }
-    $(function () {
-        $('.select_kabkota').on('change', function () {
-            onChangeSelect('{{ url("cities") }}', $(this).val(), 'kota');
-        });
-    });
-
-</script> -->
-
 <script>
     $(document).ready(function (url, id, name) {
-        $('.select_provinsi').select2({
-            placeholder: 'Pilih Provinsi',
+        $(".select_provinsi").select2({
+            placeholder: "Pilih Provinsi",
+            width: '100%',
+            allowClear: true,
             ajax: {
-                url: base_url + "provinces",
-                data: {
-                    id: id
-                },
+                url: base_url + 'provinces',
+                dataType: 'json',
                 processResults: data => {
                     return {
                         results: data.data.map((item) => {
                             return {
+                                id: item.id,
                                 text: item.name,
-                                id: item.id
-                            };
-                        }),
+                            }
+                        })
                     };
                 },
             }
@@ -119,7 +92,7 @@
                     };
                 },
             }
-        })
+        });
     });
 
 </script>
