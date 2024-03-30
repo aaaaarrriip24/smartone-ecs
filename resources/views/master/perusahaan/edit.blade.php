@@ -63,9 +63,9 @@
             ajax: {
                 url: base_url + 'provinces',
                 dataType: 'json',
-                processResults: data => {
+                processResults: function (data) {
                     return {
-                        results: data.data.map((item) => {
+                        results: $.map(data, function (item) {
                             return {
                                 id: item.id,
                                 text: item.name,
@@ -74,6 +74,8 @@
                     };
                 },
             }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
         });
 
         $('.select_kabkota').select2({
@@ -81,17 +83,19 @@
             ajax: {
                 url: base_url + "cities",
                 dataType: 'json',
-                processResults: data => {
+                processResults: function (data) {
                     return {
-                        results: data.data.map((item) => {
+                        results: $.map(data, function (item) {
                             return {
+                                id: item.id,
                                 text: item.name,
-                                id: item.id
-                            };
-                        }),
+                            }
+                        })
                     };
                 },
             }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
         });
     });
 
