@@ -49,3 +49,10 @@ Route::post('petugas/store', [PetugasController::class, 'store']);
 Route::get('petugas/show/{id}', [PetugasController::class, 'show']);
 Route::post('petugas/update', [PetugasController::class, 'update']);
 Route::get('petugas/destroy/{id}', [PetugasController::class, 'destroy']);
+
+// Topik
+Route::get('master/topik', [TopikController::class, 'index'])->name('topik');
+Route::post('topik/store', [TopikController::class, 'store']);
+Route::get('topik/show/{id}', [TopikController::class, 'show']);
+Route::post('topik/update', [TopikController::class, 'update']);
+Route::get('topik/destroy/{id}', [TopikController::class, 'destroy']);

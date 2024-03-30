@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Topik;
 use Illuminate\Http\Request;
+use DataTables;
+use Carbon\Carbon;
 
 class TopikController extends Controller
 {
@@ -12,11 +14,31 @@ class TopikController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $title = 'Delete Topik!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
 
+        if ($request->ajax()) {
+            $data = Topik::whereNull('deleted_at')->get();
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+                        $url = url('topik/destroy/'. $row->id);
+                        $button = '';
+                        $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id."'>Edit</button>";
+                        $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id."'>Detail</button>";
+                        $button .= " <button data-href='".$url."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        
+        return view('master/topik/view');
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -35,7 +57,11 @@ class TopikController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Topik::insert([
+            'nama_topik' => $request->nama_topik,
+            'created_at' => Carbon::now(),
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -44,9 +70,14 @@ class TopikController extends Controller
      * @param  \App\Models\Topik  $topik
      * @return \Illuminate\Http\Response
      */
-    public function show(Topik $topik)
+    public function show($id)
     {
-        //
+        
+        $data = Topik::findOrFail($id);
+        return response()->json([
+            "status"=>200,
+            "data"=>$data
+        ]);
     }
 
     /**
@@ -67,19 +98,28 @@ class TopikController extends Controller
      * @param  \App\Models\Topik  $topik
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Topik $topik)
+    public function update(Request $request)
     {
-        //
+        Topik::where('id', $request->id)
+        ->update([
+            'nama_topik' => $request->nama_topik,
+            'updated_at' => Carbon::now(),
+        ]);
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Topik  $topik
+     * @param  \App\Models\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Topik $topik)
+    public function destroy($id)
     {
-        //
+        $post = Topik::find($id);
+        $post->delete();
+        return response()->json([
+            "status"=>200, 
+        ]);
     }
 }

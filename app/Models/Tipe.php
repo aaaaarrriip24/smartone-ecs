@@ -11,6 +11,6 @@ class Tipe extends Model
     use SoftDeletes;
     
     use HasFactory;
-    protected $table = 'master_tipe_perusahaan';
+    protected $table = 'm_tipe_perusahaan';
     protected $fillable = ['*'];
 }

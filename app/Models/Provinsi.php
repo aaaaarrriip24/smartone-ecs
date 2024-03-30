@@ -11,6 +11,6 @@ class Provinsi extends Model
     use SoftDeletes;
     
     use HasFactory;
-    protected $table = 't_provinsi';
+    protected $table = 'indonesia_provinces';
     protected $fillable = ['*'];
 }

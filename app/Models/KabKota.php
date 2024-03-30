@@ -11,6 +11,6 @@ class KabKota extends Model
     use SoftDeletes;
     
     use HasFactory;
-    protected $table = 't_kabupaten_kota';
+    protected $table = 'indonesia_cities';
     protected $fillable = ['*'];
 }

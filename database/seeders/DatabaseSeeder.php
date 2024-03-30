@@ -12,33 +12,34 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    // public function run()
-    // {
-    //     \App\Models\Petugas::factory(100)->create();
-    //     \App\Models\Provinsi::factory(1)->create();
-    //     \App\Models\KabKota::factory(50)->create();
-    //     \App\Models\Tipe::factory(100)->create();
-    //     \App\Models\Perusahaan::factory(100)->create();
-    // }
     public function run()
     {
-        $this->reset();
-
-        $this->call(ProvincesSeeder::class);
-        $this->call(CitiesSeeder::class);
-        $this->call(DistrictsSeeder::class);
-        $this->call(VillagesSeeder::class);
+        // \App\Models\Petugas::factory(100)->create();
+        // \App\Models\Provinsi::factory(1)->create();
+        // \App\Models\KabKota::factory(50)->create();
+        // \App\Models\Tipe::factory(100)->create();
+        // \App\Models\Perusahaan::factory(100)->create();
+        \App\Models\Topik::factory(5)->create();
     }
+    // public function run()
+    // {
+    //     $this->reset();
 
-    public function reset()
-    {
-        Schema::disableForeignKeyConstraints();
+    //     $this->call(ProvincesSeeder::class);
+    //     $this->call(CitiesSeeder::class);
+    //     $this->call(DistrictsSeeder::class);
+    //     $this->call(VillagesSeeder::class);
+    // }
 
-        Kelurahan::truncate();
-        Kecamatan::truncate();
-        Kabupaten::truncate();
-        Provinsi::truncate();
+    // public function reset()
+    // {
+    //     Schema::disableForeignKeyConstraints();
 
-        Schema::disableForeignKeyConstraints();
-    }
+    //     Kelurahan::truncate();
+    //     Kecamatan::truncate();
+    //     Kabupaten::truncate();
+    //     Provinsi::truncate();
+
+    //     Schema::disableForeignKeyConstraints();
+    // }
 }

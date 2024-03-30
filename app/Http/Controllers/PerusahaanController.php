@@ -26,8 +26,8 @@ class PerusahaanController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = DB::table('master_perusahaan as ta')
-            ->leftJoin('master_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->select('ta.*', 'tb.nama_tipe')
@@ -85,18 +85,24 @@ class PerusahaanController extends Controller
      */
     public function show($id)
     {
-        $provinsi = Provinsi::all();
-        $kabkota = DB::table('t_kabupaten_kota as ta')
-        ->leftJoin('t_provinsi as tb', 'ta.id_provinsi', '=', 'tb.id')
-        ->whereNull('ta.deleted_at')
-        ->whereNull('tb.deleted_at')
+        // $kabkota = DB::table('t_kabupaten_kota as ta')
+        // ->leftJoin('indonesia_provinces as tb', 'ta.id_provinsi', '=', 'tb.id')
+        // ->whereNull('ta.deleted_at')
+        // ->whereNull('tb.deleted_at')
+        // ->get();
+        
+        $provinsi = DB::table('indonesia_provinces')
+        ->get();
+        
+        $kabkota = DB::table('indonesia_cities ta')
+        ->leftJoin('indonesia_provinces as tb', 'ta.province_code', '=', 'tb.code')
         ->get();
         
         $tipe = Tipe::all();
         $petugas = Petugas::all();
 
-        $data = DB::table('master_perusahaan as ta')
-        ->leftJoin('master_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+        $data = DB::table('m_perusahaan as ta')
+        ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->where('ta.id', $id)
