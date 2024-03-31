@@ -37,34 +37,4 @@ class DataController extends Controller
 
         return $data;
     }
-
-    // public function districts(Request $request)
-    // {
-    //     $data = DB::table('indonesia_districts')
-    //     ->where('city_id', $request->city_id)
-    //     ->get();
-
-    //     if($request->term) {
-    //         $data = DB::table('indonesia_districts')
-    //         ->where('city_id', $request->city_id)
-    //         ->where('name', 'LIKE', '%'. $request->term. '%')
-    //         ->get();
-    //     }
-    //     return $data;
-    // }
-
-    // public function villages(Request $request)
-    // {
-    //     $data = DB::table('indonesia_villages')
-    //     ->where('district_id', $request->district_id)
-    //     ->get();
-
-    //     if($request->term) {
-    //         $data = DB::table('indonesia_villages')
-    //         ->where('district_id', $request->district_id)
-    //         ->where('name', 'LIKE', '%'. $request->term. '%')
-    //         ->get();
-    //     }
-    //     return $data;
-    // }
 }

@@ -32,7 +32,6 @@
     <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
     <!-- Select2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    @routes
 </head>
 
 <body>
@@ -852,7 +851,8 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('master/k_produk') }}" class="nav-link" data-key="t-topik"> Kategori Produk
+                                        <a href="{{ url('master/k_produk') }}" class="nav-link" data-key="t-topik">
+                                            Kategori Produk
                                         </a>
                                     </li>
                                 </ul>
@@ -874,8 +874,8 @@
                                             Matching </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('transaksi/inquiry') }}" class="nav-link"
-                                            data-key="t-inquiry"> Profile Inquiry </a>
+                                        <a href="{{ url('transaksi/inquiry') }}" class="nav-link" data-key="t-inquiry">
+                                            Profile Inquiry </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="{{ url('transaksi/export') }}" class="nav-link" data-key="t-export">
@@ -892,15 +892,16 @@
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('extra/ppbm') }}" class="nav-link"
-                                            data-key="t-konsultasi"> Peserta Business Matching </a>
+                                        <a href="{{ url('extra/ppbm') }}" class="nav-link" data-key="t-konsultasi">
+                                            Peserta Business Matching </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('extra/p_inquiry') }}" class="nav-link" data-key="t-bm"> Penerima Inquiry </a>
+                                        <a href="{{ url('extra/p_inquiry') }}" class="nav-link" data-key="t-bm">
+                                            Penerima Inquiry </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="{{ url('extra/p_inaexport') }}" class="nav-link"
-                                            data-key="t-inquiry"> Peserta InaExport </a>
+                                        <a href="{{ url('extra/p_inaexport') }}" class="nav-link" data-key="t-inquiry">
+                                            Peserta InaExport </a>
                                     </li>
                                 </ul>
                             </div>
