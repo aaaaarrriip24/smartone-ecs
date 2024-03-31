@@ -35,6 +35,9 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+Route::get('section1', [HomeController::class, 'section1']);
+Route::get('section2', [HomeController::class, 'section2']);
+Route::get('section3', [HomeController::class, 'section3']);
 
 // Data
 Route::get('provinces', [DataController::class, 'provinces'])->name('provinces');
