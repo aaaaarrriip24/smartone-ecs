@@ -5,12 +5,12 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Master Perusahaan</h4>
+            <h4 class="mb-sm-0">Transaksi Konsultasi</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
-                    <li class="breadcrumb-item active">Perusahaan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
+                    <li class="breadcrumb-item active">Konsultasi</li>
                     <li class="breadcrumb-item">
                         <a href="{{ url('konsultasi/add') }}" type="text">Add</a>
                     </li>

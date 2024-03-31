@@ -109,14 +109,36 @@ class TKonsultasiController extends Controller
         ->whereNull('td.deleted_at')
         ->select('ta.*', 'tb.kode_perusahaan', 'tc.nama_topik', 'td.nama_petugas' )
         ->where('ta.id', $id)
-        ->get();
+        ->first();
 
-        return view('transaksi/konsultasi/detail', compact('data'));
+        $file = asset('foto_pertemuan/'.$data->foto_pertemuan);
+        return view('transaksi/konsultasi/detail', [
+            'data' => $data,
+            'file' => $file,
+            'status' => 200,
+         ]);
     }
 
-    public function show(TKonsultasi $tKonsultasi)
+    public function show($id)
     {
-        //
+        $data = DB::table('t_konsultasi as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_topik as tc', 'ta.id_topik', '=', 'tc.id')
+        ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->whereNull('tc.deleted_at')
+        ->whereNull('td.deleted_at')
+        ->select('ta.*', 'tb.kode_perusahaan', 'tc.nama_topik', 'td.nama_petugas' )
+        ->where('ta.id', $id)
+        ->first();
+
+        $file = asset('foto_pertemuan/'.$data->foto_pertemuan);
+        return view('transaksi/konsultasi/edit', [
+            'data' => $data,
+            'file' => $file,
+            'status' => 200,
+         ]);
     }
 
     /**
@@ -137,9 +159,27 @@ class TKonsultasiController extends Controller
      * @param  \App\Models\TKonsultasi  $tKonsultasi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TKonsultasi $tKonsultasi)
+    public function update(Request $request)
     {
-        //
+        if(!empty($request->foto_pertemuan)){
+            $file = $request->file('foto_pertemuan');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/foto_pertemuan/', $nama_file);
+            $name = $nama_file;  
+        }
+
+        TKonsultasi::where('id', $request->id)->update([
+            'kode_konsultasi' => $request->kode_konsultasi,
+            'id_perusahaan' => $request->id_perusahaan,
+            'tanggal_konsultasi' => $request->tanggal_konsultasi,
+            'cara_konsultasi' => $request->cara_konsultasi,
+            'tempat_pertemuan' => $request->tempat_pertemuan,
+            'id_topik' => $request->id_topik,
+            'isi_konsultasi' => $request->isi_konsultasi,
+            'foto_pertemuan' => (!empty($request->foto_pertemuan) ? $name : $request->foto_pertemuan_lama),
+            'id_petugas' => $request->id_petugas,
+        ]);
+        return redirect()->route('tkonsultasi');
     }
 
     /**
