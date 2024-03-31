@@ -25,7 +25,7 @@ class TinquiryController extends Controller
 
         if ($request->ajax()) {
             $data = DB::table('t_profile_inquiry as ta')
-            ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+            ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->select('ta.*', 'tb.en_short_name')
@@ -92,7 +92,7 @@ class TinquiryController extends Controller
     public function detail($id)
     {
         $data = DB::table('t_profile_inquiry as ta')
-        ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+        ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->select('ta.*', 'tb.en_short_name')
@@ -108,7 +108,7 @@ class TinquiryController extends Controller
     public function show($id)
     {
         $data = DB::table('t_profile_inquiry as ta')
-        ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+        ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->select('ta.*', 'tb.en_short_name')
