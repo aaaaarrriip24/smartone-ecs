@@ -102,6 +102,17 @@ class TexportController extends Controller
      * @param  \App\Models\TKonsultasi  $tKonsultasi
      * @return \Illuminate\Http\Response
      */
+    public function download_dok($file) 
+    {
+        $myFile = public_path().'/folder_dok_pendukung/'. $file;
+        return response()->download($myFile);
+    }
+    public function download_bukti($file) 
+    {
+        $myFile = public_path().'/folder_bukti_dok/'. $file;
+        return response()->download($myFile);
+    }
+
     public function detail($id)
     {
         $data = DB::table('t_p_export as ta')

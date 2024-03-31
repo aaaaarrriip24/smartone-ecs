@@ -117,3 +117,5 @@ Route::post('export/store', [TexportController::class, 'store']);
 Route::get('export/show/{id}', [TexportController::class, 'show']);
 Route::post('export/update', [TexportController::class, 'update']);
 Route::get('export/destroy/{id}', [TexportController::class, 'destroy']);
+Route::get('export/download_dok/{file}', [TexportController::class, 'download_dok']);
+Route::get('export/download_bukti/{file}', [TexportController::class, 'download_bukti']);
