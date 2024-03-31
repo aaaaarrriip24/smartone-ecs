@@ -7,6 +7,20 @@ use DB;
 
 class SelectController extends Controller
 {
+    public function selectbm(Request $request) {
+        $data = DB::table('m_negara')
+        ->whereNull('deleted_at')
+        ->select('*')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('m_negara')
+            ->where('en_short_name', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+
+        return $data;
+    }
     public function selectperusahaan(Request $request) {
         $data = DB::table('m_perusahaan')
         ->whereNull('deleted_at')

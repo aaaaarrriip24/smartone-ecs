@@ -68,7 +68,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 mb-2">
                 <div class="card" style="max-width: 18rem;">
                     <div class="card-header">
                         <h5 class="card-title">Foto Pertemuan</h5>

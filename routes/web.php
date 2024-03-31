@@ -43,6 +43,7 @@ Route::get('cities', [DataController::class, 'cities'])->name('cities');
 Route::get('select/perusahaan', [SelectController::class, 'selectperusahaan']);
 Route::get('select/topik', [SelectController::class, 'selecttopik']);
 Route::get('select/petugas', [SelectController::class, 'selectpetugas']);
+Route::get('select/bm', [SelectController::class, 'selectbm']);
 
 // Perusahaan
 Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');

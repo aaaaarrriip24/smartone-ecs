@@ -73,8 +73,8 @@ class TBmController extends Controller
         $name = $nama_file;
 
         TBm::insert([
-            'kode_bm' => $request->kode_konsultasi,
-            'tanggal_konsultasi' => $request->tanggal_konsultasi,
+            'kode_bm' => $request->kode_bm,
+            'tanggal_bm' => $request->tanggal_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,
             'id_negara_buyer' => $request->id_negara_buyer,
             'info_asal_buyer' => $request->info_asal_buyer,
@@ -100,7 +100,7 @@ class TBmController extends Controller
         ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
-        ->select('ta.*', 'tb.nationality')
+        ->select('ta.*', 'tb.en_short_name')
         ->where('ta.id', $id)
         ->first();
 
@@ -118,7 +118,7 @@ class TBmController extends Controller
         ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
-        ->select('ta.*', 'tb.nationality')
+        ->select('ta.*', 'tb.en_short_name')
         ->where('ta.id', $id)
         ->first();
 
@@ -157,9 +157,9 @@ class TBmController extends Controller
             $name = $nama_file;  
         }
 
-        TBm::insert([
-            'kode_bm' => $request->kode_konsultasi,
-            'tanggal_konsultasi' => $request->tanggal_konsultasi,
+        TBm::where('id', $request->id)->update([
+            'kode_bm' => $request->kode_bm,
+            'tanggal_bm' => $request->tanggal_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,
             'id_negara_buyer' => $request->id_negara_buyer,
             'info_asal_buyer' => $request->info_asal_buyer,
