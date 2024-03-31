@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KProdukController;
@@ -34,6 +35,15 @@ Route::get('/', function () {
 
 
 Auth::routes();
+
+Route::get('/', [HomePageController::class, 'index']);
+Route::get('about', [HomePageController::class, 'about']);
+Route::get('supplier', [HomePageController::class, 'supplier']);
+Route::get('gallery', [HomePageController::class, 'gallery']);
+Route::get('news', [HomePageController::class, 'news']);
+Route::get('contact', [HomePageController::class, 'contact']);
+
+
 Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 Route::get('section1', [HomeController::class, 'section1']);
 Route::get('section2', [HomeController::class, 'section2']);

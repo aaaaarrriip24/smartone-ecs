@@ -1803,7 +1803,6 @@
     <!-- Base Url -->
     <script>
         var base_url = document.querySelector('meta[name="base_url"]').getAttribute('content') + '/';
-
     </script>
     @yield('js')
     @include('sweetalert::alert')
