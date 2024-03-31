@@ -21,14 +21,14 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Prouk</label>
+                        <label>Produk</label>
                         <input type="text" name="produk_yang_diminta" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Quantity</label>
-                        <input type="text" name="qty" class="form-control form-control-sm" required="required">
+                        <input type="number" name="qty" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Nama Buyer</label>
+                        <label>Pihak Buyer</label>
                         <select name="pihak_buyer" class="form-control form-control-sm" required="required">
                             <option disabled selected>Pilih Pihak Buyer</option>
                             <option value="Buyer">Buyer</option>
@@ -80,7 +80,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Telfon</label>
-                        <input type="text" name="telp_buyer" class="form-control form-control-sm" required="required">
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
             </div>

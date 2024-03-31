@@ -65,7 +65,7 @@
                 <div class="col-6 mb-2">
                     <div class="form-group">
                         <label>Telfon</label>
-                        <input type="text" name="telp_buyer" class="form-control form-control-sm"
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm"
                             value="{{ $data->telp_buyer }}" required="required">
                     </div>
                 </div>

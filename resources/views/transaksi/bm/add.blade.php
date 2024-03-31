@@ -52,7 +52,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Telfon</label>
-                        <input type="text" name="telp_buyer" class="form-control form-control-sm" required="required">
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">

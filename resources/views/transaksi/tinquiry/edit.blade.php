@@ -23,14 +23,14 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Prouk</label>
+                        <label>Produk</label>
                         <input type="text" name="produk_yang_diminta" class="form-control form-control-sm" value="{{ $data->produk_yang_diminta }}" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Quantity</label>
-                        <input type="text" name="qty" class="form-control form-control-sm" value="{{ $data->qty }}" required="required">
+                        <input type="number" name="qty" class="form-control form-control-sm" value="{{ $data->qty }}" required="required">
                     </div>
                 </div>
                 <div class="col-6">
@@ -84,7 +84,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Telfon</label>
-                        <input type="text" name="telp_buyer" class="form-control form-control-sm" value="{{ $data->telp_buyer }}" required="required">
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm" value="{{ $data->telp_buyer }}" required="required">
                     </div>
                 </div>
             </div>
