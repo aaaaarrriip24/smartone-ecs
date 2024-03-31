@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_konsultasi');
             $table->unsignedBigInteger('id_perusahaan');
-            $table->foreign('id_perusahaan')->references('id')->on('master_perusahaan');
+            $table->foreign('id_perusahaan')->references('id')->on('m_perusahaan');
             $table->date('tanggal_konsultasi');
             $table->unsignedBigInteger('id_topik');
             $table->foreign('id_topik')->references('id')->on('master_topik');

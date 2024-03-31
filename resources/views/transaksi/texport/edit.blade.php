@@ -120,7 +120,7 @@
             width: '100%',
             allowClear: true,
             ajax: {
-                url: base_url + 'select/bm',
+                url: base_url + 'select/negara',
                 dataType: 'json',
                 processResults: function (data) {
                     return {

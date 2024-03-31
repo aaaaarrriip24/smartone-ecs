@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('master_perusahaan', function (Blueprint $table) {
+        Schema::create('m_perusahaan', function (Blueprint $table) {
             $table->id();
             $table->string('kode_perusahaan');
             $table->string('nama_perusahaan');
@@ -56,6 +56,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('master_perusahaan');
+        Schema::dropIfExists('m_perusahaan');
     }
 };

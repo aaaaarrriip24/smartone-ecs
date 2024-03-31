@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Perusahaan extends Model
+class PPBm extends Model
 {
-    use SoftDeletes;
-    
-    use HasFactory;
-    protected $table = 'm_perusahaan';
+    use HasFactory, SoftDeletes;
+    protected $table = 'p_peserta_bm';
     protected $fillable = ['*'];
 }

@@ -13,6 +13,9 @@ use App\Http\Controllers\TKonsultasiController;
 use App\Http\Controllers\TBmController;
 use App\Http\Controllers\TinquiryController;
 use App\Http\Controllers\TexportController;
+use App\Http\Controllers\PPBmController;
+use App\Http\Controllers\PPInaexportController;
+use App\Http\Controllers\PPInquiryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +46,9 @@ Route::get('cities', [DataController::class, 'cities'])->name('cities');
 Route::get('select/perusahaan', [SelectController::class, 'selectperusahaan']);
 Route::get('select/topik', [SelectController::class, 'selecttopik']);
 Route::get('select/petugas', [SelectController::class, 'selectpetugas']);
+Route::get('select/negara', [SelectController::class, 'selectnegara']);
 Route::get('select/bm', [SelectController::class, 'selectbm']);
+Route::get('select/inquiry', [SelectController::class, 'selectinquiry']);
 
 // Perusahaan
 Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
@@ -119,3 +124,31 @@ Route::post('export/update', [TexportController::class, 'update']);
 Route::get('export/destroy/{id}', [TexportController::class, 'destroy']);
 Route::get('export/download_dok/{file}', [TexportController::class, 'download_dok']);
 Route::get('export/download_bukti/{file}', [TexportController::class, 'download_bukti']);
+
+// Extra
+// PPBM
+Route::get('extra/ppbm', [PPBmController::class, 'index'])->name('ppbm');
+Route::get('ppbm/add', [PPBmController::class, 'create']);
+Route::get('ppbm/detail/{id}', [PPBmController::class, 'detail']);
+Route::post('ppbm/store', [PPBmController::class, 'store']);
+Route::get('ppbm/show/{id}', [PPBmController::class, 'show']);
+Route::post('ppbm/update', [PPBmController::class, 'update']);
+Route::get('ppbm/destroy/{id}', [PPBmController::class, 'destroy']);
+
+// PPInquiry
+Route::get('extra/p_inquiry', [PPInquiryController::class, 'index'])->name('p_inquiry');
+Route::get('p_inquiry/add', [PPInquiryController::class, 'create']);
+Route::get('p_inquiry/detail/{id}', [PPInquiryController::class, 'detail']);
+Route::post('p_inquiry/store', [PPInquiryController::class, 'store']);
+Route::get('p_inquiry/show/{id}', [PPInquiryController::class, 'show']);
+Route::post('p_inquiry/update', [PPInquiryController::class, 'update']);
+Route::get('p_inquiry/destroy/{id}', [PPInquiryController::class, 'destroy']);
+
+// PPBM
+Route::get('extra/p_inaexport', [PPInaexportController::class, 'index'])->name('p_inaexport');
+Route::get('p_inaexport/add', [PPInaexportController::class, 'create']);
+Route::get('p_inaexport/detail/{id}', [PPInaexportController::class, 'detail']);
+Route::post('p_inaexport/store', [PPInaexportController::class, 'store']);
+Route::get('p_inaexport/show/{id}', [PPInaexportController::class, 'show']);
+Route::post('p_inaexport/update', [PPInaexportController::class, 'update']);
+Route::get('p_inaexport/destroy/{id}', [PPInaexportController::class, 'destroy']);

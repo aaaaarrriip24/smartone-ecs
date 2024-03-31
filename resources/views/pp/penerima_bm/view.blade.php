@@ -5,14 +5,14 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Transaksi Business Matching</h4>
+            <h4 class="mb-sm-0">Extra Peserta Business Matching</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
-                    <li class="breadcrumb-item active">Business Matching</li>
+                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Extra</a></li>
+                    <li class="breadcrumb-item active">Peserta Business Matching</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('bm/add') }}" type="text">Add</a>
+                        <a href="{{ url('ppbm/add') }}" type="text">Add</a>
                     </li>
                 </ol>
             </div>
@@ -26,7 +26,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Business Matching</h5>
+                <h5 class="card-title mb-0">Peserta Business Matching</h5>
             </div>
             <div class="card-body">
                 <table id="dt_bm" class="table table-bordered dt-responsive nowrap table-striped align-middle"
@@ -34,9 +34,7 @@
                     <thead>
                         <th>No. </th>
                         <th>Kode BM</th>
-                        <th>Pelaksanaan BM</th>
-                        <th>Negara Buyer</th>
-                        <th>Tanggal BM</th>
+                        <th>Kode Perusahaan</th>
                         <th>Action</th>
                     </thead>
                 </table>
@@ -64,7 +62,7 @@
             filter: true,
             sort: true,
             info: true,
-            ajax: base_url + "transaksi/bm",
+            ajax: base_url + "extra/ppbm",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -79,22 +77,9 @@
                     orderable: true,
                 },
                 {
-                    data: 'pelaksanaan_bm',
-                    name: 'pelaksanaan_bm',
+                    data: 'kode_perusahaan',
+                    name: 'kode_perusahaan',
                     orderable: true,
-                },
-                {
-                    data: 'en_short_name',
-                    name: 'en_short_name',
-                    orderable: true,
-                },
-                {
-                    data: 'tanggal_bm',
-                    name: 'tanggal_bm',
-                    orderable: true,
-                    render: function (data, type, row) {
-                        return moment(row.tanggal_bm).format('DD-MMMM-YYYY');
-                    }
                 },
                 {
                     data: 'action',

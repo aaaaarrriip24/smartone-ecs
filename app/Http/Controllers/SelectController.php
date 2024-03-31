@@ -7,7 +7,7 @@ use DB;
 
 class SelectController extends Controller
 {
-    public function selectbm(Request $request) {
+    public function selectnegara(Request $request) {
         $data = DB::table('m_negara')
         ->whereNull('deleted_at')
         ->select('*')
@@ -58,6 +58,34 @@ class SelectController extends Controller
         if($request->term) {
             $data = DB::table('m_petugas')
             ->where('nama_petugas', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+
+        return $data;
+    }
+    public function selectbm(Request $request) {
+        $data = DB::table('t_bm')
+        ->whereNull('deleted_at')
+        ->select('*')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('t_bm')
+            ->where('kode_bm', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+
+        return $data;
+    }
+    public function selectinquiry(Request $request) {
+        $data = DB::table('t_profile_inquiry')
+        ->whereNull('deleted_at')
+        ->select('*')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('t_profile_inquiry')
+            ->where('kode_inquiry', 'LIKE', '%'. $request->term. '%')
             ->get();
         }
 

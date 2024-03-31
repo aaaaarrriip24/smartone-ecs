@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('kode_transaksi');
             $table->unsignedBigInteger('id_perusahaan');
-            $table->foreign('id_perusahaan')->references('id')->on('master_perusahaan');
+            $table->foreign('id_perusahaan')->references('id')->on('m_perusahaan');
             $table->date('tanggal_transaksi');
             $table->string('produk');
             $table->integer('nilai_transaksi');

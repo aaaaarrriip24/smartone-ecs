@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_inquiry');
             $table->foreign('id_inquiry')->references('id')->on('profile_inquiry');
             $table->unsignedBigInteger('id_perusahaan');
-            $table->foreign('id_perusahaan')->references('id')->on('master_perusahaan');
+            $table->foreign('id_perusahaan')->references('id')->on('m_perusahaan');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
             $table->timestamp('deleted_at')->nullable();

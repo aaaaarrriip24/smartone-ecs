@@ -5,14 +5,14 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Transaksi Realisasi Export</h4>
+            <h4 class="mb-sm-0">Extra Peserta Inaexport</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
-                    <li class="breadcrumb-item active">Realisasi Export</li>
+                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Extra</a></li>
+                    <li class="breadcrumb-item active">Peserta Peserta Inaexport</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('export/add') }}" type="text">Add</a>
+                        <a href="{{ url('p_inaexport/add') }}" type="text">Add</a>
                     </li>
                 </ol>
             </div>
@@ -26,18 +26,16 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Realisasi Export</h5>
+                <h5 class="card-title mb-0">Peserta Business Matching</h5>
             </div>
             <div class="card-body">
-                <table id="dt_export" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                <table id="dt_p_inaexport" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                     style="width:100%">
                     <thead>
                         <th>No. </th>
-                        <th>Kode Transaksi</th>
                         <th>Kode Perusahaan</th>
-                        <th>Nilai Transaksi</th>
-                        <th>Negara Tujuan</th>
-                        <th>Tanggal Export</th>
+                        <th>Tanggal Registrasi</th>
+                        <th>Nama Petugas</th>
                         <th>Action</th>
                     </thead>
                 </table>
@@ -53,7 +51,7 @@
     let table;
     $(document).ready(function () {
         
-        table = $('#dt_export').DataTable({
+        table = $('#dt_p_inaexport').DataTable({
             autoWidth: false,
             responsive: false,
             scrollCollapse: true,
@@ -65,7 +63,7 @@
             filter: true,
             sort: true,
             info: true,
-            ajax: base_url + "transaksi/export",
+            ajax: base_url + "extra/p_inaexport",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -75,33 +73,24 @@
                     width: '5%'
                 },
                 {
-                    data: 'kode_export',
-                    name: 'kode_export',
-                    orderable: true,
-                },
-                {
                     data: 'kode_perusahaan',
                     name: 'kode_perusahaan',
                     orderable: true,
                 },
                 {
-                    data: 'nilai_transaksi',
-                    name: 'nilai_transaksi',
-                    orderable: true,
-                },
-                {
-                    data: 'en_short_name',
-                    name: 'en_short_name',
-                    orderable: true,
-                },
-                {
-                    data: 'tanggal_export',
-                    name: 'tanggal_export',
+                    data: 'tanggal_registrasi_inaexport',
+                    name: 'tanggal_registrasi_inaexport',
                     orderable: true,
                     render: function (data, type, row) {
-                        return moment(row.tanggal_export).format('DD-MMMM-YYYY');
+                        return moment(row.tanggal_registrasi_inaexport).format('DD-MMMM-YYYY');
                     }
                 },
+                {
+                    data: 'nama_petugas',
+                    name: 'nama_petugas',
+                    orderable: true,
+                },
+                
                 {
                     data: 'action',
                     name: 'action',

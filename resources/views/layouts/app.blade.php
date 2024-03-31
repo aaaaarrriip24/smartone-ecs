@@ -892,7 +892,7 @@
                             <div class="collapse menu-dropdown" id="sidebarDashboards">
                                 <ul class="nav nav-sm flex-column">
                                     <li class="nav-item">
-                                        <a href="{{ url('extra/p_bm') }}" class="nav-link"
+                                        <a href="{{ url('extra/ppbm') }}" class="nav-link"
                                             data-key="t-konsultasi"> Peserta Business Matching </a>
                                     </li>
                                     <li class="nav-item">

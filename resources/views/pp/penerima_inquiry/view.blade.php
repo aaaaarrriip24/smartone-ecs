@@ -5,14 +5,14 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Transaksi Profile Inquiry</h4>
+            <h4 class="mb-sm-0">Extra Penerima Inquiry</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
-                    <li class="breadcrumb-item active">Profile Inquiry</li>
+                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Extra</a></li>
+                    <li class="breadcrumb-item active">Penerima Inquiry</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('inquiry/add') }}" type="text">Add</a>
+                        <a href="{{ url('p_inquiry/add') }}" type="text">Add</a>
                     </li>
                 </ol>
             </div>
@@ -26,7 +26,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Profile Inquiry</h5>
+                <h5 class="card-title mb-0">Penerima Inquiry</h5>
             </div>
             <div class="card-body">
                 <table id="dt_inquiry" class="table table-bordered dt-responsive nowrap table-striped align-middle"
@@ -34,11 +34,7 @@
                     <thead>
                         <th>No. </th>
                         <th>Kode Inquiry</th>
-                        <th>Produk</th>
-                        <th>Quantity</th>
-                        <th>Satuan</th>
-                        <th>Negara Buyer</th>
-                        <th>Tanggal Inquiry</th>
+                        <th>Kode Perusahaan</th>
                         <th>Action</th>
                     </thead>
                 </table>
@@ -66,7 +62,7 @@
             filter: true,
             sort: true,
             info: true,
-            ajax: base_url + "transaksi/inquiry",
+            ajax: base_url + "extra/p_inquiry",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -81,32 +77,9 @@
                     orderable: true,
                 },
                 {
-                    data: 'produk_yang_diminta',
-                    name: 'produk_yang_diminta',
+                    data: 'kode_perusahaan',
+                    name: 'kode_perusahaan',
                     orderable: true,
-                },
-                {
-                    data: 'qty',
-                    name: 'qty',
-                    orderable: true,
-                },
-                {
-                    data: 'satuan_qty',
-                    name: 'satuan_qty',
-                    orderable: true,
-                },
-                {
-                    data: 'en_short_name',
-                    name: 'en_short_name',
-                    orderable: true,
-                },
-                {
-                    data: 'tanggal_inquiry',
-                    name: 'tanggal_inquiry',
-                    orderable: true,
-                    render: function (data, type, row) {
-                        return moment(row.tanggal_inquiry).format('DD-MMMM-YYYY');
-                    }
                 },
                 {
                     data: 'action',
