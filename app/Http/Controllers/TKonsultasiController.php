@@ -178,6 +178,7 @@ class TKonsultasiController extends Controller
             'isi_konsultasi' => $request->isi_konsultasi,
             'foto_pertemuan' => (!empty($request->foto_pertemuan) ? $name : $request->foto_pertemuan_lama),
             'id_petugas' => $request->id_petugas,
+            'updated_at' => Carbon::now(),
         ]);
         return redirect()->route('tkonsultasi');
     }

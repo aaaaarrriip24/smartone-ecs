@@ -102,6 +102,8 @@ Route::get('bm/destroy/{id}', [TBmController::class, 'destroy']);
 
 // Inquiry
 Route::get('transaksi/inquiry', [TinquiryController::class, 'index'])->name('tinquiry');
+Route::get('inquiry/add', [TinquiryController::class, 'create']);
+Route::get('inquiry/detail/{id}', [TinquiryController::class, 'detail']);
 Route::post('inquiry/store', [TinquiryController::class, 'store']);
 Route::get('inquiry/show/{id}', [TinquiryController::class, 'show']);
 Route::post('inquiry/update', [TinquiryController::class, 'update']);

@@ -168,7 +168,7 @@ class TBmController extends Controller
             'telp_buyer' => $request->telp_buyer,
             'catatan' => $request->catatan,
             'foto_bm' => (!empty($request->foto_bm) ? $name : $request->foto_bm_lama),
-            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
         return redirect()->route('tbm');
     }
