@@ -16,6 +16,7 @@
             <a href="{{ url('news') }}" class="nav-item nav-link">News</a>
             <a href="{{ url('gallery') }}" class="nav-item nav-link">ECS Gallery</a>
             <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
+            <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
         </div>
         <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+0857-5587-9497
         </h4>
@@ -34,18 +35,14 @@
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Transport & Logistics
-                                Solution</h5>
-                            <h1 class="display-3 text-white animated slideInDown mb-4">Layanan publik untuk
-                                konsultasi dan informasi mengenai pasar ekspor.
-                            </h1>
+                            <h1 class="display-3 text-white animated slideInDown mb-4">Export Center Surabaya</h1>
+                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik untuk
+                                konsultasi dan informasi mengenai pasar ekspor.</h5>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor
                                 at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
                                 elitr.</p>
                             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
                                 More</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free
-                                Quote</a>
                         </div>
                     </div>
                 </div>
@@ -58,17 +55,14 @@
                 <div class="container">
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
-                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Transport & Logistics
-                                Solution</h5>
-                            <h1 class="display-3 text-white animated slideInDown mb-4">#1 Place For Your <span
-                                    class="text-primary">Transport</span> Solution</h1>
+                            <h1 class="display-3 text-white animated slideInDown mb-4">Export Center Surabaya</h1>
+                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik untuk
+                                konsultasi dan informasi mengenai pasar ekspor.</h5>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor
                                 at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
                                 elitr.</p>
                             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
                                 More</a>
-                            <a href="" class="btn btn-secondary py-md-3 px-md-5 animated slideInRight">Free
-                                Quote</a>
                         </div>
                     </div>
                 </div>
