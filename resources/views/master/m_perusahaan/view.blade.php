@@ -12,9 +12,7 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
                     <li class="breadcrumb-item active">Perusahaan</li>
                     <li class="breadcrumb-item">
-                        <a href="javascript:void(0);" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Add
-                        </a>
+                        <a href="{{ url('perusahaan/add') }}" type="text">Add</a>
                     </li>
                 </ol>
             </div>
@@ -113,8 +111,8 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Nama Perusahaan</label>
-                    <input type="text" name="nama_perusahaan" class="form-control form-control-sm nama_perusahaan" disabled
-                        readonly>
+                    <input type="text" name="nama_perusahaan" class="form-control form-control-sm nama_perusahaan"
+                        disabled readonly>
                 </div>
             </div>
             <div class="modal-footer">
@@ -209,7 +207,6 @@
             });
         });
     });
-
 
 </script>
 @endsection

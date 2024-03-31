@@ -44,17 +44,20 @@ Route::get('cities', [DataController::class, 'cities'])->name('cities');
 
 // Select
 Route::get('select/perusahaan', [SelectController::class, 'selectperusahaan']);
+Route::get('select/tipe', [SelectController::class, 'selecttipe']);
 Route::get('select/topik', [SelectController::class, 'selecttopik']);
 Route::get('select/petugas', [SelectController::class, 'selectpetugas']);
 Route::get('select/negara', [SelectController::class, 'selectnegara']);
 Route::get('select/bm', [SelectController::class, 'selectbm']);
 Route::get('select/inquiry', [SelectController::class, 'selectinquiry']);
+Route::get('select/k_produk', [SelectController::class, 'selectk_produk']);
 
 // Perusahaan
 Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
+Route::get('perusahaan/add', [PerusahaanController::class, 'create']);
+Route::get('perusahaan/detail/{id}', [PerusahaanController::class, 'detail']);
 Route::post('perusahaan/store', [PerusahaanController::class, 'store']);
 Route::get('perusahaan/show/{id}', [PerusahaanController::class, 'show']);
-Route::get('perusahaan/detail/{id}', [PerusahaanController::class, 'detail_show']);
 Route::post('perusahaan/update', [PerusahaanController::class, 'update']);
 Route::get('perusahaan/destroy/{id}', [PerusahaanController::class, 'destroy']);
 

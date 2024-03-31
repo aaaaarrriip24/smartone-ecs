@@ -21,6 +21,37 @@ class SelectController extends Controller
 
         return $data;
     }
+
+    public function selectk_produk(Request $request) {
+        $data = DB::table('m_k_produk')
+        ->whereNull('deleted_at')
+        ->select('*')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('m_k_produk')
+            ->where('nama_kategori_produk', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+
+        return $data;
+    }
+
+    public function selecttipe(Request $request) {
+        $data = DB::table('m_tipe_perusahaan')
+        ->whereNull('deleted_at')
+        ->select('*')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('m_tipe_perusahaan')
+            ->where('nama_tipe', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+
+        return $data;
+    }
+
     public function selectperusahaan(Request $request) {
         $data = DB::table('m_perusahaan')
         ->whereNull('deleted_at')
@@ -35,6 +66,7 @@ class SelectController extends Controller
 
         return $data;
     }
+
     public function selecttopik(Request $request) {
         $data = DB::table('m_topik')
         ->whereNull('deleted_at')
@@ -49,6 +81,7 @@ class SelectController extends Controller
 
         return $data;
     }
+
     public function selectpetugas(Request $request) {
         $data = DB::table('m_petugas')
         ->whereNull('deleted_at')
@@ -63,6 +96,7 @@ class SelectController extends Controller
 
         return $data;
     }
+
     public function selectbm(Request $request) {
         $data = DB::table('t_bm')
         ->whereNull('deleted_at')
@@ -77,6 +111,7 @@ class SelectController extends Controller
 
         return $data;
     }
+    
     public function selectinquiry(Request $request) {
         $data = DB::table('t_profile_inquiry')
         ->whereNull('deleted_at')
