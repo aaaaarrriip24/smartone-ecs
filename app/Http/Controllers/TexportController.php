@@ -69,6 +69,16 @@ class TexportController extends Controller
      */
     public function store(Request $request)
     {
+        $file = $request->file('dok_pendukung');
+        $nama_file = time()."_".$file->getClientOriginalName();
+        $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
+        $dok_pendukung = $nama_file;
+
+        $file = $request->file('bukti_dok');
+        $nama_file = time()."_".$file->getClientOriginalName();
+        $file->move(public_path().'/folder_bukti_dok/', $nama_file);
+        $bukti_dok = $nama_file;
+
         Texport::insert([
             'kode_export' => $request->kode_export,
             'id_perusahaan' => $request->id_perusahaan,
@@ -79,8 +89,8 @@ class TexportController extends Controller
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
-            'dok_pendukung' => $request->dok_pendukung,
-            'bukti_dok' => $request->bukti_dok,
+            'dok_pendukung' => $dok_pendukung,
+            'bukti_dok' => $bukti_dok,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('texport');
@@ -148,6 +158,20 @@ class TexportController extends Controller
      */
     public function update(Request $request)
     {
+        if(!empty($request->dok_pendukung)){
+            $file = $request->file('dok_pendukung');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
+            $dok_pendukung = $nama_file;
+        }
+
+        if(!empty($request->bukti_dok)){
+            $file = $request->file('bukti_dok');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/folder_bukti_dok/', $nama_file);
+            $bukti_dok = $nama_file;
+        }
+
         Texport::where('id', $request->id)->update([
             'kode_export' => $request->kode_export,
             'id_perusahaan' => $request->id_perusahaan,
@@ -158,8 +182,8 @@ class TexportController extends Controller
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
-            'dok_pendukung' => $request->dok_pendukung,
-            'bukti_dok' => $request->bukti_dok,
+            'dok_pendukung' => (!empty($request->dok_pendukung) ? $dok_pendukung : $request->dok_pendukung_lama),
+            'bukti_dok' => (!empty($request->bukti_dok) ? $bukti_dok : $request->bukti_dok_lama),
             'updated_at' => Carbon::now(),
         ]);
         return redirect()->route('texport');

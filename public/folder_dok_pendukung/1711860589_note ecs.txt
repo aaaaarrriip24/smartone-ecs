@@ -1,0 +1,23 @@
+yg sudah
+master table
+m_petugas
+m_negara
+m_provinsi
+m_kabkota
+m_topik
+m_tipe
+m_k_produk
+t_konsultasi
+t_bm
+t_profile_inquiry
+
+yg belum
+m_perusahaan krg add edit detail
+
+transaksi table
+t_p_export
+
+extra table
+p_peserta_bm
+p_penerima_inquiry
+p_peserta_inaexport

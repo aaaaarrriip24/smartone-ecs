@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="card-footer gap-2">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Tutup</a>
+            <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
             <button type="submit" class="btn btn-primary">Tambah</button>
         </div>
     </form>
