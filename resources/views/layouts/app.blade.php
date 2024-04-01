@@ -45,21 +45,49 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box horizontal-logo">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{{ url('dashboard') }}" class="logo logo-dark text-decoration-none text-white">
                                 <span class="logo-sm">
-                                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="col-lg-4"> 
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        </div>
+                                        <div class="col-lg-8 mt-2">
+                                            <h3>ECS</h3>
+                                        </div>
+                                    </div>
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('assets/images/logo-dark.png') }}" alt="" height="17">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="col-lg-4"> 
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        </div>
+                                        <div class="col-lg-8 mt-2">
+                                            <h3>ECS</h3>
+                                        </div>
+                                    </div>
                                 </span>
                             </a>
 
-                            <a href="{{ url('dashboard') }}" class="logo logo-light">
+                            <a href="{{ url('dashboard') }}" class="logo logo-light text-decoration-none text-white">
                                 <span class="logo-sm">
-                                    <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="col-lg-4"> 
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        </div>
+                                        <div class="col-lg-8 mt-2">
+                                            <h3>ECS</h3>
+                                        </div>
+                                    </div>
                                 </span>
                                 <span class="logo-lg">
-                                    <img src="{{ asset('assets/images/logo-light.png') }}" alt="" height="17">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="col-lg-4"> 
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        </div>
+                                        <div class="col-lg-8 mt-2">
+                                            <h3>ECS</h3>
+                                        </div>
+                                    </div>
                                 </span>
                             </a>
                         </div>
@@ -827,6 +855,11 @@
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                         <li class="nav-item">
+                            <a class="nav-link menu-link" href="{{ url('dashboard') }}">
+                                <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
                                 role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                                 <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Data Master</span>
@@ -902,6 +935,28 @@
                                     <li class="nav-item">
                                         <a href="{{ url('extra/p_inaexport') }}" class="nav-link" data-key="t-inquiry">
                                             Peserta InaExport </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                <i class="bx bxs-dashboard"></i> <span data-key="t-menu2">Reporting</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                <ul class="nav nav-sm flex-column">
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" class="nav-link" data-key="t-konsultasi">
+                                            Reporting Inquiry </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" class="nav-link" data-key="t-bm">
+                                            Reporting Business Matching </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="javascript:void(0)" class="nav-link" data-key="t-inquiry">
+                                            Reporting Export</a>
                                     </li>
                                 </ul>
                             </div>
@@ -1803,6 +1858,7 @@
     <!-- Base Url -->
     <script>
         var base_url = document.querySelector('meta[name="base_url"]').getAttribute('content') + '/';
+
     </script>
     @yield('js')
     @include('sweetalert::alert')
