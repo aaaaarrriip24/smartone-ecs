@@ -9,13 +9,13 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Kode BM</label>
+                        <label>Kode Inquiry</label>
                         <input type="text" name="kode_inquiry" class="form-control form-control-sm" placeholder="IQ-xxxx" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Tanggal BM</label>
+                        <label>Tanggal Inquiry</label>
                         <input type="date" name="tanggal_inquiry" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
