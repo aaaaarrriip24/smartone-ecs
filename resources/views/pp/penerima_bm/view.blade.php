@@ -29,15 +29,19 @@
                 <h5 class="card-title mb-0">Peserta Business Matching</h5>
             </div>
             <div class="card-body">
-                <table id="dt_bm" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Kode BM</th>
-                        <th>Kode Perusahaan</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_bm" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Kode BM</th>
+                                <th>Kode Perusahaan</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                            </div>
             </div>
 
         </div>

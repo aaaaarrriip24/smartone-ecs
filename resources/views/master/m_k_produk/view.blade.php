@@ -31,14 +31,19 @@
                 <h5 class="card-title mb-0">Kategori Produk</h5>
             </div>
             <div class="card-body">
-                <table id="dt_k_produk" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Nama Kategori Produk</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_k_produk"
+                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Nama Kategori Produk</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -59,7 +64,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Kategori Produk</label>
-                        <input type="text" name="nama_kategori_produk" class="form-control form-control-sm" required="required">
+                        <input type="text" name="nama_kategori_produk" class="form-control form-control-sm"
+                            required="required">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -85,8 +91,8 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Kategori Produk</label>
-                        <input type="text" name="nama_kategori_produk" class="form-control form-control-sm nama_kategori_produk"
-                            required="required">
+                        <input type="text" name="nama_kategori_produk"
+                            class="form-control form-control-sm nama_kategori_produk" required="required">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -109,8 +115,8 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Nama Kategori Produk</label>
-                    <input type="text" name="nama_kategori_produk" class="form-control form-control-sm nama_kategori_produk" disabled
-                        readonly>
+                    <input type="text" name="nama_kategori_produk"
+                        class="form-control form-control-sm nama_kategori_produk" disabled readonly>
                 </div>
             </div>
             <div class="modal-footer">
@@ -165,7 +171,7 @@
             var id = $(this).val();
             // alert(id);
             $('#modalEdit').modal('show');
-    
+
             $.ajax({
                 type: "GET",
                 url: base_url + "k_produk/show/" + id,
@@ -176,12 +182,12 @@
                 }
             });
         });
-    
+
         $(document).on('click', '.btn-detail', function () {
             var id = $(this).val();
             // alert(id);
             $('#modalDetail').modal('show');
-    
+
             $.ajax({
                 type: "GET",
                 url: base_url + "k_produk/show/" + id,
@@ -220,7 +226,6 @@
             });
         });
     });
-
 
 </script>
 @endsection

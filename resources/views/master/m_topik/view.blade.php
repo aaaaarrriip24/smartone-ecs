@@ -31,16 +31,20 @@
                 <h5 class="card-title mb-0">Topik</h5>
             </div>
             <div class="card-body">
-                <table id="dt_topik" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Nama Topik</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_topik"
+                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Nama Topik</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -165,7 +169,7 @@
             var id = $(this).val();
             // alert(id);
             $('#modalEdit').modal('show');
-    
+
             $.ajax({
                 type: "GET",
                 url: base_url + "topik/show/" + id,
@@ -176,12 +180,12 @@
                 }
             });
         });
-    
+
         $(document).on('click', '.btn-detail', function () {
             var id = $(this).val();
             // alert(id);
             $('#modalDetail').modal('show');
-    
+
             $.ajax({
                 type: "GET",
                 url: base_url + "topik/show/" + id,
@@ -220,7 +224,6 @@
             });
         });
     });
-
 
 </script>
 @endsection

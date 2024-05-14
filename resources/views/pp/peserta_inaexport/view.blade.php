@@ -29,16 +29,21 @@
                 <h5 class="card-title mb-0">Peserta Business Matching</h5>
             </div>
             <div class="card-body">
-                <table id="dt_p_inaexport" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Kode Perusahaan</th>
-                        <th>Tanggal Registrasi</th>
-                        <th>Nama Petugas</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_p_inaexport"
+                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Kode Perusahaan</th>
+                                <th>Tanggal Registrasi</th>
+                                <th>Nama Petugas</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -50,7 +55,7 @@
 <script>
     let table;
     $(document).ready(function () {
-        
+
         table = $('#dt_p_inaexport').DataTable({
             autoWidth: false,
             responsive: false,
@@ -90,7 +95,7 @@
                     name: 'nama_petugas',
                     orderable: true,
                 },
-                
+
                 {
                     data: 'action',
                     name: 'action',

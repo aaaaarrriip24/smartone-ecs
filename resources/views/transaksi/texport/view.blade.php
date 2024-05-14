@@ -29,18 +29,23 @@
                 <h5 class="card-title mb-0">Realisasi Export</h5>
             </div>
             <div class="card-body">
-                <table id="dt_export" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Kode Transaksi</th>
-                        <th>Kode Perusahaan</th>
-                        <th>Nilai Transaksi</th>
-                        <th>Negara Tujuan</th>
-                        <th>Tanggal Export</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_export"
+                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Kode Transaksi</th>
+                                <th>Kode Perusahaan</th>
+                                <th>Nilai Transaksi</th>
+                                <th>Negara Tujuan</th>
+                                <th>Tanggal Export</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -52,7 +57,7 @@
 <script>
     let table;
     $(document).ready(function () {
-        
+
         table = $('#dt_export').DataTable({
             autoWidth: false,
             responsive: false,

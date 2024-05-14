@@ -29,17 +29,22 @@
                 <h5 class="card-title mb-0">Konsultasi</h5>
             </div>
             <div class="card-body">
-                <table id="dt_konsultasi" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Kode Konsultasi</th>
-                        <th>Kode Perusahaan</th>
-                        <th>Topik</th>
-                        <th>Tanggal Konsultasi</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_konsultasi"
+                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Kode Konsultasi</th>
+                                <th>Kode Perusahaan</th>
+                                <th>Topik</th>
+                                <th>Tanggal Konsultasi</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -51,7 +56,7 @@
 <script>
     let table;
     $(document).ready(function () {
-        
+
         table = $('#dt_konsultasi').DataTable({
             autoWidth: false,
             responsive: false,

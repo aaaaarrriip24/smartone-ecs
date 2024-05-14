@@ -29,17 +29,21 @@
                 <h5 class="card-title mb-0">Business Matching</h5>
             </div>
             <div class="card-body">
-                <table id="dt_bm" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Kode BM</th>
-                        <th>Pelaksanaan BM</th>
-                        <th>Negara Buyer</th>
-                        <th>Tanggal BM</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_bm" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Kode BM</th>
+                                <th>Pelaksanaan BM</th>
+                                <th>Negara Buyer</th>
+                                <th>Tanggal BM</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -51,7 +55,7 @@
 <script>
     let table;
     $(document).ready(function () {
-        
+
         table = $('#dt_bm').DataTable({
             autoWidth: false,
             responsive: false,
