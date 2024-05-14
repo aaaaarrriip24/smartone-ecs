@@ -45,6 +45,12 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
+                        <label>Alamat Pabrik</label>
+                        <input type="text" name="alamat_pabrik" class="form-control form-control-sm" required="required">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
                         <label>Nama Contact Person</label>
                         <input type="text" name="nama_contact_person" class="form-control form-control-sm" required="required">
                     </div>
