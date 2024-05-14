@@ -29,17 +29,22 @@
                 <h5 class="card-title mb-0">Perusahaan</h5>
             </div>
             <div class="card-body">
-                <table id="dt_perusahaan" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                    style="width:100%">
-                    <thead>
-                        <th>No. </th>
-                        <th>Kode</th>
-                        <th>Nama Perusahaan</th>
-                        <th>Tipe</th>
-                        <th>Alamat</th>
-                        <th>Action</th>
-                    </thead>
-                </table>
+                <div class="row">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="dt_perusahaan" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                            style="width:100%">
+                            <thead>
+                                <th>No. </th>
+                                <th>Kode</th>
+                                <th>Nama Perusahaan</th>
+                                <th>Tipe</th>
+                                <th>Alamat Perusahaan</th>
+                                <th>Alamat Pabrik</th>
+                                <th>Action</th>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -167,6 +172,11 @@
                 {
                     data: 'alamat_perusahaan',
                     name: 'alamat_perusahaan',
+                    orderable: true,
+                },
+                {
+                    data: 'alamat_pabrik',
+                    name: 'alamat_pabrik',
                     orderable: true,
                 },
                 {

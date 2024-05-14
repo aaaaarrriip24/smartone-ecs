@@ -111,7 +111,7 @@ class PerusahaanController extends Controller
         $nama_file = time()."_".$file->getClientOriginalName();
         $file->move(public_path().'/foto_produk_2/', $nama_file);
         $name2 = $nama_file;
-
+        
         Perusahaan::insert([
             'kode_perusahaan' => $request->kode_perusahaan,
             'nama_perusahaan' => $request->nama_perusahaan,
@@ -139,6 +139,7 @@ class PerusahaanController extends Controller
             'foto_produk_2' => $name2,
             'tanggal_registrasi' => $request->tanggal_registrasi,
             'id_petugas' => $request->id_petugas,
+            'show_status' => $request->show_status,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('perusahaan');

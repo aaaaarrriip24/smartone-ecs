@@ -57,6 +57,13 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
+                        <label>Alamat Pabrik</label>
+                        <input type="text" name="alamat_pabrik" class="form-control form-control-sm"
+                            value="{{ $data->alamat_pabrik }}" required="required">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
                         <label>Nama Contact Person</label>
                         <input type="text" name="nama_contact_person" class="form-control form-control-sm"
                             value="{{ $data->nama_contact_person }}" required="required">
@@ -79,8 +86,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Website Perusahaan</label>
-                        <input type="text" name="website" class="form-control form-control-sm" value="{{ $data->website }}"
-                            required="required">
+                        <input type="text" name="website" class="form-control form-control-sm"
+                            value="{{ $data->website }}" required="required">
                     </div>
                 </div>
                 <div class="col-6">
@@ -112,8 +119,9 @@
                         <label>Jumlah Karyawan</label>
                         <select name="jumlah_karyawan" class="form-control form-control-sm form-select">
                             <option value="{{ $data->jumlah_karyawan }}" selected>{{ $data->jumlah_karyawan }}</option>
-                            <option value="< 5"> < 5</option> 
-                            <option value="6 - 9">6 - 9</option>
+                            <option value="< 5">
+                                < 5</option> <option value="6 - 9">6 - 9
+                            </option>
                             <option value="10 - 30">10 - 30</option>
                             <option value="> 30"> > 30</option>
                         </select>
@@ -122,8 +130,10 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Kategori Produk</label>
-                        <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk"  required="required">
-                            <option value="{{ $data->id_kategori_produk }}" selected>{{ $data->nama_kategori_produk }}</option>
+                        <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk"
+                            required="required">
+                            <option value="{{ $data->id_kategori_produk }}" selected>{{ $data->nama_kategori_produk }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -160,7 +170,8 @@
                         <label>Satuan Kapasitas Produksi</label>
                         <select name="satuan_kapasitas_produksi" class="form-control form-control-sm form-select"
                             required="required">
-                            <option value="{{ $data->satuan_kapasitas_produksi }}" selected>{{ $data->satuan_kapasitas_produksi }}</option>
+                            <option value="{{ $data->satuan_kapasitas_produksi }}" selected>
+                                {{ $data->satuan_kapasitas_produksi }}</option>
                             <option value="KG">KG</option>
                             <option value="Ton">Ton</option>
                             <option value="Pasang">Pasang</option>
@@ -199,20 +210,20 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label>Foto Produk 1</label>
-                        <input type="file" name="foto_produk_1" class="form-control form-control-sm" >
+                        <input type="file" name="foto_produk_1" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Foto Produk 2</label>
-                        <input type="file" name="foto_produk_2" class="form-control form-control-sm" >
+                        <input type="file" name="foto_produk_2" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Tanggal Registrasi</label>
                         <input type="date" name="tanggal_registrasi" class="form-control form-control-sm"
-                        value="{{ $data->tanggal_registrasi }}" required="required">
+                            value="{{ $data->tanggal_registrasi }}" required="required">
                     </div>
                 </div>
                 <div class="col-6">
@@ -220,7 +231,7 @@
                         <label>Petugas Verifikator</label>
                         <select name="id_petugas" class="form-control form-control-sm select_petugas"
                             required="required">
-                        <option value="{{ $data->id_petugas }}" selected>{{ $data->nama_petugas }}</option>
+                            <option value="{{ $data->id_petugas }}" selected>{{ $data->nama_petugas }}</option>
                         </select>
                     </div>
                 </div>
