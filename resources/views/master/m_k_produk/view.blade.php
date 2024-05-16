@@ -167,6 +167,7 @@
                 },
             ]
         });
+        
         $(document).on('click', '.btn-edit', function () {
             var id = $(this).val();
             // alert(id);
