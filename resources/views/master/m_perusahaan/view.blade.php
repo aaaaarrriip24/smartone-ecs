@@ -37,9 +37,11 @@
                                 <th>No. </th>
                                 <th>Kode</th>
                                 <th>Nama Perusahaan</th>
-                                <th>Tipe</th>
                                 <th>Alamat Perusahaan</th>
-                                <th>Alamat Pabrik</th>
+                                <th>Email</th>
+                                <th>No. Kontak</th>
+                                <th>Kategori Produk</th>
+                                <th>Status (CL/ NC)</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -163,20 +165,40 @@
                     data: 'nama_perusahaan',
                     name: 'nama_perusahaan',
                     orderable: true,
-                },
-                {
-                    data: 'nama_tipe',
-                    name: 'nama_tipe',
-                    orderable: true,
+                    render: function (data, type, row, meta) {
+                        return row.nama_perusahaan + ", " + row.nama_tipe;
+                    }
                 },
                 {
                     data: 'alamat_perusahaan',
                     name: 'alamat_perusahaan',
                     orderable: true,
+                    render: function (data, type, row, meta) {
+                        var str = row.cities;
+                        str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+                            return letter.toUpperCase();
+                        });
+                        return row.alamat_perusahaan + "<br>" + str;
+                    }
                 },
                 {
-                    data: 'alamat_pabrik',
-                    name: 'alamat_pabrik',
+                    data: 'email',
+                    name: 'email',
+                    orderable: true,
+                },
+                {
+                    data: 'telp_contact_person',
+                    name: 'telp_contact_person',
+                    orderable: true,
+                },
+                {
+                    data: 'nama_kategori_produk',
+                    name: 'nama_kategori_produk',
+                    orderable: true,
+                },
+                {
+                    data: 'nama_kategori_produk',
+                    name: 'nama_kategori_produk',
                     orderable: true,
                 },
                 {

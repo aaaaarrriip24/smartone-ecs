@@ -40,7 +40,7 @@ class PerusahaanController extends Controller
             ->whereNull('tf.deleted_at')
             ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk', 'tf.nama_petugas')
             ->get();
-
+            
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
