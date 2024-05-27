@@ -214,6 +214,13 @@
                     data: 'status_data',
                     name: 'status_data',
                     orderable: true,
+                    render: function (data, type, row, meta) {
+                        if(row.status_data == 1) {
+                            return "Not Completed";
+                        } else if(row.status_data == 2) {
+                            return "Completed";
+                        }
+                    }
                 },
                 {
                     data: 'action',
