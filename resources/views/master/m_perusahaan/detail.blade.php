@@ -54,9 +54,29 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Alamat Pabrik</label>
+                    <input type="text" name="alamat_pabrik" class="form-control form-control-sm"
+                        value="{{ $data->alamat_pabrik }}" disabled>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Kode Pos</label>
+                    <input type="text" name="kode_pos" class="form-control form-control-sm" disabled
+                        value="{{ $data->kode_pos }}">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Nama Contact Person</label>
                     <input type="text" name="nama_contact_person" class="form-control form-control-sm"
                         value="{{ $data->nama_contact_person }}" disabled>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Jabatan</label>
+                    <input type="text" name="jabatan" class="form-control form-control-sm" value="{{ $data->jabatan }}" disabled>
                 </div>
             </div>
             <div class="col-6">

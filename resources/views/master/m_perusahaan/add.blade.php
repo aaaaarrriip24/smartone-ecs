@@ -9,11 +9,17 @@
         @csrf
         <div class="card-body">
             <div class="row">
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Kode Perusahaan</label>
                         <input type="text" name="kode_perusahaan" class="form-control form-control-sm"
                             value="{{ $kode_pt }}" disabled required>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Tipe Perusahaan</label>
+                        <select name="id_tipe" class="form-control form-control-sm select_tipe" required></select>
                     </div>
                 </div>
                 <div class="col-6">
@@ -22,19 +28,13 @@
                         <input type="text" name="nama_perusahaan" class="form-control form-control-sm" required>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Tipe Perusahaan</label>
-                        <select name="id_tipe" class="form-control form-control-sm select_tipe" required></select>
-                    </div>
-                </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Provinsi</label>
                         <select name="id_provinsi" class="form-control form-control-sm province_id" required></select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kabupaten/Kota</label>
                         <select name="id_kabkota" class="form-control form-control-sm cities_id" required></select>
@@ -105,19 +105,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
-                        <select name="jumlah_karyawan" class="form-control form-control-sm form-select jumlah_karyawan">
-                            <option disabled selected>Pilih Jumlah Karyawan</option>
-                            <option value="1">< 5</option>
-                            <option value="2">6 - 9</option>
-                            <option value="3">10 - 30</option>
-                            <option value="4"> > 30</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Skala Perusahaan</label>
                         <select name="skala_perusahaan" class="form-control form-control-sm form-select skala_perusahaan">
@@ -129,37 +117,49 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
+                        <select name="jumlah_karyawan" class="form-control form-control-sm form-select jumlah_karyawan">
+                            <option disabled selected>Pilih Jumlah Karyawan</option>
+                            <option value="1">< 5</option>
+                            <option value="2">6 - 9</option>
+                            <option value="3">10 - 30</option>
+                            <option value="4"> > 30</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kategori Produk</label>
                         <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk"></select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Detail Produk Utama</label>
                         <input type="text" name="detail_produk_utama" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Merek Produk</label>
                         <input type="text" name="merek_produk" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">HS Code</label>
                         <input type="text" name="hs_code" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kapasitas Produksi/ Bulan</label>
                         <input type="number" name="kapasitas_produksi" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Satuan Kapasitas Produksi</label>
                         <select name="satuan_kapasitas_produksi" class="form-control form-control-sm form-select">
@@ -173,13 +173,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Sertifikat Legalitas</label>
                         <input type="text" name="kepemilikan_legalitas" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kepemilikan Sertifikat</label>
                         <input type="text" name="kepemilikan_sertifikat" class="form-control form-control-sm">
@@ -217,13 +217,13 @@
                         <input type="file" name="foto_produk_2" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Tanggal Registrasi</label>
                         <input type="text" value="{{ date('d-m-Y') }}" name="tanggal_registrasi" class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Petugas Verifikator</label>
                         <select name="id_petugas" class="form-control form-control-sm select_petugas" required></select>
