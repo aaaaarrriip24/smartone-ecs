@@ -175,7 +175,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Kepemilikan Legalitas</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Sertifikat Legalitas</label>
                         <input type="text" name="kepemilikan_legalitas" class="form-control form-control-sm">
                     </div>
                 </div>

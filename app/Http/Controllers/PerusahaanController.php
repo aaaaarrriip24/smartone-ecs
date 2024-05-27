@@ -166,17 +166,6 @@ class PerusahaanController extends Controller
      */
     public function show($id)
     {   
-        // $provinsi = DB::table('indonesia_provinces')
-        // ->get();
-        
-        // $kabkota = DB::table('indonesia_cities as ta')
-        // ->leftJoin('indonesia_provinces as tb', 'tb.code', '=', 'ta.province_code')
-        // ->select('*')
-        // ->get();
-        
-        // $tipe = Tipe::all();
-        // $petugas = Petugas::all();
-
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
         ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')

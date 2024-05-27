@@ -3,15 +3,23 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-       <b>Detail Perusahaan</b>
+        <b>Detail Perusahaan</b>
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-0 labelInput">Kode Perusahaan</label>
                     <input type="text" name="kode_perusahaan" class="form-control form-control-sm"
                         value="{{ $data->kode_perusahaan }}" disabled>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-0 labelInput">Tipe Perusahaan</label>
+                    <select name="id_tipe" class="form-control form-control-sm select_tipe" disabled>
+                        <option value="{{ $data->id_tipe }}">{{ $data->nama_tipe }}</option>
+                    </select>
                 </div>
             </div>
             <div class="col-6">
@@ -21,15 +29,7 @@
                         value="{{ $data->nama_perusahaan }}" disabled>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Tipe Perusahaan</label>
-                    <select name="id_tipe" class="form-control form-control-sm select_tipe" disabled>
-                        <option value="{{ $data->id_tipe }}">{{ $data->nama_tipe }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Provinsi</label>
                     <select name="id_provinsi" class="form-control form-control-sm province_id" disabled>
@@ -37,7 +37,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Kabupaten/Kota</label>
                     <select name="id_kabkota" class="form-control form-control-sm cities_id" disabled>
@@ -68,7 +68,14 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Email</label>
+                    <label class="form-label mb-1 mt-2 labelInput">Telpon Kantor</label>
+                    <input type="number" name="telp_kantor" class="form-control form-control-sm"
+                        value="{{ $data->telp_kantor }}" disabled>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Email Perusahaan</label>
                     <input type="email" name="email" class="form-control form-control-sm" value="{{ $data->email }}"
                         disabled>
                 </div>
@@ -91,7 +98,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Skala Perusahaan</label>
                     <select name="skala_perusahaan" class="form-control form-control-sm form-select" disabled>
@@ -104,7 +111,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
                     <select name="jumlah_karyawan" class="form-control form-control-sm form-select" disabled>
@@ -117,7 +124,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Kategori Produk</label>
                     <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk" disabled>
@@ -126,35 +133,35 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Detail Produk Utama</label>
                     <input type="text" name="detail_produk_utama" class="form-control form-control-sm"
                         value="{{ $data->detail_produk_utama }}" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Merek Produk</label>
                     <input type="text" name="merek_produk" class="form-control form-control-sm"
                         value="{{ $data->merek_produk }}" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">HS Code</label>
                     <input type="text" name="hs_code" class="form-control form-control-sm" value="{{ $data->hs_code }}"
                         disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Kapasitas Produksi</label>
+                    <label class="form-label mb-1 mt-2 labelInput">Kapasitas Produksi/ Bulan</label>
                     <input type="number" name="kapasitas_produksi" class="form-control form-control-sm"
                         value="{{ $data->kapasitas_produksi }}" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Satuan Kapasitas Produksi</label>
                     <select name="satuan_kapasitas_produksi" class="form-control form-control-sm form-select" disabled>
@@ -169,52 +176,72 @@
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Sertifikat</label>
-                    <select name="sertifikat" class="form-control form-control-sm form-select" disabled>
-                        <option value="{{ $data->sertifikat }}" selected>{{ $data->sertifikat }}</option>
-                        <option value="SPP-RT">SPP-RT</option>
-                        <option value="BPOM">BPOM</option>
-                        <option value="HACCP">HACCP</option>
-                        <option value="SKP">SKP</option>
-                        <option value="HALAL">HALAL</option>
-                        <option value="SNI">SNI</option>
-                        <option value="SVLK">SVLK</option>
-                        <option value="Lainnya">Lainnya</option>
-                    </select>
+                    <label class="form-label mb-1 mt-2 labelInput">Sertifikat Legalitas</label>
+                    <input type="number" name="kepemilikan_legalitas" class="form-control form-control-sm"
+                        value="{{ $data->kepemilikan_legalitas }}" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Status</label>
-                    <select name="status" class="form-control form-control-sm form-select" disabled>
-                        <option value="{{ $data->status }}" selected>{{ $data->status }}</option>
+                    <label class="form-label mb-1 mt-2 labelInput">Kepemilikan Sertifikat</label>
+                    <input type="number" name="kepemilikan_sertifikat" class="form-control form-control-sm"
+                        value="{{ $data->kepemilikan_sertifikat }}" disabled>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Status Data</label>
+                    <select name="status_data" class="form-control form-control-sm form-select" disabled>
+                        <option value="{{ $data->status_data }}" selected>
+                            @if( $data->status_data == 1)
+                            Not Completed
+                            @else
+                            Completed
+                            @endif
+                        </option>
                         <option value="Sudah Ekspor">Sudah Ekspor</option>
                         <option value="Belum Ekspor">Belum Ekspor</option>
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Status Ekspor</label>
+                    <select name="status_ekspor" class="form-control form-control-sm form-select" disabled>
+                        <option value="{{ $data->status_ekspor }}" selected>
+                            @if( $data->status_ekspor == 1)
+                            Belum Ekspor
+                            @else
+                            Sudah Ekspor
+                            @endif
+                        </option>
+                        <option value="Sudah Ekspor">Sudah Ekspor</option>
+                        <option value="Belum Ekspor">Belum Ekspor</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
                     <input type="file" name="foto_produk_1" class="form-control form-control-sm" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
                     <input type="file" name="foto_produk_2" class="form-control form-control-sm" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Tanggal Registrasi</label>
                     <input type="date" name="tanggal_registrasi" class="form-control form-control-sm"
                         value="{{ $data->tanggal_registrasi }}" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Petugas Verifikator</label>
                     <select name="id_petugas" class="form-control form-control-sm select_petugas" disabled>
