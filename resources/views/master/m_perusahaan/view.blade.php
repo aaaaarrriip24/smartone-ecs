@@ -211,8 +211,8 @@
                     orderable: true,
                 },
                 {
-                    data: 'nama_kategori_produk',
-                    name: 'nama_kategori_produk',
+                    data: 'status_data',
+                    name: 'status_data',
                     orderable: true,
                 },
                 {
