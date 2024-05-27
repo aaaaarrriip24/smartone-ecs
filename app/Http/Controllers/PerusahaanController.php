@@ -106,18 +106,26 @@ class PerusahaanController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('foto_produk_1');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move(public_path().'/foto_produk_1/', $nama_file);
-        $name1 = $nama_file;
+        if(!empty($request->file('foto_produk_1'))) {
+            $file = $request->file('foto_produk_1');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/foto_produk_1/', $nama_file);
+            $name1 = $nama_file;
+        }
 
-        $file = $request->file('foto_produk_2');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move(public_path().'/foto_produk_2/', $nama_file);
-        $name2 = $nama_file;
-        
+        if(!empty($request->file('foto_produk_2'))) {
+            $file = $request->file('foto_produk_2');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/foto_produk_2/', $nama_file);
+            $name2 = $nama_file;
+        }
+
+        $get_pt = Perusahaan::whereNull('deleted_at')->get();
+        $count_pt = $get_pt->count();
+        $kode_pt = "PRS-" . strval($count_pt + 1) ;
+
         Perusahaan::insert([
-            'kode_perusahaan' => $request->kode_perusahaan,
+            'kode_perusahaan' => $kode_pt,
             'nama_perusahaan' => trim(strtoupper($request->nama_perusahaan)),
             'id_tipe' => $request->id_tipe,
             'id_provinsi' => $request->id_provinsi,
@@ -137,13 +145,14 @@ class PerusahaanController extends Controller
             'hs_code' => $request->hs_code,
             'kapasitas_produksi' => $request->kapasitas_produksi,
             'satuan_kapasitas_produksi' => $request->satuan_kapasitas_produksi,
-            'sertifikat' => $request->sertifikat,
-            'status' => $request->status,
-            'foto_produk_1' => $name1,
-            'foto_produk_2' => $name2,
+            'kepemilikan_legalitas' => $request->kepemilikan_legalitas,
+            'kepemilikan_sertifikat' => $request->kepemilikan_sertifikat,
+            'status_data' => $request->status_data,
+            'status_ekspor' => $request->status_ekspor,
+            'foto_produk_1' => empty($name1) ? '' : $name1,
+            'foto_produk_2' => empty($name2) ? '' : $name2,
             'tanggal_registrasi' => $request->tanggal_registrasi,
             'id_petugas' => $request->id_petugas,
-            'show_status' => $request->show_status,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('perusahaan');

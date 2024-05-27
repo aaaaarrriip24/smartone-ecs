@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Email</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Email Perusahaan</label>
                         <input type="email" name="email" class="form-control form-control-sm"
                             placeholder="john@email.com">
                     </div>
@@ -335,7 +335,7 @@
         });
 
         $('.cities_id').select2({
-            placeholder: 'Select an item',
+            placeholder: 'Pilih Kota',
             ajax: {
                 url: base_url + "cities",
                 dataType: 'json',
