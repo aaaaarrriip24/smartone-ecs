@@ -45,11 +45,11 @@ class HomeController extends Controller
         ->whereNull('deleted_at')
         ->groupByRaw('MONTH(tanggal_konsultasi)')
         ->get();
-
+        
         $arrData = array();
         for ($i=1; $i <= 12 ; $i++) { 
             $toMonth = str_pad($i,2,0,STR_PAD_LEFT);
-            $toMonthName = date('F', strtotime("2024-".$toMonth."-01"));
+            $toMonthName = date('M', strtotime("2024-".$toMonth."-01"));
             
             $row = collect($data)->where('month', $i)->first();
             $arrData[] = array('bulan' => $toMonthName , 'total' => (!empty($row) ? $row->total : 0) ); 

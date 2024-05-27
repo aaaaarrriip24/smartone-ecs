@@ -2,80 +2,82 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">Add Perusahaan</div>
+    <div class="card-header">
+        <b>Add Perusahaan</b>
+    </div>
     <form method="post" action="{{ url('perusahaan/store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Kode Perusahaan</label>
-                        <input type="text" name="kode_perusahaan" class="form-control form-control-sm" placeholder="PT-xxxx" required="required">
+                        <label class="form-label mb-1 mt-0 labelInput">Kode Perusahaan</label>
+                        <input type="text" name="kode_perusahaan" class="form-control form-control-sm" value="{{ $kode_pt }}" disabled required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Nama Perusahaan</label>
+                        <label class="form-label mb-1 mt-0 labelInput">Nama Perusahaan</label>
                         <input type="text" name="nama_perusahaan" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Tipe Perusahaan</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Tipe Perusahaan</label>
                         <select name="id_tipe" class="form-control form-control-sm select_tipe" required="required"></select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Provinsi</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Provinsi</label>
                         <select name="id_provinsi" class="form-control form-control-sm province_id" required="required"></select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Kabupaten/Kota</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Kabupaten/Kota</label>
                         <select name="id_kabkota" class="form-control form-control-sm cities_id" required="required"></select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Alamat Perusahaan</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Alamat Perusahaan</label>
                         <input type="text" name="alamat_perusahaan" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Alamat Pabrik</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Alamat Pabrik</label>
                         <input type="text" name="alamat_pabrik" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Nama Contact Person</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Nama Contact Person</label>
                         <input type="text" name="nama_contact_person" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Telpon Contact Person</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Telpon Contact Person</label>
                         <input type="number" name="telp_contact_person" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Email</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Email</label>
                         <input type="email" name="email" class="form-control form-control-sm" placeholder="john@email.com" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Website Perusahaan</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Website Perusahaan</label>
                         <input type="text" name="website" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Status Kepemilikan</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Status Kepemilikan</label>
                         <select name="status_kepemilikan" class="form-control form-control-sm form-select">
                             <option disabled selected>Pilih Status Kepemilikan</option>
                             <option value="PMDN">PMDN</option>
@@ -85,7 +87,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Skala Perusahaan</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Skala Perusahaan</label>
                         <select name="skala_perusahaan" class="form-control form-control-sm form-select">
                             <option disabled selected>Pilih Skala Perusahaan</option>
                             <option value="Mikro">Mikro</option>
@@ -97,7 +99,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Jumlah Karyawan</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
                         <select name="jumlah_karyawan" class="form-control form-control-sm form-select">
                             <option disabled selected>Pilih Jumlah Karyawan</option>
                             <option value="< 5"> < 5</option>
@@ -109,37 +111,37 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Kategori Produk</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Kategori Produk</label>
                         <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk" required="required"></select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Detail Produk Utama</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Detail Produk Utama</label>
                         <input type="text" name="detail_produk_utama" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Merek Produk</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Merek Produk</label>
                         <input type="text" name="merek_produk" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>HS Code</label>
+                        <label class="form-label mb-1 mt-2 labelInput">HS Code</label>
                         <input type="text" name="hs_code" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Kapasitas Produksi</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Kapasitas Produksi</label>
                         <input type="number" name="kapasitas_produksi" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Satuan Kapasitas Produksi</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Satuan Kapasitas Produksi</label>
                         <select name="satuan_kapasitas_produksi" class="form-control form-control-sm form-select" required="required">
                             <option disabled selected>Pilih Satuan Produksi</option>
                             <option value="KG">KG</option>
@@ -153,7 +155,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Sertifikat</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Sertifikat</label>
                         <select name="sertifikat" class="form-control form-control-sm form-select" required="required">
                             <option disabled selected>Pilih Satuan Produksi</option>
                             <option value="SPP-RT">SPP-RT</option>
@@ -169,7 +171,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Status</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Status</label>
                         <select name="status" class="form-control form-control-sm form-select" required="required">
                             <option disabled selected>Pilih Status</option>
                             <option value="Sudah Ekspor">Sudah Ekspor</option>
@@ -179,33 +181,33 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Foto Produk 1</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
                         <input type="file" name="foto_produk_1" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Foto Produk 2</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
                         <input type="file" name="foto_produk_2" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Tanggal Registrasi</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Tanggal Registrasi</label>
                         <input type="date" name="tanggal_registrasi" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Petugas Verifikator</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Petugas Verifikator</label>
                         <select name="id_petugas" class="form-control form-control-sm select_petugas" required="required"></select>
                     </div>
                 </div>
             </div>
         </div>
         <div class="card-footer gap-2">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Kembali</a>
+            <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
         </div>
     </form>
 </div>

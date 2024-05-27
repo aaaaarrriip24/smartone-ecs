@@ -35,7 +35,9 @@
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
-                                <th>Kode</th>
+                                <!-- <th>Kode</th> -->
+                                <th class="d-none">Merk Produk</th>
+                                <th class="d-none">Detail Produk</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Alamat Perusahaan</th>
                                 <th>Email</th>
@@ -156,17 +158,29 @@
                     className: 'text-center',
                     width: '5%'
                 },
+                // {
+                //     data: 'kode_perusahaan',
+                //     name: 'kode_perusahaan',
+                //     orderable: true,
+                // },
                 {
-                    data: 'kode_perusahaan',
-                    name: 'kode_perusahaan',
-                    orderable: true,
+                    data: 'merek_produk',
+                    name: 'merek_produk',
+                    visible: false,
+                },
+                {
+                    data: 'detail_produk_utama',
+                    name: 'detail_produk_utama',
+                    visible: false,
                 },
                 {
                     data: 'nama_perusahaan',
                     name: 'nama_perusahaan',
                     orderable: true,
                     render: function (data, type, row, meta) {
-                        return row.nama_perusahaan + ", " + row.nama_tipe;
+                        let text = row.nama_perusahaan;
+                        let result = text.toUpperCase();
+                        return result + ", " + row.nama_tipe;
                     }
                 },
                 {

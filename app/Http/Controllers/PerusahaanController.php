@@ -67,7 +67,11 @@ class PerusahaanController extends Controller
      */
     public function create()
     {
-        return view('master/m_perusahaan/add');
+        $get_pt = Perusahaan::whereNull('deleted_at')->get();
+        $count_pt = $get_pt->count();
+        $kode_pt = "PRS-" . strval($count_pt + 1) ;
+        // dd($kode_pt);
+        return view('master/m_perusahaan/add', compact('get_pt', 'count_pt', 'kode_pt'));
     }
 
     public function detail($id)
@@ -114,7 +118,7 @@ class PerusahaanController extends Controller
         
         Perusahaan::insert([
             'kode_perusahaan' => $request->kode_perusahaan,
-            'nama_perusahaan' => $request->nama_perusahaan,
+            'nama_perusahaan' => trim(strtoupper($request->nama_perusahaan)),
             'id_tipe' => $request->id_tipe,
             'id_provinsi' => $request->id_provinsi,
             'id_kabkota' => $request->id_kabkota,

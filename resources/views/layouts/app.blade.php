@@ -32,6 +32,13 @@
     <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
     <!-- Select2 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+
+    <style>
+        .labelInput {
+            font-weight: 500;
+            color: #F6C338;
+        }
+    </style>
 </head>
 
 <body>
