@@ -18,20 +18,20 @@
                     <div class="form-group">
                         <label>Kode Perusahaan</label>
                         <select name="id_perusahaan" class="form-control form-control-sm select_perusahaan"
-                            required="required"></select>
+                            required></select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Tanggal Konsultasi</label>
                         <input type="date" name="tanggal_konsultasi" class="form-control form-control-sm"
-                            placeholder="John Doe" required="required">
+                            placeholder="John Doe" required>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Cara Konsultasi</label>
-                        <select name="cara_konsultasi" class="form-control form-control-sm" required="required">
+                        <select name="cara_konsultasi" class="form-control form-control-sm" required>
                             <option disabled selected>Pilih Cara Konsultasi</option>
                             <option value="Offline">Offline</option>
                             <option value="Online">Online</option>
@@ -46,35 +46,35 @@
                     <div class="form-group">
                         <label>Tempat Pertemuan</label>
                         <input type="text" name="tempat_pertemuan" class="form-control form-control-sm"
-                            required="required">
+                            required>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Topik</label>
                         <select name="id_topik" class="form-control form-control-sm select_topik"
-                            required="required"></select>
+                            required></select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Isi Topik</label>
-                        <input type="text" name="isi_konsultasi" class="form-control form-control-sm"
-                            placeholder="John Doe" required="required">
+                        <label>Saran dan Solusi yang Diberikan</label>
+                        <!-- <input type="text" name="isi_konsultasi" class="form-control form-control-sm"
+                            placeholder="John Doe" required> -->
+                        <textarea class="form-control" placeholder="Saran dan Solusi yang Diberikan" id="floatingTextarea" rows="3" required></textarea>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Petugas</label>
                         <select name="id_petugas" class="form-control form-control-sm select_petugas"
-                            required="required"></select>
+                            required></select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Foto</label>
-                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm"
-                            required="required">
+                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>

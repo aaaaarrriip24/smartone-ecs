@@ -66,7 +66,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Isi Topik</label>
+                        <label>Saran dan Solusi yang Diberikan</label>
                         <input type="text" name="isi_konsultasi" class="form-control form-control-sm" value="{{ $data->isi_konsultasi }}" required="required">
                     </div>
                 </div>
