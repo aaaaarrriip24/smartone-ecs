@@ -26,13 +26,14 @@ class TKonsultasiController extends Controller
         if ($request->ajax()) {
             $data = DB::table('t_konsultasi as ta')
             ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+            ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
             ->leftJoin('m_topik as tc', 'ta.id_topik', '=', 'tc.id')
             ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
             ->whereNull('td.deleted_at')
-            ->select('ta.*', 'tb.kode_perusahaan', 'tc.nama_topik', 'td.nama_petugas' )
+            ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tb.kode_perusahaan', 'tc.nama_topik', 'td.nama_petugas' )
             ->get();
 
             return Datatables::of($data)

@@ -36,10 +36,11 @@
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
-                                <th>Kode Konsultasi</th>
-                                <th>Kode Perusahaan</th>
-                                <th>Topik</th>
+                                <th>Nama Perusahaan</th>
                                 <th>Tanggal Konsultasi</th>
+                                <th>Cara Konsultasi</th>
+                                <th>Topik</th>
+                                <th>Isi Konsultasi</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -79,13 +80,26 @@
                     width: '5%'
                 },
                 {
-                    data: 'kode_konsultasi',
-                    name: 'kode_konsultasi',
+                    data: 'nama_perusahaan',
+                    name: 'nama_perusahaan',
                     orderable: true,
+                    render: function (data, type, row, meta) {
+                        let text = row.nama_perusahaan;
+                        let result = text.toUpperCase();
+                        return result + ", " + row.nama_tipe;
+                    }
                 },
                 {
-                    data: 'kode_perusahaan',
-                    name: 'kode_perusahaan',
+                    data: 'tanggal_konsultasi',
+                    name: 'tanggal_konsultasi',
+                    orderable: true,
+                    render: function (data, type, row) {
+                        return moment(row.tanggal_konsultasi).format('DD-MMM-YYYY');
+                    }
+                },
+                {
+                    data: 'cara_konsultasi',
+                    name: 'cara_konsultasi',
                     orderable: true,
                 },
                 {
@@ -94,18 +108,11 @@
                     orderable: true,
                 },
                 {
-                    data: 'nama_petugas',
-                    name: 'nama_petugas',
+                    data: 'isi_konsultasi',
+                    name: 'isi_konsultasi',
                     orderable: true,
                 },
-                {
-                    data: 'tanggal_konsultasi',
-                    name: 'tanggal_konsultasi',
-                    orderable: true,
-                    render: function (data, type, row) {
-                        return moment(row.tanggal_konsultasi).format('DD-MMMM-YYYY');
-                    }
-                },
+                
                 {
                     data: 'action',
                     name: 'action',
