@@ -61,7 +61,7 @@
                         <label>Saran dan Solusi yang Diberikan</label>
                         <!-- <input type="text" name="isi_konsultasi" class="form-control form-control-sm"
                             placeholder="John Doe" required> -->
-                        <textarea class="form-control" placeholder="Saran dan Solusi yang Diberikan" id="floatingTextarea" rows="3" required></textarea>
+                        <textarea class="form-control" name="isi_konsultasi" placeholder="Saran dan Solusi yang Diberikan" id="floatingTextarea" rows="3" required></textarea>
                     </div>
                 </div>
                 <div class="col-6">
