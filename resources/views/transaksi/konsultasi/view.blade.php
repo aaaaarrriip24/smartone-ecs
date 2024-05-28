@@ -39,7 +39,7 @@
                                 <th>Nama Perusahaan</th>
                                 <th>Tanggal Konsultasi</th>
                                 <th>Cara Konsultasi</th>
-                                <th>Topik</th>
+                                <th>Topik Konsultasi</th>
                                 <th>Isi Konsultasi</th>
                                 <th>Action</th>
                             </thead>
