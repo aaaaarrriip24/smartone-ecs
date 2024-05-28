@@ -151,7 +151,7 @@ class PerusahaanController extends Controller
             'status_ekspor' => $request->status_ekspor,
             'foto_produk_1' => empty($name1) ? '' : $name1,
             'foto_produk_2' => empty($name2) ? '' : $name2,
-            'tanggal_registrasi' => $request->tanggal_registrasi,
+            'tanggal_registrasi' => date('Y-m-d', strtotime($request->tanggal_registrasi)),
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
@@ -224,7 +224,7 @@ class PerusahaanController extends Controller
 
         Perusahaan::where('id', $request->id)
         ->update([
-            'kode_perusahaan' => $request->kode_perusahaan,
+            'kode_perusahaan' => $request->kode_pt,
             'nama_perusahaan' => $request->nama_perusahaan,
             'id_tipe' => $request->id_tipe,
             'id_provinsi' => $request->id_provinsi,
@@ -244,8 +244,10 @@ class PerusahaanController extends Controller
             'hs_code' => $request->hs_code,
             'kapasitas_produksi' => $request->kapasitas_produksi,
             'satuan_kapasitas_produksi' => $request->satuan_kapasitas_produksi,
-            'sertifikat' => $request->sertifikat,
-            'status' => $request->status,
+            'kepemilikan_legalitas' => $request->kepemilikan_legalitas,
+            'kepemilikan_sertifikat' => $request->kepemilikan_sertifikat,
+            'status_data' => $request->status_data,
+            'status_ekspor' => $request->status_ekspor,
             'foto_produk_1' => (!empty($request->foto_produk_1) ? $name1 : $request->foto_produk_1_lama),
             'foto_produk_2' => (!empty($request->foto_produk_2) ? $name2 : $request->foto_produk_2_lama),
             'tanggal_registrasi' => $request->tanggal_registrasi,

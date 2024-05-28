@@ -11,7 +11,7 @@
                     <div class="form-group">
                         <label>Kode Konsultasi</label>
                         <input type="text" name="kode_konsultasi" class="form-control form-control-sm"
-                            placeholder="K-xxxx" required="required">
+                            value="{{ $kode_kon }}" disabled required>
                     </div>
                 </div>
                 <div class="col-6">
@@ -80,8 +80,8 @@
             </div>
         </div>
         <div class="card-footer gap-2">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Kembali</a>
+            <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
         </div>
     </form>
 </div>

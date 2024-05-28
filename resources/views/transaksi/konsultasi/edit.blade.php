@@ -13,7 +13,9 @@
                     <div class="form-group">
                         <label>Kode Konsultasi</label>
                         <input type="text" name="kode_konsultasi" class="form-control form-control-sm"
-                            value="{{ $data->kode_konsultasi }}" required="required">
+                            value="{{ $data->kode_konsultasi }}" disabled>
+                        <input hidden type="text" name="kode_kon" class="form-control form-control-sm"
+                            value="{{ $data->kode_konsultasi }}">
                     </div>
                 </div>
                 <div class="col-6">

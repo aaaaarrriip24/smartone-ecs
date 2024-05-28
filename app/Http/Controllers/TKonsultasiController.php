@@ -61,7 +61,11 @@ class TKonsultasiController extends Controller
      */
     public function create()
     {
-        return view('transaksi/konsultasi/add');
+        $get_kon = TKonsultasi::whereNull('deleted_at')->get();
+        $count_kon = $get_kon->count();
+        $kode_kon = "KON-" . strval($count_kon + 1) ;
+
+        return view('transaksi/konsultasi/add', compact('kode_kon'));
     }
 
     /**
@@ -72,20 +76,26 @@ class TKonsultasiController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('foto_pertemuan');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move(public_path().'/foto_pertemuan/', $nama_file);
-        $name = $nama_file;
+        if(!empty($request->file('foto_pertemuan'))) {
+            $file = $request->file('foto_pertemuan');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/foto_pertemuan/', $nama_file);
+            $name = $nama_file;
+        }
+
+        $get_kon = TKonsultasi::whereNull('deleted_at')->get();
+        $count_kon = $get_kon->count();
+        $kode_kon = "KON-" . strval($count_kon + 1) ;
 
         TKonsultasi::insert([
-            'kode_konsultasi' => $request->kode_konsultasi,
+            'kode_konsultasi' => $kode_kon,
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_konsultasi' => $request->tanggal_konsultasi,
             'cara_konsultasi' => $request->cara_konsultasi,
             'tempat_pertemuan' => $request->tempat_pertemuan,
             'id_topik' => $request->id_topik,
             'isi_konsultasi' => $request->isi_konsultasi,
-            'foto_pertemuan' => $name,
+            'foto_pertemuan' => empty($name) ? '' : $name,
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
@@ -170,7 +180,7 @@ class TKonsultasiController extends Controller
         }
 
         TKonsultasi::where('id', $request->id)->update([
-            'kode_konsultasi' => $request->kode_konsultasi,
+            'kode_konsultasi' => $request->kode_kon,
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_konsultasi' => $request->tanggal_konsultasi,
             'cara_konsultasi' => $request->cara_konsultasi,
