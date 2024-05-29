@@ -33,7 +33,7 @@
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Nama Perusahaan</label>
                         <input type="text" name="nama_perusahaan" class="form-control form-control-sm"
-                            value="{{ $data->nama_perusahaan }}">
+                            value="{{ strtoupper($data->nama_perusahaan) }}">
                     </div>
                 </div>
                 <div class="col-3">

@@ -16,7 +16,16 @@
             <a href="{{ url('news') }}" class="nav-item nav-link">News</a>
             <a href="{{ url('gallery') }}" class="nav-item nav-link">ECS Gallery</a>
             <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
+            @if(Auth::check())
+            <a class="nav-item nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                <span class="align-middle" data-key="t-logout">Logout</span></a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+            @else
             <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
+            @endif
         </div>
         <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+0857-5587-9497
         </h4>
@@ -36,7 +45,8 @@
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
                             <h1 class="display-3 text-white animated slideInDown mb-4">Export Center Surabaya</h1>
-                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik untuk
+                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik
+                                untuk
                                 konsultasi dan informasi mengenai pasar ekspor.</h5>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor
                                 at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
@@ -56,7 +66,8 @@
                     <div class="row justify-content-start">
                         <div class="col-10 col-lg-8">
                             <h1 class="display-3 text-white animated slideInDown mb-4">Export Center Surabaya</h1>
-                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik untuk
+                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik
+                                untuk
                                 konsultasi dan informasi mengenai pasar ekspor.</h5>
                             <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor
                                 at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea

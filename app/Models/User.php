@@ -18,6 +18,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $table = 'users';
-    protected $fillable = ['*'];
+    protected $fillable = [
+        'name',
+        'email',
+        'roleuser',
+        'password',
+    ];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

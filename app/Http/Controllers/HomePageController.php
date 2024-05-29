@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class HomePageController extends Controller
 {
     public function index()
     {
+        if(Auth::check()) {
+            if(Auth::user()->roleuser == "Admin") {
+                return redirect()->route('dashboard');
+            } 
+            return view('welcome');
+        } 
         return view('welcome');
     }
     public function about()

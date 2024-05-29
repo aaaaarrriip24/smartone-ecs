@@ -7,6 +7,11 @@ use DB;
 
 class SelectController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function selectnegara(Request $request) {
         $data = DB::table('m_negara')
         ->whereNull('deleted_at')
@@ -53,14 +58,18 @@ class SelectController extends Controller
     }
 
     public function selectperusahaan(Request $request) {
-        $data = DB::table('m_perusahaan')
-        ->whereNull('deleted_at')
-        ->select('*')
+        $data = DB::table('m_perusahaan as ta')
+        ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+        ->whereNull('ta.deleted_at')
+        ->select('ta.*', 'tb.nama_tipe')
         ->get();
 
         if($request->term) {
-            $data = DB::table('m_perusahaan')
-            ->where('nama_perusahaan', 'LIKE', '%'. $request->term. '%')
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->whereNull('ta.deleted_at')
+            ->select('ta.*', 'tb.nama_tipe')
+            ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
             ->get();
         }
 

@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>CRM | Velzon - Admin & Dashboard Template</title>
+    <title>ECS - Export Center Surabaya</title>
     <!-- csrf -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- base_url -->
@@ -13,8 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <!-- Favicon -->
+    <link href="{{ asset('assets_users/favicon_io/favicon.ico')}}" rel="icon">
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/js/layout.js') }}"></script>
@@ -34,13 +34,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
 
     <!-- datepicekr -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
+        integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
         .labelInput {
             font-weight: 500;
             color: #F6C338;
         }
+
     </style>
 </head>
 
@@ -58,8 +62,9 @@
                             <a href="{{ url('dashboard') }}" class="logo logo-dark text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4"> 
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        <div class="col-lg-4">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
+                                                height="50">
                                         </div>
                                         <div class="col-lg-8 mt-2">
                                             <h3>ECS</h3>
@@ -68,8 +73,9 @@
                                 </span>
                                 <span class="logo-lg">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4"> 
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        <div class="col-lg-4">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
+                                                height="50">
                                         </div>
                                         <div class="col-lg-8 mt-2">
                                             <h3>ECS</h3>
@@ -81,8 +87,9 @@
                             <a href="{{ url('dashboard') }}" class="logo logo-light text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4"> 
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        <div class="col-lg-4">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
+                                                height="50">
                                         </div>
                                         <div class="col-lg-8 mt-2">
                                             <h3>ECS</h3>
@@ -91,8 +98,9 @@
                                 </span>
                                 <span class="logo-lg">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4"> 
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt="" height="50">
+                                        <div class="col-lg-4">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
+                                                height="50">
                                         </div>
                                         <div class="col-lg-8 mt-2">
                                             <h3>ECS</h3>
@@ -114,7 +122,8 @@
 
                         <!-- App Search-->
                     </div>
-
+                    
+                    @if(Auth::check())
                     <div class="d-flex align-items-center">
 
                         <div class="dropdown d-md-none topbar-head-dropdown header-item">
@@ -757,14 +766,14 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="{{ asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Name</span>
-                                        <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
+                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
+                                        <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{{ Auth::user()->roleuser }}</span>
                                     </span>
                                 </span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
-                                <h6 class="dropdown-header">Welcome Name!</h6>
+                                <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}!</h6>
                                 <a class="dropdown-item" href="pages-profile.html"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
@@ -798,6 +807,8 @@
                             </div>
                         </div>
                     </div>
+                    @endif
+
                 </div>
             </div>
         </header>
@@ -862,6 +873,9 @@
 
                     <div id="two-column-menu">
                     </div>
+                    @if( empty(Auth::user()->id))
+                    
+                    @else
                     <ul class="navbar-nav" id="navbar-nav">
                         <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                         <li class="nav-item">
@@ -973,6 +987,8 @@
                         </li>
 
                     </ul>
+                    @endif
+
                 </div>
                 <!-- Sidebar -->
             </div>
@@ -1002,10 +1018,10 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <script>
+                            <!-- <script>
                                 document.write(new Date().getFullYear())
 
-                            </script> © Velzon.
+                            </script> © SmartOne. -->
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
@@ -1867,7 +1883,9 @@
     <!-- <script src="{{ asset('assets/js/app.js') }}"></script> -->
 
     <!-- Datepicker -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Base Url -->
     <script>

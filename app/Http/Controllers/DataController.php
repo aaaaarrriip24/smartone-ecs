@@ -11,6 +11,11 @@ use DB;
 
 class DataController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function provinces(Request $request)
     {
         $data = DB::table('indonesia_provinces')

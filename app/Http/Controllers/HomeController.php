@@ -9,6 +9,7 @@ use App\Models\Texport;
 use App\Models\TBm;
 use App\Models\Topik;
 use Carbon\Carbon;
+use Auth;
 use DB;
 
 class HomeController extends Controller
@@ -18,10 +19,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -30,14 +31,22 @@ class HomeController extends Controller
      */
 
     public function index() {
-        $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
-        $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
-        $export = Texport::select(\DB::raw('sum(nilai_transaksi) as total'))
-        ->whereNull('deleted_at')
-        ->first();
-        $bm = TBm::all()->whereNull('deleted_at')->count();
-
-        return view('home', compact('perusahaan', 'layanan', 'export', 'bm')); 
+        if(Auth::check()) {
+            if(Auth::user()->roleuser == "Admin") {
+                $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
+                $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
+                $export = Texport::select(\DB::raw('sum(nilai_transaksi) as total'))
+                ->whereNull('deleted_at')
+                ->first();
+                $bm = TBm::all()->whereNull('deleted_at')->count();
+        
+                return view('home', compact('perusahaan', 'layanan', 'export', 'bm')); 
+            } else {
+                return redirect('/'); 
+            }
+        }
+        return redirect('/'); 
+        
     }
     public function section2()
     {
