@@ -89,8 +89,8 @@
             </div>
         </div>
         <div class="card-footer gap-2">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
-            <button type="submit" class="btn btn-primary">Simpan</button>
+            <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Kembali</a>
+            <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
         </div>
     </form>
 </div>
