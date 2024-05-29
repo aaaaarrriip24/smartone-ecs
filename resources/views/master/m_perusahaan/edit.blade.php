@@ -300,7 +300,8 @@
     $(document).ready(function () {
         // Select
         $(".datepicker").datepicker({
-            format: 'dd-mm-yyyy'
+            format: 'dd-mm-yyyy',
+            autoclose: true,
         });
         
         $(".select_petugas").select2({

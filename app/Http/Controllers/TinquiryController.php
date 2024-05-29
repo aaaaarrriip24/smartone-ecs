@@ -86,7 +86,7 @@ class TinquiryController extends Controller
     {
         Tinquiry::insert([
             'kode_inquiry' => $request->kode_inquiry,
-            'tanggal_inquiry' => $request->tanggal_inquiry,
+            'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
             'produk_yang_diminta' => $request->produk_yang_diminta,
             'qty' => $request->qty,
             'satuan_qty' => $request->satuan_qty,

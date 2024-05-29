@@ -100,6 +100,11 @@
 <script>
     $(document).ready(function () {
         // Select
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+
         $(".select_negara").select2({
             placeholder: "Pilih Negara Asal",
             width: '100%',
