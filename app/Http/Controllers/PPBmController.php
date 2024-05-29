@@ -118,10 +118,10 @@ class PPBmController extends Controller
         ->whereNull('tc.deleted_at')
         ->select('ta.id_perusahaan')
         ->where('ta.id_bm', $request->id_bm)
-        ->first();
-
-        // dd($get_pt);
+        ->get();
         
+        $pt = collect($get_pt)->pluck('id_perusahaan')->toArray();
+        // dd($pt);
         if(empty($get_pt)) {
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
@@ -139,16 +139,13 @@ class PPBmController extends Controller
             }
             return $data;
         } else {
-            $data = DB::table('p_peserta_bm as ta')
-            ->leftJoin('t_bm as tb', 'ta.id_bm', '=', 'tb.id')
-            ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
-            ->whereNull('ta.deleted_at')
-            ->whereNull('tb.deleted_at')
-            ->whereNull('tc.deleted_at')
-            ->select('ta.*', 'tb.kode_bm', 'tc.kode_perusahaan')
-            ->selectRaw(DB::raw("SELECT * FROM m_perusahaan AS perusahaan WHERE id IN ($get_pt)"))
-            ->where('ta.id_bm', $request->id_bm)
-            ->first();
+            $data = DB::table('m_perusahaan')
+            ->whereNull('deleted_at')
+            ->select('*')
+            ->whereIn('id', $pt)
+            ->get();
+
+            // dd($data);
 
             return response()->json([
                 'data' => $data,
@@ -156,6 +153,7 @@ class PPBmController extends Controller
             ]);
         }
 
+        
     }
 
     /**
