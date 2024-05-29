@@ -9,32 +9,32 @@
             <div class="row">
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Kode Inquiry</label>
+                        <label class="form-label mb-1 mt-0 labelInput">Kode Inquiry</label>
                         <input type="text" name="kode_inquiry_disabled" value="{{ $kode_inq }}" class="form-control form-control-sm" required disabled>
                         <input hidden type="text" name="kode_inquiry" value="{{ $kode_inq }}" class="form-control form-control-sm" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Tanggal Inquiry</label>
-                        <input type="text" name="tanggal_inquiry" class="form-control form-control-sm datepicker" placeholder="Contoh : {{ date('d-m-Y') }}" required="required">
+                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Inquiry</label>
+                        <input type="text" name="tanggal_inquiry" autocomplete="off" class="form-control form-control-sm datepicker" placeholder="Contoh : {{ date('d-m-Y') }}" required="required">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Produk</label>
+                        <label class="form-label mb-1 mt-0 labelInput">Produk Yang Diminta</label>
                         <input type="text" name="produk_yang_diminta" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Quantity</label>
+                        <label class="form-label mb-1 mt-0 labelInput">Quantity</label>
                         <input type="number" name="qty" class="form-control form-control-sm" required="required">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Satuan Quantity</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Satuan Quantity</label>
                         <select name="satuan_qty" class="form-control form-control-sm select_satuan" required="required">
                             <option disabled selected>Pilih Satuan Quantity</option>
                             <option value="KG">KG</option>
@@ -48,13 +48,13 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Negara Buyer</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Negara Buyer</label>
                         <select name="id_negara_asal_inquiry" class="form-control form-control-sm select_negara" required="required"></select>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Pihak Buyer</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Pihak Buyer</label>
                         <select name="pihak_buyer" class="form-control form-control-sm select_pihak" required="required">
                             <option disabled selected>Pilih Pihak Buyer</option>
                             <option value="Buyer">Buyer</option>
@@ -68,27 +68,33 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Nama Buyer</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Nama Buyer</label>
                         <input type="text" name="nama_buyer" class="form-control form-control-sm" placeholder="John Doe" required="required">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Email</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Email Buyer</label>
                         <input type="email" name="email_buyer" class="form-control form-control-sm" placeholder="john@email.com" required="required">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label>Telfon</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
                         <input type="number" autocomplete="off" name="telp_buyer" class="form-control form-control-sm" required="required">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Attached Dokumen</label>
+                        <input type="file" name="attached_dokumen" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>
         </div>
         <div class="card-footer gap-2">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Tutup</a>
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Tutup</a>
+            <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
         </div>
     </form>
 </div>

@@ -37,7 +37,7 @@
                             <thead>
                                 <th>No. </th>
                                 <th>Tanggal Inquiry</th>
-                                <th>Produk Inquiry</th>
+                                <th>Produk Yang Diminta</th>
                                 <th>Quantity</th>
                                 <th>Negara Buyer</th>
                                 <th>Nama Buyer</th>

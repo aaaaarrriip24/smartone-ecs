@@ -84,6 +84,13 @@ class TinquiryController extends Controller
      */
     public function store(Request $request)
     {
+        if(!empty($request->file('attached_dokumen'))) {
+            $file = $request->file('attached_dokumen');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/attached_dokumen/', $nama_file);
+            $name = $nama_file;
+        }
+        
         Tinquiry::insert([
             'kode_inquiry' => $request->kode_inquiry,
             'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
@@ -95,6 +102,7 @@ class TinquiryController extends Controller
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
+            'attached_dokumen' => empty($request->attached_dokumen) ? '': $name,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('tinquiry');
