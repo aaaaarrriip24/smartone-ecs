@@ -36,12 +36,11 @@
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
-                                <th>Kode Inquiry</th>
-                                <th>Produk</th>
-                                <th>Quantity</th>
-                                <th>Satuan</th>
-                                <th>Negara Buyer</th>
                                 <th>Tanggal Inquiry</th>
+                                <th>Produk Inquiry</th>
+                                <th>Quantity</th>
+                                <th>Negara Buyer</th>
+                                <th>Nama Buyer</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -49,6 +48,33 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="penerimaInquiry" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{{ url('p_inquiry/store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Penerima Inquiry</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Perusahaan</label>
+                        <input hidden type="text" name="id_bm" class="get_id_bm" value="">
+                        <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
+                            multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -81,9 +107,12 @@
                     width: '5%'
                 },
                 {
-                    data: 'kode_inquiry',
-                    name: 'kode_inquiry',
+                    data: 'tanggal_inquiry',
+                    name: 'tanggal_inquiry',
                     orderable: true,
+                    render: function (data, type, row) {
+                        return moment(row.tanggal_inquiry).format('DD-MMM-YYYY');
+                    }
                 },
                 {
                     data: 'produk_yang_diminta',
@@ -94,11 +123,9 @@
                     data: 'qty',
                     name: 'qty',
                     orderable: true,
-                },
-                {
-                    data: 'satuan_qty',
-                    name: 'satuan_qty',
-                    orderable: true,
+                    render: function(data, type, row) {
+                        return row.qty + ' ' + row.satuan_qty;
+                    }
                 },
                 {
                     data: 'en_short_name',
@@ -106,12 +133,9 @@
                     orderable: true,
                 },
                 {
-                    data: 'tanggal_inquiry',
-                    name: 'tanggal_inquiry',
+                    data: 'nama_buyer',
+                    name: 'nama_buyer',
                     orderable: true,
-                    render: function (data, type, row) {
-                        return moment(row.tanggal_inquiry).format('DD-MMMM-YYYY');
-                    }
                 },
                 {
                     data: 'action',

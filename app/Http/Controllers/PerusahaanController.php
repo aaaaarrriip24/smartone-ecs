@@ -52,10 +52,16 @@ class PerusahaanController extends Controller
                         $urlEdit = url('perusahaan/show/'. $row->id);
                         $urlDetail = url('perusahaan/detail/'. $row->id);
                         $urlDelete = url('perusahaan/destroy/'. $row->id);
-                        $button = '';
-                        $button .= " <a href='".$urlEdit."' class='btn btn-outline-warning btn-sm btn-edit'>Edit</a>";
-                        $button .= " <a href='".$urlDetail."' class='btn btn-outline-primary btn-sm btn-detail'>Detail</a>";
-                        $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
+                        $button = '<div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
+                                            <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
+                                            <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
+                                        </ul>
+                                    </div>';
                         return $button;
                     })
                     ->rawColumns(['action'])

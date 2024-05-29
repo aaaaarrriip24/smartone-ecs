@@ -41,9 +41,8 @@
                             </thead>
                         </table>
                     </div>
-                            </div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -53,7 +52,7 @@
 <script>
     let table;
     $(document).ready(function () {
-        
+
         table = $('#dt_bm').DataTable({
             autoWidth: false,
             responsive: false,

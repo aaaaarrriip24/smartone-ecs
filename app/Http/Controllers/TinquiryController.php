@@ -39,13 +39,21 @@ class TinquiryController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
+                        $urlPenerima = $row->id;
                         $urlEdit = url('inquiry/show/'. $row->id);
                         $urlDetail = url('inquiry/detail/'. $row->id);
                         $urlDelete = url('inquiry/destroy/'. $row->id);
-                        $button = '';
-                        $button .= " <a href='".$urlEdit."' class='btn btn-outline-warning btn-sm btn-edit'>Edit</a>";
-                        $button .= " <a href='".$urlDetail."' class='btn btn-outline-primary btn-sm btn-detail'>Detail</a>";
-                        $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
+                        $button = '<div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a data-id='.$urlPenerima.' class="dropdown-item btn-penerima" data-bs-toggle="modal" data-bs-target="#penerimaInquiry">Penerima</a></li>
+                                            <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
+                                            <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
+                                            <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
+                                        </ul>
+                                    </div>';
                         return $button;
                     })
                     ->rawColumns(['action'])
@@ -61,7 +69,11 @@ class TinquiryController extends Controller
      */
     public function create()
     {
-        return view('transaksi/tinquiry/add');
+        $get_inq = DB::table('t_profile_inquiry')->get();
+        $count_inq = $get_inq->count();
+        $kode_inq = "INQ-" . strval($count_inq + 1) ;
+
+        return view('transaksi/tinquiry/add', compact('kode_inq'));
     }
 
     /**
