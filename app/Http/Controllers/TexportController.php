@@ -31,11 +31,12 @@ class TexportController extends Controller
         if ($request->ajax()) {
             $data = DB::table('t_p_export as ta')
             ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+            ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
             ->leftJoin('m_negara as tc', 'ta.id_negara_tujuan', '=', 'tc.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
-            ->select('ta.*', 'tb.kode_perusahaan', 'tc.en_short_name')
+            ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
             ->get();
 
             return Datatables::of($data)
@@ -44,10 +45,16 @@ class TexportController extends Controller
                         $urlEdit = url('export/show/'. $row->id);
                         $urlDetail = url('export/detail/'. $row->id);
                         $urlDelete = url('export/destroy/'. $row->id);
-                        $button = '';
-                        $button .= " <a href='".$urlEdit."' class='btn btn-outline-warning btn-sm btn-edit'>Edit</a>";
-                        $button .= " <a href='".$urlDetail."' class='btn btn-outline-primary btn-sm btn-detail'>Detail</a>";
-                        $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
+                        $button = '<div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
+                                            <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
+                                            <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
+                                        </ul>
+                                    </div>';
                         return $button;
                     })
                     ->rawColumns(['action'])
@@ -63,7 +70,13 @@ class TexportController extends Controller
      */
     public function create()
     {
-        return view('transaksi/texport/add');
+        $get_trn = DB::table('t_p_export')->get();
+        $count_trn = $get_trn->count();
+        $kode_trn = "TRN-" . strval($count_trn + 1) ;
+
+        $get_produk = DB::table('m_perusahaan')->first();
+
+        return view('transaksi/texport/add', compact('kode_trn', 'get_produk'));
     }
 
     /**
@@ -74,28 +87,31 @@ class TexportController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('dok_pendukung');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
-        $dok_pendukung = $nama_file;
-
-        $file = $request->file('bukti_dok');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move(public_path().'/folder_bukti_dok/', $nama_file);
-        $bukti_dok = $nama_file;
+        if(!empty($request->file('dok_pendukung'))) {
+            $file = $request->file('dok_pendukung');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
+            $dok_pendukung = $nama_file;
+        }
+        if(!empty($request->file('bukti_dok'))) {
+            $file = $request->file('bukti_dok');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/folder_bukti_dok/', $nama_file);
+            $bukti_dok = $nama_file;
+        }
 
         Texport::insert([
             'kode_export' => $request->kode_export,
             'id_perusahaan' => $request->id_perusahaan,
-            'tanggal_export' => $request->tanggal_export,
+            'tanggal_export' => date('Y-m-d', strtotime($request->tanggal_export)),
             'produk' => $request->produk,
             'nilai_transaksi' => $request->nilai_transaksi,
             'id_negara_tujuan' => $request->id_negara_tujuan,
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
-            'dok_pendukung' => $dok_pendukung,
-            'bukti_dok' => $bukti_dok,
+            'dok_pendukung' => empty($dok_pendukung) ? '' : $dok_pendukung,
+            'bukti_dok' => empty($bukti_dok) ? '' : $bukti_dok,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('texport');
@@ -122,11 +138,12 @@ class TexportController extends Controller
     {
         $data = DB::table('t_p_export as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
         ->leftJoin('m_negara as tc', 'ta.id_negara_tujuan', '=', 'tc.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->select('ta.*', 'tb.kode_perusahaan', 'tc.en_short_name')
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
         ->where('ta.id', $id)
         ->first();
 
@@ -140,11 +157,12 @@ class TexportController extends Controller
     {
         $data = DB::table('t_p_export as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
         ->leftJoin('m_negara as tc', 'ta.id_negara_tujuan', '=', 'tc.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->select('ta.*', 'tb.kode_perusahaan', 'tc.en_short_name')
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
         ->where('ta.id', $id)
         ->first();
 
@@ -191,7 +209,7 @@ class TexportController extends Controller
         Texport::where('id', $request->id)->update([
             'kode_export' => $request->kode_export,
             'id_perusahaan' => $request->id_perusahaan,
-            'tanggal_export' => $request->tanggal_export,
+            'tanggal_export' => date('Y-m-d', strtotime($request->tanggal_export)),
             'produk' => $request->produk,
             'nilai_transaksi' => $request->nilai_transaksi,
             'id_negara_tujuan' => $request->id_negara_tujuan,

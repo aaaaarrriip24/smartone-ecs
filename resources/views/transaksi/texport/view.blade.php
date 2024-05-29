@@ -36,11 +36,12 @@
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
-                                <th>Kode Transaksi</th>
-                                <th>Kode Perusahaan</th>
+                                <th>Nama Perusahaan</th>
+                                <th>Produk Detail</th>
+                                <th>Tanggal Export</th>
                                 <th>Nilai Transaksi</th>
                                 <th>Negara Tujuan</th>
-                                <th>Tanggal Export</th>
+                                <th>Nama Buyer</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -56,6 +57,14 @@
 @section('js')
 <script>
     let table;
+    const formatter = new Intl.NumberFormat('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+    //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    });
     $(document).ready(function () {
 
         table = $('#dt_export').DataTable({
@@ -80,23 +89,18 @@
                     width: '5%'
                 },
                 {
-                    data: 'kode_export',
-                    name: 'kode_export',
+                    data: 'nama_perusahaan',
+                    name: 'nama_perusahaan',
                     orderable: true,
+                    render: function (data, type, row) {
+                        let text = row.nama_perusahaan;
+                        let result = text.toUpperCase();
+                        return result + ", " + row.nama_tipe;
+                    }
                 },
                 {
-                    data: 'kode_perusahaan',
-                    name: 'kode_perusahaan',
-                    orderable: true,
-                },
-                {
-                    data: 'nilai_transaksi',
-                    name: 'nilai_transaksi',
-                    orderable: true,
-                },
-                {
-                    data: 'en_short_name',
-                    name: 'en_short_name',
+                    data: 'detail_produk_utama',
+                    name: 'detail_produk_utama',
                     orderable: true,
                 },
                 {
@@ -104,8 +108,26 @@
                     name: 'tanggal_export',
                     orderable: true,
                     render: function (data, type, row) {
-                        return moment(row.tanggal_export).format('DD-MMMM-YYYY');
+                        return moment(row.tanggal_export).format('DD-MMM-YYYY');
                     }
+                },
+                {
+                    data: 'nilai_transaksi',
+                    name: 'nilai_transaksi',
+                    orderable: true,
+                    render: function (data, type, row) {
+                        return new Intl.NumberFormat().format(row.nilai_transaksi);
+                    }
+                },
+                {
+                    data: 'en_short_name',
+                    name: 'en_short_name',
+                    orderable: true,
+                },
+                {
+                    data: 'nama_buyer',
+                    name: 'nama_buyer',
+                    orderable: true,
                 },
                 {
                     data: 'action',
