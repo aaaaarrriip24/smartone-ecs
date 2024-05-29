@@ -39,10 +39,12 @@ class TBmController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
+                        $urlPeserta = url('bm/peserta/'. $row->id);
                         $urlEdit = url('bm/show/'. $row->id);
                         $urlDetail = url('bm/detail/'. $row->id);
                         $urlDelete = url('bm/destroy/'. $row->id);
                         $button = '';
+                        $button .= " <a href='".$urlPeserta."' class='btn btn-outline-dark btn-sm btn-peserta'>Peserta</a>";
                         $button .= " <a href='".$urlEdit."' class='btn btn-outline-warning btn-sm btn-edit'>Edit</a>";
                         $button .= " <a href='".$urlDetail."' class='btn btn-outline-primary btn-sm btn-detail'>Detail</a>";
                         $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
@@ -61,7 +63,11 @@ class TBmController extends Controller
      */
     public function create()
     {
-        return view('transaksi/bm/add');
+        $get_bm = TBm::whereNull('deleted_at')->get();
+        $count_bm = $get_bm->count();
+        $kode_bm = "BM-" . strval($count_bm + 1) ;
+
+        return view('transaksi/bm/add', compact('kode_bm'));
     }
 
     /**
@@ -72,13 +78,18 @@ class TBmController extends Controller
      */
     public function store(Request $request)
     {
+
         $file = $request->file('foto_bm');
         $nama_file = time()."_".$file->getClientOriginalName();
         $file->move(public_path().'/foto_bm/', $nama_file);
         $name = $nama_file;
 
+        $get_bm = TBm::whereNull('deleted_at')->get();
+        $count_bm = $get_bm->count();
+        $kode_bm = "BM-" . strval($count_bm + 1) ;
+
         TBm::insert([
-            'kode_bm' => $request->kode_bm,
+            'kode_bm' => $kode_bm,
             'tanggal_bm' => $request->tanggal_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,
             'id_negara_buyer' => $request->id_negara_buyer,

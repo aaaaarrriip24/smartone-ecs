@@ -35,10 +35,12 @@
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
-                                <th>Kode BM</th>
-                                <th>Pelaksanaan BM</th>
-                                <th>Negara Buyer</th>
                                 <th>Tanggal BM</th>
+                                <th>Produk</th>
+                                <!-- <th>Kode BM</th> -->
+                                <!-- <th>Pelaksanaan BM</th> -->
+                                <th>Negara Asal Buyer</th>
+                                <th>Nama Buyer</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -78,27 +80,32 @@
                     width: '5%'
                 },
                 {
-                    data: 'kode_bm',
-                    name: 'kode_bm',
+                    data: 'tanggal_bm',
+                    name: 'tanggal_bm',
                     orderable: true,
+                    render: function (data, type, row) {
+                        return moment(row.tanggal_bm).format('DD-MMM-YYYY');
+                    }
                 },
                 {
-                    data: 'pelaksanaan_bm',
-                    name: 'pelaksanaan_bm',
+                    data: 'produk_bm',
+                    name: 'produk_bm',
                     orderable: true,
                 },
+                // {
+                //     data: 'pelaksanaan_bm',
+                //     name: 'pelaksanaan_bm',
+                //     orderable: true,
+                // },
                 {
                     data: 'en_short_name',
                     name: 'en_short_name',
                     orderable: true,
                 },
                 {
-                    data: 'tanggal_bm',
-                    name: 'tanggal_bm',
+                    data: 'nama_buyer',
+                    name: 'nama_buyer',
                     orderable: true,
-                    render: function (data, type, row) {
-                        return moment(row.tanggal_bm).format('DD-MMMM-YYYY');
-                    }
                 },
                 {
                     data: 'action',

@@ -7,71 +7,87 @@
         @csrf
         <div class="card-body">
             <div class="row">
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
-                        <label>Kode BM</label>
-                        <input type="text" name="kode_bm" class="form-control form-control-sm" placeholder="BM-xxxx" required="required">
+                        <label class="form-label mb-1 mt-0 labelInput">Kode BM</label>
+                        <input type="text" name="kode_bm" class="form-control form-control-sm" value="{{ $kode_bm }}" required disabled>
+                        <input hidden type="text" name="kode_bm" class="form-control form-control-sm" value="{{ $kode_bm }}" required>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
+                        <input type="date" name="tanggal_bm" class="form-control form-control-sm" placeholder="John Doe" required>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Negara Buyer</label>
+                        <select name="id_negara_buyer" class="form-control form-control-sm select_negara" required></select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Nama Buyer</label>
+                        <input type="text" name="nama_buyer" class="form-control form-control-sm" placeholder="John Doe" required>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Produk BM</label>
+                        <input type="text" name="produk_bm" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Pelaksanaan BM</label>
+                        <input type="text" name="pelaksanaan_bm" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Info Asal Buyer</label>
+                        <select name="info_asal_buyer" class="form-select select_info" required>
+                            <option value="" selected disabled>Pilih Info Asal Buyer</option>
+                            <option value="Buyer Langsung">Buyer Langsung</option>
+                            <option value="Perwadag">Perwadag</option>
+                            <option value="KBRI">KBRI</option>
+                            <option value="Konjen">Konjen</option>
+                            <option value="Buying Agent">Buying Agent</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Email Buyer</label>
+                        <input type="email" name="email_buyer" class="form-control form-control-sm" placeholder="john@email.com">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label>Tanggal BM</label>
-                        <input type="date" name="tanggal_bm" class="form-control form-control-sm" placeholder="John Doe" required="required">
+                        <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
+                        <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea" rows="3"></textarea>
+                        <!-- <input type="text" name="catatan" class="form-control form-control-sm"> -->
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
-                        <label>Negara Buyer</label>
-                        <select name="id_negara_buyer" class="form-control form-control-sm select_negara" required="required"></select>
+                        <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
-                        <label>Pelaksanaan BM</label>
-                        <input type="text" name="pelaksanaan_bm" class="form-control form-control-sm" required="required">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Info Asal Buyer</label>
-                        <input type="text" name="info_asal_buyer" class="form-control form-control-sm" required="required">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Nama Buyer</label>
-                        <input type="text" name="nama_buyer" class="form-control form-control-sm" placeholder="John Doe" required="required">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" name="email_buyer" class="form-control form-control-sm" placeholder="john@email.com" required="required">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Telfon</label>
-                        <input type="number" name="telp_buyer" class="form-control form-control-sm" required="required">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Catatan</label>
-                        <input type="text" name="catatan" class="form-control form-control-sm" required="required">
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label>Foto</label>
-                        <input type="file" name="foto_bm" class="form-control form-control-sm" required="required">
+                        <label class="form-label mb-1 mt-2 labelInput">Foto</label>
+                        <input type="file" name="foto_bm" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>
         </div>
         <div class="card-footer gap-2">
-            <a href="{{ url()->previous() }}" class="btn btn-secondary">Kembali</a>
-            <button type="submit" class="btn btn-primary">Tambah</button>
+            <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Kembali</a>
+            <button type="submit" class="btn btn-sm btn-primary">Tambah</button>
         </div>
     </form>
 </div>
@@ -80,6 +96,8 @@
 <script>
     $(document).ready(function () {
         // Select
+        $(".select_info").select2({});
+
         $(".select_negara").select2({
             placeholder: "Pilih Negara Asal",
             width: '100%',
