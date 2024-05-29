@@ -16,13 +16,15 @@
                         <label class="form-label mb-1 mt-0 labelInput">Kode BM</label>
                         <input type="text" name="kode_bm" class="form-control form-control-sm"
                             value="{{ $data->kode_bm }}" required disabled>
+                        <input hidden type="text" name="kode_bm_old" class="form-control form-control-sm"
+                            value="{{ $data->kode_bm }}" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
-                        <input type="date" name="tanggal_bm" class="form-control form-control-sm"
-                            value="{{ $data->tanggal_bm }}" required>
+                        <input type="text" name="tanggal_bm" class="form-control form-control-sm datepicker"
+                            value="{{ date('d-m-Y', strtotime($data->tanggal_bm)) }}" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -50,8 +52,14 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Pelaksanaan BM</label>
-                        <input type="text" name="pelaksanaan_bm" class="form-control form-control-sm"
-                            value="{{ $data->pelaksanaan_bm }}">
+                        <select name="pelaksanaan_bm" class="form-select select_pelaksanaan" required>
+                            <option value="{{ $data->pelaksanaan_bm }}" selected>{{ $data->pelaksanaan_bm }}</option>
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                        <!-- <input type="text" name="pelaksanaan_bm" class="form-control form-control-sm"
+                            value="{{ $data->pelaksanaan_bm }}"> -->
                     </div>
                 </div>
                 <div class="col-3">
@@ -80,7 +88,7 @@
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
                         <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea"
-                            rows="3">{{ $data->catatan }}"</textarea>
+                            rows="3">{{ $data->catatan }}</textarea>
                         <!-- <input type="text" name="catatan" class="form-control form-control-sm"
                             value="{{ $data->catatan }}"> -->
                     </div>
@@ -111,6 +119,11 @@
 <script>
     $(document).ready(function () {
         // Select
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy'
+        });
+
+        $(".select_pelaksanaan").select2({});
         $(".select_info").select2({});
 
         $(".select_negara").select2({

@@ -72,7 +72,7 @@ class PerusahaanController extends Controller
      */
     public function create()
     {
-        $get_pt = Perusahaan::whereNull('deleted_at')->get();
+        $get_pt = DB::table('m_perusahaan')->get();
         $count_pt = $get_pt->count();
         $kode_pt = "PRS-" . strval($count_pt + 1) ;
         // dd($kode_pt);
@@ -124,13 +124,9 @@ class PerusahaanController extends Controller
             $file->move(public_path().'/foto_produk_2/', $nama_file);
             $name2 = $nama_file;
         }
-
-        $get_pt = Perusahaan::whereNull('deleted_at')->get();
-        $count_pt = $get_pt->count();
-        $kode_pt = "PRS-" . strval($count_pt + 1) ;
-
+        
         Perusahaan::insert([
-            'kode_perusahaan' => $kode_pt,
+            'kode_perusahaan' => $request->kode_perusahaan,
             'nama_perusahaan' => trim(strtoupper($request->nama_perusahaan)),
             'id_tipe' => $request->id_tipe,
             'id_provinsi' => $request->id_provinsi,

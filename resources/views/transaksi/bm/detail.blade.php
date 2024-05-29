@@ -15,8 +15,8 @@
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
-                    <input type="date" name="tanggal_bm" class="form-control form-control-sm"
-                        value="{{ $data->tanggal_bm }}" required disabled>
+                    <input type="text" name="tanggal_bm" class="form-control form-control-sm datepicker"
+                        value="{{ date('d-M-Y', strtotime($data->tanggal_bm)) }}" required disabled>
                 </div>
             </div>
             <div class="col-3">
@@ -74,7 +74,7 @@
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
                     <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea"
-                        rows="3" disabled>{{ $data->catatan }}"</textarea>
+                        rows="3" disabled>{{ $data->catatan }}</textarea>
                     <!-- <input type="text" name="catatan" class="form-control form-control-sm"
                             value="{{ $data->catatan }}"> -->
                 </div>
@@ -100,4 +100,11 @@
         <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Kembali</a>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(".datepicker").datepicker({
+        format: 'dd-mm-yyyy'
+    });
+</script>
 @endsection

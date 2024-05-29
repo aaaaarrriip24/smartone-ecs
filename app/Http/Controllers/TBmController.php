@@ -39,12 +39,12 @@ class TBmController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $urlPeserta = url('bm/peserta/'. $row->id);
+                        $urlPeserta = $row->id;
                         $urlEdit = url('bm/show/'. $row->id);
                         $urlDetail = url('bm/detail/'. $row->id);
                         $urlDelete = url('bm/destroy/'. $row->id);
                         $button = '';
-                        $button .= " <a href='".$urlPeserta."' class='btn btn-outline-dark btn-sm btn-peserta'>Peserta</a>";
+                        $button .= " <button data-id='".$urlPeserta."' class='btn btn-outline-dark btn-sm btn-peserta' data-bs-toggle='modal' data-bs-target='#pesertaBM'>Peserta</button>";
                         $button .= " <a href='".$urlEdit."' class='btn btn-outline-warning btn-sm btn-edit'>Edit</a>";
                         $button .= " <a href='".$urlDetail."' class='btn btn-outline-primary btn-sm btn-detail'>Detail</a>";
                         $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
@@ -63,7 +63,7 @@ class TBmController extends Controller
      */
     public function create()
     {
-        $get_bm = TBm::whereNull('deleted_at')->get();
+        $get_bm = DB::table('t_bm')->get();
         $count_bm = $get_bm->count();
         $kode_bm = "BM-" . strval($count_bm + 1) ;
 
@@ -79,10 +79,12 @@ class TBmController extends Controller
     public function store(Request $request)
     {
 
-        $file = $request->file('foto_bm');
-        $nama_file = time()."_".$file->getClientOriginalName();
-        $file->move(public_path().'/foto_bm/', $nama_file);
-        $name = $nama_file;
+        if(!empty($request->file('foto_bm'))) {
+            $file = $request->file('foto_bm');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/foto_bm/', $nama_file);
+            $name = $nama_file;
+        }
 
         $get_bm = TBm::whereNull('deleted_at')->get();
         $count_bm = $get_bm->count();
@@ -90,7 +92,8 @@ class TBmController extends Controller
 
         TBm::insert([
             'kode_bm' => $kode_bm,
-            'tanggal_bm' => $request->tanggal_bm,
+            'tanggal_bm' => date('Y-m-d', strtotime($request->tanggal_bm)),
+            'produk_bm' => $request->produk_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,
             'id_negara_buyer' => $request->id_negara_buyer,
             'info_asal_buyer' => $request->info_asal_buyer,
@@ -98,7 +101,7 @@ class TBmController extends Controller
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
             'catatan' => $request->catatan,
-            'foto_bm' => $name,
+            'foto_bm' => empty($name) ? '' : $name,
             'created_at' => Carbon::now(),
         ]);
         return redirect()->route('tbm');
@@ -174,8 +177,9 @@ class TBmController extends Controller
         }
 
         TBm::where('id', $request->id)->update([
-            'kode_bm' => $request->kode_bm,
-            'tanggal_bm' => $request->tanggal_bm,
+            'kode_bm' => $request->kode_bm_old,
+            'tanggal_bm' => date('Y-m-d', strtotime($request->tanggal_bm)),
+            'produk_bm' => $request->produk_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,
             'id_negara_buyer' => $request->id_negara_buyer,
             'info_asal_buyer' => $request->info_asal_buyer,

@@ -75,12 +75,13 @@ class PPBmController extends Controller
      */
     public function store(Request $request)
     {
-        PPBm::insert([
+        $id_perusahaan = $request->input('id_perusahaan');
+        PPBm::updateOrInsert([
             'id_bm' => $request->id_bm,
-            'id_perusahaan' => $request->id_perusahaan,
+            'id_perusahaan' => implode(',', $id_perusahaan),
             'created_at' => Carbon::now(),
         ]);
-        return redirect()->route('ppbm');
+        return redirect()->route('tbm');
     }
 
     /**
@@ -107,22 +108,54 @@ class PPBmController extends Controller
          ]);
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
-        $data = DB::table('p_peserta_bm as ta')
+        $get_pt = DB::table('p_peserta_bm as ta')
         ->leftJoin('t_bm as tb', 'ta.id_bm', '=', 'tb.id')
         ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->select('ta.*', 'tb.kode_bm', 'tc.kode_perusahaan')
-        ->where('ta.id', $id)
+        ->select('ta.id_perusahaan')
+        ->where('ta.id_bm', $request->id_bm)
         ->first();
 
-        return view('pp/penerima_bm/edit', [
-            'data' => $data,
-            'status' => 200,
-         ]);
+        // dd($get_pt);
+        
+        if(empty($get_pt)) {
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->whereNull('ta.deleted_at')
+            ->select('ta.*', 'tb.nama_tipe')
+            ->get();
+
+            if($request->term) {
+                $data = DB::table('m_perusahaan as ta')
+                ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+                ->whereNull('ta.deleted_at')
+                ->select('ta.*', 'tb.nama_tipe')
+                ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
+                ->get();
+            }
+            return $data;
+        } else {
+            $data = DB::table('p_peserta_bm as ta')
+            ->leftJoin('t_bm as tb', 'ta.id_bm', '=', 'tb.id')
+            ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->whereNull('tc.deleted_at')
+            ->select('ta.*', 'tb.kode_bm', 'tc.kode_perusahaan')
+            ->selectRaw(DB::raw("SELECT * FROM m_perusahaan AS perusahaan WHERE id IN ($get_pt)"))
+            ->where('ta.id_bm', $request->id_bm)
+            ->first();
+
+            return response()->json([
+                'data' => $data,
+                'status' => 200,
+            ]);
+        }
+
     }
 
     /**

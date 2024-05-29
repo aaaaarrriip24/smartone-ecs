@@ -17,7 +17,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
-                        <input type="date" name="tanggal_bm" class="form-control form-control-sm" placeholder="John Doe" required>
+                        <input type="text" name="tanggal_bm" class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -41,7 +41,13 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Pelaksanaan BM</label>
-                        <input type="text" name="pelaksanaan_bm" class="form-control form-control-sm">
+                        <select name="pelaksanaan_bm" class="form-select select_pelaksanaan" required>
+                            <option value="" selected disabled>Pilih Pelaksanaan</option>
+                            <option value="Online">Online</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                        <!-- <input type="text" name="pelaksanaan_bm" class="form-control form-control-sm"> -->
                     </div>
                 </div>
                 <div class="col-3">
@@ -96,6 +102,11 @@
 <script>
     $(document).ready(function () {
         // Select
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy'
+        });
+
+        $(".select_pelaksanaan").select2({});
         $(".select_info").select2({});
 
         $(".select_negara").select2({

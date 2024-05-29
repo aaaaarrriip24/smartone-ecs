@@ -12,8 +12,10 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Kode Perusahaan</label>
-                        <input type="text" name="kode_perusahaan" class="form-control form-control-sm"
+                        <input type="text" name="kode_perusahaan_display" class="form-control form-control-sm"
                             value="{{ $kode_pt }}" disabled required>
+                        <input hidden type="text" name="kode_perusahaan" class="form-control form-control-sm"
+                            value="{{ $kode_pt }}" required>
                     </div>
                 </div>
                 <div class="col-3">

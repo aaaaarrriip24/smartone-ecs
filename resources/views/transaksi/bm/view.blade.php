@@ -51,6 +51,33 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="pesertaBM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{{ url('ppbm/store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Peserta Business Matching</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Perusahaan</label>
+                        <input hidden type="text" name="id_bm" class="get_id_bm" value="">
+                        <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
+                            multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('js')
@@ -143,6 +170,41 @@
                     });
                 }
             });
+        });
+
+        $(document).on("click", ".btn-peserta", function () {
+            let id = $(this).attr('data-id');
+            // console.log(id);
+            $(".get_id_bm").val(id);
+        }).on("change", function (e) {
+            var data = e.params.data;
+        });
+
+        $(".select_perusahaan").select2({
+            placeholder: "Pilih Perusahaan",
+            dropdownParent: $('#pesertaBM'),
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'ppbm/show',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_bm = $('.get_id_bm').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
         });
     });
 
