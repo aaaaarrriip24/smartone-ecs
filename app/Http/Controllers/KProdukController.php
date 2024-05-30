@@ -6,6 +6,7 @@ use App\Models\KProduk;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
+use Alert;
 
 class KProdukController extends Controller
 {

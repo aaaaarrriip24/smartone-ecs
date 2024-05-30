@@ -6,6 +6,7 @@ use App\Models\Tipe;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
+use Alert;
 
 class TipeController extends Controller
 {

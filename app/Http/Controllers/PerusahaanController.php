@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use DataTables;
 use DB;
+use Alert;
 
 class PerusahaanController extends Controller
 {

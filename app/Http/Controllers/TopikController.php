@@ -6,6 +6,7 @@ use App\Models\Topik;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
+use Alert;
 
 class TopikController extends Controller
 {

@@ -6,6 +6,7 @@ use App\Models\Petugas;
 use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
+use Alert;
 
 class PetugasController extends Controller
 {
