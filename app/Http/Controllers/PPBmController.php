@@ -30,14 +30,20 @@ class PPBmController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
+            $get_pt = DB::table('p_peserta_bm as ta')->get();
+            $label = collect($get_pt)->pluck("id_perusahaan")->toArray();
+            // dd($label);
+            
             $data = DB::table('p_peserta_bm as ta')
             ->leftJoin('t_bm as tb', 'ta.id_bm', '=', 'tb.id')
             ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
-            ->select('ta.*', 'tb.kode_bm', 'tc.kode_perusahaan')
+            ->select('ta.*', 'tb.kode_bm', 'tc.kode_perusahaan', 'ta.id_perusahaan')
             ->get();
+            // dd($data);
+            
 
             return Datatables::of($data)
                     ->addIndexColumn()

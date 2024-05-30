@@ -80,8 +80,8 @@
                     orderable: true,
                 },
                 {
-                    data: 'kode_perusahaan',
-                    name: 'kode_perusahaan',
+                    data: 'id_perusahaan',
+                    name: 'id_perusahaan',
                     orderable: true,
                 },
                 {
