@@ -66,6 +66,7 @@ class KProdukController extends Controller
             'nama_kategori_produk' => $request->nama_kategori_produk,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Kategori Produk!', 'success');
         return redirect()->back();
     }
 
@@ -110,6 +111,7 @@ class KProdukController extends Controller
             'nama_kategori_produk' => $request->nama_kategori_produk,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Kategori Produk!', 'success');
         return redirect()->back();
     }
 

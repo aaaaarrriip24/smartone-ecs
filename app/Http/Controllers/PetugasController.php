@@ -66,6 +66,7 @@ class PetugasController extends Controller
             'nama_petugas' => $request->nama_petugas,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Petugas!', 'success');
         return redirect()->back();
     }
 
@@ -110,6 +111,7 @@ class PetugasController extends Controller
             'nama_petugas' => $request->nama_petugas,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Petugas!', 'success');
         return redirect()->back();
     }
 

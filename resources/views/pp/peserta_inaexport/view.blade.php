@@ -36,7 +36,8 @@
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
-                                <th>Kode Perusahaan</th>
+                                <th>Nama Perusahaan</th>
+                                <th>Produk</th>
                                 <th>Tanggal Registrasi</th>
                                 <th>Nama Petugas</th>
                                 <th>Action</th>
@@ -78,8 +79,18 @@
                     width: '5%'
                 },
                 {
-                    data: 'kode_perusahaan',
-                    name: 'kode_perusahaan',
+                    data: 'nama_perusahaan',
+                    name: 'nama_perusahaan',
+                    orderable: true,
+                    render: function (data, type, row, meta) {
+                        let text = row.nama_perusahaan;
+                        let result = text.toUpperCase();
+                        return result + ", " + row.nama_tipe;
+                    }
+                },
+                {
+                    data: 'detail_produk_utama',
+                    name: 'detail_produk_utama',
                     orderable: true,
                 },
                 {
@@ -87,7 +98,7 @@
                     name: 'tanggal_registrasi_inaexport',
                     orderable: true,
                     render: function (data, type, row) {
-                        return moment(row.tanggal_registrasi_inaexport).format('DD-MMMM-YYYY');
+                        return moment(row.tanggal_registrasi_inaexport).format('DD-MMM-YYYY');
                     }
                 },
                 {

@@ -11,6 +11,7 @@ class HomePageController extends Controller
     {
         if(Auth::check()) {
             if(Auth::user()->roleuser == "Admin") {
+                Alert::toast('Selamat Datang ' .Auth::user()->name. ' !', 'success');
                 return redirect()->route('dashboard');
             } 
             return view('welcome');

@@ -104,6 +104,7 @@ class TKonsultasiController extends Controller
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Konsultasi!', 'success');
         return redirect()->route('tkonsultasi');
     }
 
@@ -198,6 +199,7 @@ class TKonsultasiController extends Controller
             'id_petugas' => $request->id_petugas,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Konsultasi!', 'success');
         return redirect()->route('tkonsultasi');
     }
 

@@ -66,6 +66,7 @@ class TipeController extends Controller
             'nama_tipe' => $request->nama_tipe,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Tipe Perusahaan!', 'success');
         return redirect()->back();
     }
 
@@ -110,6 +111,7 @@ class TipeController extends Controller
             'nama_tipe' => $request->nama_tipe,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Tipe Perusahaan!', 'success');
         return redirect()->back();
     }
 

@@ -9,6 +9,7 @@ use App\Models\Petugas;
 use Carbon\Carbon;
 use DataTables;
 use DB;
+use Alert;
 
 class PPInaexportController extends Controller
 {
@@ -32,10 +33,11 @@ class PPInaexportController extends Controller
             $data = DB::table('p_peserta_inaexport as ta')
             ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
             ->leftJoin('m_petugas as tc', 'ta.id_petugas', '=', 'tc.id')
+            ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
-            ->select('ta.*', 'tb.kode_perusahaan', 'tc.nama_petugas')
+            ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.nama_petugas')
             ->get();
 
             return Datatables::of($data)
@@ -74,12 +76,19 @@ class PPInaexportController extends Controller
      */
     public function store(Request $request)
     {
+        $data = PPInaexport::where('id_perusahaan', $request->id_perusahaan)->first();
+        if(!empty($data)) {
+            Alert::toast('Perusahaan Sudah Terdaftar!', 'error');
+            return redirect()->route('p_inaexport');
+        }
+        
         PPInaexport::insert([
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_registrasi_inaexport' => $request->tanggal_registrasi_inaexport,
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Peserta InaExport!', 'success');
         return redirect()->route('p_inaexport');
     }
 
@@ -145,12 +154,19 @@ class PPInaexportController extends Controller
      */
     public function update(Request $request)
     {
+        $data = PPInaexport::where('id_perusahaan', $request->id_perusahaan)->first();
+        if(!empty($data)) {
+            Alert::toast('Perusahaan Sudah Terdaftar!', 'error');
+            return redirect()->route('p_inaexport');
+        }
+
         PPInaexport::where('id', $request->id)->update([
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_registrasi_inaexport' => $request->tanggal_registrasi_inaexport,
             'id_petugas' => $request->id_petugas,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Peserta InaExport!', 'success');
         return redirect()->route('p_inaexport');
     }
 

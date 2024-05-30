@@ -66,6 +66,7 @@ class TopikController extends Controller
             'nama_topik' => $request->nama_topik,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Topik!', 'success');
         return redirect()->back();
     }
 
@@ -110,6 +111,7 @@ class TopikController extends Controller
             'nama_topik' => $request->nama_topik,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Topik!', 'success');
         return redirect()->back();
     }
 

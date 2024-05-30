@@ -110,6 +110,7 @@ class TBmController extends Controller
             'foto_bm' => empty($name) ? '' : $name,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Business Matching!', 'success');
         return redirect()->route('tbm');
     }
 
@@ -196,6 +197,7 @@ class TBmController extends Controller
             'foto_bm' => (!empty($request->foto_bm) ? $name : $request->foto_bm_lama),
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Business Matching!', 'success');
         return redirect()->route('tbm');
     }
 

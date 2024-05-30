@@ -105,6 +105,7 @@ class TinquiryController extends Controller
             'attached_dokumen' => empty($request->attached_dokumen) ? '': $name,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Inquiry!', 'success');
         return redirect()->route('tinquiry');
     }
 
@@ -179,6 +180,7 @@ class TinquiryController extends Controller
             'telp_buyer' => $request->telp_buyer,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Inquiry!', 'success');
         return redirect()->route('tinquiry');
     }
 

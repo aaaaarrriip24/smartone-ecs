@@ -114,6 +114,7 @@ class TexportController extends Controller
             'bukti_dok' => empty($bukti_dok) ? '' : $bukti_dok,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Realisasi Export!', 'success');
         return redirect()->route('texport');
     }
 
@@ -220,6 +221,7 @@ class TexportController extends Controller
             'bukti_dok' => (!empty($request->bukti_dok) ? $bukti_dok : $request->bukti_dok_lama),
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Realisasi Export!', 'success');
         return redirect()->route('texport');
     }
 

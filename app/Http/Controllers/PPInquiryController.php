@@ -80,6 +80,7 @@ class PPInquiryController extends Controller
             'id_perusahaan' => $request->id_perusahaan,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Penerima Inquiry!', 'success');
         return redirect()->route('p_inquiry');
     }
 
@@ -151,6 +152,7 @@ class PPInquiryController extends Controller
             'id_perusahaan' => $request->id_perusahaan,
             'updated_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Edit Penerima Inquiry!', 'success');
         return redirect()->route('p_inquiry');
     }
 

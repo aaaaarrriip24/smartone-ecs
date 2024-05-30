@@ -145,6 +145,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('ppbm/detail/{id}', [PPBmController::class, 'detail']);
         Route::post('ppbm/store', [PPBmController::class, 'store']);
         Route::get('ppbm/show', [PPBmController::class, 'show']);
+        Route::get('ppbm/list/{id}', [PPBmController::class, 'list']);
         Route::post('ppbm/update', [PPBmController::class, 'update']);
         Route::get('ppbm/destroy/{id}', [PPBmController::class, 'destroy']);
 

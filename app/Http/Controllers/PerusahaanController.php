@@ -162,6 +162,7 @@ class PerusahaanController extends Controller
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
+        Alert::toast('Success Add Perusahaan!', 'success');
         return redirect()->route('perusahaan');
     }
 
@@ -261,7 +262,7 @@ class PerusahaanController extends Controller
             'id_petugas' => $request->id_petugas,
             'updated_at' => Carbon::now(),
         ]);
-
+        Alert::toast('Success Edit Perusahaan!', 'success');
         return redirect()->route('perusahaan');
     }
 
