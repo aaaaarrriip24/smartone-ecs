@@ -34,10 +34,24 @@ class HomeController extends Controller
         if(Auth::check()) {
             if(Auth::user()->roleuser == "Admin") {
                 $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
-                $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
-                $export = Texport::select(\DB::raw('sum(nilai_transaksi) as total'))
-                ->whereNull('deleted_at')
+
+                // $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
+                $layanan = DB::table('t_konsultasi as ta')
+                ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->count();
+                
+                // $export = Texport::select(\DB::raw('sum(nilai_transaksi) as total'))
+                // ->whereNull('deleted_at')
+                // ->first();
+                $export = DB::table('t_p_export as ta')
+                ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+                ->select(\DB::raw('sum(ta.nilai_transaksi) as total'))
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
                 ->first();
+
                 $bm = TBm::all()->whereNull('deleted_at')->count();
         
                 return view('home', compact('perusahaan', 'layanan', 'export', 'bm')); 
@@ -50,8 +64,15 @@ class HomeController extends Controller
     }
     public function section2()
     {
-        $data=TKonsultasi::select(\DB::raw('count(*) as total, MONTH(tanggal_konsultasi) as month'))
-        ->whereNull('deleted_at')
+        // $data = TKonsultasi::select(\DB::raw('count(*) as total, MONTH(tanggal_konsultasi) as month'))
+        // ->whereNull('deleted_at')
+        // ->groupByRaw('MONTH(tanggal_konsultasi)')
+        // ->get();
+        $data = DB::table('t_konsultasi as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->select(\DB::raw('count(*) as total, MONTH(ta.tanggal_konsultasi) as month'))
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
         ->groupByRaw('MONTH(tanggal_konsultasi)')
         ->get();
         
@@ -75,9 +96,11 @@ class HomeController extends Controller
     {
         $data = DB::table('t_konsultasi as ta')
         ->leftJoin('m_topik as tb', 'ta.id_topik', '=', 'tb.id')
+        ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
         ->select(\DB::raw('count(ta.id_topik) as total, tb.nama_topik'))
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
+        ->whereNull('tc.deleted_at')
         ->groupBy('ta.id_topik')
         ->get();
 
