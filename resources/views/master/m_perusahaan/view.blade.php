@@ -143,7 +143,6 @@
             scrollCollapse: true,
             processing: true,
             serverSide: true,
-            displayLength: 5,
             paginate: true,
             lengthChange: true,
             filter: true,
