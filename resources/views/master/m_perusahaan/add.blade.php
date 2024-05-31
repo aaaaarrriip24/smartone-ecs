@@ -372,7 +372,7 @@
             $('.cities_code').val(data.code);
         });
         
-        $(".jumlah_karyawan").on("change", function (e) {
+        $(".jumlah_karyawan").on("keyup", function (e) {
             var value_kar = $(".jumlah_karyawan").val();
             console.log(value_kar);
             if(value_kar <= 5) {
