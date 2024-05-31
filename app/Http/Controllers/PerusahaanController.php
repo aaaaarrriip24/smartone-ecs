@@ -191,6 +191,14 @@ class PerusahaanController extends Controller
         ->where('ta.id', $id)
         ->first();
         
+        if(empty($data->tanggal_registrasi)) {
+            $data->tanggal_registrasi = date('d-m-Y');
+        } else {
+            $data->tanggal_registrasi;
+        }
+
+        // dd($data->tanggal_registrasi);
+
         return view('master/m_perusahaan/edit', [
             'data' => $data,
             'status' => 200,

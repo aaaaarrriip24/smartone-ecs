@@ -90,14 +90,14 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Contact Person</label>
-                        <input type="number" name="telp_contact_person" class="form-control form-control-sm"
+                        <input type="text" name="telp_contact_person" class="form-control form-control-sm"
                             value="{{ $data->telp_contact_person }}">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Kantor</label>
-                        <input type="number" name="telp_kantor" class="form-control form-control-sm"
+                        <input type="text" name="telp_kantor" class="form-control form-control-sm"
                             value="{{ $data->telp_kantor }}">
                     </div>
                 </div>
@@ -266,7 +266,7 @@
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Tanggal Registrasi</label>
                         <input type="text" name="tanggal_registrasi" class="form-control form-control-sm datepicker"
-                            value="{{ date('d-m-Y', strtotime($data->tanggal_registrasi)) }}">
+                            value="{{ empty($data->tanggal_registrasi) ? date('d-m-Y') : date('d-m-Y', strtotime($data->tanggal_registrasi)); }}">
                     </div>
                 </div>
                 <div class="col-3">

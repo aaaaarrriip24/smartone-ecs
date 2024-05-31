@@ -75,13 +75,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Contact Person</label>
-                        <input type="number" name="telp_contact_person" class="form-control form-control-sm" required>
+                        <input type="text" name="telp_contact_person" class="form-control form-control-sm" required>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Kantor</label>
-                        <input type="number" name="telp_kantor" class="form-control form-control-sm">
+                        <input type="text" name="telp_kantor" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-6">

@@ -257,8 +257,8 @@
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Tanggal Registrasi</label>
-                    <input type="date" name="tanggal_registrasi" class="form-control form-control-sm"
-                        value="{{ $data->tanggal_registrasi }}" disabled>
+                    <input type="text" name="tanggal_registrasi" class="form-control form-control-sm"
+                        value="{{ date('d-m-Y', strtotime($data->created_at)) }}" disabled>
                 </div>
             </div>
             <div class="col-3">
