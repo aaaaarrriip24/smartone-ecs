@@ -90,7 +90,7 @@ class PerusahaanController extends Controller
     {
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
         ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
         ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
         ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
@@ -104,7 +104,7 @@ class PerusahaanController extends Controller
         ->where('ta.id', $id)
         ->first();
 
-        // dd($data);
+        
         return view('master/m_perusahaan/detail', [
             'data' => $data,
             'status' => 200,
@@ -181,7 +181,7 @@ class PerusahaanController extends Controller
     {   
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
         ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
         ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
         ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
@@ -255,6 +255,9 @@ class PerusahaanController extends Controller
             'nama_contact_person' => $request->nama_contact_person,
             'telp_contact_person' => $request->telp_contact_person,
             'email' => $request->email,
+            'kode_pos' => $request->kode_pos,
+            'jabatan' => $request->jabatan,
+            'telp_kantor' => $request->telp_kantor,
             'website' => $request->website,
             'status_kepemilikan' => $request->status_kepemilikan,
             'skala_perusahaan' => $request->skala_perusahaan,
@@ -271,7 +274,7 @@ class PerusahaanController extends Controller
             'status_ekspor' => $request->status_ekspor,
             'foto_produk_1' => (!empty($request->foto_produk_1) ? $name1 : $request->foto_produk_1_lama),
             'foto_produk_2' => (!empty($request->foto_produk_2) ? $name2 : $request->foto_produk_2_lama),
-            'tanggal_registrasi' => $request->tanggal_registrasi,
+            'tanggal_registrasi' => date('Y-m-d', strtotime($request->tanggal_registrasi)),
             'id_petugas' => $request->id_petugas,
             'updated_at' => Carbon::now(),
         ]);

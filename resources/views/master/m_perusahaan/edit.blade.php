@@ -376,6 +376,7 @@
                             return {
                                 id: item.code,
                                 text: item.name,
+                                code: item.code
                             }
                         })
                     };
@@ -383,6 +384,7 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
+            // console.log(data);
             $(".province_code").val(data.code);
         });
 

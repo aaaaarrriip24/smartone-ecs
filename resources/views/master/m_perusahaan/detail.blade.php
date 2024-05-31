@@ -120,6 +120,12 @@
             </div>
             <div class="col-3">
                 <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
+                    <input type="number" class="form-control form-control-sm jumlah_karyawan" name="jumlah_karyawan" value="{{ $data->jumlah_karyawan }}" disabled>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Skala Perusahaan</label>
                     <select name="skala_perusahaan" class="form-control form-control-sm form-select" disabled>
                         <option value="{{ $data->skala_perusahaan }}" selected>{{ $data->skala_perusahaan }}
@@ -128,19 +134,6 @@
                         <option value="Kecil">Kecil</option>
                         <option value="Menengah">Menengah</option>
                         <option value="Besar">Besar</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
-                    <select name="jumlah_karyawan" class="form-control form-control-sm form-select" disabled>
-                        <option value="{{ $data->jumlah_karyawan }}" selected>{{ $data->jumlah_karyawan }}</option>
-                        <option value="< 5">
-                            < 5</option> <option value="6 - 9">6 - 9
-                        </option>
-                        <option value="10 - 30">10 - 30</option>
-                        <option value="> 30"> > 30</option>
                     </select>
                 </div>
             </div>
@@ -258,7 +251,7 @@
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Tanggal Registrasi</label>
                     <input type="text" name="tanggal_registrasi" class="form-control form-control-sm"
-                        value="{{ date('d-m-Y', strtotime($data->created_at)) }}" disabled>
+                        value="{{ date('d-m-Y', strtotime($data->tanggal_registrasi)) }}" disabled>
                 </div>
             </div>
             <div class="col-3">
