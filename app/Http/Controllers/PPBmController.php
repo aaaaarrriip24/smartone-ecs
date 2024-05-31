@@ -99,16 +99,16 @@ class PPBmController extends Controller
         $id_perusahaan = $request->input('id_perusahaan');
         
         $perusahaanArr = array();
-        foreach($request->id_perusahaan as $key => $value) {
-            $perusahaanArr = $value->id_perusahaan;
+        foreach($request->id_perusahaan as $key) {
+            $perusahaanArr = $key;
+            PPBm::updateOrInsert([
+                'id_bm' => $request->id_bm,
+                'id_perusahaan' => $perusahaanArr,
+                'created_at' => Carbon::now(),
+            ]);
+            // dd($perusahaanArr);
         }
-        dd($perusahaanArr);
         
-        PPBm::updateOrInsert([
-            'id_bm' => $request->id_bm,
-            'id_perusahaan' => implode(',', $id_perusahaan),
-            'created_at' => Carbon::now(),
-        ]);
         Alert::toast('Success Add Peserta Business Matching!', 'success');
         return redirect()->route('tbm');
     }
@@ -176,7 +176,8 @@ class PPBmController extends Controller
         
         $pt = collect($get_pt)->pluck('id_perusahaan')->toArray();
         // dd($pt);
-        if(empty($get_pt)) {
+        if(empty($pt)) {
+            // dd("PT KOSONG");
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
             ->whereNull('ta.deleted_at')
@@ -191,7 +192,7 @@ class PPBmController extends Controller
                 ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
                 ->get();
             }
-            return $data = "";
+            return $data;
         } else {
             $data = DB::table('m_perusahaan')
             ->whereNull('deleted_at')

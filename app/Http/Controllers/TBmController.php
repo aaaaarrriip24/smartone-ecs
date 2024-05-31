@@ -32,11 +32,13 @@ class TBmController extends Controller
         if ($request->ajax()) {
             $data = DB::table('t_bm as ta')
             ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+            ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
-            ->select('ta.*', 'tb.en_short_name')
+            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan"))
+            ->groupBy('tc.id_bm')
             ->get();
-
+            
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
