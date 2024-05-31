@@ -40,7 +40,7 @@
                                 <th class="d-none">Detail Produk</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Alamat Perusahaan</th>
-                                <th>Email</th>
+                                <!-- <th>Email</th> -->
                                 <th>No. Kontak</th>
                                 <th>Kategori Produk</th>
                                 <th>Status (CL/ NC)</th>
@@ -194,11 +194,11 @@
                         return row.alamat_perusahaan + "<br>" + str;
                     }
                 },
-                {
-                    data: 'email',
-                    name: 'email',
-                    orderable: true,
-                },
+                // {
+                //     data: 'email',
+                //     name: 'email',
+                //     orderable: true,
+                // },
                 {
                     data: 'telp_contact_person',
                     name: 'telp_contact_person',
