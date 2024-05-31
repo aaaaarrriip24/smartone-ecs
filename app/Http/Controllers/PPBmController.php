@@ -96,12 +96,13 @@ class PPBmController extends Controller
      */
     public function store(Request $request)
     {
-        $id_perusahaan = $request->input('id_perusahaan');
-        
+        $post = PPBm::where('id_bm', $request->id_bm);
+        $post->delete();
+
         $perusahaanArr = array();
         foreach($request->id_perusahaan as $key) {
             $perusahaanArr = $key;
-            PPBm::updateOrInsert([
+            PPBm::insert([
                 'id_bm' => $request->id_bm,
                 'id_perusahaan' => $perusahaanArr,
                 'created_at' => Carbon::now(),
@@ -164,19 +165,19 @@ class PPBmController extends Controller
 
     public function show(Request $request)
     {
-        $get_pt = DB::table('p_peserta_bm as ta')
-        ->leftJoin('t_bm as tb', 'ta.id_bm', '=', 'tb.id')
-        ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
-        ->whereNull('ta.deleted_at')
-        ->whereNull('tb.deleted_at')
-        ->whereNull('tc.deleted_at')
-        ->select('ta.id_perusahaan')
-        ->where('ta.id_bm', $request->id_bm)
-        ->get();
+        // $get_pt = DB::table('p_peserta_bm as ta')
+        // ->leftJoin('t_bm as tb', 'ta.id_bm', '=', 'tb.id')
+        // ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
+        // ->whereNull('ta.deleted_at')
+        // ->whereNull('tb.deleted_at')
+        // ->whereNull('tc.deleted_at')
+        // ->select('ta.id_perusahaan')
+        // ->where('ta.id_bm', $request->id_bm)
+        // ->get();
         
-        $pt = collect($get_pt)->pluck('id_perusahaan')->toArray();
+        // $pt = collect($get_pt)->pluck('id_perusahaan')->toArray();
         // dd($pt);
-        if(empty($pt)) {
+        // if(empty($pt)) {
             // dd("PT KOSONG");
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
@@ -193,20 +194,20 @@ class PPBmController extends Controller
                 ->get();
             }
             return $data;
-        } else {
-            $data = DB::table('m_perusahaan')
-            ->whereNull('deleted_at')
-            ->select('*')
-            ->whereIn('id', $pt)
-            ->get();
+        // } else {
+        //     $data = DB::table('m_perusahaan')
+        //     ->whereNull('deleted_at')
+        //     ->select('*')
+        //     ->whereIn('id', $pt)
+        //     ->get();
 
-            // dd($data);
+        //     // dd($data);
 
-            return response()->json([
-                'data' => $data,
-                'status' => 200,
-            ]);
-        }
+        //     return response()->json([
+        //         'data' => $data,
+        //         'status' => 200,
+        //     ]);
+        // }
 
         
     }
