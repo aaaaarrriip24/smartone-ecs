@@ -111,6 +111,11 @@
                     data: 'isi_konsultasi',
                     name: 'isi_konsultasi',
                     orderable: true,
+                    render: function(data, type, row, meta) {
+                        var str = row.isi_konsultasi;
+                        if(str.length > 30) str = str.substring(0,30);
+                        return str;
+                    }
                 },
                 
                 {

@@ -24,8 +24,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal Konsultasi</label>
-                        <input type="date" name="tanggal_konsultasi" class="form-control form-control-sm"
-                            placeholder="John Doe" required>
+                        <input type="text" name="tanggal_konsultasi" class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -92,6 +91,11 @@
         // Select
         $(".cara_konsultasi").select2({});
 
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+        
         $(".select_perusahaan").select2({
             placeholder: "Pilih Perusahaan",
             width: '100%',

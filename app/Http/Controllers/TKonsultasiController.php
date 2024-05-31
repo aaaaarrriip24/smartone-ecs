@@ -96,7 +96,7 @@ class TKonsultasiController extends Controller
         TKonsultasi::insert([
             'kode_konsultasi' => $kode_kon,
             'id_perusahaan' => $request->id_perusahaan,
-            'tanggal_konsultasi' => $request->tanggal_konsultasi,
+            'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,
             'tempat_pertemuan' => $request->tempat_pertemuan,
             'id_topik' => $request->id_topik,
@@ -191,7 +191,7 @@ class TKonsultasiController extends Controller
         TKonsultasi::where('id', $request->id)->update([
             'kode_konsultasi' => $request->kode_kon,
             'id_perusahaan' => $request->id_perusahaan,
-            'tanggal_konsultasi' => $request->tanggal_konsultasi,
+            'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,
             'tempat_pertemuan' => $request->tempat_pertemuan,
             'id_topik' => $request->id_topik,

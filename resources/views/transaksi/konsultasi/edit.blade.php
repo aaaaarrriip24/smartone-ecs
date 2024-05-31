@@ -6,7 +6,7 @@
     <form method="post" action="{{ url('konsultasi/update') }}" enctype="multipart/form-data">
         @csrf
         <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $data->id }}" required="required">
-        <input hidden type="text" name="foto_pertemuan_lama" class="form-control form-control-sm" value="{{ $data->foto_pertemuan }}" required="required">
+        <input hidden type="text" name="foto_pertemuan_lama" class="form-control form-control-sm" value="{{ $data->foto_pertemuan }}">
         <div class="card-body">
             <div class="row">
                 <div class="col-3">
@@ -30,8 +30,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal Konsultasi</label>
-                        <input type="date" name="tanggal_konsultasi" class="form-control form-control-sm"
-                            value="{{ $data->tanggal_konsultasi }}" required="required">
+                        <input type="text" name="tanggal_konsultasi" class="form-control form-control-sm datepicker"
+                            value="{{ date('d-m-Y', strtotime($data->tanggal_konsultasi)) }}" required="required">
                     </div>
                 </div>
                 <div class="col-3">
@@ -99,8 +99,12 @@
 <script>
     $(document).ready(function () {
         // Select
-
         $(".cara_konsultasi").select2({});
+
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
 
         $(".select_perusahaan").select2({
             placeholder: "Pilih Perusahaan",
