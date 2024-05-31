@@ -199,14 +199,14 @@
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Sertifikat Legalitas</label>
-                    <input type="number" name="kepemilikan_legalitas" class="form-control form-control-sm"
+                    <input type="text" name="kepemilikan_legalitas" class="form-control form-control-sm"
                         value="{{ $data->kepemilikan_legalitas }}" disabled>
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Kepemilikan Sertifikat</label>
-                    <input type="number" name="kepemilikan_sertifikat" class="form-control form-control-sm"
+                    <input type="text" name="kepemilikan_sertifikat" class="form-control form-control-sm"
                         value="{{ $data->kepemilikan_sertifikat }}" disabled>
                 </div>
             </div>

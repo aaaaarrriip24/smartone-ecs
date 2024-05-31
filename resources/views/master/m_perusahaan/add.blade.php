@@ -34,6 +34,7 @@
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Provinsi</label>
                         <select name="id_provinsi" class="form-control form-control-sm province_id" required></select>
+                        <input hidden type="text" name="province_code" class="province_code">
                     </div>
                 </div>
                 <div class="col-3">
@@ -334,8 +335,9 @@
                     return {
                         results: $.map(data, function (item) {
                             return {
-                                id: item.code,
+                                id: item.id,
                                 text: item.name,
+                                code: item.code
                             }
                         })
                     };
@@ -343,6 +345,7 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
+            $(".province_code").val(data.code);
         });
 
         $('.cities_id').select2({
@@ -351,7 +354,7 @@
                 url: base_url + "cities",
                 dataType: 'json',
                 data: function (params) {
-                    params.province_id = $('.province_id').val();
+                    params.province_id = $('.province_code').val();
                     return params
                 },
                 processResults: function (data) {

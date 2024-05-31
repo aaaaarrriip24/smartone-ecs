@@ -104,6 +104,7 @@ class PerusahaanController extends Controller
         ->where('ta.id', $id)
         ->first();
 
+        // dd($data);
         return view('master/m_perusahaan/detail', [
             'data' => $data,
             'status' => 200,
@@ -143,6 +144,9 @@ class PerusahaanController extends Controller
             'nama_contact_person' => $request->nama_contact_person,
             'telp_contact_person' => $request->telp_contact_person,
             'email' => $request->email,
+            'kode_pos' => $request->kode_pos,
+            'jabatan' => $request->jabatan,
+            'telp_kantor' => $request->telp_kantor,
             'website' => $request->website,
             'status_kepemilikan' => $request->status_kepemilikan,
             'skala_perusahaan' => $request->skala_perusahaan,

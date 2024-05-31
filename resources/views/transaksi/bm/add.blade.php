@@ -17,7 +17,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
-                        <input type="text" name="tanggal_bm" class="form-control form-control-sm datepicker" required>
+                        <input type="text" name="tanggal_bm" autocomplete="off" class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">

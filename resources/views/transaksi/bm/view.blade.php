@@ -197,7 +197,7 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
+                                text: item.nama_perusahaan + ', ' + item.nama_tipe,
                             }
                         })
                     };

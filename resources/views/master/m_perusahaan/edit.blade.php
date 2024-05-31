@@ -42,6 +42,7 @@
                         <select name="id_provinsi" class="form-control form-control-sm province_id">
                             <option value="{{ $data->id_provinsi }}">{{ $data->provinsi }}</option>
                         </select>
+                        <input hidden type="text" name="province_code" class="province_code">
                     </div>
                 </div>
                 <div class="col-3">
@@ -207,14 +208,14 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Sertifikat Legalitas</label>
-                        <input type="number" name="kepemilikan_legalitas" class="form-control form-control-sm"
+                        <input type="text" name="kepemilikan_legalitas" class="form-control form-control-sm"
                             value="{{ $data->kepemilikan_legalitas }}">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kepemilikan Sertifikat</label>
-                        <input type="number" name="kepemilikan_sertifikat" class="form-control form-control-sm"
+                        <input type="text" name="kepemilikan_sertifikat" class="form-control form-control-sm"
                             value="{{ $data->kepemilikan_sertifikat }}">
                     </div>
                 </div>
@@ -382,6 +383,7 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
+            $(".province_code").val(data.code);
         });
 
         $('.cities_id').select2({
@@ -390,7 +392,7 @@
                 url: base_url + "cities",
                 dataType: 'json',
                 data: function (params) {
-                    params.province_id = $('.province_id').val();
+                    params.province_id = $('.province_code').val();
                     return params
                 },
                 processResults: function (data) {

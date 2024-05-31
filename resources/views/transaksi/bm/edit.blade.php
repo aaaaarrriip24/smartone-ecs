@@ -23,7 +23,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
-                        <input type="text" name="tanggal_bm" class="form-control form-control-sm datepicker"
+                        <input type="text" name="tanggal_bm" autocomplete="off" class="form-control form-control-sm datepicker"
                             value="{{ date('d-m-Y', strtotime($data->tanggal_bm)) }}" required>
                     </div>
                 </div>

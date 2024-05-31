@@ -97,6 +97,13 @@ class PPBmController extends Controller
     public function store(Request $request)
     {
         $id_perusahaan = $request->input('id_perusahaan');
+        
+        $perusahaanArr = array();
+        foreach($request->id_perusahaan as $key => $value) {
+            $perusahaanArr = $value->id_perusahaan;
+        }
+        dd($perusahaanArr);
+        
         PPBm::updateOrInsert([
             'id_bm' => $request->id_bm,
             'id_perusahaan' => implode(',', $id_perusahaan),
@@ -184,7 +191,7 @@ class PPBmController extends Controller
                 ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
                 ->get();
             }
-            return $data;
+            return $data = "";
         } else {
             $data = DB::table('m_perusahaan')
             ->whereNull('deleted_at')
