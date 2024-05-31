@@ -139,6 +139,7 @@
                     name: 'action',
                     orderable: false,
                     searchable: false,
+                    className: 'text-center',
                     width: '10%'
                 },
             ]
@@ -173,12 +174,20 @@
         });
 
         $(document).on("click", ".btn-peserta", function () {
-            let id = $(this).attr('data-id');
-            // console.log(id);
-            $(".get_id_bm").val(id);
-        }).on("change", function (e) {
-            var data = e.params.data;
-        });
+            let data = table.row($(this).closest('tr')).data();
+            let peserta = data.peserta_bm;
+            $('.select_perusahaan').empty();
+            for (let index = 0; index < peserta.length; index++) {
+                const element = peserta[index];
+                $('.select_perusahaan').append(`<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`)                
+               
+            }
+            $('#pesertaBM').modal('show');
+
+
+            console.log(data);
+            // $(".get_id_bm").val(id);
+        })
 
         $(".select_perusahaan").select2({
             placeholder: "Pilih Perusahaan",

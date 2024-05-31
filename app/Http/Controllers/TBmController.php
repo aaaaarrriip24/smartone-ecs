@@ -51,7 +51,7 @@ class TBmController extends Controller
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a data-id='.$urlPeserta.' class="dropdown-item btn-peserta" data-bs-toggle="modal" data-bs-target="#pesertaBM">Peserta</a></li>
+                                            <li><a href="#" class="dropdown-item btn-peserta">Peserta</a></li>
                                             <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
                                             <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
                                             <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
@@ -59,7 +59,16 @@ class TBmController extends Controller
                                     </div>';
                         return $button;
                     })
-                    ->rawColumns(['action'])
+                    ->addColumn('peserta_bm', function($row){
+                        $tb = DB::table('p_peserta_bm')
+                        ->leftjoin('m_perusahaan','m_perusahaan.id','p_peserta_bm.id_perusahaan')
+                        ->leftjoin('m_tipe_perusahaan','m_tipe_perusahaan.id','m_perusahaan.id_tipe')
+                        ->select('m_perusahaan.kode_perusahaan','m_perusahaan.nama_perusahaan','p_peserta_bm.id','m_tipe_perusahaan.nama_tipe')
+                        ->where('p_peserta_bm.id_bm', $row->id)
+                        ->get();
+                        return empty($tb) ? [] : json_decode($tb);
+                    })
+                    ->rawColumns(['action','peserta_bm'])
                     ->make(true);
         }
         return view('transaksi/bm/view');
