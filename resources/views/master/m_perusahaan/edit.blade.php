@@ -127,8 +127,14 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
+                        <input type="number" class="form-control form-control-sm jumlah_karyawan" name="jumlah_karyawan" value="{{ $data->jumlah_karyawan }}">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Skala Perusahaan</label>
-                        <select name="skala_perusahaan" class="form-control form-control-sm form-select skala_perusahaan">
+                        <select name="skala_perusahaan_display" class="form-control form-control-sm form-select skala_perusahaan" disabled>
                             <option value="{{ $data->skala_perusahaan }}" selected>{{ $data->skala_perusahaan }}
                             </option>
                             <option value="Mikro">Mikro</option>
@@ -136,27 +142,13 @@
                             <option value="Menengah">Menengah</option>
                             <option value="Besar">Besar</option>
                         </select>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
-                        <select name="jumlah_karyawan" class="form-control form-control-sm form-select jumlah_karyawan">
-                            <option value="{{ $data->jumlah_karyawan }}" selected>
-                                @if( $data->jumlah_karyawan == 1 )
-                                    < 5
-                                @elseif( $data->jumlah_karyawan == 2 )
-                                    6 - 9
-                                @elseif( $data->jumlah_karyawan == 3 )
-                                    10 - 30
-                                @else
-                                    > 30
-                                @endif
+                        <select hidden name="skala_perusahaan" class="form-control form-control-sm form-select skala_perusahaan">
+                            <option value="{{ $data->skala_perusahaan }}" selected>{{ $data->skala_perusahaan }}
                             </option>
-                            <option value="1">< 5</option>
-                            <option value="2">6 - 9</option>
-                            <option value="3">10 - 30</option>
-                            <option value="4"> > 30</option>
+                            <option value="Mikro">Mikro</option>
+                            <option value="Kecil">Kecil</option>
+                            <option value="Menengah">Menengah</option>
+                            <option value="Besar">Besar</option>
                         </select>
                     </div>
                 </div>
@@ -416,16 +408,16 @@
             var data = e.params.data;
         });
 
-        $(".jumlah_karyawan").on("change", function (e) {
+        $(".jumlah_karyawan").on("keyup", function (e) {
             var value_kar = $(".jumlah_karyawan").val();
             console.log(value_kar);
-            if(value_kar == 1) {
+            if(value_kar <= 5) {
                 $(".skala_perusahaan").val("Mikro");
-            } else if (value_kar == 2) {
+            } else if (value_kar <= 6 || value_kar <= 9) {
                 $(".skala_perusahaan").val("Kecil");
-            } else if(value_kar == 3) {
+            } else if(value_kar <= 10 || value_kar <= 30) {
                 $(".skala_perusahaan").val("Menengah");
-            } else if(value_kar == 4) {
+            } else if(value_kar >= 30) {
                 $(".skala_perusahaan").val("Besar");
             }
         });
