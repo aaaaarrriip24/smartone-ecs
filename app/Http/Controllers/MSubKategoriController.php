@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Carbon\Carbon;
 use Alert;
+use DB;
 
 class MSubKategoriController extends Controller
 {
@@ -26,26 +27,23 @@ class MSubKategoriController extends Controller
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
 
-        $data = MSubKategori::leftJoin('m_k_produk as tb', function($join) {
-            $join->on('tb.id', '=', 'm_sub_kategori.id_kategori');
-
-        })
-        ->select('m_sub_kategori.id as id_sub', 'm_sub_kategori.nama_sub_kategori', 'tb.id','tb.nama_kategori_produk')
-        ->whereNull('m_sub_kategori.deleted_at')
+        $data = DB::table('m_sub_kategori as ta')
+        ->leftJoin('m_k_produk as tb', 'tb.id', '=', 'ta.id_kategori')
+        ->select('ta.id as id_sub', 'tb.id as id_kategori', 'ta.nama_sub_kategori', 'tb.id','tb.nama_kategori_produk')
+        ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->orderBy('tb.nama_kategori_produk', 'ASC')
-        ->orderBy('m_sub_kategori.nama_sub_kategori', 'ASC')
+        ->orderBy('ta.nama_sub_kategori', 'ASC')
         ->get();
         // $data = MSubKategori::whereNull('deleted_at')->get();
         if ($request->ajax()) {
-            $data = MSubKategori::leftJoin('m_k_produk as tb', function($join) {
-                $join->on('tb.id', '=', 'm_sub_kategori.id_kategori');
-            })
-            ->select('m_sub_kategori.id as id_sub', 'm_sub_kategori.nama_sub_kategori', 'tb.id','tb.nama_kategori_produk')
-            ->whereNull('m_sub_kategori.deleted_at')
+            $data = DB::table('m_sub_kategori as ta')
+            ->leftJoin('m_k_produk as tb', 'tb.id', '=', 'ta.id_kategori')
+            ->select('ta.id as id_sub', 'tb.id as id_kategori', 'ta.nama_sub_kategori', 'tb.id','tb.nama_kategori_produk')
+            ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->orderBy('tb.nama_kategori_produk', 'ASC')
-            ->orderBy('m_sub_kategori.nama_sub_kategori', 'ASC')
+            ->orderBy('ta.nama_sub_kategori', 'ASC')
             ->get();
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -99,13 +97,14 @@ class MSubKategoriController extends Controller
      */
     public function show($id)
     {
-        $data = MSubKategori::leftJoin('m_k_produk', function($join) {
-            $join->on('m_sub_kategori.id_kategori', '=', 'm_k_produk.id');
-        })
-        ->select('*')
-        ->whereNull('m_sub_kategori.deleted_at')
-        ->whereNull('m_k_produk.deleted_at')
-        ->where('m_sub_kategori.id', $id)
+        $data = DB::table('m_sub_kategori as ta')
+        ->leftJoin('m_k_produk as tb', 'tb.id', '=', 'ta.id_kategori')
+        ->select('ta.id as id_sub', 'tb.id as id_kategori', 'ta.nama_sub_kategori', 'tb.id','tb.nama_kategori_produk')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->orderBy('tb.nama_kategori_produk', 'ASC')
+        ->orderBy('ta.nama_sub_kategori', 'ASC')
+        ->where('ta.id', $id)
         ->first();
         // $data = MSubKategori::findOrFail($id);
         return response()->json([

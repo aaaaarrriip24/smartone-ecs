@@ -96,7 +96,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Nama Kategori Produk</label>
-                        <select name="id_kategori" id="id_kategori" class="form-control form-control-sm form-select edit_select_kategori">
+                        <select name="id_kategori" id="id_kategori" class="form-control form-control-sm form-select id_kategori">
                         </select>
                     </div>
                     <div class="form-group">
@@ -125,7 +125,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Nama Kategori Produk</label>
-                    <select name="id_kategori" id="id_kategori" class="form-control form-control-sm form-select detail_select_kategori" disabled readonly></select>
+                    <select name="id_kategori" id="id_kategori" class="form-control form-control-sm form-select id_kategori" disabled readonly></select>
                 </div>
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Nama Sub Kategori</label>
@@ -199,7 +199,7 @@
                     console.log(response);
                     $('#id').val(id);
                     if (response.data.id_kategori != null) {
-                        $('#id_kategori').append("<option value='" + response.data.id_kategori +
+                        $('.id_kategori').append("<option value='" + response.data.id_kategori +
                             "' selected>" + response.data.nama_kategori_produk + "</option>");
                     } else {
                         $('#id_kategori').empty();
@@ -221,7 +221,7 @@
                     console.log(response);
                     $('#id').val(id);
                     if (response.data.id_kategori != null) {
-                        $('#id_kategori').append("<option value='" + response.data.id_kategori +
+                        $('.id_kategori').append("<option value='" + response.data.id_kategori +
                             "' selected>" + response.data.nama_kategori_produk + "</option>");
                     } else {
                         $('#id_kategori').empty();
