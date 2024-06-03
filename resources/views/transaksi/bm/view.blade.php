@@ -185,7 +185,7 @@
             $('#pesertaBM').modal('show');
 
             console.log(data);
-            // $(".get_id_bm").val(data.id);
+            $(".get_id_bm").val(data.id);
         })
 
         $(".select_perusahaan").select2({
