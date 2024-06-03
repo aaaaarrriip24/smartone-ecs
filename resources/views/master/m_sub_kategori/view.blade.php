@@ -59,17 +59,17 @@
             <form method="post" action="{{ url('m_sub_kategori/store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Kategori Produk</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Sub Kategori</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Kategori Produk</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Nama Kategori Produk</label>
                         <select name="id_kategori" class="form-control form-control-sm form-select select_kategori"></select>
                     </div>
                     <div class="form-group">
-                        <label>Nama Kategori Produk</label>
-                        <input type="text" name="nama_kategori_produk" class="form-control form-control-sm"
+                        <label class="form-label mb-1 mt-2 labelInput">Nama Sub Kategori Produk</label>
+                        <input type="text" name="nama_sub_kategori" class="form-control form-control-sm"
                             required="required">
                     </div>
                 </div>
@@ -90,15 +90,20 @@
                 @csrf
                 <input hidden type="text" class="form-control" id="id" name="id">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit Kategori Produk</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Sub Kategori</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama Kategori Produk</label>
-                        <input type="text" name="nama_kategori_produk"
-                            class="form-control form-control-sm nama_kategori_produk" required="required">
+                        <label class="form-label mb-1 mt-2 labelInput">Nama Kategori Produk</label>
+                        <select name="id_kategori" class="form-control form-control-sm form-select edit_select_kategori">
+                            <option value="" selected></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Nama Sub Kategori Produk</label>
+                        <input type="text" name="nama_sub_kategori"
+                            class="form-control form-control-sm nama_sub_kategori" required="required">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -115,14 +120,18 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detail Kategori Produk</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Detail Sub Kategori Produk</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label>Nama Kategori Produk</label>
-                    <input type="text" name="nama_kategori_produk"
-                        class="form-control form-control-sm nama_kategori_produk" disabled readonly>
+                    <label class="form-label mb-1 mt-2 labelInput">Nama Kategori Produk</label>
+                    <select name="id_kategori" class="form-control form-control-sm form-select detail_select_kategori" disabled readonly></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Nama Sub Kategori</label>
+                    <input type="text" name="nama_sub_kategori"
+                        class="form-control form-control-sm nama_sub_kategori" disabled readonly>
                 </div>
             </div>
             <div class="modal-footer">
@@ -160,8 +169,8 @@
                     width: '5%'
                 },
                 {
-                    data: 'nama_kategori',
-                    name: 'nama_kategori',
+                    data: 'nama_kategori_produk',
+                    name: 'nama_kategori_produk',
                     orderable: true,
                 },
                 {
@@ -245,6 +254,30 @@
         $(".select_kategori").select2({
             placeholder: "Pilih Kategori Produk",
             width: '100%',
+            dropdownParent: $('#exampleModal'),
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/k_produk',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nama_kategori_produk,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
+        $(".edit_select_kategori").select2({
+            placeholder: "Pilih Kategori Produk",
+            width: '100%',
+            dropdownParent: $('#modalEdit'),
             allowClear: true,
             ajax: {
                 url: base_url + 'select/k_produk',

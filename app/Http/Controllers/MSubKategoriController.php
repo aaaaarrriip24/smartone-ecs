@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\MSubKategori;
 use Illuminate\Http\Request;
+use DataTables;
+use Carbon\Carbon;
+use Alert;
 
 class MSubKategoriController extends Controller
 {
@@ -17,14 +20,27 @@ class MSubKategoriController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Delete Sub Kategori Produk!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
 
+        $data = MSubKategori::leftJoin('m_k_produk', function($join) {
+            $join->on('m_sub_kategori.id_kategori', '=', 'm_k_produk.id');
+        })
+        ->select('*')
+        ->whereNull('m_sub_kategori.deleted_at')
+        ->whereNull('m_k_produk.deleted_at')
+        ->get();
+        // $data = MSubKategori::whereNull('deleted_at')->get();
         if ($request->ajax()) {
-            $data = MSubKategori::whereNull('deleted_at')->get();
+            $data = MSubKategori::leftJoin('m_k_produk', function($join) {
+                $join->on('m_sub_kategori.id_kategori', '=', 'm_k_produk.id');
+            })
+            ->whereNull('m_sub_kategori.deleted_at')
+            ->whereNull('m_k_produk.deleted_at')
+            ->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -77,7 +93,15 @@ class MSubKategoriController extends Controller
      */
     public function show($id)
     {
-        $data = KProduk::findOrFail($id);
+        $data = MSubKategori::leftJoin('m_k_produk', function($join) {
+            $join->on('m_sub_kategori.id_kategori', '=', 'm_k_produk.id');
+        })
+        ->select('*')
+        ->whereNull('m_sub_kategori.deleted_at')
+        ->whereNull('m_k_produk.deleted_at')
+        ->where('m_sub_kategori.id', $id)
+        ->first();
+        // $data = MSubKategori::findOrFail($id);
         return response()->json([
             "status"=>200,
             "data"=>$data

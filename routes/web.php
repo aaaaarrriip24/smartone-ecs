@@ -6,6 +6,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\KProdukController;
+use App\Http\Controllers\MSubKategoriController;
 use App\Http\Controllers\TopikController;
 use App\Http\Controllers\TipeController;
 use App\Http\Controllers\SelectController;
@@ -98,6 +99,12 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('k_produk/show/{id}', [KProdukController::class, 'show']);
         Route::post('k_produk/update', [KProdukController::class, 'update']);
         Route::get('k_produk/destroy/{id}', [KProdukController::class, 'destroy']);
+        // Sub Kategori Produk
+        Route::get('master/m_sub_kategori', [MSubKategoriController::class, 'index'])->name('m_sub_kategori');
+        Route::post('m_sub_kategori/store', [MSubKategoriController::class, 'store']);
+        Route::get('m_sub_kategori/show/{id}', [MSubKategoriController::class, 'show']);
+        Route::post('m_sub_kategori/update', [MSubKategoriController::class, 'update']);
+        Route::get('m_sub_kategori/destroy/{id}', [MSubKategoriController::class, 'destroy']);
 
         // Transaksi
         // Konsultasi

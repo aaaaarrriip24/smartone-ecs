@@ -912,6 +912,11 @@
                                             Kategori Produk
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="{{ url('master/m_sub_kategori') }}" class="nav-link" data-key="t-topik">
+                                            Sub Kategori
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
