@@ -188,8 +188,6 @@
             $(".get_id_bm").val(data.id);
         })
 
-
-        
         $(".select_perusahaan").select2({
             placeholder: "Pilih Perusahaan",
             dropdownParent: $('#pesertaBM'),
