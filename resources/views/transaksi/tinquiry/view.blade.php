@@ -122,6 +122,7 @@
                 {
                     data: 'qty',
                     name: 'qty',
+                    className: 'text-end',
                     orderable: true,
                     render: function(data, type, row) {
                         return row.qty + ' ' + row.satuan_qty;

@@ -114,6 +114,7 @@
                 {
                     data: 'nilai_transaksi',
                     name: 'nilai_transaksi',
+                    className: 'text-end',
                     orderable: true,
                     render: function (data, type, row) {
                         return new Intl.NumberFormat().format(row.nilai_transaksi);

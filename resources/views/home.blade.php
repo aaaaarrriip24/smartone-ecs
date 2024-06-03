@@ -20,10 +20,10 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{ number_format($perusahaan) }}</td>
-                                        <td>{{ number_format($layanan) }}</td>
-                                        <td>{{ number_format($export->total) }}</td>
-                                        <td>{{ number_format($bm) }}</td>
+                                        <td class="text-end">{{ number_format($perusahaan) }}</td>
+                                        <td class="text-end">{{ number_format($layanan) }}</td>
+                                        <td class="text-end">{{ number_format($export->total) }}</td>
+                                        <td class="text-end">{{ number_format($bm) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

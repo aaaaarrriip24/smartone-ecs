@@ -203,6 +203,7 @@
                     data: 'telp_contact_person',
                     name: 'telp_contact_person',
                     orderable: true,
+                    className: 'text-end',
                 },
                 {
                     data: 'nama_kategori_produk',
