@@ -26,28 +26,34 @@ class MSubKategoriController extends Controller
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
 
-        $data = MSubKategori::leftJoin('m_k_produk', function($join) {
-            $join->on('m_sub_kategori.id_kategori', '=', 'm_k_produk.id');
+        $data = MSubKategori::leftJoin('m_k_produk as tb', function($join) {
+            $join->on('tb.id', '=', 'm_sub_kategori.id_kategori');
+
         })
-        ->select('*')
+        ->select('m_sub_kategori.id as id_sub', 'm_sub_kategori.nama_sub_kategori', 'tb.id','tb.nama_kategori_produk')
         ->whereNull('m_sub_kategori.deleted_at')
-        ->whereNull('m_k_produk.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->orderBy('tb.nama_kategori_produk', 'ASC')
+        ->orderBy('m_sub_kategori.nama_sub_kategori', 'ASC')
         ->get();
         // $data = MSubKategori::whereNull('deleted_at')->get();
         if ($request->ajax()) {
-            $data = MSubKategori::leftJoin('m_k_produk', function($join) {
-                $join->on('m_sub_kategori.id_kategori', '=', 'm_k_produk.id');
+            $data = MSubKategori::leftJoin('m_k_produk as tb', function($join) {
+                $join->on('tb.id', '=', 'm_sub_kategori.id_kategori');
             })
+            ->select('m_sub_kategori.id as id_sub', 'm_sub_kategori.nama_sub_kategori', 'tb.id','tb.nama_kategori_produk')
             ->whereNull('m_sub_kategori.deleted_at')
-            ->whereNull('m_k_produk.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->orderBy('tb.nama_kategori_produk', 'ASC')
+            ->orderBy('m_sub_kategori.nama_sub_kategori', 'ASC')
             ->get();
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $url = url('sub_kategori/destroy/'. $row->id);
+                        $url = url('sub_kategori/destroy/'. $row->id_sub);
                         $button = '';
-                        $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id."'>Edit</button>";
-                        $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id."'>Detail</button>";
+                        $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id_sub."'>Edit</button>";
+                        $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id_sub."'>Detail</button>";
                         $button .= " <button data-href='".$url."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
                         return $button;
                     })
