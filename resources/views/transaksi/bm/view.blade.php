@@ -64,7 +64,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Perusahaan</label>
-                        <input hidden type="text" name="id_bm" class="get_id_bm" value="">
+                        <input type="text" name="id_bm" class="get_id_bm">
                         <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
                             multiple="multiple"></select>
                     </div>
@@ -185,7 +185,7 @@
             $('#pesertaBM').modal('show');
 
             console.log(data);
-            $(".get_id_bm").val(data.id);
+            // $(".get_id_bm").val(data.id);
         })
 
         $(".select_perusahaan").select2({
