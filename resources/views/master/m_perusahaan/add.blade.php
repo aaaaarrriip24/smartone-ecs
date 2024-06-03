@@ -58,7 +58,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kode Pos</label>
-                        <input class="form-control form-control-sm" name="kode_pos">
+                        <input class="form-control form-control-sm text-end" name="kode_pos">
                     </div>
                 </div>
                 <div class="col-6">
@@ -76,13 +76,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Contact Person</label>
-                        <input type="text" name="telp_contact_person" class="form-control form-control-sm" required>
+                        <input type="text" name="telp_contact_person" class="form-control form-control-sm text-end" required>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Kantor</label>
-                        <input type="text" name="telp_kantor" class="form-control form-control-sm">
+                        <input type="text" name="telp_kantor" class="form-control form-control-sm text-end">
                     </div>
                 </div>
                 <div class="col-6">
@@ -111,7 +111,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
-                        <input type="number" class="form-control form-control-sm jumlah_karyawan" name="jumlah_karyawan">
+                        <input type="number" class="form-control form-control-sm jumlah_karyawan text-end" name="jumlah_karyawan">
                         <!-- <select name="jumlah_karyawan" class="form-control form-control-sm form-select jumlah_karyawan">
                             <option disabled selected>Pilih Jumlah Karyawan</option>
                             <option value="1">< 5</option>
@@ -167,7 +167,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kapasitas Produksi/ Bulan</label>
-                        <input type="number" name="kapasitas_produksi" class="form-control form-control-sm">
+                        <input type="number" name="kapasitas_produksi" class="form-control form-control-sm text-end">
                     </div>
                 </div>
                 <div class="col-3">

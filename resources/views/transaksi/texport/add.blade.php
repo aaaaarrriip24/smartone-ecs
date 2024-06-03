@@ -37,7 +37,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Nilai Transaksi</label>
-                        <input type="number" name="nilai_transaksi" class="form-control form-control-sm formatinput" required>
+                        <input type="number" name="nilai_transaksi" class="form-control form-control-sm formatinput text-end" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -61,7 +61,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telfon</label>
-                        <input type="number" name="telp_buyer" class="form-control form-control-sm">
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm text-end">
                     </div>
                 </div>
                 <div class="col-3">

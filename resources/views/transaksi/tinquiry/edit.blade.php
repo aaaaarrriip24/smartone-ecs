@@ -31,7 +31,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Quantity</label>
-                        <input type="number" name="qty" class="form-control form-control-sm" value="{{ $data->qty }}" required="required">
+                        <input type="number" name="qty" class="form-control form-control-sm text-end" value="{{ $data->qty }}" required="required">
                     </div>
                 </div>
                 <div class="col-3">
@@ -85,7 +85,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
-                        <input type="number" name="telp_buyer" class="form-control form-control-sm" value="{{ $data->telp_buyer }}" required="required">
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm text-end" value="{{ $data->telp_buyer }}" required="required">
                     </div>
                 </div>
                 <div class="col-3">
