@@ -45,6 +45,13 @@
             color: #F6C338;
         }
 
+        .select2-selection__choice {
+            background-color: #0DCAF0 !important;
+        }
+
+        .select2-selection__choice__remove {
+            color: black !important;
+        }
     </style>
 </head>
 

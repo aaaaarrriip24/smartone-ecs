@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TEPerusahaan;
 use App\Models\Perusahaan;
 use App\Models\Provinsi;
 use App\Models\KabKota;
@@ -87,11 +88,11 @@ class PerusahaanController extends Controller
      */
     public function create()
     {
-        $get_pt = DB::table('m_perusahaan')->get();
-        $count_pt = $get_pt->count();
-        $kode_pt = "PRS-" . strval($count_pt + 1) ;
+        $get_pt = DB::table('m_perusahaan')->orderBy('created_at', 'DESC')->first();
+        $last_pt = explode("-", $get_pt->kode_perusahaan); 
+        $kode_pt = "PRS-" . strval($last_pt[1] + 1) ;
         // dd($kode_pt);
-        return view('master/m_perusahaan/add', compact('get_pt', 'count_pt', 'kode_pt'));
+        return view('master/m_perusahaan/add', compact('get_pt', 'last_pt', 'kode_pt'));
     }
 
     public function detail($id)
@@ -113,9 +114,14 @@ class PerusahaanController extends Controller
         ->where('ta.id', $id)
         ->first();
 
-        
+        $negara_ekspor = DB::table('t_e_perusahaan as ta')
+        ->leftJoin('m_negara as tb', 'ta.id_negara', '=', 'tb.id')
+        ->where('id_perusahaan', $data->id)
+        ->get();
+
         return view('master/m_perusahaan/detail', [
             'data' => $data,
+            'negara_ekspor' => $negara_ekspor,
             'status' => 200,
          ]);
     }
@@ -169,13 +175,22 @@ class PerusahaanController extends Controller
             'satuan_kapasitas_produksi' => $request->satuan_kapasitas_produksi,
             'kepemilikan_legalitas' => $request->kepemilikan_legalitas,
             'kepemilikan_sertifikat' => $request->kepemilikan_sertifikat,
-            'status_ekspor' => $request->status_ekspor,
             'foto_produk_1' => empty($name1) ? '' : $name1,
             'foto_produk_2' => empty($name2) ? '' : $name2,
             'tanggal_registrasi' => date('Y-m-d', strtotime($request->tanggal_registrasi)),
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
+
+        $id_perusahaan = DB::getPdo()->lastInsertId();
+        foreach($request->status_ekspor as $key) {
+            TEPerusahaan::insert([
+                'id_perusahaan' => $id_perusahaan,
+                'id_negara' => $key,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
         Alert::toast('Success Add Perusahaan!', 'success');
         return redirect()->route('perusahaan');
     }
@@ -193,8 +208,8 @@ class PerusahaanController extends Controller
         ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
         ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
         ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
-        ->leftJoin('m_sub_kategori as tg', 'ta.id_sub_kategori', '=', 'tg.id')
         ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
+        ->leftJoin('m_sub_kategori as tg', 'ta.id_sub_kategori', '=', 'tg.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
@@ -204,7 +219,12 @@ class PerusahaanController extends Controller
         ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk','tg.nama_sub_kategori', 'tf.nama_petugas')
         ->where('ta.id', $id)
         ->first();
-        
+
+        $negara_ekspor = DB::table('t_e_perusahaan as ta')
+        ->leftJoin('m_negara as tb', 'ta.id_negara', '=', 'tb.id')
+        ->where('id_perusahaan', $data->id)
+        ->get();
+
         if(empty($data->tanggal_registrasi)) {
             $data->tanggal_registrasi = date('d-m-Y');
         } else {
@@ -215,6 +235,7 @@ class PerusahaanController extends Controller
 
         return view('master/m_perusahaan/edit', [
             'data' => $data,
+            'negara_ekspor' => $negara_ekspor,
             'status' => 200,
          ]);
     }
@@ -281,13 +302,25 @@ class PerusahaanController extends Controller
             'satuan_kapasitas_produksi' => $request->satuan_kapasitas_produksi,
             'kepemilikan_legalitas' => $request->kepemilikan_legalitas,
             'kepemilikan_sertifikat' => $request->kepemilikan_sertifikat,
-            'status_ekspor' => $request->status_ekspor,
             'foto_produk_1' => (!empty($request->foto_produk_1) ? $name1 : $request->foto_produk_1_lama),
             'foto_produk_2' => (!empty($request->foto_produk_2) ? $name2 : $request->foto_produk_2_lama),
             'tanggal_registrasi' => date('Y-m-d', strtotime($request->tanggal_registrasi)),
             'id_petugas' => $request->id_petugas,
             'updated_at' => Carbon::now(),
         ]);
+
+        $id_perusahaan = $request->id;
+
+        $post = TEPerusahaan::where('id_perusahaan', $request->id)->delete();
+
+        foreach($request->status_ekspor as $key) {
+            TEPerusahaan::insert([
+                'id_perusahaan' => $id_perusahaan,
+                'id_negara' => $key,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
         Alert::toast('Success Edit Perusahaan!', 'success');
         return redirect()->route('perusahaan');
     }

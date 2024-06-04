@@ -76,7 +76,8 @@
             <div class="col-6">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Jabatan</label>
-                    <input type="text" name="jabatan" class="form-control form-control-sm" value="{{ $data->jabatan }}" disabled>
+                    <input type="text" name="jabatan" class="form-control form-control-sm" value="{{ $data->jabatan }}"
+                        disabled>
                 </div>
             </div>
             <div class="col-6">
@@ -121,7 +122,8 @@
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
-                    <input type="number" class="form-control form-control-sm jumlah_karyawan" name="jumlah_karyawan" value="{{ $data->jumlah_karyawan }}" disabled>
+                    <input type="number" class="form-control form-control-sm jumlah_karyawan" name="jumlah_karyawan"
+                        value="{{ $data->jumlah_karyawan }}" disabled>
                 </div>
             </div>
             <div class="col-3">
@@ -203,19 +205,14 @@
                         value="{{ $data->kepemilikan_sertifikat }}" disabled>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-9">
                 <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Status Ekspor</label>
-                    <select name="status_ekspor" class="form-control form-control-sm form-select" disabled>
-                        <option value="{{ $data->status_ekspor }}" selected>
-                            @if( $data->status_ekspor == 1)
-                            Belum Ekspor
-                            @else
-                            Sudah Ekspor
-                            @endif
-                        </option>
-                        <option value="Sudah Ekspor">Sudah Ekspor</option>
-                        <option value="Belum Ekspor">Belum Ekspor</option>
+                    <label class="form-label mb-1 mt-2 labelInput">Negara Ekspor</label>
+                    <select name="status_ekspor[]" class="form-control form-control-sm form-select select_negara_ekspor"
+                        multiple="multiple" disabled>
+                        @foreach($negara_ekspor as $n)
+                        <option value="{{ $n->id_negara }}" selected>{{ $n->en_short_name }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -252,4 +249,31 @@
         <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Kembali</a>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function () {
+        $(".select_negara_ekspor").select2({
+            placeholder: "Pilih Negara Ekspor",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/negara',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.en_short_name,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+    });
+</script>
 @endsection

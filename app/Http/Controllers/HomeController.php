@@ -11,6 +11,7 @@ use App\Models\Topik;
 use Carbon\Carbon;
 use Auth;
 use DB;
+use Alert;
 
 class HomeController extends Controller
 {
@@ -53,7 +54,7 @@ class HomeController extends Controller
                 ->first();
 
                 $bm = TBm::all()->whereNull('deleted_at')->count();
-        
+                Alert::toast('Selamat Datang ' .Auth::user()->name. ' !', 'success');
                 return view('home', compact('perusahaan', 'layanan', 'export', 'bm')); 
             } else {
                 return redirect('/'); 

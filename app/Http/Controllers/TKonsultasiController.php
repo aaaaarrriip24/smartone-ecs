@@ -67,9 +67,9 @@ class TKonsultasiController extends Controller
      */
     public function create()
     {
-        $get_kon = TKonsultasi::whereNull('deleted_at')->get();
-        $count_kon = $get_kon->count();
-        $kode_kon = "KON-" . strval($count_kon + 1) ;
+        $get_kon = TKonsultasi::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        $last_kon = explode("-", $get_kon->kode_konsultasi); 
+        $kode_kon = "KON-" . strval($last_kon[1] + 1) ;
 
         return view('transaksi/konsultasi/add', compact('kode_kon'));
     }
@@ -89,12 +89,8 @@ class TKonsultasiController extends Controller
             $name = $nama_file;
         }
 
-        $get_kon = TKonsultasi::whereNull('deleted_at')->get();
-        $count_kon = $get_kon->count();
-        $kode_kon = "KON-" . strval($count_kon + 1) ;
-
         TKonsultasi::insert([
-            'kode_konsultasi' => $kode_kon,
+            'kode_konsultasi' => $requset->kode_konsultasi,
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,
@@ -189,7 +185,7 @@ class TKonsultasiController extends Controller
         }
 
         TKonsultasi::where('id', $request->id)->update([
-            'kode_konsultasi' => $request->kode_kon,
+            'kode_konsultasi' => $request->kode_konsultasi,
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,

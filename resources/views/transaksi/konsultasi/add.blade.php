@@ -10,8 +10,10 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Kode Konsultasi</label>
-                        <input type="text" name="kode_konsultasi" class="form-control form-control-sm"
+                        <input type="text" name="kode_konsultasi_display" class="form-control form-control-sm"
                             value="{{ $kode_kon }}" disabled required>
+                        <input hidden type="text" name="kode_konsultasi" class="form-control form-control-sm"
+                            value="{{ $kode_kon }}" required>
                     </div>
                 </div>
                 <div class="col-3">

@@ -12,9 +12,9 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Kode Konsultasi</label>
-                        <input type="text" name="kode_konsultasi" class="form-control form-control-sm"
+                        <input type="text" name="kode_konsultasi_display" class="form-control form-control-sm"
                             value="{{ $data->kode_konsultasi }}" disabled>
-                        <input hidden type="text" name="kode_kon" class="form-control form-control-sm"
+                        <input hidden type="text" name="kode_konsultasi" class="form-control form-control-sm"
                             value="{{ $data->kode_konsultasi }}">
                     </div>
                 </div>
