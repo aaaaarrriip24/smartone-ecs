@@ -150,6 +150,15 @@
             </div>
             <div class="col-3">
                 <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
+                    <select name="id_sub_kategori" class="form-control form-control-sm select_sub_produk" disabled>
+                        <option value="{{ $data->id_sub_kategori }}" selected>{{ $data->nama_sub_kategori }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Detail Produk Utama</label>
                     <input type="text" name="detail_produk_utama" class="form-control form-control-sm"
                         value="{{ $data->detail_produk_utama }}" disabled>
@@ -275,5 +284,6 @@
             var data = e.params.data;
         });
     });
+
 </script>
 @endsection
