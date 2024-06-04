@@ -62,6 +62,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('select/bm', [SelectController::class, 'selectbm']);
         Route::get('select/inquiry', [SelectController::class, 'selectinquiry']);
         Route::get('select/k_produk', [SelectController::class, 'selectk_produk']);
+        Route::get('select/sub_produk', [SelectController::class, 'select_sub_kategori']);
 
         // Perusahaan
         Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');

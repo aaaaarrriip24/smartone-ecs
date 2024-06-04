@@ -38,17 +38,25 @@ class PerusahaanController extends Controller
             ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
             ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
             ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
+            ->leftJoin('m_sub_kategori as tg', 'ta.id_sub_kategori', '=', 'tg.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
             ->whereNull('td.deleted_at')
             ->whereNull('te.deleted_at')
             ->whereNull('tf.deleted_at')
-            ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk', 'tf.nama_petugas')
+            ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk','tg.nama_sub_kategori', 'tf.nama_petugas')
             ->get();
             
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('status_data', function($row){
+                        $status = 'Completed';
+                        if(empty($row->id_tipe) || empty($row->id_provinsi) ||empty($row->id_kabkota) ||empty($row->alamat_perusahaan) ||empty($row->alamat_pabrik) ||empty($row->kode_pos) ||empty($row->nama_contact_person) ||empty($row->jabatan) ||empty($row->telp_contact_person) ||empty($row->telp_kantor) ||empty($row->email) ||empty($row->website) ||empty($row->status_kepemilikan) ||empty($row->skala_perusahaan) ||empty($row->jumlah_karyawan) ||empty($row->id_kategori_produk) ||empty($row->id_sub_kategori) ||empty($row->detail_produk_utama) ||empty($row->merek_produk) ||empty($row->hs_code) ||empty($row->kapasitas_produksi) ||empty($row->satuan_kapasitas_produksi) ||empty($row->kepemilikan_legalitas) ||empty($row->kepemilikan_sertifikat) ||empty($row->status_ekspor) ||empty($row->foto_produk_1) ||empty($row->foto_produk_2) ||empty($row->tanggal_registrasi) ||empty($row->id_petugas)) {
+                            $status = "Not Completed";
+                        }
+                        return $status;
+                    })
                     ->addColumn('action', function($row){
                         $urlEdit = url('perusahaan/show/'. $row->id);
                         $urlDetail = url('perusahaan/detail/'. $row->id);
@@ -65,7 +73,7 @@ class PerusahaanController extends Controller
                                     </div>';
                         return $button;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action', 'status_data'])
                     ->make(true);
         }
         
@@ -90,17 +98,18 @@ class PerusahaanController extends Controller
     {
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
         ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
         ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
         ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
+        ->leftJoin('m_sub_kategori as tg', 'ta.id_sub_kategori', '=', 'tg.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
         ->whereNull('td.deleted_at')
         ->whereNull('te.deleted_at')
         ->whereNull('tf.deleted_at')
-        ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk', 'tf.nama_petugas')
+        ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk','tg.nama_sub_kategori', 'tf.nama_petugas')
         ->where('ta.id', $id)
         ->first();
 
@@ -152,6 +161,7 @@ class PerusahaanController extends Controller
             'skala_perusahaan' => $request->skala_perusahaan,
             'jumlah_karyawan' => $request->jumlah_karyawan,
             'id_kategori_produk' => $request->id_kategori_produk,
+            'id_sub_kategori' => $request->id_sub_kategori,
             'detail_produk_utama' => $request->detail_produk_utama,
             'merek_produk' => $request->merek_produk,
             'hs_code' => $request->hs_code,
@@ -159,7 +169,6 @@ class PerusahaanController extends Controller
             'satuan_kapasitas_produksi' => $request->satuan_kapasitas_produksi,
             'kepemilikan_legalitas' => $request->kepemilikan_legalitas,
             'kepemilikan_sertifikat' => $request->kepemilikan_sertifikat,
-            'status_data' => $request->status_data,
             'status_ekspor' => $request->status_ekspor,
             'foto_produk_1' => empty($name1) ? '' : $name1,
             'foto_produk_2' => empty($name2) ? '' : $name2,
@@ -181,9 +190,10 @@ class PerusahaanController extends Controller
     {   
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
         ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
         ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
+        ->leftJoin('m_sub_kategori as tg', 'ta.id_sub_kategori', '=', 'tg.id')
         ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
@@ -191,7 +201,7 @@ class PerusahaanController extends Controller
         ->whereNull('td.deleted_at')
         ->whereNull('te.deleted_at')
         ->whereNull('tf.deleted_at')
-        ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk', 'tf.nama_petugas')
+        ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk','tg.nama_sub_kategori', 'tf.nama_petugas')
         ->where('ta.id', $id)
         ->first();
         
@@ -263,6 +273,7 @@ class PerusahaanController extends Controller
             'skala_perusahaan' => $request->skala_perusahaan,
             'jumlah_karyawan' => $request->jumlah_karyawan,
             'id_kategori_produk' => $request->id_kategori_produk,
+            'id_sub_kategori' => $request->id_sub_kategori,
             'detail_produk_utama' => $request->detail_produk_utama,
             'merek_produk' => $request->merek_produk,
             'hs_code' => $request->hs_code,
@@ -270,7 +281,6 @@ class PerusahaanController extends Controller
             'satuan_kapasitas_produksi' => $request->satuan_kapasitas_produksi,
             'kepemilikan_legalitas' => $request->kepemilikan_legalitas,
             'kepemilikan_sertifikat' => $request->kepemilikan_sertifikat,
-            'status_data' => $request->status_data,
             'status_ekspor' => $request->status_ekspor,
             'foto_produk_1' => (!empty($request->foto_produk_1) ? $name1 : $request->foto_produk_1_lama),
             'foto_produk_2' => (!empty($request->foto_produk_2) ? $name2 : $request->foto_produk_2_lama),

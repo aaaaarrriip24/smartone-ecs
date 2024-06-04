@@ -46,6 +46,25 @@ class SelectController extends Controller
         return $data;
     }
 
+    public function select_sub_kategori(Request $request) {
+        $data = DB::table('m_sub_kategori')
+        ->whereNull('deleted_at')
+        ->select('*')
+        ->where('id_kategori', $request->id_kategori)
+        ->orderBy('nama_sub_kategori', 'ASC')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('m_k_produk')
+            ->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%')
+            ->where('id_kategori', $request->id_kategori)
+            ->orderBy('nama_sub_kategori', 'ASC')
+            ->get();
+        }
+
+        return $data;
+    }
+
     public function selecttipe(Request $request) {
         $data = DB::table('m_tipe_perusahaan')
         ->whereNull('deleted_at')

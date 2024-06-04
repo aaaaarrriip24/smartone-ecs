@@ -205,22 +205,6 @@
             </div>
             <div class="col-3">
                 <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Status Data</label>
-                    <select name="status_data" class="form-control form-control-sm form-select" disabled>
-                        <option value="{{ $data->status_data }}" selected>
-                            @if( $data->status_data == 1)
-                            Not Completed
-                            @else
-                            Completed
-                            @endif
-                        </option>
-                        <option value="Sudah Ekspor">Sudah Ekspor</option>
-                        <option value="Belum Ekspor">Belum Ekspor</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Status Ekspor</label>
                     <select name="status_ekspor" class="form-control form-control-sm form-select" disabled>
                         <option value="{{ $data->status_ekspor }}" selected>

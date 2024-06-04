@@ -164,6 +164,15 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
+                        <select name="id_sub_kategori" class="form-control form-control-sm select_sub_produk">
+                            <option value="{{ $data->id_sub_kategori }}" selected>{{ $data->nama_sub_kategori }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Detail Produk Utama</label>
                         <input type="text" name="detail_produk_utama" class="form-control form-control-sm"
                             value="{{ $data->detail_produk_utama }}">
@@ -217,22 +226,6 @@
                         <label class="form-label mb-1 mt-2 labelInput">Kepemilikan Sertifikat</label>
                         <input type="text" name="kepemilikan_sertifikat" class="form-control form-control-sm"
                             value="{{ $data->kepemilikan_sertifikat }}">
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Status Data</label>
-                        <select name="status_data" class="form-control form-control-sm form-select">
-                            <option value="{{ $data->status_data }}" selected>
-                                @if( $data->status_data == 1)
-                                Not Completed
-                                @else
-                                Completed
-                                @endif
-                            </option>
-                            <option value="1">Not Completed</option>
-                            <option value="2">Completed</option>
-                        </select>
                     </div>
                 </div>
                 <div class="col-3">
@@ -354,6 +347,32 @@
                             return {
                                 id: item.id,
                                 text: item.nama_kategori_produk,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
+        $(".select_sub_produk").select2({
+            placeholder: "Pilih Sub Kategori Produk",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/sub_produk',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_kategori = $('.select_k_produk').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nama_sub_kategori,
                             }
                         })
                     };

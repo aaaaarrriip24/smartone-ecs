@@ -187,11 +187,25 @@
                     name: 'alamat_perusahaan',
                     orderable: true,
                     render: function (data, type, row, meta) {
+                        var alamat = row.alamat_perusahaan;
                         var str = row.cities;
-                        str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-                            return letter.toUpperCase();
-                        });
-                        return row.alamat_perusahaan + "<br>" + str;
+                        if(str == null) {
+                            str = "-";
+                        }
+                        if(alamat == null) {
+                            alamat = "-";
+                        }
+                        function titleCase(str) {
+                            var splitStr = str.toLowerCase().split(' ');
+                            for (var i = 0; i < splitStr.length; i++) {
+                                // You do not need to check if i is larger than splitStr length, as your for does that for you
+                                // Assign it back to the array
+                                splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
+                            }
+                            // Directly return the joined string
+                            return splitStr.join(' '); 
+                        }
+                        return alamat + "<br>" + titleCase(str);
                     }
                 },
                 // {
@@ -213,13 +227,6 @@
                     data: 'status_data',
                     name: 'status_data',
                     orderable: true,
-                    render: function (data, type, row, meta) {
-                        if(row.status_data == 1) {
-                            return "Not Completed";
-                        } else if(row.status_data == 2) {
-                            return "Completed";
-                        }
-                    }
                 },
                 {
                     data: 'action',
