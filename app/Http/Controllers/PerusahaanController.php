@@ -35,7 +35,7 @@ class PerusahaanController extends Controller
         if ($request->ajax()) {
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
+            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
             ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
             ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
             ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
@@ -53,7 +53,7 @@ class PerusahaanController extends Controller
                     ->addIndexColumn()
                     ->addColumn('status_data', function($row){
                         $status = 'Completed';
-                        if(empty($row->id_tipe) || empty($row->id_provinsi) ||empty($row->id_kabkota) ||empty($row->alamat_perusahaan) ||empty($row->alamat_pabrik) ||empty($row->kode_pos) ||empty($row->nama_contact_person) ||empty($row->jabatan) ||empty($row->telp_contact_person) ||empty($row->telp_kantor) ||empty($row->email) ||empty($row->website) ||empty($row->status_kepemilikan) ||empty($row->skala_perusahaan) ||empty($row->jumlah_karyawan) ||empty($row->id_kategori_produk) ||empty($row->id_sub_kategori) ||empty($row->detail_produk_utama) ||empty($row->merek_produk) ||empty($row->hs_code) ||empty($row->kapasitas_produksi) ||empty($row->satuan_kapasitas_produksi) ||empty($row->kepemilikan_legalitas) ||empty($row->kepemilikan_sertifikat) ||empty($row->status_ekspor) ||empty($row->foto_produk_1) ||empty($row->foto_produk_2) ||empty($row->tanggal_registrasi) ||empty($row->id_petugas)) {
+                        if(empty($row->id_tipe) || empty($row->id_provinsi) ||empty($row->id_kabkota) ||empty($row->alamat_perusahaan) ||empty($row->alamat_pabrik) ||empty($row->kode_pos) ||empty($row->nama_contact_person) ||empty($row->jabatan) ||empty($row->telp_contact_person) ||empty($row->telp_kantor) ||empty($row->email) ||empty($row->website) ||empty($row->status_kepemilikan) ||empty($row->skala_perusahaan) ||empty($row->jumlah_karyawan) ||empty($row->id_kategori_produk) ||empty($row->id_sub_kategori) ||empty($row->detail_produk_utama) ||empty($row->merek_produk) ||empty($row->hs_code) ||empty($row->kapasitas_produksi) ||empty($row->satuan_kapasitas_produksi) ||empty($row->kepemilikan_legalitas) ||empty($row->kepemilikan_sertifikat) ||empty($row->foto_produk_1) ||empty($row->foto_produk_2) ||empty($row->tanggal_registrasi) ||empty($row->id_petugas)) {
                             $status = "Not Completed";
                         }
                         return $status;
@@ -99,7 +99,7 @@ class PerusahaanController extends Controller
     {
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
         ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
         ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
         ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
@@ -205,7 +205,7 @@ class PerusahaanController extends Controller
     {   
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.id')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
         ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
         ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
         ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')

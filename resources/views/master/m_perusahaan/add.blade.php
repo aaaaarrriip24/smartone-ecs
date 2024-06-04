@@ -396,9 +396,8 @@
                     return {
                         results: $.map(data, function (item) {
                             return {
-                                id: item.id,
+                                id: item.code,
                                 text: item.name,
-                                code: item.code
                             }
                         })
                     };
@@ -406,7 +405,6 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
-            $(".province_code").val(data.code);
         });
 
         $('.cities_id').select2({
@@ -415,7 +413,7 @@
                 url: base_url + "cities",
                 dataType: 'json',
                 data: function (params) {
-                    params.province_id = $('.province_code').val();
+                    params.province_id = $('.province_id').val();
                     return params
                 },
                 processResults: function (data) {
@@ -424,7 +422,6 @@
                             return {
                                 id: item.id,
                                 text: item.name,
-                                code: item.code
                             }
                         })
                     };
@@ -432,8 +429,6 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
-            console.log(data);
-            $('.cities_code').val(data.code);
         });
         
         $(".jumlah_karyawan").on("keyup", function (e) {

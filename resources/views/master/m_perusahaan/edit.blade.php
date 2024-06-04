@@ -411,7 +411,6 @@
                             return {
                                 id: item.code,
                                 text: item.name,
-                                code: item.code
                             }
                         })
                     };
@@ -429,7 +428,7 @@
                 url: base_url + "cities",
                 dataType: 'json',
                 data: function (params) {
-                    params.province_id = $('.province_code').val();
+                    params.province_id = $('.province_id').val();
                     return params
                 },
                 processResults: function (data) {
