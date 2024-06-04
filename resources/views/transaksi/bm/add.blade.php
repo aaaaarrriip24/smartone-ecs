@@ -43,9 +43,9 @@
                         <label class="form-label mb-1 mt-2 labelInput">Pelaksanaan BM</label>
                         <select name="pelaksanaan_bm" class="form-select select_pelaksanaan" required>
                             <option value="" selected disabled>Pilih Pelaksanaan</option>
-                            <option value="Online">Online</option>
-                            <option value="Offline">Offline</option>
                             <option value="Hybrid">Hybrid</option>
+                            <option value="Offline">Offline</option>
+                            <option value="Online">Online</option>
                         </select>
                         <!-- <input type="text" name="pelaksanaan_bm" class="form-control form-control-sm"> -->
                     </div>
@@ -55,11 +55,11 @@
                         <label class="form-label mb-1 mt-2 labelInput">Info Asal Buyer</label>
                         <select name="info_asal_buyer" class="form-select select_info" required>
                             <option value="" selected disabled>Pilih Info Asal Buyer</option>
+                            <option value="Buying Agent">Buying Agent</option>
                             <option value="Buyer Langsung">Buyer Langsung</option>
-                            <option value="Perwadag">Perwadag</option>
                             <option value="KBRI">KBRI</option>
                             <option value="Konjen">Konjen</option>
-                            <option value="Buying Agent">Buying Agent</option>
+                            <option value="Perwadag">Perwadag</option>
                             <option value="Lainnya">Lainnya</option>
                         </select>
                     </div>
@@ -80,7 +80,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
-                        <input type="number" name="telp_buyer" class="form-control form-control-sm text-end">
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-3">

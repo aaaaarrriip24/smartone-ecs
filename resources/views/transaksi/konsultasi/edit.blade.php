@@ -39,11 +39,11 @@
                         <label class="form-label mb-1 mt-0 labelInput">Cara Konsultasi</label>
                         <select name="cara_konsultasi" class="form-control form-control-sm cara_konsultasi" required="required">
                             <option value="{{ $data->cara_konsultasi }}">{{ $data->cara_konsultasi }}</option>
+                            <option value="Email">Email</option>
                             <option value="Offline">Offline</option>
                             <option value="Online">Online</option>
-                            <option value="WA">WA</option>
                             <option value="Phone">Phone</option>
-                            <option value="Email">Email</option>
+                            <option value="WA">WA</option>
                             <option value="Lainnya">Lainnya</option>
                         </select>
                     </div>

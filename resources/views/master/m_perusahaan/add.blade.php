@@ -76,13 +76,13 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Contact Person</label>
-                        <input type="text" name="telp_contact_person" class="form-control form-control-sm text-end" required>
+                        <input type="text" name="telp_contact_person" class="form-control form-control-sm" required>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Kantor</label>
-                        <input type="text" name="telp_kantor" class="form-control form-control-sm text-end">
+                        <input type="text" name="telp_kantor" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-6">
@@ -176,11 +176,11 @@
                         <select name="satuan_kapasitas_produksi" class="form-control form-control-sm form-select">
                             <option disabled selected>Pilih Satuan Produksi</option>
                             <option value="KG">KG</option>
-                            <option value="Ton">Ton</option>
-                            <option value="Pasang">Pasang</option>
-                            <option value="Kontainer">Kontainer</option>
                             <option value="Kodi">Kodi</option>
+                            <option value="Kontainer">Kontainer</option>
+                            <option value="Pasang">Pasang</option>
                             <option value="Pcs">Pcs</option>
+                            <option value="Ton">Ton</option>
                         </select>
                     </div>
                 </div>

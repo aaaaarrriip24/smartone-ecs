@@ -19,11 +19,13 @@ class DataController extends Controller
     public function provinces(Request $request)
     {
         $data = DB::table('indonesia_provinces')
+        ->orderBy('name', 'ASC')
         ->get();
 
         if($request->term) {
             $data = DB::table('indonesia_provinces')
             ->where('name', 'LIKE', '%'. $request->term. '%')
+            ->orderBy('name', 'ASC')
             ->get();
         }
 
@@ -34,12 +36,14 @@ class DataController extends Controller
     {
         $data = DB::table('indonesia_cities')
         ->where('province_code', $request->province_id)
+        ->orderBy('name', 'ASC')
         ->get();
 
         if($request->term) {
             $data = DB::table('indonesia_cities')
             ->where('province_code', $request->province_id)
             ->where('name', 'LIKE', '%'. $request->term. '%')
+            ->orderBy('name', 'ASC')
             ->get();
         }
 

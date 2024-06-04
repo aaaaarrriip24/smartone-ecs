@@ -91,14 +91,14 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Contact Person</label>
-                        <input type="text" name="telp_contact_person" class="form-control form-control-sm text-end"
+                        <input type="text" name="telp_contact_person" class="form-control form-control-sm"
                             value="{{ $data->telp_contact_person }}">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telpon Kantor</label>
-                        <input type="text" name="telp_kantor" class="form-control form-control-sm text-end"
+                        <input type="text" name="telp_kantor" class="form-control form-control-sm"
                             value="{{ $data->telp_kantor }}">
                     </div>
                 </div>
@@ -197,11 +197,11 @@
                             <option value="{{ $data->satuan_kapasitas_produksi }}" selected>
                                 {{ $data->satuan_kapasitas_produksi }}</option>
                             <option value="KG">KG</option>
-                            <option value="Ton">Ton</option>
-                            <option value="Pasang">Pasang</option>
-                            <option value="Kontainer">Kontainer</option>
                             <option value="Kodi">Kodi</option>
+                            <option value="Kontainer">Kontainer</option>
+                            <option value="Pasang">Pasang</option>
                             <option value="Pcs">Pcs</option>
+                            <option value="Ton">Ton</option>
                         </select>
                     </div>
                 </div>
