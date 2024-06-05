@@ -63,7 +63,7 @@ class TBmController extends Controller
                         $tb = DB::table('p_peserta_bm')
                         ->leftjoin('m_perusahaan','m_perusahaan.id','p_peserta_bm.id_perusahaan')
                         ->leftjoin('m_tipe_perusahaan','m_tipe_perusahaan.id','m_perusahaan.id_tipe')
-                        ->select('m_perusahaan.kode_perusahaan','m_perusahaan.nama_perusahaan','p_peserta_bm.id','m_tipe_perusahaan.nama_tipe')
+                        ->select(DB::raw('m_perusahaan.kode_perusahaan,m_perusahaan.nama_perusahaan,p_peserta_bm.id,IFNULL(m_tipe_perusahaan.nama_tipe, "") as nama_tipe'))
                         ->where('p_peserta_bm.id_bm', $row->id)
                         ->get();
                         return empty($tb) ? [] : json_decode($tb);

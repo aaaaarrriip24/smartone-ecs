@@ -86,7 +86,7 @@ class SelectController extends Controller
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
-        ->select('ta.*', 'tb.nama_tipe')
+        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
         ->orderBy('ta.nama_perusahaan', 'ASC')
         ->get();
 
@@ -94,7 +94,7 @@ class SelectController extends Controller
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
             ->whereNull('ta.deleted_at')
-            ->select('ta.*', 'tb.nama_tipe')
+            ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
             ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
             ->orderBy('ta.nama_perusahaan', 'ASC')
             ->get();

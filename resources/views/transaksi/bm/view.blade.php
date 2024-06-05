@@ -53,7 +53,7 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="pesertaBM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form method="post" action="{{ url('ppbm/store') }}" enctype="multipart/form-data">
                 @csrf
@@ -64,7 +64,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Perusahaan</label>
-                        <input type="text" name="id_bm" class="get_id_bm">
+                        <input hidden type="text" name="id_bm" class="get_id_bm">
                         <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
                             multiple="multiple"></select>
                     </div>
