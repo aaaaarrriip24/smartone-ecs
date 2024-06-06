@@ -90,7 +90,7 @@ class TKonsultasiController extends Controller
         }
 
         TKonsultasi::insert([
-            'kode_konsultasi' => $requset->kode_konsultasi,
+            'kode_konsultasi' => $request->kode_konsultasi,
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,
