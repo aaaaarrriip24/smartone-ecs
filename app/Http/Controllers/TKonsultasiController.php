@@ -67,10 +67,10 @@ class TKonsultasiController extends Controller
      */
     public function create()
     {
-        $get_kon = TKonsultasi::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        $get_kon = TKonsultasi::whereNull('deleted_at')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
         $last_kon = explode("-", $get_kon->kode_konsultasi); 
         $kode_kon = "KON-" . strval($last_kon[1] + 1) ;
-
+        // dd($kode_kon);
         return view('transaksi/konsultasi/add', compact('kode_kon'));
     }
 
