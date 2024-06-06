@@ -95,7 +95,8 @@ class SelectController extends Controller
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
             ->whereNull('ta.deleted_at')
             ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
-            ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
+            ->where('ta.nama_perusahaan', 'LIKE' , '%'. $request->term. '%')
+            ->orWhere('ta.kode_perusahaan', 'LIKE', '%'. $request->term. '%')
             ->orderBy('ta.nama_perusahaan', 'ASC')
             ->get();
         }
