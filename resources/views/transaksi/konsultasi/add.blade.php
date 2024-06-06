@@ -26,7 +26,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal Konsultasi</label>
-                        <input type="text" name="tanggal_konsultasi" class="form-control form-control-sm datepicker" required>
+                        <input type="text" name="tanggal_konsultasi" autocomplete="off" class="form-control form-control-sm datepicker"
+                            required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -46,36 +47,34 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Tempat Pertemuan</label>
-                        <input type="text" name="tempat_pertemuan" class="form-control form-control-sm"
-                            required>
+                        <input type="text" name="tempat_pertemuan" class="form-control form-control-sm" required>
                     </div>
                 </div>
+                
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Topik</label>
-                        <select name="id_topik" class="form-control form-control-sm select_topik"
-                            required></select>
+                        <label class="form-label mb-1 mt-2 labelInput">Foto</label>
+                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Petugas</label>
-                        <select name="id_petugas" class="form-control form-control-sm select_petugas"
-                            required></select>
+                        <select name="id_petugas" class="form-control form-control-sm select_petugas" required></select>
                     </div>
                 </div>
                 <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Topik</label>
+                        <select name="id_topik[]" class="form-control form-control-sm select_topik" multiple="multiple" required></select>
+                    </div>
+                </div>
+                <div class="col-12">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Saran dan Solusi yang Diberikan</label>
-                        <!-- <input type="text" name="isi_konsultasi" class="form-control form-control-sm"
-                            placeholder="John Doe" required> -->
-                        <textarea class="form-control" name="isi_konsultasi" placeholder="Saran dan Solusi yang Diberikan" id="floatingTextarea" rows="3" required></textarea>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Foto</label>
-                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm">
+                        <textarea id="summernote" class="form-control" name="isi_konsultasi"
+                            placeholder="Saran dan Solusi yang Diberikan" id="floatingTextarea" rows="3"
+                            required></textarea>
                     </div>
                 </div>
             </div>
@@ -91,13 +90,27 @@
 <script>
     $(document).ready(function () {
         // Select
+        $('#summernote').summernote({
+            placeholder: 'Saran dan Solusi yang Diberikan',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['view', ['help']]
+            ]
+        });
+
         $(".cara_konsultasi").select2({});
 
         $(".datepicker").datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
         });
-        
+
         $(".select_perusahaan").select2({
             placeholder: "Pilih Perusahaan",
             width: '100%',
@@ -110,7 +123,8 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
+                                text: item.nama_perusahaan.toUpperCase() + ', ' + item
+                                    .nama_tipe,
                             }
                         })
                     };

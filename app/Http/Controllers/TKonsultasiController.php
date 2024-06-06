@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TKonsultasi;
+use App\Models\TKonsultasiTopik;
 use Illuminate\Http\Request;
 use App\Models\Perusahaan;
 use App\Models\Petugas;
@@ -33,13 +34,15 @@ class TKonsultasiController extends Controller
             $data = DB::table('t_konsultasi as ta')
             ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
             ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
-            ->leftJoin('m_topik as tc', 'ta.id_topik', '=', 'tc.id')
+            ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
+            ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
             ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
             ->whereNull('td.deleted_at')
-            ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tb.kode_perusahaan', 'tc.nama_topik', 'td.nama_petugas' )
+            ->select('ta.*', 'tb.nama_perusahaan', DB::raw('IFNULL(te.nama_tipe, "") as nama_tipe'), 'tb.kode_perusahaan', DB::raw("GROUP_CONCAT( tc.nama_topik SEPARATOR ', ' ) AS nama_topik"), 'td.nama_petugas' )
+            ->groupBy('ta.id')
             ->get();
 
             return Datatables::of($data)
@@ -95,12 +98,22 @@ class TKonsultasiController extends Controller
             'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,
             'tempat_pertemuan' => $request->tempat_pertemuan,
-            'id_topik' => $request->id_topik,
             'isi_konsultasi' => $request->isi_konsultasi,
             'foto_pertemuan' => empty($name) ? '' : $name,
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
+
+        $id_konsultasi = DB::getPdo()->lastInsertId();
+        $topikArr = array();
+        foreach($request->id_topik as $key) {
+            $topikArr = $key;
+            TKonsultasiTopik::insert([
+                'id_konsultasi' => $id_konsultasi,
+                'id_topik' => $topikArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
         Alert::toast('Success Add Konsultasi!', 'success');
         return redirect()->route('tkonsultasi');
     }
@@ -116,7 +129,8 @@ class TKonsultasiController extends Controller
         $data = DB::table('t_konsultasi as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
         ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
-        ->leftJoin('m_topik as tc', 'ta.id_topik', '=', 'tc.id')
+        ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
+        ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
         ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
@@ -126,9 +140,19 @@ class TKonsultasiController extends Controller
         ->where('ta.id', $id)
         ->first();
 
+        $topik = DB::table('t_konsultasi as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
+        ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
+        ->select('tc.id', 'tc.nama_topik')
+        ->where('ta.id', $data->id)
+        ->get();
+
+        // dd($topik);
         $file = asset('foto_pertemuan/'.$data->foto_pertemuan);
         return view('transaksi/konsultasi/detail', [
             'data' => $data,
+            'topik' => $topik,
             'file' => $file,
             'status' => 200,
          ]);
@@ -139,7 +163,8 @@ class TKonsultasiController extends Controller
         $data = DB::table('t_konsultasi as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
         ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
-        ->leftJoin('m_topik as tc', 'ta.id_topik', '=', 'tc.id')
+        ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
+        ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
         ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
@@ -149,9 +174,18 @@ class TKonsultasiController extends Controller
         ->where('ta.id', $id)
         ->first();
 
+        $topik = DB::table('t_konsultasi as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
+        ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
+        ->select('tc.id', 'tc.nama_topik')
+        ->where('ta.id', $data->id)
+        ->get();
+
         $file = asset('foto_pertemuan/'.$data->foto_pertemuan);
         return view('transaksi/konsultasi/edit', [
             'data' => $data,
+            'topik' => $topik,
             'file' => $file,
             'status' => 200,
          ]);
@@ -190,12 +224,26 @@ class TKonsultasiController extends Controller
             'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,
             'tempat_pertemuan' => $request->tempat_pertemuan,
-            'id_topik' => $request->id_topik,
             'isi_konsultasi' => $request->isi_konsultasi,
             'foto_pertemuan' => (!empty($request->foto_pertemuan) ? $name : $request->foto_pertemuan_lama),
             'id_petugas' => $request->id_petugas,
             'updated_at' => Carbon::now(),
         ]);
+
+        $post = TKonsultasiTopik::where('id_konsultasi', $request->id);
+        $post->delete();
+
+        $id_konsultasi = $request->id;
+        $topikArr = array();
+        foreach($request->id_topik as $key) {
+            $topikArr = $key;
+            TKonsultasiTopik::insert([
+                'id_konsultasi' => $id_konsultasi,
+                'id_topik' => $topikArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
         Alert::toast('Success Edit Konsultasi!', 'success');
         return redirect()->route('tkonsultasi');
     }

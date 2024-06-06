@@ -64,7 +64,7 @@
             scrollCollapse: true,
             processing: true,
             serverSide: true,
-            displayLength: 5,
+            displayLength: 10,
             paginate: true,
             lengthChange: true,
             filter: true,
@@ -84,9 +84,15 @@
                     name: 'nama_perusahaan',
                     orderable: true,
                     render: function (data, type, row, meta) {
+                        var sep = "";
+                        if(row.nama_tipe == "") {
+                            sep = "";
+                        } else {
+                            sep = ", ";
+                        }
                         let text = row.nama_perusahaan;
                         let result = text.toUpperCase();
-                        return result + ", " + row.nama_tipe;
+                        return result + sep + row.nama_tipe;
                     }
                 },
                 {
@@ -112,7 +118,12 @@
                     name: 'isi_konsultasi',
                     orderable: true,
                     render: function(data, type, row, meta) {
-                        var str = row.isi_konsultasi;
+                        var html = row.isi_konsultasi;
+                        var div = document.createElement("div");
+                        div.innerHTML = html;
+                        var text = div.textContent || div.innerText || "";
+
+                        var str = text;
                         if(str.length > 30) str = str.substring(0,30);
                         return str;
                     }
