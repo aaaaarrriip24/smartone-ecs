@@ -85,16 +85,20 @@ class SelectController extends Controller
     public function selectperusahaan(Request $request) {
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+        ->leftJoin('m_k_produk as tc', 'ta.id_kategori_produk', '=', 'tc.id')
+        ->leftJoin('m_sub_kategori as td', 'ta.id_sub_kategori', '=', 'td.id')
+        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'), 'td.nama_sub_kategori')
         ->whereNull('ta.deleted_at')
-        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
         ->orderBy('ta.nama_perusahaan', 'ASC')
         ->get();
 
         if($request->term) {
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->leftJoin('m_k_produk as tc', 'ta.id_kategori_produk', '=', 'tc.id')
+            ->leftJoin('m_sub_kategori as td', 'ta.id_sub_kategori', '=', 'td.id')
+            ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'), 'td.nama_sub_kategori')
             ->whereNull('ta.deleted_at')
-            ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
             ->where('ta.nama_perusahaan', 'LIKE' , '%'. $request->term. '%')
             ->orWhere('ta.kode_perusahaan', 'LIKE', '%'. $request->term. '%')
             ->orderBy('ta.nama_perusahaan', 'ASC')

@@ -25,9 +25,21 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Detail Produk Utama</label>
+                        <input type="text" class="form-control form-control-sm detail_produk" disabled>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Sub Kategori Produk</label>
+                        <input type="text" class="form-control form-control-sm sub_produk" disabled>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal Konsultasi</label>
-                        <input type="text" name="tanggal_konsultasi" autocomplete="off" class="form-control form-control-sm datepicker"
-                            required>
+                        <input type="text" name="tanggal_konsultasi" autocomplete="off"
+                            class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -50,7 +62,7 @@
                         <input type="text" name="tempat_pertemuan" class="form-control form-control-sm" required>
                     </div>
                 </div>
-                
+
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto</label>
@@ -66,7 +78,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Topik</label>
-                        <select name="id_topik[]" class="form-control form-control-sm select_topik" multiple="multiple" required></select>
+                        <select name="id_topik[]" class="form-control form-control-sm select_topik" multiple="multiple"
+                            required></select>
                     </div>
                 </div>
                 <div class="col-12">
@@ -123,8 +136,11 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.kode_perusahaan + ", " + item.nama_perusahaan.toUpperCase() + ', ' + item
+                                text: item.kode_perusahaan + ", " + item.nama_perusahaan
+                                    .toUpperCase() + ', ' + item
                                     .nama_tipe,
+                                detail_produk_utama: item.detail_produk_utama,
+                                nama_sub_kategori: item.nama_sub_kategori,
                             }
                         })
                     };
@@ -132,6 +148,9 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
+            console.log(data);
+            $(".detail_produk").val(data.detail_produk_utama);
+            $(".sub_produk").val(data.nama_sub_kategori);
         });
 
         $(".select_topik").select2({

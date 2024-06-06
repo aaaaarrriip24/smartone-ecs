@@ -94,7 +94,7 @@
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Saran dan Solusi yang Diberikan</label>
                     <textarea id="summernote" class="form-control" name="isi_konsultasi"
-                        placeholder="Saran dan Solusi yang Diberikan" id="floatingTextarea" rows="3" required
+                        placeholder="Saran dan Solusi yang Diberikan" id="floatingTextarea" rows="3"
                         disabled>{{ $data->isi_konsultasi }}</textarea>
                 </div>
             </div>
