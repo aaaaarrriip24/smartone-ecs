@@ -88,7 +88,7 @@ class PerusahaanController extends Controller
      */
     public function create()
     {
-        $get_pt = DB::table('m_perusahaan')->orderBy('created_at', 'DESC')->first();
+        $get_pt = DB::table('m_perusahaan')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
         $last_pt = explode("-", $get_pt->kode_perusahaan); 
         $kode_pt = "PRS-" . strval($last_pt[1] + 1) ;
         // dd($kode_pt);
