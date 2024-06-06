@@ -54,7 +54,7 @@
                     @if(!empty($data->foto_pertemuan))
                     <a href="{{ asset('foto_pertemuan/'.$data->foto_pertemuan ) }}" class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
                     @else
-                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" target="_blank">Foto Masih Kosong</a>
+                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih Kosong</a>
                     @endif
                 </div>
             </div>
