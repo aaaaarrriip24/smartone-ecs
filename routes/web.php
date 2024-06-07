@@ -162,7 +162,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('p_inquiry/add', [PPInquiryController::class, 'create']);
         Route::get('p_inquiry/detail/{id}', [PPInquiryController::class, 'detail']);
         Route::post('p_inquiry/store', [PPInquiryController::class, 'store']);
-        Route::get('p_inquiry/show/{id}', [PPInquiryController::class, 'show']);
+        Route::get('p_inquiry/show', [PPInquiryController::class, 'show']);
         Route::post('p_inquiry/update', [PPInquiryController::class, 'update']);
         Route::get('p_inquiry/destroy/{id}', [PPInquiryController::class, 'destroy']);
 

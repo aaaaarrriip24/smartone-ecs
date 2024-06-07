@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tinquiry;
+use App\Models\PPInquiry;
 use Illuminate\Http\Request;
 use App\Models\Perusahaan;
 use App\Models\Petugas;
@@ -57,7 +58,16 @@ class TinquiryController extends Controller
                                     </div>';
                         return $button;
                     })
-                    ->rawColumns(['action'])
+                    ->addColumn('penerima_inquiry', function($row){
+                        $tq = DB::table('p_penerima_inquiry as ta')
+                        ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
+                        ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
+                        ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
+                        ->where('ta.id', $row->id)
+                        ->get();
+                        return empty($tq) ? [] : json_decode($tq);
+                    })
+                    ->rawColumns(['action', 'penerima_inquiry'])
                     ->make(true);
         }
         return view('transaksi/tinquiry/view');
@@ -70,9 +80,9 @@ class TinquiryController extends Controller
      */
     public function create()
     {
-        $get_inq = DB::table('t_profile_inquiry')->get();
-        $count_inq = $get_inq->count();
-        $kode_inq = "INQ-" . strval($count_inq + 1) ;
+        $get_inq = Tinquiry::orderBy('kode_inquiry', 'DESC')->first();
+        $count_inq = explode("INQ-", $get_inq->kode_inquiry);
+        $kode_inq = "INQ-" . strval($count_inq[1] + 1) ;
 
         return view('transaksi/tinquiry/add', compact('kode_inq'));
     }
@@ -85,8 +95,8 @@ class TinquiryController extends Controller
      */
     public function store(Request $request)
     {
-        if(!empty($request->file('attached_dokumen'))) {
-            $file = $request->file('attached_dokumen');
+        if(!empty($request->file('file'))) {
+            $file = $request->file('file');
             $nama_file = time()."_".$file->getClientOriginalName();
             $file->move(public_path().'/attached_dokumen/', $nama_file);
             $name = $nama_file;
@@ -103,9 +113,28 @@ class TinquiryController extends Controller
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
-            'attached_dokumen' => empty($request->attached_dokumen) ? '': $name,
+            'attached_dokumen' => empty($request->file) ? '': $name,
             'created_at' => Carbon::now(),
         ]);
+
+        $id_inquiry = DB::getPdo()->lastInsertId();
+        
+        $perusahaanArr = array();
+        foreach($request->id_perusahaan as $key) {
+            
+            $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
+            $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
+            $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
+            
+            $perusahaanArr = $key;
+            PPInquiry::insert([
+                'kode_rec_inquiry' => $kode_rec,
+                'id_inquiry' => $id_inquiry,
+                'id_perusahaan' => $perusahaanArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
         Alert::toast('Success Add Inquiry!', 'success');
         return redirect()->route('tinquiry');
     }
@@ -126,8 +155,15 @@ class TinquiryController extends Controller
         ->where('ta.id', $id)
         ->first();
 
+        $peserta = DB::table('p_penerima_inquiry as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->where('ta.id_inquiry', $id)
+        ->whereNull('ta.deleted_at')
+        ->get();
+        
         return view('transaksi/tinquiry/detail', [
             'data' => $data,
+            'peserta' => $peserta,
             'status' => 200,
          ]);
     }
@@ -142,8 +178,15 @@ class TinquiryController extends Controller
         ->where('ta.id', $id)
         ->first();
 
+        $peserta = DB::table('p_penerima_inquiry as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->where('ta.id_inquiry', $id)
+        ->whereNull('ta.deleted_at')
+        ->get();
+
         return view('transaksi/tinquiry/edit', [
             'data' => $data,
+            'peserta' => $peserta,
             'status' => 200,
          ]);
     }
@@ -168,9 +211,16 @@ class TinquiryController extends Controller
      */
     public function update(Request $request)
     {
+        if(!empty($request->file('file'))) {
+            $file = $request->file('file');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $file->move(public_path().'/attached_dokumen/', $nama_file);
+            $name = $nama_file;
+        }
+
         Tinquiry::where('id', $request->id)->update([
             'kode_inquiry' => $request->kode_inquiry,
-            'tanggal_inquiry' => $request->tanggal_inquiry,
+            'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
             'produk_yang_diminta' => $request->produk_yang_diminta,
             'qty' => $request->qty,
             'satuan_qty' => $request->satuan_qty,
@@ -179,8 +229,29 @@ class TinquiryController extends Controller
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
+            'attached_dokumen' => (!empty($request->file) ? $name : $request->file_lama),
             'updated_at' => Carbon::now(),
         ]);
+
+        $id_inquiry = $request->id;
+        $post = PPInquiry::where('id_inquiry', $id_inquiry)->delete();
+        
+        $perusahaanArr = array();
+        foreach($request->id_perusahaan as $key) {
+            
+            $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
+            $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
+            $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
+            
+            $perusahaanArr = $key;
+            PPInquiry::insert([
+                'kode_rec_inquiry' => $kode_rec,
+                'id_inquiry' => $id_inquiry,
+                'id_perusahaan' => $perusahaanArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
         Alert::toast('Success Edit Inquiry!', 'success');
         return redirect()->route('tinquiry');
     }
@@ -193,8 +264,8 @@ class TinquiryController extends Controller
      */
     public function destroy($id)
     {
-        $post = Tinquiry::find($id);
-        $post->delete();
+        $post = Tinquiry::find($id)->delete();
+        $post2 = PPInquiry::where('id_inquiry', $id)->delete();
         return response()->json([
             "status"=>200, 
         ]);

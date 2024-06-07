@@ -76,13 +76,27 @@ class PPInquiryController extends Controller
      */
     public function store(Request $request)
     {
-        PPInquiry::insert([
-            'id_inquiry' => $request->id_inquiry,
-            'id_perusahaan' => $request->id_perusahaan,
-            'created_at' => Carbon::now(),
-        ]);
+        $id_inquiry = $request->id_inquiry;
+
+        $post = PPInquiry::where('id_inquiry', $id_inquiry)->delete();
+
+        $perusahaanArr = array();
+        foreach($request->id_perusahaan as $key) {
+            
+            $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
+            $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
+            $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
+            
+            $perusahaanArr = $key;
+            PPInquiry::insert([
+                'kode_rec_inquiry' => $kode_rec,
+                'id_inquiry' => $id_inquiry,
+                'id_perusahaan' => $perusahaanArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
         Alert::toast('Success Add Penerima Inquiry!', 'success');
-        return redirect()->route('p_inquiry');
+        return redirect()->route('tinquiry');
     }
 
     /**
@@ -109,22 +123,33 @@ class PPInquiryController extends Controller
          ]);
     }
 
-    public function show($id)
+    public function show(Request $request)
     {
         $data = DB::table('p_penerima_inquiry as ta')
         ->leftJoin('t_profile_inquiry as tb', 'ta.id_inquiry', '=', 'tb.id')
         ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tc.id_tipe', '=', 'td.id')
         ->whereNull('ta.deleted_at')
+        ->whereNotNull('ta.id_perusahaan')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->select('ta.*', 'tb.kode_inquiry', 'tc.kode_perusahaan')
-        ->where('ta.id', $id)
-        ->first();
+        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
+        ->get();
 
-        return view('pp/penerima_inquiry/edit', [
-            'data' => $data,
-            'status' => 200,
-         ]);
+        if($request->term) {
+            $data = DB::table('p_penerima_inquiry as ta')
+            ->leftJoin('t_profile_inquiry as tb', 'ta.id_inquiry', '=', 'tb.id')
+            ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
+            ->leftJoin('m_tipe_perusahaan as td', 'tc.id_tipe', '=', 'td.id')
+            ->whereNull('ta.deleted_at')
+            ->whereNotNull('ta.id_perusahaan')
+            ->whereNull('tb.deleted_at')
+            ->whereNull('tc.deleted_at')
+            ->select(DB::raw('IFNULL(td.nama_tipe, "") as nama_tipe, ta.*, tb.kode_inquiry, tc.kode_perusahaan'))
+            ->where('tc.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+        return $data;
     }
 
     /**

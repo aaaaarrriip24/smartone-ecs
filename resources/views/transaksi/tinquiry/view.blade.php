@@ -65,7 +65,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Perusahaan</label>
-                        <input hidden type="text" name="id_bm" class="get_id_bm" value="">
+                        <input hidden type="text" name="id_inquiry" class="get_id_inquiry" value="">
                         <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
                             multiple="multiple"></select>
                     </div>
@@ -91,7 +91,7 @@
             scrollCollapse: true,
             processing: true,
             serverSide: true,
-            displayLength: 5,
+            displayLength: 15,
             paginate: true,
             lengthChange: true,
             filter: true,
@@ -125,7 +125,16 @@
                     className: 'text-end',
                     orderable: true,
                     render: function(data, type, row) {
-                        return row.qty + ' ' + row.satuan_qty;
+                        var qty, satuan_qty;
+                        qty = row.qty;
+                        satuan_qty = row.satuan_qty;
+                        if(qty == null) {
+                            qty = "";
+                        }
+                        if(satuan_qty == null) {
+                            satuan_qty = "";
+                        }
+                        return qty + ' ' + satuan_qty;
                     }
                 },
                 {
@@ -146,6 +155,48 @@
                     width: '10%'
                 },
             ]
+        });
+
+        $(document).on("click", ".btn-penerima", function () {
+            let data = table.row($(this).closest('tr')).data();
+            let penerima = data.penerima_inquiry;
+            $('.select_perusahaan').empty();
+            for (let index = 0; index < penerima.length; index++) {
+                const element = penerima[index];
+                $('.select_perusahaan').append(`<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`)                
+               
+            }
+            $('#penerimaInquiry').modal('show');
+
+            console.log(data);
+            $(".get_id_inquiry").val(data.id);
+        })
+
+        $(".select_perusahaan").select2({
+            placeholder: "Pilih Perusahaan",
+            dropdownParent: $('#penerimaInquiry'),
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'p_inquiry/show',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_inquiry = $('.get_id_inquiry').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nama_perusahaan + ', ' + item.nama_tipe,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
         });
 
         $(document).on('click', '.btn-delete', function () {

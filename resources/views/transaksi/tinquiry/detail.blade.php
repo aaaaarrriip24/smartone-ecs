@@ -10,25 +10,29 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Kode BM</label>
-                        <input type="text" name="kode_inquiry" class="form-control form-control-sm" value="{{ $data->kode_inquiry }}" disabled>
+                        <input type="text" name="kode_inquiry" class="form-control form-control-sm"
+                            value="{{ $data->kode_inquiry }}" disabled>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
-                        <input type="date" name="tanggal_inquiry" class="form-control form-control-sm" value="{{ $data->tanggal_inquiry }}" disabled>
+                        <input type="date" name="tanggal_inquiry" class="form-control form-control-sm"
+                            value="{{ $data->tanggal_inquiry }}" disabled>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Produk Yang Diminta</label>
-                        <input type="text" name="produk_yang_diminta" class="form-control form-control-sm" value="{{ $data->produk_yang_diminta }}" disabled>
+                        <input type="text" name="produk_yang_diminta" class="form-control form-control-sm"
+                            value="{{ $data->produk_yang_diminta }}" disabled>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Quantity</label>
-                        <input type="text" name="qty" class="form-control form-control-sm" value="{{ $data->qty }}" disabled>
+                        <input type="text" name="qty" class="form-control form-control-sm" value="{{ $data->qty }}"
+                            disabled>
                     </div>
                 </div>
                 <div class="col-3">
@@ -48,7 +52,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Negara Buyer</label>
-                        <select name="id_negara_asal_inquiry" class="form-control form-control-sm select_negara" disabled>
+                        <select name="id_negara_asal_inquiry" class="form-control form-control-sm select_negara"
+                            disabled>
                             <option value="{{ $data->id_negara_asal_inquiry }}">{{ $data->en_short_name }}</option>
                         </select>
                     </div>
@@ -70,19 +75,46 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Nama Buyer</label>
-                        <input type="text" name="nama_buyer" class="form-control form-control-sm" value="{{ $data->nama_buyer }}" disabled>
+                        <input type="text" name="nama_buyer" class="form-control form-control-sm"
+                            value="{{ $data->nama_buyer }}" disabled>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Email Buyer</label>
-                        <input type="email" name="email_buyer" class="form-control form-control-sm" value="{{ $data->email_buyer }}" disabled>
+                        <input type="email" name="email_buyer" class="form-control form-control-sm"
+                            value="{{ $data->email_buyer }}" disabled>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
-                        <input type="text" name="telp_buyer" class="form-control form-control-sm" value="{{ $data->telp_buyer }}" disabled>
+                        <input type="text" name="telp_buyer" class="form-control form-control-sm"
+                            value="{{ $data->telp_buyer }}" disabled>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Peserta Business Matching</label>
+                        <select name="id_perusahaan[]"
+                            class="form-control form-control-sm form-select select_perusahaan" required
+                            multiple="multiple" disabled>
+                            @foreach( $peserta as $p )
+                            <option value="{{ $p->id }}" selected disabled>{{ $p->nama_perusahaan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group mb-2">
+                        <label class="form-label mb-1 mt-2 labelInput">Attached Dokumen</label>
+                        @if(!empty($data->attached_dokumen))
+                        <a href="{{ asset('attached_dokumen/'.$data->attached_dokumen ) }}" class="form-control btn btn-sm btn-primary"
+                            target="_blank">Lihat Dokumen</a>
+                        @else
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Dokumen Masih
+                            Kosong</a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -92,4 +124,11 @@
         </div>
     </form>
 </div>
+@endsection
+
+@section('js')
+<script>
+    $(".select_perusahaan").select2({});
+
+</script>
 @endsection

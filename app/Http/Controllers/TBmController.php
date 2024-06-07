@@ -38,6 +38,7 @@ class TBmController extends Controller
             ->whereNull('tb.deleted_at')
             ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan"))
             ->groupBy('tc.id_bm')
+            ->orderBy('ta.tanggal_bm')
             ->get();
             
             return Datatables::of($data)
@@ -82,7 +83,7 @@ class TBmController extends Controller
      */
     public function create()
     {
-        $get_bm = DB::table('t_bm')->orderBy('kode_bm', 'DESC')->first();
+        $get_bm = TBm::orderBy('kode_bm', 'DESC')->first();
         $count_bm = explode("BM-", $get_bm->kode_bm);
         $kode_bm = "BM-" . strval($count_bm[1] + 1) ;
         
@@ -122,14 +123,16 @@ class TBmController extends Controller
         ]);
 
         $id_bm = DB::getPdo()->lastInsertId();
-        $perusahaanArr = array();
-        foreach($request->id_perusahaan as $key) {
-            $perusahaanArr = $key;
-            PPBm::insert([
-                'id_bm' => $id_bm,
-                'id_perusahaan' => $perusahaanArr,
-                'created_at' => Carbon::now(),
-            ]);
+        if(!empty($request->id_perusahaan)) {
+            $perusahaanArr = array();
+            foreach($request->id_perusahaan as $key) {
+                $perusahaanArr = $key;
+                PPBm::insert([
+                    'id_bm' => $id_bm,
+                    'id_perusahaan' => $perusahaanArr,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
         }
 
         Alert::toast('Success Add Business Matching!', 'success');
@@ -259,8 +262,8 @@ class TBmController extends Controller
      */
     public function destroy($id)
     {
-        $post = TBm::find($id);
-        $post->delete();
+        $post = TBm::find($id)->delete();
+        $post2 = PPBm::where('id_bm', $id)->delete();
         return response()->json([
             "status"=>200, 
         ]);

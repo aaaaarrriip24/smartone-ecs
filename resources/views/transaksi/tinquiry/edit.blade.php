@@ -7,6 +7,8 @@
         @csrf
         <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $data->id }}"
             required="required">
+        <input hidden type="text" name="file_lama" class="form-control form-control-sm" value="{{ $data->attached_dokumen }}"
+            required="required">
         <div class="card-body">
             <div class="row">
                 <div class="col-3">
@@ -19,7 +21,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal Inquiry</label>
-                        <input type="date" name="tanggal_inquiry" class="form-control form-control-sm" value="{{ $data->tanggal_inquiry }}" required="required">
+                        <input type="text" name="tanggal_inquiry" class="form-control form-control-sm datepicker" value="{{ date('d-m-Y', strtotime($data->tanggal_inquiry)) }}" required="required">
                     </div>
                 </div>
                 <div class="col-3">
@@ -37,7 +39,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Satuan Quantity</label>
-                        <select name="satuan_qty" class="form-control form-control-sm" required="required">
+                        <select name="satuan_qty" class="form-control form-control-sm select_satuan" required="required">
                             <option value="{{ $data->satuan_qty }}" selected>{{ $data->satuan_qty }}</option>
                             <option value="KG">KG</option>
                             <option value="Ton">Ton</option>
@@ -59,7 +61,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Nama Buyer</label>
-                        <select name="pihak_buyer" class="form-control form-control-sm" required="required">
+                        <select name="pihak_buyer" class="form-control form-control-sm select_pihak" required="required">
                             <option value="{{ $data->pihak_buyer }}" selected>{{ $data->pihak_buyer }}</option>
                             <option value="Buyer">Buyer</option>
                             <option value="Perwadag">Perwadag</option>
@@ -88,10 +90,34 @@
                         <input type="number" name="telp_buyer" class="form-control form-control-sm" value="{{ $data->telp_buyer }}" required="required">
                     </div>
                 </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Peserta Business Matching</label>
+                        <select name="id_perusahaan[]"
+                            class="form-control form-control-sm form-select select_perusahaan" required
+                            multiple="multiple">
+                            @foreach( $peserta as $p )
+                            <option value="{{ $p->id }}" selected>{{ $p->nama_perusahaan }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group mb-2">
+                        <label class="form-label mb-1 mt-2 labelInput">Attached Dokumen</label>
+                        @if(!empty($data->attached_dokumen))
+                        <a href="{{ asset('attached_dokumen/'.$data->attached_dokumen ) }}" class="form-control btn btn-sm btn-primary"
+                            target="_blank">Lihat Dokumen</a>
+                        @else
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Dokumen Masih
+                            Kosong</a>
+                        @endif
+                    </div>
+                </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Attached Dokumen</label>
-                        <input type="file" name="attached_dokumen" class="form-control form-control-sm">
+                        <input type="file" name="file" class="form-control form-control-sm">
                     </div>
                 </div>
             </div>
@@ -112,6 +138,10 @@
             autoclose: true,
         });
 
+        $(".select_satuan").select2({});
+        $(".select_pihak").select2({});
+
+
         $(".select_negara").select2({
             placeholder: "Pilih Negara Asal",
             width: '100%',
@@ -125,6 +155,33 @@
                             return {
                                 id: item.id,
                                 text: item.en_short_name,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
+        $(".select_perusahaan").select2({
+            placeholder: "Pilih Perusahaan",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'ppbm/show',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_bm = $('.get_id_bm').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.kode_perusahaan + ', ' + item.nama_perusahaan +
+                                    ', ' + item.nama_tipe,
                             }
                         })
                     };

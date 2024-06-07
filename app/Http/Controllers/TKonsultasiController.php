@@ -256,8 +256,9 @@ class TKonsultasiController extends Controller
      */
     public function destroy($id)
     {
-        $post = TKonsultasi::find($id);
-        $post->delete();
+        $post = TKonsultasi::find($id)->delete();
+        $post2 = TKonsultasiTopik::where('id_konsultasi', $id)->delete();
+
         return response()->json([
             "status"=>200, 
         ]);
