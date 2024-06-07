@@ -96,13 +96,14 @@ class HomeController extends Controller
     public function section3()
     {
         $data = DB::table('t_konsultasi as ta')
-        ->leftJoin('m_topik as tb', 'ta.id_topik', '=', 'tb.id')
+        ->leftJoin('t_konsultasi_topik as td', 'ta.id', '=', 'td.id_konsultasi')
+        ->leftJoin('m_topik as tb', 'td.id_topik', '=', 'tb.id')
         ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
-        ->select(\DB::raw('count(ta.id_topik) as total, tb.nama_topik'))
+        ->select(\DB::raw('count(td.id_topik) as total, tb.nama_topik'))
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->groupBy('ta.id_topik')
+        ->groupBy('td.id_topik')
         ->get();
 
      
