@@ -50,23 +50,23 @@ class TinquiryController extends Controller
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a data-id='.$urlPenerima.' class="dropdown-item btn-penerima" data-bs-toggle="modal" data-bs-target="#penerimaInquiry">Penerima</a></li>
-                                            <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
-                                            <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
-                                            <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
+                                        <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
+                                        <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
+                                        <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
                                         </ul>
-                                    </div>';
-                        return $button;
-                    })
-                    ->addColumn('penerima_inquiry', function($row){
-                        $tq = DB::table('p_penerima_inquiry as ta')
-                        ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
-                        ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
-                        ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
-                        ->where('ta.id', $row->id)
-                        ->get();
-                        return empty($tq) ? [] : json_decode($tq);
-                    })
+                                        </div>';
+                                        return $button;
+                                        // <li><a data-id='.$urlPenerima.' class="dropdown-item btn-penerima" data-bs-toggle="modal" data-bs-target="#penerimaInquiry">Penerima</a></li>
+                                    })
+                    // ->addColumn('penerima_inquiry', function($row){
+                    //     $tq = DB::table('p_penerima_inquiry as ta')
+                    //     ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
+                    //     ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
+                    //     ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
+                    //     ->where('ta.id', $row->id)
+                    //     ->get();
+                    //     return empty($tq) ? [] : json_decode($tq);
+                    // })
                     ->rawColumns(['action', 'penerima_inquiry'])
                     ->make(true);
         }

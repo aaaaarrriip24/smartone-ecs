@@ -95,7 +95,7 @@
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Peserta Business Matching</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Perusahaan Penerima Inquiry</label>
                         <select name="id_perusahaan[]"
                             class="form-control form-control-sm form-select select_perusahaan" required
                             multiple="multiple" disabled>
