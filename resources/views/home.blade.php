@@ -8,14 +8,19 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
                 <div class="card-body">
                     <div class="row">
+                        <!-- Template -->
                         <div class="col-md-12">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="background-color: rgb(255, 99, 132);">Perusahaan Terdaftar</th>
-                                        <th scope="col" style="background-color: rgb(255, 159, 64);">Layanan Terselesaikan</th>
-                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Realisasi Export (USD)</th>
-                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Business Matching</th>
+                                        <th scope="col" style="background-color: rgb(255, 99, 132);">Perusahaan
+                                            Terdaftar</th>
+                                        <th scope="col" style="background-color: rgb(255, 159, 64);">Layanan
+                                            Terselesaikan</th>
+                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Realisasi Export
+                                            (USD)</th>
+                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Business Matching
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -31,8 +36,22 @@
                         <div class="col-md-6">
                             <canvas id="chart_layanan_konsultasi" style="width: 900px; height: 500px"></canvas>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <canvas id="chart_topik" style="width: 900px; height: 500px"></canvas>
+                        </div> -->
+                        <div class="col-md-6">
+                            <table id="dt_topik" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="background-color: rgb(255, 99, 132);">No.
+                                        </th>
+                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Topik Konsultasi
+                                        </th>
+                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Data Konsultasi
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -135,6 +154,51 @@
             },
 
         });
+    });
+
+</script>
+<script>
+    let table;
+    $(document).ready(function () {
+        table = $('#dt_topik').DataTable({
+            autoWidth: false,
+            responsive: false,
+            scrollCollapse: true,
+            processing: true,
+            serverSide: true,
+            displayLength: 5,
+            paginate: true,
+            lengthChange: true,
+            filter: true,
+            sort: true,
+            info: true,
+            searching: false, 
+            ajax: base_url + "data_topik",
+            columns: [
+                {
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
+                    className: 'text-center',
+                    width: '5%'
+                },
+                {
+                    data: 'nama_topik',
+                    name: 'nama_topik',
+                    orderable: true,
+                },
+                {
+                    data: 'total',
+                    name: 'total',
+                    orderable: false,
+                    searchable: false,
+                    width: '10%'
+                },
+            ]
+        });
+
+        $(".dt-length").addClass("d-none");
     });
 
 </script>

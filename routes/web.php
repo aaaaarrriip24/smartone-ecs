@@ -43,6 +43,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     // Route Admin
     Route::group(['middleware' => 'admin'],function() {
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('data_topik', [HomeController::class, 'data_topik']);
         Route::get('section1', [HomeController::class, 'section1']);
         Route::get('section2', [HomeController::class, 'section2']);
         Route::get('section3', [HomeController::class, 'section3']);

@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use Auth;
 use DB;
 use Alert;
+use DataTables;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function index() {
+    public function index(Request $request) {
         if(Auth::check()) {
             if(Auth::user()->roleuser == "Admin") {
                 $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
@@ -43,9 +44,20 @@ class HomeController extends Controller
                 ->whereNull('tb.deleted_at')
                 ->count();
                 
-                // $export = Texport::select(\DB::raw('sum(nilai_transaksi) as total'))
-                // ->whereNull('deleted_at')
-                // ->first();
+                $topik = DB::table('t_konsultasi as ta')
+                ->leftJoin('t_konsultasi_topik as td', 'ta.id', '=', 'td.id_konsultasi')
+                ->leftJoin('m_topik as tb', 'td.id_topik', '=', 'tb.id')
+                ->select(\DB::raw('count(td.id_topik) as total, tb.nama_topik'))
+                ->whereNull('tb.deleted_at')
+                ->groupBy('tb.id')
+                ->get();
+
+                if ($request->ajax()) {
+                    return Datatables::of($topik)
+                    ->addIndexColumn()
+                    ->make(true);
+                }
+
                 $export = DB::table('t_p_export as ta')
                 ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
                 ->select(\DB::raw('sum(ta.nilai_transaksi) as total'))
@@ -63,6 +75,26 @@ class HomeController extends Controller
         return redirect('/'); 
         
     }
+
+    public function data_topik(Request $request) {
+
+        $topik = DB::table('t_konsultasi as ta')
+        ->leftJoin('t_konsultasi_topik as td', 'ta.id', '=', 'td.id_konsultasi')
+        ->leftJoin('m_topik as tb', 'td.id_topik', '=', 'tb.id')
+        ->select(\DB::raw('count(td.id_topik) as total, IFNULL(tb.nama_topik, "Belum Memilih Topik") as nama_topik'))
+        ->whereNull('tb.deleted_at')
+        ->groupBy('tb.id')
+        ->get();
+
+        // return DataTables::of($topik)->toJson();
+        // $query = DB::table('users');
+        
+        if ($request->ajax()) {
+            return DataTables::of($topik)->addIndexColumn()->toJson();
+        }
+
+    }
+
     public function section2()
     {
         // $data = TKonsultasi::select(\DB::raw('count(*) as total, MONTH(tanggal_konsultasi) as month'))
