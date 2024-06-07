@@ -73,7 +73,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
-                    <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea" rows="4"
+                    <textarea class="form-control" name="catatan" placeholder="Catatan" id="summernote" rows="4"
                         disabled>{{ $data->catatan }}</textarea>
                 </div>
             </div>
@@ -82,16 +82,19 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
-                            <input type="number" name="telp_buyer" class="form-control form-control-sm" value="{{ $data->telp_buyer }}" disabled>
+                            <input type="number" name="telp_buyer" class="form-control form-control-sm"
+                                value="{{ $data->telp_buyer }}" disabled>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group mb-2">
                             <label class="form-label mb-1 mt-2 labelInput">Foto Business Matching</label>
                             @if(!empty($data->foto_bm))
-                            <a href="{{ asset('foto_bm/'.$data->foto_bm ) }}" class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                            <a href="{{ asset('foto_bm/'.$data->foto_bm ) }}"
+                                class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
                             @else
-                            <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih Kosong</a>
+                            <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto
+                                Masih Kosong</a>
                             @endif
                         </div>
                     </div>
@@ -123,5 +126,7 @@
     });
 
     $(".select_perusahaan").select2({});
+
+    $('#summernote').summernote('disable');
 </script>
 @endsection
