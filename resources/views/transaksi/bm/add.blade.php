@@ -79,7 +79,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
-                        <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea"
+                        <textarea class="form-control" name="catatan" placeholder="Catatan" id="summernote"
                             rows="4"></textarea>
                         <!-- <input type="text" name="catatan" class="form-control form-control-sm"> -->
                     </div>
@@ -119,6 +119,20 @@
 <script>
     $(document).ready(function () {
         // Select
+        $('#summernote').summernote({
+            placeholder: 'Saran dan Solusi yang Diberikan',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['view', ['help']]
+            ]
+        });
+
         $(".datepicker").datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
