@@ -73,25 +73,40 @@
             <div class="col-6">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
-                    <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea"
-                        rows="3" disabled>{{ $data->catatan }}</textarea>
-                    <!-- <input type="text" name="catatan" class="form-control form-control-sm"
-                            value="{{ $data->catatan }}"> -->
+                    <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea" rows="4"
+                        disabled>{{ $data->catatan }}</textarea>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
-                    <input type="number" name="telp_buyer" class="form-control form-control-sm"
-                        value="{{ $data->telp_buyer }}" disabled>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="card mt-4" style="max-width: 18rem;">
-                    <div class="card-header">
-                        <h5 class="card-title labelInput">Foto BM</h5>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
+                            <input type="number" name="telp_buyer" class="form-control form-control-sm" value="{{ $data->telp_buyer }}" disabled>
+                        </div>
                     </div>
-                    <img src="{{ $file }}" class="card-img-bottom" alt="..." style="max-width: 540px;">
+                    <div class="col-6">
+                        <div class="form-group mb-2">
+                            <label class="form-label mb-1 mt-2 labelInput">Foto Business Matching</label>
+                            @if(!empty($data->foto_bm))
+                            <a href="{{ asset('foto_bm/'.$data->foto_bm ) }}" class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                            @else
+                            <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih Kosong</a>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label class="form-label mb-1 labelInput">Peserta Business Matching</label>
+                            <select name="id_perusahaan[]"
+                                class="form-control form-control-sm form-select select_perusahaan" required
+                                multiple="multiple" disabled>
+                                @foreach( $peserta as $p )
+                                <option value="{{ $p->id }}" selected disabled>{{ $p->nama_perusahaan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,5 +121,7 @@
     $(".datepicker").datepicker({
         format: 'dd-mm-yyyy'
     });
+
+    $(".select_perusahaan").select2({});
 </script>
 @endsection

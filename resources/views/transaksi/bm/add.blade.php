@@ -10,26 +10,31 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Kode BM</label>
-                        <input type="text" name="kode_bm" class="form-control form-control-sm" value="{{ $kode_bm }}" required disabled>
-                        <input hidden type="text" name="kode_bm" class="form-control form-control-sm" value="{{ $kode_bm }}" required>
+                        <input type="text" name="kode_bm" class="form-control form-control-sm" value="{{ $kode_bm }}"
+                            required disabled>
+                        <input hidden type="text" name="kode_bm" class="form-control form-control-sm"
+                            value="{{ $kode_bm }}" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal BM</label>
-                        <input type="text" name="tanggal_bm" autocomplete="off" class="form-control form-control-sm datepicker" required>
+                        <input type="text" name="tanggal_bm" autocomplete="off"
+                            class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Negara Buyer</label>
-                        <select name="id_negara_buyer" class="form-control form-control-sm select_negara" required></select>
+                        <select name="id_negara_buyer" class="form-control form-control-sm select_negara"
+                            required></select>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Nama Buyer</label>
-                        <input type="text" name="nama_buyer" class="form-control form-control-sm" placeholder="John Doe" required>
+                        <input type="text" name="nama_buyer" class="form-control form-control-sm" placeholder="John Doe"
+                            required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -67,26 +72,39 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Email Buyer</label>
-                        <input type="email" name="email_buyer" class="form-control form-control-sm" placeholder="john@email.com">
+                        <input type="email" name="email_buyer" class="form-control form-control-sm"
+                            placeholder="john@email.com">
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
-                        <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea" rows="3"></textarea>
+                        <textarea class="form-control" name="catatan" placeholder="Catatan" id="floatingTextarea"
+                            rows="4"></textarea>
                         <!-- <input type="text" name="catatan" class="form-control form-control-sm"> -->
                     </div>
                 </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
-                        <input type="number" name="telp_buyer" class="form-control form-control-sm">
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Foto</label>
-                        <input type="file" name="foto_bm" class="form-control form-control-sm">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
+                                <input type="number" name="telp_buyer" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Foto</label>
+                                <input type="file" name="foto_bm" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="form-label mb-1 labelInput">Peserta Business Matching</label>
+                                <select name="id_perusahaan[]" class="form-control form-control-sm form-select select_perusahaan"
+                                    required multiple="multiple"></select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,6 +141,32 @@
                             return {
                                 id: item.id,
                                 text: item.en_short_name,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
+        $(".select_perusahaan").select2({
+            placeholder: "Pilih Perusahaan",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'ppbm/show',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_bm = $('.get_id_bm').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.kode_perusahaan + ', ' + item.nama_perusahaan + ', ' + item.nama_tipe,
                             }
                         })
                     };

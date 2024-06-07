@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TBm;
+use App\Models\PPBm;
 use Illuminate\Http\Request;
 use App\Models\Perusahaan;
 use App\Models\Petugas;
@@ -81,10 +82,11 @@ class TBmController extends Controller
      */
     public function create()
     {
-        $get_bm = DB::table('t_bm')->get();
-        $count_bm = $get_bm->count();
-        $kode_bm = "BM-" . strval($count_bm + 1) ;
-
+        $get_bm = DB::table('t_bm')->orderBy('kode_bm', 'DESC')->first();
+        $count_bm = explode("BM-", $get_bm->kode_bm);
+        $kode_bm = "BM-" . strval($count_bm[1] + 1) ;
+        
+        // dd($kode_bm);
         return view('transaksi/bm/add', compact('kode_bm'));
     }
 
@@ -104,12 +106,8 @@ class TBmController extends Controller
             $name = $nama_file;
         }
 
-        $get_bm = TBm::whereNull('deleted_at')->get();
-        $count_bm = $get_bm->count();
-        $kode_bm = "BM-" . strval($count_bm + 1) ;
-
         TBm::insert([
-            'kode_bm' => $kode_bm,
+            'kode_bm' => $request->kode_bm,
             'tanggal_bm' => date('Y-m-d', strtotime($request->tanggal_bm)),
             'produk_bm' => $request->produk_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,
@@ -122,6 +120,18 @@ class TBmController extends Controller
             'foto_bm' => empty($name) ? '' : $name,
             'created_at' => Carbon::now(),
         ]);
+
+        $id_bm = DB::getPdo()->lastInsertId();
+        $perusahaanArr = array();
+        foreach($request->id_perusahaan as $key) {
+            $perusahaanArr = $key;
+            PPBm::insert([
+                'id_bm' => $id_bm,
+                'id_perusahaan' => $perusahaanArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
         Alert::toast('Success Add Business Matching!', 'success');
         return redirect()->route('tbm');
     }
@@ -142,9 +152,17 @@ class TBmController extends Controller
         ->where('ta.id', $id)
         ->first();
 
+        $peserta = DB::table('p_peserta_bm as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->where('ta.id_bm', $id)
+        ->get();
+
+        // dd($peserta);
+
         $file = asset('foto_bm/'.$data->foto_bm);
         return view('transaksi/bm/detail', [
             'data' => $data,
+            'peserta' => $peserta,
             'file' => $file,
             'status' => 200,
          ]);
@@ -160,9 +178,15 @@ class TBmController extends Controller
         ->where('ta.id', $id)
         ->first();
 
+        $peserta = DB::table('p_peserta_bm as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->where('ta.id_bm', $id)
+        ->get();
+
         $file = asset('foto_bm/'.$data->foto_bm);
         return view('transaksi/bm/edit', [
             'data' => $data,
+            'peserta' => $peserta,
             'file' => $file,
             'status' => 200,
          ]);
@@ -209,6 +233,20 @@ class TBmController extends Controller
             'foto_bm' => (!empty($request->foto_bm) ? $name : $request->foto_bm_lama),
             'updated_at' => Carbon::now(),
         ]);
+
+        $id_bm = $request->id;
+        $post = PPBm::where('id_bm', $id_bm)->delete();
+
+        $perusahaanArr = array();
+        foreach($request->id_perusahaan as $key) {
+            $perusahaanArr = $key;
+            PPBm::insert([
+                'id_bm' => $id_bm,
+                'id_perusahaan' => $perusahaanArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
         Alert::toast('Success Edit Business Matching!', 'success');
         return redirect()->route('tbm');
     }

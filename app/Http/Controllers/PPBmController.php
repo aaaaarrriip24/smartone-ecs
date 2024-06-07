@@ -96,8 +96,7 @@ class PPBmController extends Controller
      */
     public function store(Request $request)
     {
-        $post = PPBm::where('id_bm', $request->id_bm);
-        $post->delete();
+        $post = PPBm::where('id_bm', $request->id_bm)->delete();
 
         $perusahaanArr = array();
         foreach($request->id_perusahaan as $key) {
@@ -165,51 +164,21 @@ class PPBmController extends Controller
 
     public function show(Request $request)
     {
-        // $get_pt = DB::table('p_peserta_bm as ta')
-        // ->leftJoin('t_bm as tb', 'ta.id_bm', '=', 'tb.id')
-        // ->leftJoin('m_perusahaan as tc', 'ta.id_perusahaan', '=', 'tc.id')
-        // ->whereNull('ta.deleted_at')
-        // ->whereNull('tb.deleted_at')
-        // ->whereNull('tc.deleted_at')
-        // ->select('ta.id_perusahaan')
-        // ->where('ta.id_bm', $request->id_bm)
-        // ->get();
-        
-        // $pt = collect($get_pt)->pluck('id_perusahaan')->toArray();
-        // dd($pt);
-        // if(empty($pt)) {
-            // dd("PT KOSONG");
+        $data = DB::table('m_perusahaan as ta')
+        ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+        ->whereNull('ta.deleted_at')
+        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
+        ->get();
+
+        if($request->term) {
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
             ->whereNull('ta.deleted_at')
             ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
+            ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
             ->get();
-
-            if($request->term) {
-                $data = DB::table('m_perusahaan as ta')
-                ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-                ->whereNull('ta.deleted_at')
-                ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
-                ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
-                ->get();
-            }
-            return $data;
-        // } else {
-        //     $data = DB::table('m_perusahaan')
-        //     ->whereNull('deleted_at')
-        //     ->select('*')
-        //     ->whereIn('id', $pt)
-        //     ->get();
-
-        //     // dd($data);
-
-        //     return response()->json([
-        //         'data' => $data,
-        //         'status' => 200,
-        //     ]);
-        // }
-
-        
+        }
+        return $data;
     }
 
     /**
