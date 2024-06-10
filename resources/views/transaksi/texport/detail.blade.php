@@ -73,15 +73,16 @@
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Dokumen Pendukung</label>
-                    <br>
-                    <a href="{{ asset('folder_dok_pendukung/'.$data->dok_pendukung) }}" target="_blank" class="btn btn-sm btn-primary">Lihat Dokumen</a>
+                    <input type="text" name="dok_pendukung" class="form-control form-control-sm"
+                        value="{{ $data->dok_pendukung }}" disabled>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Bukti Dokumen</label>
                     <br>
-                    <a href="{{ asset('folder_bukti_dok/'.$data->bukti_dok) }}" target="_blank" class="btn btn-sm btn-primary">Lihat Dokumen</a>
+                    <a href="{{ asset('folder_bukti_dok/'.$data->bukti_dok) }}" target="_blank"
+                        class="btn btn-sm btn-primary">Lihat Dokumen</a>
                 </div>
             </div>
         </div>

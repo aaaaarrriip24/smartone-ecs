@@ -33,8 +33,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Produk</label>
-                        <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}" required disabled>
-                        <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}" required>
+                        <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}" disabled>
+                        <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}">
                     </div>
                 </div>
                 <div class="col-3">
@@ -81,6 +81,14 @@
                         <input type="file" name="bukti_dok" class="form-control form-control-sm">
                     </div>
                 </div>
+                @if( !empty($data->bukti_dok) )
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Lihat Bukti Dokumen</label>
+                        <a href="{{ asset('folder_bukti_dok/'.$data->bukti_dok ) }}" class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
         <div class="card-footer gap-2">
