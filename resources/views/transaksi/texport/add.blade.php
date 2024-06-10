@@ -30,8 +30,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Detail Produk</label>
-                        <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" required disabled>
-                        <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail" required>
+                        <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" disabled>
+                        <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail">
                     </div>
                 </div>
                 <div class="col-3">
