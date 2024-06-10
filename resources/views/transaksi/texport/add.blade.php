@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Transaksi</label>
+                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Realisasi</label>
                         <input type="text" name="tanggal_export" autocomplete="off" class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>

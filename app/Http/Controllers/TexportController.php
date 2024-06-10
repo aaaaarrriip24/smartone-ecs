@@ -87,12 +87,12 @@ class TexportController extends Controller
      */
     public function store(Request $request)
     {
-        if(!empty($request->file('dok_pendukung'))) {
-            $file = $request->file('dok_pendukung');
-            $nama_file = time()."_".$file->getClientOriginalName();
-            $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
-            $dok_pendukung = $nama_file;
-        }
+        // if(!empty($request->file('dok_pendukung'))) {
+        //     $file = $request->file('dok_pendukung');
+        //     $nama_file = time()."_".$file->getClientOriginalName();
+        //     $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
+        //     $dok_pendukung = $nama_file;
+        // }
         if(!empty($request->file('bukti_dok'))) {
             $file = $request->file('bukti_dok');
             $nama_file = time()."_".$file->getClientOriginalName();
@@ -110,7 +110,8 @@ class TexportController extends Controller
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
-            'dok_pendukung' => empty($dok_pendukung) ? '' : $dok_pendukung,
+            // 'dok_pendukung' => empty($dok_pendukung) ? '' : $dok_pendukung,
+            'dok_pendukung' => $request->dok_pendukung,
             'bukti_dok' => empty($bukti_dok) ? '' : $bukti_dok,
             'created_at' => Carbon::now(),
         ]);
@@ -193,12 +194,12 @@ class TexportController extends Controller
      */
     public function update(Request $request)
     {
-        if(!empty($request->dok_pendukung)){
-            $file = $request->file('dok_pendukung');
-            $nama_file = time()."_".$file->getClientOriginalName();
-            $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
-            $dok_pendukung = $nama_file;
-        }
+        // if(!empty($request->dok_pendukung)){
+        //     $file = $request->file('dok_pendukung');
+        //     $nama_file = time()."_".$file->getClientOriginalName();
+        //     $file->move(public_path().'/folder_dok_pendukung/', $nama_file);
+        //     $dok_pendukung = $nama_file;
+        // }
 
         if(!empty($request->bukti_dok)){
             $file = $request->file('bukti_dok');
@@ -217,7 +218,8 @@ class TexportController extends Controller
             'nama_buyer' => $request->nama_buyer,
             'email_buyer' => $request->email_buyer,
             'telp_buyer' => $request->telp_buyer,
-            'dok_pendukung' => (!empty($request->dok_pendukung) ? $dok_pendukung : $request->dok_pendukung_lama),
+            // 'dok_pendukung' => (!empty($request->dok_pendukung) ? $dok_pendukung : $request->dok_pendukung_lama),
+            'dok_pendukung' => $request->dok_pendukung,
             'bukti_dok' => (!empty($request->bukti_dok) ? $bukti_dok : $request->bukti_dok_lama),
             'updated_at' => Carbon::now(),
         ]);

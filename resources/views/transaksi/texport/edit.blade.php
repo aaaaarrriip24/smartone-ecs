@@ -6,7 +6,6 @@
     <form method="post" action="{{ url('export/update') }}" enctype="multipart/form-data">
         @csrf
         <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $data->id }}" required>
-        <input hidden type="text" name="dok_pendukung_lama" class="form-control form-control-sm" value="{{ $data->dok_pendukung }}">
         <input hidden type="text" name="bukti_dok_lama" class="form-control form-control-sm" value="{{ $data->bukti_dok }}">
         <div class="card-body">
             <div class="row">
@@ -27,7 +26,7 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Transaksi</label>
+                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Realisasi</label>
                         <input type="text" name="tanggal_export" autocomplete="off" class="form-control form-control-sm datepicker" value="{{ date('d-m-Y', strtotime($data->tanggal_export)) }}" required>
                     </div>
                 </div>
@@ -73,7 +72,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Dokumen Pendukung</label>
-                        <input type="file" name="dok_pendukung" class="form-control form-control-sm">
+                        <input type="text" name="dok_pendukung" class="form-control form-control-sm" value="{{ $data->dok_pendukung }}">
                     </div>
                 </div>
                 <div class="col-3">
