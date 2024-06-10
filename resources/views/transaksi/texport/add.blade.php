@@ -24,14 +24,14 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Tanggal Transaksi</label>
-                        <input type="text" name="tanggal_export" class="form-control form-control-sm datepicker" required>
+                        <input type="text" name="tanggal_export" autocomplete="off" class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Detail Produk</label>
-                        <input type="text" name="produk_display" class="form-control form-control-sm" value="{{ $get_produk->detail_produk_utama }}" required disabled>
-                        <input hidden type="text" name="produk" class="form-control form-control-sm" value="{{ $get_produk->detail_produk_utama }}" required>
+                        <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" required disabled>
+                        <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -107,6 +107,7 @@
                             return {
                                 id: item.id,
                                 text: item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
+                                produk: item.detail_produk_utama
                             }
                         })
                     };
@@ -114,6 +115,7 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
+            $(".produk_detail").val(data.produk);
         });
 
         $(".select_negara").select2({

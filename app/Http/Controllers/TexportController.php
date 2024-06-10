@@ -71,13 +71,12 @@ class TexportController extends Controller
      */
     public function create()
     {
-        $get_trn = DB::table('t_p_export')->get();
-        $count_trn = $get_trn->count();
-        $kode_trn = "TRN-" . strval($count_trn + 1) ;
+        $get_trn = DB::table('t_p_export')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
+        $count_trn = explode("-", $get_trn->kode_export);
+        $kode_trn = "TRS-" . strval($count_trn[1] + 1) ;
 
-        $get_produk = DB::table('m_perusahaan')->first();
-
-        return view('transaksi/texport/add', compact('kode_trn', 'get_produk'));
+        // dd($kode_trn);
+        return view('transaksi/texport/add', compact('kode_trn'));
     }
 
     /**
