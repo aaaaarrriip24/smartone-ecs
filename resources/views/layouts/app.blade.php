@@ -69,7 +69,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box horizontal-logo">
-                            <a href="{{ url('dashboard') }}" class="logo logo-dark text-decoration-none text-white">
+                            <a href="{{ url('/') }}" class="logo logo-dark text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="col-lg-4">
@@ -94,7 +94,7 @@
                                 </span>
                             </a>
 
-                            <a href="{{ url('dashboard') }}" class="logo logo-light text-decoration-none text-white">
+                            <a href="{{ url('/') }}" class="logo logo-light text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
                                         <div class="col-lg-4">
@@ -784,10 +784,13 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <!-- item-->
                                 <h6 class="dropdown-header">Welcome {{ Auth::user()->name }}!</h6>
-                                <a class="dropdown-item" href="pages-profile.html"><i
+                                <a class="dropdown-item" href="javascript:void(0);"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
-                                <a class="dropdown-item" href="apps-chat.html"><i
+                                <a class="dropdown-item" href="javascript:void(0);"><i
+                                        class="mdi mdi-home text-muted fs-16 align-middle me-1"></i> <span
+                                        class="align-middle">Home</span></a>
+                                <!-- <a class="dropdown-item" href="apps-chat.html"><i
                                         class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i>
                                     <span class="align-middle">Messages</span></a>
                                 <a class="dropdown-item" href="apps-tasks-kanban.html"><i
@@ -806,7 +809,7 @@
                                         class="align-middle">Settings</span></a>
                                 <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
                                         class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
-                                        class="align-middle">Lock screen</span></a>
+                                        class="align-middle">Lock screen</span></a> -->
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
@@ -887,6 +890,11 @@
                     <div id="two-column-menu">
                         <ul class="navbar-nav" id="navbar-nav">
                             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ url('/') }}">
+                                    <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Home</span>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('dashboard') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Dashboard</span>
