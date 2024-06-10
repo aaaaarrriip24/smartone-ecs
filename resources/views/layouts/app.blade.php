@@ -885,7 +885,7 @@
                     
                     @else
                     <div id="two-column-menu">
-                        <ul class="navbar-nav" id="navbar-nav" style="overflow: auto;">
+                        <ul class="navbar-nav" id="navbar-nav">
                             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('dashboard') }}">
@@ -929,6 +929,31 @@
                                     </ul>
                                 </div>
                             </li>
+
+                            <!-- Hide Menu -->
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                    <i class="bx bxs-dashboard"></i> <span data-key="t-menu2">Transaction</span>
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                    <ul class="nav nav-sm flex-column">
+                                        <!-- <li class="nav-item">
+                                            <a href="{{ url('transaksi/konsultasi') }}" class="nav-link" data-key="t-konsultasi">Konsultasi</a>
+                                        </li> -->
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/bm') }}" class="nav-link" data-key="t-bm"> Business&nbsp;Matching</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/inquiry') }}" class="nav-link" data-key="t-inquiry">Inquiries</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/export') }}" class="nav-link" data-key="t-export">Transaksi&nbsp;(USD)</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
                             <!-- Kene -->
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('master/perusahaan') }}">
@@ -940,54 +965,27 @@
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Konsultasi</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('transaksi/inquiry') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Inquiries</span>
                                 </a>
-                            </li>
-                            <li class="nav-item">
+                            </li> -->
+                            <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('transaksi/bm') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Business&nbsp;Matching</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('extra/p_inaexport') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">InaExport</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('transaksi/export') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-export">Transaksi&nbsp;(USD)</span>
                                 </a>
-                            </li>
-
-                            <!-- Hide Menu -->
-                            <!-- <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
-                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                    <i class="bx bxs-dashboard"></i> <span data-key="t-menu2">Transaksi</span>
-                                </a>
-                                <div class="collapse menu-dropdown" id="sidebarDashboards">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="{{ url('transaksi/konsultasi') }}" class="nav-link"
-                                                data-key="t-konsultasi"> Konsultasi </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('transaksi/bm') }}" class="nav-link" data-key="t-bm"> Business
-                                                Matching </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('transaksi/inquiry') }}" class="nav-link" data-key="t-inquiry">
-                                                Profile Inquiry </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('transaksi/export') }}" class="nav-link" data-key="t-export">
-                                                Realisasi Export </a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li> -->
+                            
                             <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="sidebarDashboards">

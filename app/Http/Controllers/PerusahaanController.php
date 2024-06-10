@@ -183,12 +183,14 @@ class PerusahaanController extends Controller
         ]);
 
         $id_perusahaan = DB::getPdo()->lastInsertId();
-        foreach($request->status_ekspor as $key) {
-            TEPerusahaan::insert([
-                'id_perusahaan' => $id_perusahaan,
-                'id_negara' => $key,
-                'created_at' => Carbon::now(),
-            ]);
+        if(!empty($request->status_ekspor)) {
+            foreach($request->status_ekspor as $key) {
+                TEPerusahaan::insert([
+                    'id_perusahaan' => $id_perusahaan,
+                    'id_negara' => $key,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
         }
 
         Alert::toast('Success Add Perusahaan!', 'success');
