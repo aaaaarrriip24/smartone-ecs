@@ -314,15 +314,15 @@ class PerusahaanController extends Controller
         $id_perusahaan = $request->id;
 
         $post = TEPerusahaan::where('id_perusahaan', $request->id)->delete();
-
-        foreach($request->status_ekspor as $key) {
-            TEPerusahaan::insert([
-                'id_perusahaan' => $id_perusahaan,
-                'id_negara' => $key,
-                'created_at' => Carbon::now(),
-            ]);
+        if(!empty($request->status_ekspor)) {
+            foreach($request->status_ekspor as $key) {
+                TEPerusahaan::insert([
+                    'id_perusahaan' => $id_perusahaan,
+                    'id_negara' => $key,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
         }
-
         Alert::toast('Success Edit Perusahaan!', 'success');
         return redirect()->route('perusahaan');
     }
