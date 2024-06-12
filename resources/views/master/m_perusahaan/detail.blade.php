@@ -226,15 +226,27 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="form-group">
+                <div class="form-group mb-2">
                     <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
-                    <input type="file" name="foto_produk_1" class="form-control form-control-sm" disabled>
+                    @if(!empty($data->foto_produk_1))
+                    <a href="{{ asset('foto_produk_1/'.$data->foto_produk_1 ) }}"
+                        class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                    @else
+                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
+                        Kosong</a>
+                    @endif
                 </div>
             </div>
             <div class="col-3">
-                <div class="form-group">
+                <div class="form-group mb-2">
                     <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
-                    <input type="file" name="foto_produk_2" class="form-control form-control-sm" disabled>
+                    @if(!empty($data->foto_produk_2))
+                    <a href="{{ asset('foto_produk_2/'.$data->foto_produk_2 ) }}"
+                        class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                    @else
+                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
+                        Kosong</a>
+                    @endif
                 </div>
             </div>
             <div class="col-3">
