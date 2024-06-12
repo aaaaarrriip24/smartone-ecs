@@ -58,7 +58,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kode Pos</label>
-                        <input class="form-control form-control-sm text-end" name="kode_pos">
+                        <input class="form-control form-control-sm" name="kode_pos">
                     </div>
                 </div>
                 <div class="col-6">

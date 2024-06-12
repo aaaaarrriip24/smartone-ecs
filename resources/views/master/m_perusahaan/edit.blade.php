@@ -70,7 +70,7 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kode Pos</label>
-                        <input type="text" name="kode_pos" class="form-control form-control-sm text-end"
+                        <input type="text" name="kode_pos" class="form-control form-control-sm"
                             value="{{ $data->kode_pos }}">
                     </div>
                 </div>
@@ -105,7 +105,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Email Perusahaan</label>
-                        <input type="email" name="email" class="form-control form-control-sm" value="{{ $data->email }}">
+                        <input type="email" name="email" class="form-control form-control-sm"
+                            value="{{ $data->email }}">
                     </div>
                 </div>
                 <div class="col-6">
@@ -129,13 +130,15 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
-                        <input type="number" class="form-control form-control-sm jumlah_karyawan text-end" name="jumlah_karyawan" value="{{ $data->jumlah_karyawan }}">
+                        <input type="number" class="form-control form-control-sm jumlah_karyawan text-end"
+                            name="jumlah_karyawan" value="{{ $data->jumlah_karyawan }}">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Skala Perusahaan</label>
-                        <select name="skala_perusahaan_display" class="form-control form-control-sm form-select skala_perusahaan" disabled>
+                        <select name="skala_perusahaan_display"
+                            class="form-control form-control-sm form-select skala_perusahaan" disabled>
                             <option value="{{ $data->skala_perusahaan }}" selected>{{ $data->skala_perusahaan }}
                             </option>
                             <option value="Mikro">Mikro</option>
@@ -143,7 +146,8 @@
                             <option value="Menengah">Menengah</option>
                             <option value="Besar">Besar</option>
                         </select>
-                        <select hidden name="skala_perusahaan" class="form-control form-control-sm form-select skala_perusahaan">
+                        <select hidden name="skala_perusahaan"
+                            class="form-control form-control-sm form-select skala_perusahaan">
                             <option value="{{ $data->skala_perusahaan }}" selected>{{ $data->skala_perusahaan }}
                             </option>
                             <option value="Mikro">Mikro</option>
@@ -231,9 +235,10 @@
                 <div class="col-9">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Negara Ekspor</label>
-                        <select name="status_ekspor[]" class="form-control form-control-sm form-select select_negara_ekspor" multiple="multiple">
+                        <select name="status_ekspor[]"
+                            class="form-control form-control-sm form-select select_negara_ekspor" multiple="multiple">
                             @foreach($negara_ekspor as $n)
-                                <option value="{{ $n->id_negara }}" selected>{{ $n->en_short_name }}</option>
+                            <option value="{{ $n->id_negara }}" selected>{{ $n->en_short_name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -265,6 +270,30 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-3">
+                    <div class="form-group mb-2">
+                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
+                        @if(!empty($data->foto_produk_1))
+                        <a href="{{ asset('foto_produk_1/'.$data->foto_produk_1 ) }}"
+                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                        @else
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
+                            Kosong</a>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group mb-2">
+                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
+                        @if(!empty($data->foto_produk_2))
+                        <a href="{{ asset('foto_produk_2/'.$data->foto_produk_2 ) }}"
+                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                        @else
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
+                            Kosong</a>
+                        @endif
+                    </div>
+                </div>
             </div>
         </div>
         <div class="card-footer gap-2">
@@ -283,7 +312,7 @@
             format: 'dd-mm-yyyy',
             autoclose: true,
         });
-        
+
         $(".select_petugas").select2({
             placeholder: "Pilih Petugas",
             width: '100%',
@@ -449,26 +478,26 @@
         $(".jumlah_karyawan").on("keyup", function (e) {
             var value_kar = $(".jumlah_karyawan").val();
             console.log(value_kar);
-            if(value_kar <= 5) {
+            if (value_kar <= 5) {
                 $(".skala_perusahaan").val("Mikro");
             } else if (value_kar <= 6 || value_kar <= 9) {
                 $(".skala_perusahaan").val("Kecil");
-            } else if(value_kar <= 10 || value_kar <= 30) {
+            } else if (value_kar <= 10 || value_kar <= 30) {
                 $(".skala_perusahaan").val("Menengah");
-            } else if(value_kar >= 30) {
+            } else if (value_kar >= 30) {
                 $(".skala_perusahaan").val("Besar");
             }
         });
         $(".skala_perusahaan").on("change", function (e) {
             var value_skala = $(".skala_perusahaan").val();
             console.log(value_skala);
-            if(value_skala == "Mikro") {
+            if (value_skala == "Mikro") {
                 $(".jumlah_karyawan").val(1);
             } else if (value_skala == "Kecil") {
                 $(".jumlah_karyawan").val(2);
-            } else if(value_skala == "Menengah") {
+            } else if (value_skala == "Menengah") {
                 $(".jumlah_karyawan").val(3);
-            } else if(value_skala == "Besar") {
+            } else if (value_skala == "Besar") {
                 $(".jumlah_karyawan").val(4);
             }
         });
