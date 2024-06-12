@@ -32,6 +32,12 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Lapor</label>
+                        <input type="text" name="tanggal_lapor" autocomplete="off" class="form-control form-control-sm datepicker" value="{{ date('d-m-Y', strtotime($data->tanggal_lapor)) }}" required>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Produk</label>
                         <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}" disabled>
                         <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}">
@@ -40,7 +46,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Nilai Transaksi</label>
-                        <input type="number" name="nilai_transaksi" class="form-control form-control-sm text-end" value="{{ $data->nilai_transaksi }}" required="required">
+                        <input type="text" name="nilai_transaksi" class="form-control form-control-sm input-mask" value="{{ $data->nilai_transaksi }}" data-inputmask="'alias': 'currency', 'prefix': '','digits': '0'" required="required">
                     </div>
                 </div>
                 <div class="col-3">
@@ -81,14 +87,16 @@
                         <input type="file" name="bukti_dok" class="form-control form-control-sm">
                     </div>
                 </div>
-                @if( !empty($data->bukti_dok) )
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Lihat Bukti Dokumen</label>
-                        <a href="{{ asset('folder_bukti_dok/'.$data->bukti_dok ) }}" class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                        <label class="form-label mb-1 mt-2 labelInput">Bukti Dokumen</label>
+                        @if( !empty($data->bukti_dok) )
+                        <a href="{{ asset('folder_bukti_dok/'.$data->bukti_dok ) }}" class="form-control btn btn-sm btn-primary" target="_blank">Lihat Dokumen</a>
+                        @else
+                        <button type="button" class="form-control btn btn-sm btn-warning" target="_blank" disabled>Belum ada Dokumen</button>
+                        @endif
                     </div>
                 </div>
-                @endif
             </div>
         </div>
         <div class="card-footer gap-2">
@@ -107,6 +115,12 @@
             autoclose: true,
         });
 
+        $(".input-mask").inputmask({
+            removeMaskOnSubmit: true,
+            autoUnmask: true,
+            unmaskAsNumber: true
+        });
+        
         $(".select_perusahaan").select2({
             placeholder: "Pilih Perusahaan",
             width: '100%',

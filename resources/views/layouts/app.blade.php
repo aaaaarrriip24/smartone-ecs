@@ -1936,6 +1936,9 @@
     <!-- Dashboard init -->
     <script src="{{ asset('assets/js/pages/dashboard-crm.init.js') }}"></script>
 
+    <!-- InputMask -->
+    <script src="{{ asset('assets/js/inputmask/inputmask.bundle.js') }}"></script>
+
     <!-- App js -->
     <!-- <script src="{{ asset('assets/js/app.js') }}"></script> -->
 

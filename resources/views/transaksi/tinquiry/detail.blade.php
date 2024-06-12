@@ -31,7 +31,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Quantity</label>
-                        <input type="text" name="qty" class="form-control form-control-sm" value="{{ $data->qty }}"
+                        <input type="text" name="qty" class="form-control form-control-sm input-mask" value="{{ $data->qty }}" data-inputmask="'alias': 'currency', 'prefix': '','digits': '0'"
                             disabled>
                     </div>
                 </div>
@@ -109,8 +109,8 @@
                     <div class="form-group mb-2">
                         <label class="form-label mb-1 mt-2 labelInput">Attached Dokumen</label>
                         @if(!empty($data->attached_dokumen))
-                        <a href="{{ asset('attached_dokumen/'.$data->attached_dokumen ) }}" class="form-control btn btn-sm btn-primary"
-                            target="_blank">Lihat Dokumen</a>
+                        <a href="{{ asset('attached_dokumen/'.$data->attached_dokumen ) }}"
+                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Dokumen</a>
                         @else
                         <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Dokumen Masih
                             Kosong</a>
@@ -129,6 +129,12 @@
 @section('js')
 <script>
     $(".select_perusahaan").select2({});
+
+    $(".input-mask").inputmask({
+        removeMaskOnSubmit: true,
+        autoUnmask: true,
+        unmaskAsNumber: true
+    });
 
 </script>
 @endsection

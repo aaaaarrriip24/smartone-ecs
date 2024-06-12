@@ -33,7 +33,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Quantity</label>
-                        <input type="number" name="qty" class="form-control form-control-sm text-end" value="{{ $data->qty }}" required="required">
+                        <input type="text" name="qty" class="form-control form-control-sm input-mask" value="{{ $data->qty }}" data-inputmask="'alias': 'currency', 'prefix': '','digits': '0'" required="required">
                     </div>
                 </div>
                 <div class="col-3">
@@ -136,6 +136,12 @@
         $(".datepicker").datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
+        });
+
+        $(".input-mask").inputmask({
+            removeMaskOnSubmit: true,
+            autoUnmask: true,
+            unmaskAsNumber: true
         });
 
         $(".select_satuan").select2({});

@@ -22,9 +22,16 @@
             </div>
             <div class="col-3">
                 <div class="form-group">
-                    <label class="form-label mb-1 mt-0 labelInput">Tanggal Transaksi</label>
-                    <input type="date" name="tanggal_export" class="form-control form-control-sm"
-                        value="{{ $data->tanggal_export }}" disabled>
+                    <label class="form-label mb-1 mt-0 labelInput">Tanggal Realisasi</label>
+                    <input type="text" name="tanggal_export" class="form-control form-control-sm datepicker"
+                        value="{{ date('d-m-Y', strtotime($data->tanggal_export))  }}" disabled>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-0 labelInput">Tanggal Lapor</label>
+                    <input type="text" name="tanggal_lapor" class="form-control form-control-sm datepicker"
+                        value="{{ date('d-m-Y', strtotime($data->tanggal_lapor)) }}" disabled>
                 </div>
             </div>
             <div class="col-3">
@@ -37,8 +44,9 @@
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Nilai Transaksi</label>
-                    <input type="number" name="nilai_transaksi" class="form-control form-control-sm"
-                        value="{{ $data->nilai_transaksi }}" disabled>
+                    <input type="text" name="nilai_transaksi" class="form-control form-control-sm input-mask"
+                        value="{{ $data->nilai_transaksi }}"
+                        data-inputmask="'alias': 'currency', 'prefix': '','digits': '0'" disabled>
                 </div>
             </div>
             <div class="col-3">
@@ -77,12 +85,16 @@
                         value="{{ $data->dok_pendukung }}" disabled>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Bukti Dokumen</label>
-                    <br>
-                    <a href="{{ asset('folder_bukti_dok/'.$data->bukti_dok) }}" target="_blank"
-                        class="btn btn-sm btn-primary">Lihat Dokumen</a>
+                    @if( !empty($data->bukti_dok) )
+                    <a href="{{ asset('folder_bukti_dok/'.$data->bukti_dok ) }}"
+                        class="form-control btn btn-sm btn-primary" target="_blank">Lihat Dokumen</a>
+                    @else
+                    <button type="button" class="form-control btn btn-sm btn-warning" target="_blank" disabled>Belum ada
+                        Dokumen</button>
+                    @endif
                 </div>
             </div>
         </div>
@@ -91,4 +103,21 @@
         <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Kembali</a>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(document).ready(function () {
+        $(".input-mask").inputmask({
+            removeMaskOnSubmit: true,
+            autoUnmask: true,
+            unmaskAsNumber: true
+        });
+
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+    });
+
+</script>
 @endsection

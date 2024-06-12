@@ -38,7 +38,8 @@
                                 <th>No. </th>
                                 <th>Nama Perusahaan</th>
                                 <th>Produk Detail</th>
-                                <th>Tanggal Export</th>
+                                <th>Tanggal Realisasi</th>
+                                <th>Tanggal Lapor</th>
                                 <th>Nilai Transaksi</th>
                                 <th>Negara Tujuan</th>
                                 <th>Nama Buyer</th>
@@ -108,7 +109,21 @@
                     name: 'tanggal_export',
                     orderable: true,
                     render: function (data, type, row) {
-                        return moment(row.tanggal_export).format('DD-MMM-YYYY');
+                        var tanggal = row.tanggal_export;
+                        if(tanggal == null) {
+                            tanggal = "-";
+                            return tanggal;
+                        } else {
+                            return moment(tanggal).format('DD-MMM-YYYY');
+                        }
+                    }
+                },
+                {
+                    data: 'tanggal_lapor',
+                    name: 'tanggal_lapor',
+                    orderable: true,
+                    render: function (data, type, row) {
+                        return moment(row.tanggal_lapor).format('DD-MMM-YYYY');
                     }
                 },
                 {

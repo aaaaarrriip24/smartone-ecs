@@ -29,6 +29,12 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Lapor</label>
+                        <input type="text" name="tanggal_lapor" autocomplete="off" class="form-control form-control-sm datepicker" required>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Detail Produk</label>
                         <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" disabled>
                         <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail">
@@ -37,7 +43,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Nilai Transaksi</label>
-                        <input type="number" name="nilai_transaksi" class="form-control form-control-sm formatinput text-end" required>
+                        <input type="text" name="nilai_transaksi" class="form-control form-control-sm input-mask text-end" data-inputmask="'alias': 'currency', 'prefix': '','digits': '0'" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -67,7 +73,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Dokumen Pendukung</label>
-                        <input type="file" name="dok_pendukung" class="form-control form-control-sm">
+                        <input type="text" name="dok_pendukung" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-3">
@@ -94,6 +100,12 @@
             autoclose: true,
         });
         
+        $(".input-mask").inputmask({
+            removeMaskOnSubmit: true,
+            autoUnmask: true,
+            unmaskAsNumber: true
+        });
+
         $(".select_perusahaan").select2({
             placeholder: "Pilih Perusahaan",
             width: '100%',
