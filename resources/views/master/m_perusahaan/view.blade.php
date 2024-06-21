@@ -196,6 +196,10 @@
                     render: function (data, type, row, meta) {
                         var alamat = row.alamat_perusahaan;
                         var str = row.cities;
+                        var str_prov = row.provinsi;
+                        if(str_prov == null) {
+                            str_prov = "-";
+                        }
                         if(str == null) {
                             str = "-";
                         }
@@ -213,7 +217,7 @@
                             // Directly return the joined string
                             return splitStr.join(' '); 
                         }
-                        return alamat + "<br>" + titleCase(str);
+                        return alamat + "<br>" + titleCase(str) + "<br>" + titleCase(str_prov);
                     }
                 },
                 // {

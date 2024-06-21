@@ -15,8 +15,7 @@
                                     <tr>
                                         <th scope="col" style="background-color: rgb(255, 99, 132);">Perusahaan
                                             Terdaftar</th>
-                                        <th scope="col" style="background-color: rgb(255, 159, 64);">Layanan
-                                            Terselesaikan</th>
+                                        <th scope="col" style="background-color: rgb(255, 159, 64);">Jumlah Konsultasi</th>
                                         <th scope="col" style="background-color: rgb(255, 205, 86);">Realisasi Export
                                             (USD)</th>
                                         <th scope="col" style="background-color: rgb(75, 192, 192);">Business Matching

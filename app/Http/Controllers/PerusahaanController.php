@@ -36,7 +36,7 @@ class PerusahaanController extends Controller
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
             ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
-            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.id')
+            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
             ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
             ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
             ->leftJoin('m_sub_kategori as tg', 'ta.id_sub_kategori', '=', 'tg.id')
