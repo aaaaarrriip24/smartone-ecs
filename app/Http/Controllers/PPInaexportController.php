@@ -84,7 +84,7 @@ class PPInaexportController extends Controller
         
         PPInaexport::insert([
             'id_perusahaan' => $request->id_perusahaan,
-            'tanggal_registrasi_inaexport' => $request->tanggal_registrasi_inaexport,
+            'tanggal_registrasi_inaexport' => date('Y-m-d', strtotime($request->tanggal_registrasi_inaexport)),
             'id_petugas' => $request->id_petugas,
             'created_at' => Carbon::now(),
         ]);
@@ -162,7 +162,7 @@ class PPInaexportController extends Controller
 
         PPInaexport::where('id', $request->id)->update([
             'id_perusahaan' => $request->id_perusahaan,
-            'tanggal_registrasi_inaexport' => $request->tanggal_registrasi_inaexport,
+            'tanggal_registrasi_inaexport' => date('Y-m-d', strtotime($request->tanggal_registrasi_inaexport)),
             'id_petugas' => $request->id_petugas,
             'updated_at' => Carbon::now(),
         ]);

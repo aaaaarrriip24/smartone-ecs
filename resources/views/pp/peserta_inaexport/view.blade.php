@@ -98,8 +98,28 @@
                     name: 'tanggal_registrasi_inaexport',
                     orderable: true,
                     render: function (data, type, row) {
-                        return moment(row.tanggal_registrasi_inaexport).format('DD-MMM-YYYY');
+                        var tanggal = row.tanggal_registrasi_inaexport;
+                        if(tanggal == "0000-00-00") {
+                            tanggal = "-";
+                            return tanggal;
+                        } else {
+                            if(tanggal != null) {
+                                // return tanggal;
+                                return moment(tanggal).format('DD-MMM-YYYY');
+                            } else {
+                                tanggal = "-";
+                                return tanggal;
+                            }
+                        }
                     }
+
+                    // render: function (data, type, row) {
+                    //     let tanggal_reg = tanggal_registrasi_inaexport;
+                    //     if(tanggal_reg = null) {
+                    //         tanggal_reg = "-";
+                    //     }
+                    //     return moment(tanggal_reg).format('DD-MMM-YYYY');
+                    // }
                 },
                 {
                     data: 'nama_petugas',
