@@ -39,8 +39,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-0 labelInput">Produk</label>
-                        <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}" disabled>
-                        <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail" value="{{ $data->produk }}">
+                        <input type="text" name="produk_display" class="form-control form-control-sm produk_detail" value="{{ $data->detail_produk_utama }}" disabled>
+                        <input hidden type="text" name="produk" class="form-control form-control-sm produk_detail" value="{{ $data->detail_produk_utama }}">
                     </div>
                 </div>
                 <div class="col-3">
