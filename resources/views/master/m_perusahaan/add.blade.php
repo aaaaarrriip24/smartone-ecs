@@ -146,10 +146,10 @@
                         <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk"></select>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
-                        <select name="id_sub_kategori" class="form-control form-control-sm select_sub_produk"></select>
+                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk" multiple="multiple"></select>
                     </div>
                 </div>
                 <div class="col-3">
@@ -202,6 +202,18 @@
                         <input type="text" name="kepemilikan_sertifikat" class="form-control form-control-sm">
                     </div>
                 </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
+                        <input type="file" name="foto_produk_1" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
+                        <input type="file" name="foto_produk_2" class="form-control form-control-sm">
+                    </div>
+                </div>
                 <!-- <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Status Data</label>
@@ -222,23 +234,11 @@
                         </select>
                     </div>
                 </div> -->
-                <div class="col-9">
+                <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Status Ekspor</label>
                         <select name="status_ekspor[]" class="form-control form-control-sm form-select select_negara_ekspor" multiple="multiple">
                         </select>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
-                        <input type="file" name="foto_produk_1" class="form-control form-control-sm">
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
-                        <input type="file" name="foto_produk_2" class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="col-3">

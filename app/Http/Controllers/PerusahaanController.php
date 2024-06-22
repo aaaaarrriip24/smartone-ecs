@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TSubKategoriPerusahaan;
 use App\Models\TEPerusahaan;
 use App\Models\Perusahaan;
 use App\Models\Provinsi;
@@ -37,23 +38,24 @@ class PerusahaanController extends Controller
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
             ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
             ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
-            ->leftJoin('m_k_produk as te', 'ta.id_kategori_produk', '=', 'te.id')
             ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
-            ->leftJoin('m_sub_kategori as tg', 'ta.id_sub_kategori', '=', 'tg.id')
+            ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+            ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
             ->whereNull('td.deleted_at')
-            ->whereNull('te.deleted_at')
             ->whereNull('tf.deleted_at')
-            ->select('ta.*', 'tb.nama_tipe', 'tc.name as provinsi', 'td.name as cities', 'te.nama_kategori_produk','tg.nama_sub_kategori', 'tf.nama_petugas')
+            ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, tf.nama_petugas'))
+            ->groupBy('tg.id_perusahaan', 'ta.id')
+            ->orderBy('ta.id', 'ASC')
             ->get();
             
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('status_data', function($row){
                         $status = 'Completed';
-                        if(empty($row->id_tipe) || empty($row->id_provinsi) ||empty($row->id_kabkota) ||empty($row->alamat_perusahaan) ||empty($row->alamat_pabrik) ||empty($row->kode_pos) ||empty($row->nama_contact_person) ||empty($row->jabatan) ||empty($row->telp_contact_person) ||empty($row->telp_kantor) ||empty($row->email) ||empty($row->website) ||empty($row->status_kepemilikan) ||empty($row->skala_perusahaan) ||empty($row->jumlah_karyawan) ||empty($row->id_kategori_produk) ||empty($row->id_sub_kategori) ||empty($row->detail_produk_utama) ||empty($row->merek_produk) ||empty($row->hs_code) ||empty($row->kapasitas_produksi) ||empty($row->satuan_kapasitas_produksi) ||empty($row->kepemilikan_legalitas) ||empty($row->kepemilikan_sertifikat) ||empty($row->foto_produk_1) ||empty($row->foto_produk_2) ||empty($row->tanggal_registrasi) ||empty($row->id_petugas)) {
+                        if(empty($row->id_tipe) || empty($row->id_provinsi) ||empty($row->id_kabkota) ||empty($row->alamat_perusahaan) ||empty($row->alamat_pabrik) ||empty($row->kode_pos) ||empty($row->nama_contact_person) ||empty($row->jabatan) ||empty($row->telp_contact_person) ||empty($row->telp_kantor) ||empty($row->email) ||empty($row->website) ||empty($row->status_kepemilikan) ||empty($row->skala_perusahaan) ||empty($row->jumlah_karyawan) ||empty($row->id_kategori_produk) ||empty($row->detail_produk_utama) ||empty($row->merek_produk) ||empty($row->hs_code) ||empty($row->kapasitas_produksi) ||empty($row->satuan_kapasitas_produksi) ||empty($row->kepemilikan_legalitas) ||empty($row->kepemilikan_sertifikat) ||empty($row->foto_produk_1) ||empty($row->foto_produk_2) ||empty($row->tanggal_registrasi) ||empty($row->id_petugas)) {
                             $status = "Not Completed";
                         }
                         return $status;
@@ -119,9 +121,15 @@ class PerusahaanController extends Controller
         ->where('id_perusahaan', $data->id)
         ->get();
 
+        $sub_kategori = DB::table('t_sub_kategori_perusahaan as ta')
+        ->leftJoin('m_sub_kategori as tb', 'ta.id_sub_kategori', '=', 'tb.id')
+        ->where('id_perusahaan', $data->id)
+        ->get();
+
         return view('master/m_perusahaan/detail', [
             'data' => $data,
             'negara_ekspor' => $negara_ekspor,
+            'sub_kategori' => $sub_kategori,
             'status' => 200,
          ]);
     }
@@ -167,7 +175,6 @@ class PerusahaanController extends Controller
             'skala_perusahaan' => $request->skala_perusahaan,
             'jumlah_karyawan' => $request->jumlah_karyawan,
             'id_kategori_produk' => $request->id_kategori_produk,
-            'id_sub_kategori' => $request->id_sub_kategori,
             'detail_produk_utama' => $request->detail_produk_utama,
             'merek_produk' => $request->merek_produk,
             'hs_code' => $request->hs_code,
@@ -188,6 +195,15 @@ class PerusahaanController extends Controller
                 TEPerusahaan::insert([
                     'id_perusahaan' => $id_perusahaan,
                     'id_negara' => $key,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
+        }
+        if(!empty($request->id_sub_kategori)) {
+            foreach($request->id_sub_kategori as $key) {
+                TSubKategoriPerusahaan::insert([
+                    'id_perusahaan' => $id_perusahaan,
+                    'id_sub_kategori' => $key,
                     'created_at' => Carbon::now(),
                 ]);
             }
@@ -227,6 +243,11 @@ class PerusahaanController extends Controller
         ->where('id_perusahaan', $data->id)
         ->get();
 
+        $sub_kategori = DB::table('t_sub_kategori_perusahaan as ta')
+        ->leftJoin('m_sub_kategori as tb', 'ta.id_sub_kategori', '=', 'tb.id')
+        ->where('id_perusahaan', $data->id)
+        ->get();
+
         if(empty($data->tanggal_registrasi)) {
             $data->tanggal_registrasi = date('d-m-Y');
         } else {
@@ -238,6 +259,7 @@ class PerusahaanController extends Controller
         return view('master/m_perusahaan/edit', [
             'data' => $data,
             'negara_ekspor' => $negara_ekspor,
+            'sub_kategori' => $sub_kategori,
             'status' => 200,
          ]);
     }
@@ -296,7 +318,6 @@ class PerusahaanController extends Controller
             'skala_perusahaan' => $request->skala_perusahaan,
             'jumlah_karyawan' => $request->jumlah_karyawan,
             'id_kategori_produk' => $request->id_kategori_produk,
-            'id_sub_kategori' => $request->id_sub_kategori,
             'detail_produk_utama' => $request->detail_produk_utama,
             'merek_produk' => $request->merek_produk,
             'hs_code' => $request->hs_code,
@@ -319,6 +340,17 @@ class PerusahaanController extends Controller
                 TEPerusahaan::insert([
                     'id_perusahaan' => $id_perusahaan,
                     'id_negara' => $key,
+                    'created_at' => Carbon::now(),
+                ]);
+            }
+        }
+        
+        $post = TSubKategoriPerusahaan::where('id_perusahaan', $request->id)->delete();
+        if(!empty($request->id_sub_kategori)) {
+            foreach($request->id_sub_kategori as $key) {
+                TSubKategoriPerusahaan::insert([
+                    'id_perusahaan' => $id_perusahaan,
+                    'id_sub_kategori' => $key,
                     'created_at' => Carbon::now(),
                 ]);
             }

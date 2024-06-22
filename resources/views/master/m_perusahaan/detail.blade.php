@@ -148,12 +148,13 @@
                     </select>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-6">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
-                    <select name="id_sub_kategori" class="form-control form-control-sm select_sub_produk" disabled>
-                        <option value="{{ $data->id_sub_kategori }}" selected>{{ $data->nama_sub_kategori }}
-                        </option>
+                    <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk" multiple="multiple" disabled>
+                        @foreach($sub_kategori as $s)
+                        <option value="{{ $s->id_sub_kategori }}" selected>{{ $s->nama_sub_kategori }}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -214,17 +215,6 @@
                         value="{{ $data->kepemilikan_sertifikat }}" disabled>
                 </div>
             </div>
-            <div class="col-9">
-                <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Negara Ekspor</label>
-                    <select name="status_ekspor[]" class="form-control form-control-sm form-select select_negara_ekspor"
-                        multiple="multiple" disabled>
-                        @foreach($negara_ekspor as $n)
-                        <option value="{{ $n->id_negara }}" selected>{{ $n->en_short_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
             <div class="col-3">
                 <div class="form-group mb-2">
                     <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
@@ -247,6 +237,17 @@
                     <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
                         Kosong</a>
                     @endif
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Negara Ekspor</label>
+                    <select name="status_ekspor[]" class="form-control form-control-sm form-select select_negara_ekspor"
+                        multiple="multiple" disabled>
+                        @foreach($negara_ekspor as $n)
+                        <option value="{{ $n->id_negara }}" selected>{{ $n->en_short_name }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col-3">
@@ -295,6 +296,32 @@
         }).on('select2:select', function (e) {
             var data = e.params.data;
         });
+        $(".select_sub_produk").select2({
+            placeholder: "Pilih Sub Kategori Produk",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/sub_produk',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_kategori = $('.select_k_produk').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nama_sub_kategori,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
     });
 
 </script>

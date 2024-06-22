@@ -231,8 +231,8 @@
                     orderable: true,
                 },
                 {
-                    data: 'nama_kategori_produk',
-                    name: 'nama_kategori_produk',
+                    data: 'sub_kategori',
+                    name: 'sub_kategori',
                     orderable: true,
                 },
                 {

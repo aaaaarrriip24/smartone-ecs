@@ -166,12 +166,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
-                        <select name="id_sub_kategori" class="form-control form-control-sm select_sub_produk">
-                            <option value="{{ $data->id_sub_kategori }}" selected>{{ $data->nama_sub_kategori }}
-                            </option>
+                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk" multiple="multiple">
+                            @foreach($sub_kategori as $s)
+                            <option value="{{ $s->id_sub_kategori }}" selected>{{ $s->nama_sub_kategori }}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -232,17 +233,6 @@
                             value="{{ $data->kepemilikan_sertifikat }}">
                     </div>
                 </div>
-                <div class="col-9">
-                    <div class="form-group">
-                        <label class="form-label mb-1 mt-2 labelInput">Negara Ekspor</label>
-                        <select name="status_ekspor[]"
-                            class="form-control form-control-sm form-select select_negara_ekspor" multiple="multiple">
-                            @foreach($negara_ekspor as $n)
-                            <option value="{{ $n->id_negara }}" selected>{{ $n->en_short_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
@@ -253,6 +243,17 @@
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
                         <input type="file" name="foto_produk_2" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-9">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Negara Ekspor</label>
+                        <select name="status_ekspor[]"
+                            class="form-control form-control-sm form-select select_negara_ekspor" multiple="multiple">
+                            @foreach($negara_ekspor as $n)
+                            <option value="{{ $n->id_negara }}" selected>{{ $n->en_short_name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-3">
