@@ -103,10 +103,11 @@ class PPInaexportController extends Controller
         $data = DB::table('p_peserta_inaexport as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
         ->leftJoin('m_petugas as tc', 'ta.id_petugas', '=', 'tc.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->select('ta.*', 'tb.kode_perusahaan', 'tc.nama_petugas')
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tc.nama_petugas', 'td.nama_tipe')
         ->where('ta.id', $id)
         ->first();
 
@@ -121,10 +122,11 @@ class PPInaexportController extends Controller
         $data = DB::table('p_peserta_inaexport as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
         ->leftJoin('m_petugas as tc', 'ta.id_petugas', '=', 'tc.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->select('ta.*', 'tb.kode_perusahaan', 'tc.nama_petugas')
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tc.nama_petugas', 'td.nama_tipe')
         ->where('ta.id', $id)
         ->first();
 

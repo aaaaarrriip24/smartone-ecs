@@ -10,14 +10,20 @@
                 <div class="form-group">
                     <label>Kode Perusahaan</label>
                     <select name="id_perusahaan" class="form-control form-control-sm" disabled>
-                        <option value="{{ $data->id_perusahaan }}">{{ $data->kode_perusahaan }}</option>
+                        <option value="{{ $data->id_perusahaan }}">{{ $data->nama_perusahaan }}
+                            @if(!empty($data->nama_tipe))
+                            , {{ $data->nama_tipe }}
+                            @endif
+                        </option>
                     </select>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label>Tanggal Registrasi</label>
-                    <input type="date" name="tanggal_registrasi_inaexport" class="form-control form-control-sm" value="{{ $data->tanggal_registrasi_inaexport }}" disabled>
+                    <input type="text" name="tanggal_registrasi_inaexport"
+                        class="form-control form-control-sm datepicker"
+                        value="{{ date('d-m-Y', strtotime($data->tanggal_registrasi_inaexport)) }}" disabled>
                 </div>
             </div>
             <div class="col-6">

@@ -85,7 +85,14 @@
                     render: function (data, type, row, meta) {
                         let text = row.nama_perusahaan;
                         let result = text.toUpperCase();
-                        return result + ", " + row.nama_tipe;
+                        let str = row.nama_tipe;
+                        if(str == null) {
+                            str = "";
+                        } else {
+                            str = ", " + row.nama_tipe; 
+                        }
+
+                        return result + str;
                     }
                 },
                 {

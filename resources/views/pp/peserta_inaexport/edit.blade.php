@@ -12,15 +12,15 @@
                     <div class="form-group">
                         <label>Kode Perusahaan</label>
                         <select name="id_perusahaan" class="form-control form-control-sm select_perusahaan" required="required">
-                            <option value="{{ $data->id_perusahaan }}">{{ $data->kode_perusahaan }}</option>
+                            <option value="{{ $data->id_perusahaan }}">{{ $data->nama_perusahaan }}, {{ $data->nama_tipe }}</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
                         <label>Tanggal Registrasi</label>
-                        <input type="date" name="tanggal_registrasi_inaexport" class="form-control form-control-sm"
-                            value="{{ $data->tanggal_registrasi_inaexport }}" required="required">
+                        <input type="text" name="tanggal_registrasi_inaexport" class="form-control form-control-sm datepicker"
+                            value="{{ date('d-m-Y', strtotime($data->tanggal_registrasi_inaexport)) }}" required="required">
                     </div>
                 </div>
                 <div class="col-6">
@@ -44,6 +44,11 @@
 <script>
     $(document).ready(function () {
         // Select
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+        
         $(".select_petugas").select2({
             placeholder: "Pilih Petugas",
             width: '100%',
@@ -78,7 +83,7 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.kode_perusahaan,
+                                text: item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
                             }
                         })
                     };
