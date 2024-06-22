@@ -36,6 +36,7 @@
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
+                                <th>Kode Ina Export</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Produk</th>
                                 <th>Tanggal Registrasi</th>
@@ -77,6 +78,11 @@
                     searchable: false,
                     className: 'text-center',
                     width: '5%'
+                },
+                {
+                    data: 'kode_ina_export',
+                    name: 'kode_ina_export',
+                    orderable: true,
                 },
                 {
                     data: 'nama_perusahaan',

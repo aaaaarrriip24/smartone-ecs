@@ -8,6 +8,13 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
+                    <label class="form-label mb-1 mt-2 labelInput">Kode Ina Export</label>
+                    <input type="text" name="kode_ina_export" value="{{ $data->kode_ina_export }}" autocomplete="off"
+                        class="form-control form-control-sm" required="required" disabled>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
                     <label>Kode Perusahaan</label>
                     <select name="id_perusahaan" class="form-control form-control-sm" disabled>
                         <option value="{{ $data->id_perusahaan }}">{{ $data->nama_perusahaan }}

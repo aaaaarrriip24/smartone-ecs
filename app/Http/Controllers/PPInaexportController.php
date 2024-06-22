@@ -65,7 +65,11 @@ class PPInaexportController extends Controller
      */
     public function create()
     {
-        return view('pp/peserta_inaexport/add');
+        $get_ina = DB::table('p_peserta_inaexport')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
+        $last_ina = explode("-", $get_ina->kode_ina_export); 
+        $kode_ina = "PRS-" . strval($last_ina[1] + 1) ;
+
+        return view('pp/peserta_inaexport/add', compact('get_ina', 'last_ina', 'kode_ina'));
     }
 
     /**
@@ -83,6 +87,7 @@ class PPInaexportController extends Controller
         }
         
         PPInaexport::insert([
+            'kode_ina_export' => $request->kode_ina_export,
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_registrasi_inaexport' => date('Y-m-d', strtotime($request->tanggal_registrasi_inaexport)),
             'id_petugas' => $request->id_petugas,
