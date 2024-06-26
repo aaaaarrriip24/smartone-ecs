@@ -1,6 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+<style>
+    .datepicker {
+        top: 360px !important;
+    }
+</style>
 <div class="card">
     <div class="card-header">Add Peserta Business Matching</div>
     <form method="post" action="{{ url('p_inaexport/store') }}" enctype="multipart/form-data">
@@ -47,8 +51,8 @@
         $(".datepicker").datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
-        });
-        
+        }).removeClass("datepicker-orient-top").addClass("datepicker-orient-bottom");
+
         $(".select_petugas").select2({
             placeholder: "Pilih Petugas",
             width: '100%',

@@ -1,6 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+<style>
+    .datepicker {
+        top: 290px !important;
+    }
+</style>
 <div class="card">
     <div class="card-header">Add Business Matching</div>
     <form method="post" action="{{ url('bm/store') }}" enctype="multipart/form-data">

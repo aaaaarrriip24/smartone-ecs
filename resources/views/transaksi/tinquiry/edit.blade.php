@@ -1,6 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+<style>
+    .datepicker {
+        top: 290px !important;
+    }
+</style>
 <div class="card">
     <div class="card-header">Add Profile Inquiry</div>
     <form method="post" action="{{ url('inquiry/update') }}" enctype="multipart/form-data">

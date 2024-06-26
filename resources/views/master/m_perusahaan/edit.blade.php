@@ -1,6 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+<style>
+    .datepicker {
+        top: 710px !important;
+    }
+</style>
 <div class="card">
     <div class="card-header">
         <b>Edit Perusahaan</b>

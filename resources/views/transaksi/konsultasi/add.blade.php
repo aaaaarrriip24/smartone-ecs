@@ -1,6 +1,10 @@
 @extends('layouts.app')
-
 @section('content')
+<style>
+    .datepicker {
+        top: 350px !important;
+    }
+</style>
 <div class="card">
     <div class="card-header">Add Konsultasi</div>
     <form method="post" action="{{ url('konsultasi/store') }}" enctype="multipart/form-data">

@@ -1,6 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
+<style>
+    .datepicker {
+        top: 350px !important;
+    }
+
+</style>
 <div class="card">
     <div class="card-header">Edit Konsultasi</div>
     <form method="post" action="{{ url('konsultasi/update') }}" enctype="multipart/form-data">
@@ -25,9 +30,21 @@
                         <label class="form-label mb-1 mt-0 labelInput">Nama Perusahaan</label>
                         <select name="id_perusahaan" class="form-control form-control-sm select_perusahaan">
                             <option value="{{ $data->id_perusahaan }}" selected>
-                                {{ strtoupper($data->nama_perusahaan) }}, {{ strtoupper($data->nama_tipe) }}
+                                {{ strtoupper($data->kode_perusahaan) }}, {{ strtoupper($data->nama_perusahaan) }}, {{ strtoupper($data->nama_tipe) }}
                             </option>
                         </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Detail Produk Utama</label>
+                        <input type="text" class="form-control form-control-sm detail_produk" disabled>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Sub Kategori Produk</label>
+                        <input type="text" class="form-control form-control-sm sub_produk" disabled>
                     </div>
                 </div>
                 <div class="col-3">
@@ -89,12 +106,14 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                    <label class="form-label mb-1 mt-2 labelInput">Foto Pertemuan</label>
-                    @if(!empty($data->foto_pertemuan))
-                    <a href="{{ asset('foto_pertemuan/'.$data->foto_pertemuan ) }}" class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
-                    @else
-                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih Kosong</a>
-                    @endif
+                        <label class="form-label mb-1 labelInput">Foto Pertemuan</label>
+                        @if(!empty($data->foto_pertemuan))
+                        <a href="{{ asset('foto_pertemuan/'.$data->foto_pertemuan ) }}"
+                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                        @else
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
+                            Kosong</a>
+                        @endif
                     </div>
                 </div>
                 <div class="col-12">
@@ -151,8 +170,9 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.nama_perusahaan.toUpperCase() + ', ' + item
-                                    .nama_tipe,
+                                text: item.kode_perusahaan + ", " + item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
+                                detail_produk_utama: item.detail_produk_utama,
+                                nama_sub_kategori: item.nama_sub_kategori,
                             }
                         })
                     };
@@ -160,6 +180,9 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
+            console.log(data);
+            $(".detail_produk").val(data.detail_produk_utama);
+            $(".sub_produk").val(data.nama_sub_kategori);
         });
 
         $(".select_topik").select2({
