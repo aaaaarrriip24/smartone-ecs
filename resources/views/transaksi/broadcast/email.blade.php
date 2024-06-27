@@ -5,17 +5,14 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Master Perusahaan</h4>
+            <h4 class="mb-sm-0">Broadcast Email</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
-                    <li class="breadcrumb-item active">Perusahaan</li>
+                    <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
+                    <li class="breadcrumb-item active">Broadcast Email</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('perusahaan/email') }}" type="text">Email</a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a href="{{ url('perusahaan/add') }}" type="text">Add</a>
+                        <a href="{{ url('broadcast/add') }}" type="text">Add</a>
                     </li>
                 </ol>
             </div>
@@ -70,7 +67,7 @@
             filter: true,
             sort: true,
             info: true,
-            ajax: base_url + "perusahaan/email",
+            ajax: base_url + "transaksi/broadcast",
             columns: [{
                     data: 'checkbox',
                     name: 'checkbox',
@@ -136,7 +133,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: base_url + "perusahaan/send_email",
+                    url: base_url + "broadcast/send_email",
                     data: {
                         ids: ids
                     },

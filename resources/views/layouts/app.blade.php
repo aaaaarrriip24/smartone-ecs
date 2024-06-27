@@ -958,6 +958,9 @@
                                         <li class="nav-item">
                                             <a href="{{ url('transaksi/export') }}" class="nav-link" data-key="t-export">Transaksi&nbsp;(USD)</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/broadcast') }}" class="nav-link" data-key="t-broadcast">Broadcast&nbsp;Email</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>

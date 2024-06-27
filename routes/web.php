@@ -18,6 +18,7 @@ use App\Http\Controllers\TexportController;
 use App\Http\Controllers\PPBmController;
 use App\Http\Controllers\PPInaexportController;
 use App\Http\Controllers\PPInquiryController;
+use App\Http\Controllers\BroadcastEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,9 +68,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
         // Perusahaan
         Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
-        Route::get('perusahaan/email', [PerusahaanController::class, 'email_index']);
-        Route::post('perusahaan/send_email', [PerusahaanController::class, 'sendEmail']);
-        Route::get('perusahaan/send_email/{id}', [PerusahaanController::class, 'sendEmailId']);
         Route::get('perusahaan/add', [PerusahaanController::class, 'create']);
         Route::get('perusahaan/detail/{id}', [PerusahaanController::class, 'detail']);
         Route::post('perusahaan/store', [PerusahaanController::class, 'store']);
@@ -77,6 +75,11 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::post('perusahaan/update', [PerusahaanController::class, 'update']);
         Route::get('perusahaan/destroy/{id}', [PerusahaanController::class, 'destroy']);
 
+        // BroadcastEmail
+        Route::get('transaksi/broadcast', [BroadcastEmailController::class, 'email_index']);
+        Route::post('broadcast/send_email', [BroadcastEmailController::class, 'sendEmail']);
+        Route::get('broadcast/send_email/{id}', [BroadcastEmailController::class, 'sendEmailId']);
+        
         // Petugas
         Route::get('master/petugas', [PetugasController::class, 'index'])->name('petugas');
         Route::post('petugas/store', [PetugasController::class, 'store']);

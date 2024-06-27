@@ -12,9 +12,6 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
                     <li class="breadcrumb-item active">Perusahaan</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('perusahaan/email') }}" type="text">Email</a>
-                    </li>
-                    <li class="breadcrumb-item">
                         <a href="{{ url('perusahaan/add') }}" type="text">Add</a>
                     </li>
                 </ol>
