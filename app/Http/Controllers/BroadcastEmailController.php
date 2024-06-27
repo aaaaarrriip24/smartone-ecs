@@ -68,7 +68,16 @@ class BroadcastEmailController extends Controller
     public function sendEmailId(Request $request)
     {
         $perusahaan = Perusahaan::where("id", $request->id)->first();
-        Mail::to($perusahaan->email)->send(new PerusahaanEmail($perusahaan));
+        $attachment = public_path('folder_dok_pendukung/1711940400_img-6.png');
+
+        $data = [
+            'nama_perusahaan' => $perusahaan->nama_perusahaan,
+            'email' => $perusahaan->email,
+            'attachment' => $attachment
+        ];
+
+        // dd($data);
+        Mail::to($perusahaan->email)->send(new PerusahaanEmail($data));
   
         Alert::toast('Send email successfully!', 'success');
         return redirect()->back();

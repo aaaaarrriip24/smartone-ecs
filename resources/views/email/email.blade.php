@@ -7,9 +7,12 @@
 </head>
 
 <body>
-    <h1>Hi, {{ $perusahaan->name }}</h1>
-    <p>{{ $perusahaan->email }}</p>
+    <h1>Hi, {{ $data['nama_perusahaan'] }}</h1>
+    <p>{{ $data['email'] }}</p>
 
     <p>Thank you</p>
+
+    {{ $message->embed($data['attachment']) }}
+
 </body>
 </html>
