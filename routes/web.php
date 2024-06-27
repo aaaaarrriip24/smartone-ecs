@@ -67,6 +67,9 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
         // Perusahaan
         Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
+        Route::get('perusahaan/email', [PerusahaanController::class, 'email_index']);
+        Route::post('perusahaan/send_email', [PerusahaanController::class, 'sendEmail']);
+        Route::get('perusahaan/send_email/{id}', [PerusahaanController::class, 'sendEmailId']);
         Route::get('perusahaan/add', [PerusahaanController::class, 'create']);
         Route::get('perusahaan/detail/{id}', [PerusahaanController::class, 'detail']);
         Route::post('perusahaan/store', [PerusahaanController::class, 'store']);
