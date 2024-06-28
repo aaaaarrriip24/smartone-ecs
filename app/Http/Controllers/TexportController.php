@@ -38,6 +38,8 @@ class TexportController extends Controller
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
+            ->where('ta.tanggal_lapor', '>=' , $request->tglawal)
+            ->where('ta.tanggal_lapor', '<=' , $request->tglakhir)
             ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
             ->get();
 
@@ -86,7 +88,7 @@ class TexportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function pdf() {
+    public function pdf(Request $request) {
         $data = DB::table('t_p_export as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
         ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
@@ -94,11 +96,30 @@ class TexportController extends Controller
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
+        ->where('ta.tanggal_lapor', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+        ->where('ta.tanggal_lapor', '<=' , date('Y-m-d', strtotime($request->tglakhir)))     
         ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
         ->get();
- 
-    	$pdf = PDF::loadview('pdf',['data'=>$data]);
-    	return $pdf->download('Laporan Transaksi-pdf');
+        
+        $countTotal = DB::table('t_p_export as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
+        ->leftJoin('m_negara as tc', 'ta.id_negara_tujuan', '=', 'tc.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->whereNull('tc.deleted_at')
+        ->where('ta.tanggal_lapor', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+        ->where('ta.tanggal_lapor', '<=' , date('Y-m-d', strtotime($request->tglakhir)))     
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name', DB::raw('SUM(ta.nilai_transaksi) as summary'))
+        ->first();
+
+    	$pdf = PDF::loadview('transaksi/texport/pdf',[
+            'data' => $data,
+            'countTotal' => $countTotal,
+            'tglawal' => $request->tglawal,
+            'tglakhir' => $request->tglakhir,
+        ]);
+    	return $pdf->stream('Laporan Transaksi.pdf', array("Attachment" => false));
     }
 
     public function store(Request $request)
