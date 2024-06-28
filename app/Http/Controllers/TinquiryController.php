@@ -33,9 +33,12 @@ class TinquiryController extends Controller
         if ($request->ajax()) {
             $data = DB::table('t_profile_inquiry as ta')
             ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
+            ->leftJoin('p_penerima_inquiry as tc', 'ta.id', '=', 'tc.id_inquiry')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
-            ->select('ta.*', 'tb.en_short_name')
+            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+            ->groupBy('tc.id_inquiry')
+            ->orderBy('ta.tanggal_inquiry')
             ->get();
 
             return Datatables::of($data)
@@ -58,6 +61,10 @@ class TinquiryController extends Controller
                                         return $button;
                                         // <li><a data-id='.$urlPenerima.' class="dropdown-item btn-penerima" data-bs-toggle="modal" data-bs-target="#penerimaInquiry">Penerima</a></li>
                                     })
+                    ->addColumn('total_inquiry', function($row){
+                        $inquiry = Tinquiry::whereNull('deleted_at')->count();
+                        return $inquiry;
+                    })
                     // ->addColumn('penerima_inquiry', function($row){
                     //     $tq = DB::table('p_penerima_inquiry as ta')
                     //     ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
@@ -67,7 +74,7 @@ class TinquiryController extends Controller
                     //     ->get();
                     //     return empty($tq) ? [] : json_decode($tq);
                     // })
-                    ->rawColumns(['action', 'penerima_inquiry'])
+                    ->rawColumns(['action', 'penerima_inquiry','total_inquiry'])
                     ->make(true);
         }
         return view('transaksi/tinquiry/view');

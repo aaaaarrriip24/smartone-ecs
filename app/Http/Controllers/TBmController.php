@@ -36,11 +36,13 @@ class TBmController extends Controller
             ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
-            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan"))
+            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
             ->groupBy('tc.id_bm')
             ->orderBy('ta.tanggal_bm')
             ->get();
             
+            
+
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -61,6 +63,10 @@ class TBmController extends Controller
                                     </div>';
                         return $button;
                     })
+                    ->addColumn('total_perusahaan', function($row){
+                        $perusahaan = Perusahaan::whereNull('deleted_at')->count();
+                        return $perusahaan;
+                    })
                     ->addColumn('peserta_bm', function($row){
                         $tb = DB::table('p_peserta_bm')
                         ->leftjoin('m_perusahaan','m_perusahaan.id','p_peserta_bm.id_perusahaan')
@@ -70,7 +76,7 @@ class TBmController extends Controller
                         ->get();
                         return empty($tb) ? [] : json_decode($tb);
                     })
-                    ->rawColumns(['action','peserta_bm'])
+                    ->rawColumns(['action','peserta_bm','total_perusahaan'])
                     ->make(true);
         }
         return view('transaksi/bm/view');

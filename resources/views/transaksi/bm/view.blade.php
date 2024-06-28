@@ -41,6 +41,7 @@
                                 <!-- <th>Pelaksanaan BM</th> -->
                                 <th>Negara Asal Buyer</th>
                                 <th>Nama Buyer</th>
+                                <th>Jumlah Peserta</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -133,6 +134,14 @@
                     data: 'nama_buyer',
                     name: 'nama_buyer',
                     orderable: true,
+                },
+                {
+                    data: 'total_perusahaan',
+                    name: 'total_perusahaan',
+                    orderable: true,
+                    render: function (data, type, row) {
+                        return row.jumlah_perusahaan +"/"+ row.total_perusahaan;
+                    }
                 },
                 {
                     data: 'action',

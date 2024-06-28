@@ -41,6 +41,7 @@
                                 <th>Quantity</th>
                                 <th>Negara Buyer</th>
                                 <th>Nama Buyer</th>
+                                <th>Jumlah Penerima</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -146,6 +147,14 @@
                     data: 'nama_buyer',
                     name: 'nama_buyer',
                     orderable: true,
+                },
+                {
+                    data: 'total_inquiry',
+                    name: 'total_inquiry',
+                    orderable: true,
+                    render: function (data, type, row) {
+                        return row.total_inquiry +"/"+ row.jumlah_perusahaan;
+                    }
                 },
                 {
                     data: 'action',

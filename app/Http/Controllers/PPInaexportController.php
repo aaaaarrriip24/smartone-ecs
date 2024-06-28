@@ -42,6 +42,10 @@ class PPInaexportController extends Controller
 
             return Datatables::of($data)
                     ->addIndexColumn()
+                    ->addColumn('peserta_ina', function($row){
+                        $peserta = PPInaexport::whereNull('deleted_at')->count();
+                        return $peserta;
+                    })
                     ->addColumn('action', function($row){
                         $urlEdit = url('p_inaexport/show/'. $row->id);
                         $urlDetail = url('p_inaexport/detail/'. $row->id);
@@ -52,7 +56,7 @@ class PPInaexportController extends Controller
                         $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
                         return $button;
                     })
-                    ->rawColumns(['action'])
+                    ->rawColumns(['action', 'peserta_ina'])
                     ->make(true);
         }
         return view('pp/peserta_inaexport/view');

@@ -41,6 +41,7 @@
                                 <th>Produk</th>
                                 <th>Tanggal Registrasi</th>
                                 <th>Nama Petugas</th>
+                                <th>Jumlah Peserta</th>
                                 <th>Action</th>
                             </thead>
                         </table>
@@ -138,6 +139,14 @@
                     data: 'nama_petugas',
                     name: 'nama_petugas',
                     orderable: true,
+                },
+                {
+                    data: 'peserta_ina',
+                    name: 'peserta_ina',
+                    orderable: true,
+                    render: function (data, type, row) {
+                        return row.DT_RowIndex +"/"+ row.peserta_ina;
+                    }
                 },
 
                 {
