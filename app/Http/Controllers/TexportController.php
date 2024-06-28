@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DataTables;
 use DB;
 use Alert;
+use PDF;
 
 class TexportController extends Controller
 {
@@ -86,9 +87,20 @@ class TexportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function pdf() {
-
+        $data = DB::table('t_p_export as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
+        ->leftJoin('m_negara as tc', 'ta.id_negara_tujuan', '=', 'tc.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->whereNull('tc.deleted_at')
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
+        ->get();
+ 
+    	$pdf = PDF::loadview('pdf',['data'=>$data]);
+    	return $pdf->download('Laporan Transaksi-pdf');
     }
-    
+
     public function store(Request $request)
     {
         // if(!empty($request->file('dok_pendukung'))) {
