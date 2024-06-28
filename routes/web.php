@@ -146,6 +146,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('transaksi/export', [TexportController::class, 'index'])->name('texport');
         Route::get('export/add', [TexportController::class, 'create']);
         Route::get('export/detail/{id}', [TexportController::class, 'detail']);
+        Route::post('export/pdf', [TexportController::class, 'pdf']);
         Route::post('export/store', [TexportController::class, 'store']);
         Route::get('export/show/{id}', [TexportController::class, 'show']);
         Route::post('export/update', [TexportController::class, 'update']);

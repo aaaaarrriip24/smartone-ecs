@@ -14,6 +14,9 @@
                     <li class="breadcrumb-item">
                         <a href="{{ url('export/add') }}" type="text">Add</a>
                     </li>
+                    <li class="breadcrumb-item">
+                        <a href="{{ url('export/pdf') }}" type="text">PDF</a>
+                    </li>
                 </ol>
             </div>
 
@@ -40,7 +43,7 @@
                                 <th>Produk Detail</th>
                                 <th>Tanggal Realisasi</th>
                                 <th>Tanggal Lapor</th>
-                                <th>Nilai Transaksi</th>
+                                <th>Nilai Transaksi (USD)</th>
                                 <th>Negara Tujuan</th>
                                 <th>Nama Buyer</th>
                                 <th>Action</th>

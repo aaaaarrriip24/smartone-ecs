@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Barryvdh\DomPDF\ServiceProvider::class,
         Laravolt\Indonesia\ServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
@@ -192,6 +193,7 @@ return [
     */
 
     'aliases' => [
+        'PDF' => Barryvdh\DomPDF\Facade::class,
         'Indonesia' => Laravolt\Indonesia\Facade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Datatables' => yajra\Datatables\Datatables::class,

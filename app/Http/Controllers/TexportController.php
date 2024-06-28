@@ -85,6 +85,10 @@ class TexportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function pdf() {
+
+    }
+    
     public function store(Request $request)
     {
         // if(!empty($request->file('dok_pendukung'))) {
