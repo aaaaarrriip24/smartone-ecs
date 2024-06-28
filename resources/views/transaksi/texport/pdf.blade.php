@@ -1,10 +1,13 @@
-pa<!DOCTYPE html>
+pa
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>Laporan Transaksi Ekspor</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     <meta name="base_url" content="{{ url('') }}" />
     <style>
         body {
@@ -14,6 +17,11 @@ pa<!DOCTYPE html>
             margin-right: 0cm;
             margin-bottom: 0cm;
             font-size: 11px;
+        }
+        .column {
+            float: left;
+            width: 25%;
+            line-break: auto;
         }
     </style>
 </head>
@@ -58,24 +66,37 @@ pa<!DOCTYPE html>
             </tfoot>
         </table>
 
-        <div class="row">
-            @foreach( $data as $d )
-            <div class="col-sm">
-                <div class="card">
-                    <div class="card-body">
-						<img class="rounded border" src="{{ public_path('folder_bukti_dok/'. $d->bukti_dok) }}"
-							style="width: 150px; height: 150px" alt="">
+        <table class="table table-bordered" style="width: 100%">
+            <tbody>
+                <tr>
+                    @foreach( $data as $d )
+                    <td>
+                        <img class="rounded border" src="{{ public_path('folder_bukti_dok/'. $d->bukti_dok) }}"
+                            style="width: 150px; height: 150px" alt="">
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
+                    </td>
+                    @endforeach
+                </tr>
+            </tbody>
+        </table>
+
     </div>
 
     <!-- Base Url -->
     <script>
         var base_url = document.querySelector('meta[name="base_url"]').getAttribute('content') + '/';
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function () {
+            var number = $(".number").text();
+            if (number != 4) {
+
+            }
+        });
 
     </script>
 </body>
