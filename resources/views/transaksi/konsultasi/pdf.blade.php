@@ -31,41 +31,31 @@ pa
 <body>
     <div>
         <center>
-            <h5>Daftar Perusahaan Yang Melaporkan Transaksi Ekspor</h5>
+            <h5>Daftar Perusahaan/ Perorangan Yang Melakukan Konsultasi</h5>
             <h6>Periode: {{ $tglawal }} s/d {{ $tglakhir }}</h6>
         </center>
         <br />
         <table class="table table-bordered">
             <thead style="font-size: 14px !important; text-align: center;" class="align-middle">
                 <tr>
-                    <th>No</th>
-                    <th>Nama Perusahaan</th>
-                    <th>Produk</th>
-                    <th width="13%">Tgl. Lapor</th>
-                    <th>Negara Tujuan</th>
-                    <th>Nilai (USD)</th>
-                    <th>Doc. Pendukung</th>
+                    <th width="5%">No</th>
+                    <th>Tanggal Konsultasi/<br>Cara Konsultasi</th>
+                    <th>Nama Perusahaan/<br>Petugas</th>
+                    <th>Topik</th>
+                    <th>Saran dan Solusi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach( $data as $d )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}</td>
-                    <td>{{ $d->detail_produk_utama }}</td>
-                    <td>{{ date('d-m-Y', strtotime($d->tanggal_lapor)) }}</td>
-                    <td>{{ $d->en_short_name }}</td>
-                    <td>$ {{ number_format($d->nilai_transaksi, 0) }}</td>
-                    <td>{{ $d->dok_pendukung }}</td>
+                    <td>{{ date('d-m-Y', strtotime($d->tanggal_konsultasi)) }}/<br>{{ $d->cara_konsultasi }}</td>
+                    <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}<br>{{ $d->nama_petugas }}</td>
+                    <td>{{ $d->nama_topik }}</td>
+                    <td>{{ str_replace("&nbsp;", "", strip_tags($d->isi_konsultasi)) }}</td>
                 </tr>
                 @endforeach
             </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="5" style="text-align: right; font-size: 14px;"><b>Total</b></td>
-                    <td colspan="2">$ {{ number_format($countTotal->summary, 0) }}</td>
-                </tr>
-            </tfoot>
         </table>
 
         <!-- <div class="row">
@@ -94,7 +84,7 @@ pa
                 <tr>
                     @foreach( $data as $d )
                     <td>
-                        <img class="rounded border" src="{{ public_path('folder_bukti_dok/'. $d->bukti_dok) }}"
+                        <img class="rounded border" src="{{ public_path('foto_pertemuan/'. $d->foto_pertemuan) }}"
                             style="width: 150px; height: 150px" alt="">
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                     </td>

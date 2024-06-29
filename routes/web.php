@@ -119,6 +119,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('transaksi/konsultasi', [TKonsultasiController::class, 'index'])->name('tkonsultasi');
         Route::get('konsultasi/add', [TKonsultasiController::class, 'create']);
         Route::get('konsultasi/detail/{id}', [TKonsultasiController::class, 'detail']);
+        Route::post('konsultasi/pdf', [TKonsultasiController::class, 'pdf']);
         Route::post('konsultasi/store', [TKonsultasiController::class, 'store']);
         Route::get('konsultasi/show/{id}', [TKonsultasiController::class, 'show']);
         Route::post('konsultasi/update', [TKonsultasiController::class, 'update']);

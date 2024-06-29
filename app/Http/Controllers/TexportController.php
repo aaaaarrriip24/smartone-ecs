@@ -116,8 +116,8 @@ class TexportController extends Controller
     	$pdf = PDF::loadview('transaksi/texport/pdf',[
             'data' => $data,
             'countTotal' => $countTotal,
-            'tglawal' => $request->tglawal,
-            'tglakhir' => $request->tglakhir,
+            'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
+            'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
         ]);
     	return $pdf->stream('Laporan Transaksi.pdf', array("Attachment" => false));
     }

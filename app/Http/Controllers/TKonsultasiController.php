@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use DataTables;
 use DB;
 use Alert;
+use PDF;
 
 class TKonsultasiController extends Controller
 {
@@ -41,6 +42,8 @@ class TKonsultasiController extends Controller
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
             ->whereNull('td.deleted_at')
+            ->where('ta.tanggal_konsultasi', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+            ->where('ta.tanggal_konsultasi', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
             ->select('ta.*', 'tb.nama_perusahaan', DB::raw('IFNULL(te.nama_tipe, "") as nama_tipe'), 'tb.kode_perusahaan', DB::raw("GROUP_CONCAT( tc.nama_topik SEPARATOR ', ' ) AS nama_topik"), 'td.nama_petugas' )
             ->groupBy('ta.id')
             ->get();
@@ -75,6 +78,31 @@ class TKonsultasiController extends Controller
         $kode_kon = "KON-" . strval($last_kon[1] + 1) ;
         // dd($kode_kon);
         return view('transaksi/konsultasi/add', compact('kode_kon'));
+    }
+
+    public function pdf(Request $request) {
+        $data = DB::table('t_konsultasi as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
+        ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
+        ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
+        ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->whereNull('tc.deleted_at')
+        ->whereNull('td.deleted_at')
+        ->where('ta.tanggal_konsultasi', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+        ->where('ta.tanggal_konsultasi', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
+        ->select('ta.*', 'tb.nama_perusahaan', DB::raw('IFNULL(te.nama_tipe, "") as nama_tipe'), 'tb.kode_perusahaan', DB::raw("GROUP_CONCAT( tc.nama_topik SEPARATOR ', ' ) AS nama_topik"), 'td.nama_petugas' )
+        ->groupBy('ta.id')
+        ->get();
+
+    	$pdf = PDF::loadview('transaksi/konsultasi/pdf',[
+            'data' => $data,
+            'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
+            'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
+        ]);
+    	return $pdf->stream('Laporan Konsultasi.pdf', array("Attachment" => false));
     }
 
     /**
