@@ -57,6 +57,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
         // Select
         Route::get('select/perusahaan', [SelectController::class, 'selectperusahaan']);
+        Route::get('select/filterperusahaan', [SelectController::class, 'filterperusahaan']);
         Route::get('select/tipe', [SelectController::class, 'selecttipe']);
         Route::get('select/topik', [SelectController::class, 'selecttopik']);
         Route::get('select/petugas', [SelectController::class, 'selectpetugas']);
@@ -69,6 +70,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         // Perusahaan
         Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
         Route::get('perusahaan/add', [PerusahaanController::class, 'create']);
+        Route::post('perusahaan/pdf', [PerusahaanController::class, 'pdf']);
         Route::get('perusahaan/detail/{id}', [PerusahaanController::class, 'detail']);
         Route::post('perusahaan/store', [PerusahaanController::class, 'store']);
         Route::get('perusahaan/show/{id}', [PerusahaanController::class, 'show']);
@@ -178,6 +180,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         // PPBM
         Route::get('extra/p_inaexport', [PPInaexportController::class, 'index'])->name('p_inaexport');
         Route::get('p_inaexport/add', [PPInaexportController::class, 'create']);
+        Route::post('p_inaexport/pdf', [PPInaexportController::class, 'pdf']);
         Route::get('p_inaexport/detail/{id}', [PPInaexportController::class, 'detail']);
         Route::post('p_inaexport/store', [PPInaexportController::class, 'store']);
         Route::get('p_inaexport/show/{id}', [PPInaexportController::class, 'show']);

@@ -16,6 +16,7 @@ use DB;
 use Alert;
 use Mail;
 use App\Mail\PerusahaanEmail;
+use PDF;
 
 class PerusahaanController extends Controller
 {
@@ -36,22 +37,44 @@ class PerusahaanController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = DB::table('m_perusahaan as ta')
-            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
-            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
-            ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
-            ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
-            ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
-            ->whereNull('ta.deleted_at')
-            ->whereNull('tb.deleted_at')
-            ->whereNull('tc.deleted_at')
-            ->whereNull('td.deleted_at')
-            ->whereNull('tf.deleted_at')
-            ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, tf.nama_petugas'))
-            ->groupBy('tg.id_perusahaan', 'ta.id')
-            ->orderBy('ta.id', 'ASC')
-            ->get();
+            if(isset($request->select_perusahaan1) && isset($request->select_perusahaan2)) {
+                $data = DB::table('m_perusahaan as ta')
+                ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+                ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+                ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+                ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
+                ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+                ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->whereNull('tc.deleted_at')
+                ->whereNull('td.deleted_at')
+                ->whereNull('tf.deleted_at')
+                ->where('ta.id', '>=' , $request->select_perusahaan1)
+                ->where('ta.id', '<=' , $request->select_perusahaan2)
+                ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, tf.nama_petugas'))
+                ->groupBy('tg.id_perusahaan', 'ta.id')
+                ->orderBy('ta.id', 'ASC')
+                ->get();
+            } else {
+                $data = DB::table('m_perusahaan as ta')
+                ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+                ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+                ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+                ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
+                ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+                ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->whereNull('tc.deleted_at')
+                ->whereNull('td.deleted_at')
+                ->whereNull('tf.deleted_at')
+                ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, tf.nama_petugas'))
+                ->groupBy('tg.id_perusahaan', 'ta.id')
+                ->orderBy('ta.id', 'ASC')
+                ->get();
+            }
+            
             
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -99,6 +122,52 @@ class PerusahaanController extends Controller
         return view('master/m_perusahaan/add', compact('get_pt', 'last_pt', 'kode_pt'));
     }
 
+    public function pdf(Request $request) {
+        if(isset($request->select_perusahaan1) && isset($request->select_perusahaan2)) {
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+            ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
+            ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+            ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->whereNull('tc.deleted_at')
+            ->whereNull('td.deleted_at')
+            ->whereNull('tf.deleted_at')
+            ->where('ta.id', '>=' , $request->select_perusahaan1)
+            ->where('ta.id', '<=' , $request->select_perusahaan2)
+            ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, ta.skala_perusahaan'))
+            ->groupBy('tg.id_perusahaan', 'ta.id')
+            ->orderBy('ta.id', 'ASC')
+            ->get();
+        } else {
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+            ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
+            ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+            ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->whereNull('tc.deleted_at')
+            ->whereNull('td.deleted_at')
+            ->whereNull('tf.deleted_at')
+            ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, ta.skala_perusahaan'))
+            ->groupBy('tg.id_perusahaan', 'ta.id')
+            ->orderBy('ta.id', 'ASC')
+            ->limit(10)
+            ->get();
+        }
+
+    	$pdf = PDF::loadview('master/m_perusahaan/pdf',[
+            'data' => $data,
+        ]);
+    	return $pdf->stream('Laporan Konsultasi.pdf', array("Attachment" => false));
+    }
+    
     public function detail($id)
     {
         $data = DB::table('m_perusahaan as ta')

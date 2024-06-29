@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use DataTables;
 use DB;
 use Alert;
+use PDF;
 
 class PPInaexportController extends Controller
 {
@@ -37,7 +38,10 @@ class PPInaexportController extends Controller
             ->whereNull('ta.deleted_at')
             ->whereNull('tb.deleted_at')
             ->whereNull('tc.deleted_at')
+            ->where('ta.tanggal_registrasi_inaexport', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+            ->where('ta.tanggal_registrasi_inaexport', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
             ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.nama_petugas')
+            ->orderBy('ta.tanggal_registrasi_inaexport')
             ->get();
 
             return Datatables::of($data)
@@ -74,6 +78,27 @@ class PPInaexportController extends Controller
         $kode_ina = "PRS-" . strval($last_ina[1] + 1) ;
 
         return view('pp/peserta_inaexport/add', compact('get_ina', 'last_ina', 'kode_ina'));
+    }
+
+    public function pdf(Request $request) {
+        $data = DB::table('p_peserta_inaexport as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_petugas as tc', 'ta.id_petugas', '=', 'tc.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->whereNull('tc.deleted_at')
+        ->where('ta.tanggal_registrasi_inaexport', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+        ->where('ta.tanggal_registrasi_inaexport', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.alamat_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.nama_petugas')
+        ->get();
+
+    	$pdf = PDF::loadview('pp/peserta_inaexport/pdf',[
+            'data' => $data,
+            'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
+            'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
+        ]);
+    	return $pdf->stream('Laporan Konsultasi.pdf', array("Attachment" => false));
     }
 
     /**

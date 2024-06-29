@@ -1,7 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
-<!-- start page title -->
+<style>
+    .datepicker-dropdown {
+        top: 340px !important;
+        z-index: 10;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -12,7 +16,10 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Extra</a></li>
                     <li class="breadcrumb-item active">Peserta Peserta Inaexport</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('p_inaexport/add') }}" type="text">Add</a>
+                        <a href="{{ url('p_inaexport/add') }}" class="btn btn-sm btn-primary text-light" type="text">Add</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <button class="btn btn-sm btn-secondary btn-pdf">PDF</button>
                     </li>
                 </ol>
             </div>
@@ -28,27 +35,45 @@
             <div class="card-header">
                 <h5 class="card-title mb-0">Peserta Business Matching</h5>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12 table-responsive">
-                        <table id="dt_p_inaexport"
-                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                            style="width:100%">
-                            <thead>
-                                <th>No. </th>
-                                <th>Kode Ina Export</th>
-                                <th>Nama Perusahaan</th>
-                                <th>Produk</th>
-                                <th>Tanggal Registrasi</th>
-                                <th>Nama Petugas</th>
-                                <th>Jumlah Peserta</th>
-                                <th>Action</th>
-                            </thead>
-                        </table>
+            <form action="{{ url('p_inaexport/pdf') }}" id="forms" method="post" target="_blank">
+                @csrf
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <div class="col-md-5">
+                                <label class="form-label">Rentang Tanggal</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text"
+                                        class="form-control form-control-sm datepicker x-readonly tglawal filter"
+                                        readonly placeholder="Select date" onchange="reloadDT('tglawal')"
+                                        value="<?=date('01-m-Y')?>" name="tglawal">
+                                    <div class="input-group-append input-group-prepend">
+                                        <div class="input-group-text">-</div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control form-control-sm datepicker x-readonly tglakhir filter"
+                                        readonly placeholder="Select date" onchange="reloadDT('tglakhir')"
+                                        value="<?=date('d-m-Y')?>" name="tglakhir">
+                                </div>
+                            </div>
+                            <table id="dt_p_inaexport"
+                                class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                                style="width:100%">
+                                <thead>
+                                    <th>No. </th>
+                                    <th>Kode Ina Export</th>
+                                    <th>Nama Perusahaan</th>
+                                    <th>Produk</th>
+                                    <th>Tanggal Registrasi</th>
+                                    <th>Nama Petugas</th>
+                                    <th>Jumlah Peserta</th>
+                                    <th>Action</th>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            </form>
         </div>
     </div>
 </div>
@@ -58,6 +83,14 @@
 <script>
     let table;
     $(document).ready(function () {
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+
+        $('.filter').on('change', function (e) {
+            table.ajax.reload(null, false);
+        });
 
         table = $('#dt_p_inaexport').DataTable({
             autoWidth: false,
@@ -71,7 +104,18 @@
             filter: true,
             sort: true,
             info: true,
-            ajax: base_url + "extra/p_inaexport",
+            ajax: {
+                url: base_url + "extra/p_inaexport",
+                type: "GET",
+                data: function (data) {
+                    if ($(".in").val() != "") data.in = $(".in").val();
+                    if ($('.tglawal').val() != '') data.tglawal = $('.tglawal').val();
+                    if ($('.tglakhir').val() != '') data.tglakhir = $('.tglakhir').val();
+                    data.tglawal = moment($('.tglawal').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    data.tglakhir = moment($('.tglakhir').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    return data;
+                }
+            },
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -93,10 +137,10 @@
                         let text = row.nama_perusahaan;
                         let result = text.toUpperCase();
                         let str = row.nama_tipe;
-                        if(str == null) {
+                        if (str == null) {
                             str = "";
                         } else {
-                            str = ", " + row.nama_tipe; 
+                            str = ", " + row.nama_tipe;
                         }
 
                         return result + str;
@@ -113,11 +157,11 @@
                     orderable: true,
                     render: function (data, type, row) {
                         var tanggal = row.tanggal_registrasi_inaexport;
-                        if(tanggal == "0000-00-00") {
+                        if (tanggal == "0000-00-00") {
                             tanggal = "-";
                             return tanggal;
                         } else {
-                            if(tanggal != null) {
+                            if (tanggal != null) {
                                 // return tanggal;
                                 return moment(tanggal).format('DD-MMM-YYYY');
                             } else {
@@ -145,7 +189,7 @@
                     name: 'peserta_ina',
                     orderable: true,
                     render: function (data, type, row) {
-                        return row.DT_RowIndex +"/"+ row.peserta_ina;
+                        return row.DT_RowIndex + "/" + row.peserta_ina;
                     }
                 },
 
@@ -159,6 +203,10 @@
             ]
         });
 
+        $(document).on('click', '.btn-pdf', function () {
+		    document.getElementById("forms").submit();
+        });
+        
         $(document).on('click', '.btn-delete', function () {
             var url = $(this).attr('data-href');
             Swal.fire({
