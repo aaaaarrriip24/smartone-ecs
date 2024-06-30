@@ -131,6 +131,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('transaksi/bm', [TBmController::class, 'index'])->name('tbm');
         Route::get('bm/add', [TBmController::class, 'create']);
         Route::get('bm/detail/{id}', [TBmController::class, 'detail']);
+        Route::post('bm/pdf', [TBmController::class, 'pdf']);
         Route::post('bm/store', [TBmController::class, 'store']);
         Route::get('bm/show/{id}', [TBmController::class, 'show']);
         Route::post('bm/update', [TBmController::class, 'update']);

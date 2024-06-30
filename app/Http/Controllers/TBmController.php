@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use DataTables;
 use DB;
 use Alert;
+use PDF;
 
 class TBmController extends Controller
 {
@@ -31,18 +32,31 @@ class TBmController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = DB::table('t_bm as ta')
-            ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
-            ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
-            ->whereNull('ta.deleted_at')
-            ->whereNull('tb.deleted_at')
-            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
-            ->groupBy('tc.id_bm')
-            ->orderBy('ta.tanggal_bm')
-            ->get();
-            
-            
+            if(isset($request->tglawal) && isset($request->tglakhir)) {
+                $data = DB::table('t_bm as ta')
+                ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+                ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->where('ta.tanggal_bm', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+                ->where('ta.tanggal_bm', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
+                ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+                ->groupBy('tc.id_bm')
+                ->orderBy('ta.tanggal_bm')
+                ->get();
+            } else {
+                $data = DB::table('t_bm as ta')
+                ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+                ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+                ->groupBy('tc.id_bm')
+                ->orderBy('ta.tanggal_bm')
+                ->get();
+            }
 
+            
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
@@ -95,6 +109,59 @@ class TBmController extends Controller
         
         // dd($kode_bm);
         return view('transaksi/bm/add', compact('kode_bm'));
+    }
+
+    public function pdf(Request $request) {
+        if(isset($request->tglawal) && isset($request->tglakhir)) {
+            $data = DB::table('t_bm as ta')
+            ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+            ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->where('ta.tanggal_bm', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+            ->where('ta.tanggal_bm', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
+            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+            ->groupBy('tc.id_bm')
+            ->orderBy('ta.tanggal_bm')
+            ->get();
+            
+            foreach($data as $d) {
+                $tb = DB::table('p_peserta_bm')
+                ->leftjoin('m_perusahaan','m_perusahaan.id','p_peserta_bm.id_perusahaan')
+                ->leftjoin('m_tipe_perusahaan','m_tipe_perusahaan.id','m_perusahaan.id_tipe')
+                ->select(DB::raw('m_perusahaan.kode_perusahaan, m_perusahaan.detail_produk_utama,m_perusahaan.nama_perusahaan,p_peserta_bm.id,IFNULL(m_tipe_perusahaan.nama_tipe, "") as nama_tipe'))
+                ->where('p_peserta_bm.id_bm', $d->id)
+                ->get();
+            }
+        } else {
+            $data = DB::table('t_bm as ta')
+            ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+            ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+            ->groupBy('tc.id_bm')
+            ->orderBy('ta.tanggal_bm')
+            ->get();
+            
+            foreach($data as $d) {
+                $tb = DB::table('p_peserta_bm')
+                ->leftjoin('m_perusahaan','m_perusahaan.id','p_peserta_bm.id_perusahaan')
+                ->leftjoin('m_tipe_perusahaan','m_tipe_perusahaan.id','m_perusahaan.id_tipe')
+                ->select(DB::raw('m_perusahaan.kode_perusahaan, m_perusahaan.detail_produk_utama,m_perusahaan.nama_perusahaan,p_peserta_bm.id,IFNULL(m_tipe_perusahaan.nama_tipe, "") as nama_tipe'))
+                ->where('p_peserta_bm.id_bm', $d->id)
+                ->get();
+            }
+        }
+
+        // dd($tb);
+    	$pdf = PDF::loadview('transaksi/bm/pdf',[
+            'data' => $data,
+            'tb' => $tb,
+            'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
+            'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
+        ]);
+    	return $pdf->stream('Laporan Transaksi.pdf', array("Attachment" => false));
     }
 
     /**

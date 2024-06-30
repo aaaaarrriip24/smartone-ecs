@@ -2,6 +2,13 @@
 
 @section('content')
 <!-- start page title -->
+<style>
+    .datepicker-dropdown {
+        top: 340px !important;
+        z-index: 10;
+    }
+
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -12,7 +19,10 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
                     <li class="breadcrumb-item active">Business Matching</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('bm/add') }}" type="text">Add</a>
+                        <a href="{{ url('bm/add') }}" class="btn btn-sm btn-primary text-light" type="text">Add</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <button class="btn btn-sm btn-secondary btn-pdf">PDF</button>
                     </li>
                 </ol>
             </div>
@@ -28,27 +38,47 @@
             <div class="card-header">
                 <h5 class="card-title mb-0">Business Matching</h5>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12 table-responsive">
-                        <table id="dt_bm" class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                            style="width:100%">
-                            <thead>
-                                <th>No. </th>
-                                <th>Tanggal BM</th>
-                                <th>Produk</th>
-                                <!-- <th>Kode BM</th> -->
-                                <!-- <th>Pelaksanaan BM</th> -->
-                                <th>Negara Asal Buyer</th>
-                                <th>Nama Buyer</th>
-                                <th>Jumlah Peserta</th>
-                                <th>Action</th>
-                            </thead>
-                        </table>
+            <form action="{{ url('bm/pdf') }}" id="forms" method="post" target="_blank">
+                @csrf
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <div class="col-md-5">
+                                <label class="form-label">Rentang Tanggal</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text"
+                                        class="form-control form-control-sm datepicker x-readonly tglawal filter"
+                                    readonly placeholder="Select date" onchange="reloadDT('tglawal')"
+                                        value="<?=date('01-m-Y')?>" name="tglawal">
+                                    <div class="input-group-append input-group-prepend">
+                                        <div class="input-group-text">-</div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control form-control-sm datepicker x-readonly tglakhir filter"
+                                        readonly placeholder="Select date" onchange="reloadDT('tglakhir')"
+                                        value="<?=date('d-m-Y')?>" name="tglakhir">
+                                </div>
+                            </div>
+
+                            <table id="dt_bm"
+                                class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                                style="width:100%">
+                                <thead>
+                                    <th>No. </th>
+                                    <th>Tanggal BM</th>
+                                    <th>Produk</th>
+                                    <!-- <th>Kode BM</th> -->
+                                    <!-- <th>Pelaksanaan BM</th> -->
+                                    <th>Negara Asal Buyer</th>
+                                    <th>Nama Buyer</th>
+                                    <th>Jumlah Peserta</th>
+                                    <th>Action</th>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            </form>
         </div>
     </div>
 </div>
@@ -85,6 +115,14 @@
 <script>
     let table;
     $(document).ready(function () {
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+
+        $('.filter').on('change', function (e) {
+            table.ajax.reload(null, false);
+        });
 
         table = $('#dt_bm').DataTable({
             autoWidth: false,
@@ -98,7 +136,18 @@
             filter: true,
             sort: true,
             info: true,
-            ajax: base_url + "transaksi/bm",
+            ajax: {
+                url: base_url + "transaksi/bm",
+                type: "GET",
+                data: function (data) {
+                    if ($(".in").val() != "") data.in = $(".in").val();
+                    if ($('.tglawal').val() != '') data.tglawal = $('.tglawal').val();
+                    if ($('.tglakhir').val() != '') data.tglakhir = $('.tglakhir').val();
+                    data.tglawal = moment($('.tglawal').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    data.tglakhir = moment($('.tglakhir').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    return data;
+                }
+            },
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -140,7 +189,7 @@
                     name: 'total_perusahaan',
                     orderable: true,
                     render: function (data, type, row) {
-                        return row.jumlah_perusahaan +"/"+ row.total_perusahaan;
+                        return row.jumlah_perusahaan + "/" + row.total_perusahaan;
                     }
                 },
                 {
@@ -152,6 +201,10 @@
                     width: '10%'
                 },
             ]
+        });
+
+        $(document).on('click', '.btn-pdf', function () {
+            document.getElementById("forms").submit();
         });
 
         $(document).on('click', '.btn-delete', function () {
@@ -188,8 +241,10 @@
             $('.select_perusahaan').empty();
             for (let index = 0; index < peserta.length; index++) {
                 const element = peserta[index];
-                $('.select_perusahaan').append(`<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`)                
-               
+                $('.select_perusahaan').append(
+                    `<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`
+                )
+
             }
             $('#pesertaBM').modal('show');
 
