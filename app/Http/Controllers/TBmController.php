@@ -55,7 +55,6 @@ class TBmController extends Controller
                 ->orderBy('ta.tanggal_bm')
                 ->get();
             }
-
             
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -161,7 +160,7 @@ class TBmController extends Controller
             'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
             'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
         ]);
-    	return $pdf->stream('Laporan Transaksi.pdf', array("Attachment" => false));
+    	return $pdf->stream('Laporan Transaksi Business Matching.pdf', array("Attachment" => false));
     }
 
     /**

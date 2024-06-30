@@ -11,6 +11,7 @@ use Carbon\Carbon;
 use DataTables;
 use DB;
 use Alert;
+use PDF;
 
 class TinquiryController extends Controller
 {
@@ -31,15 +32,29 @@ class TinquiryController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            $data = DB::table('t_profile_inquiry as ta')
-            ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
-            ->leftJoin('p_penerima_inquiry as tc', 'ta.id', '=', 'tc.id_inquiry')
-            ->whereNull('ta.deleted_at')
-            ->whereNull('tb.deleted_at')
-            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
-            ->groupBy('tc.id_inquiry')
-            ->orderBy('ta.tanggal_inquiry')
-            ->get();
+            if(isset($request->tglawal) && isset($request->tglakhir)) {
+                $data = DB::table('t_profile_inquiry as ta')
+                ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
+                ->leftJoin('p_penerima_inquiry as tc', 'ta.id', '=', 'tc.id_inquiry')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->where('ta.tanggal_inquiry', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+                ->where('ta.tanggal_inquiry', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
+                ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+                ->groupBy('tc.id_inquiry')
+                ->orderBy('ta.tanggal_inquiry')
+                ->get();
+            } else {
+                $data = DB::table('t_profile_inquiry as ta')
+                ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
+                ->leftJoin('p_penerima_inquiry as tc', 'ta.id', '=', 'tc.id_inquiry')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+                ->groupBy('tc.id_inquiry')
+                ->orderBy('ta.tanggal_inquiry')
+                ->get();
+            }
 
             return Datatables::of($data)
                     ->addIndexColumn()
@@ -65,15 +80,15 @@ class TinquiryController extends Controller
                         $inquiry = Tinquiry::whereNull('deleted_at')->count();
                         return $inquiry;
                     })
-                    // ->addColumn('penerima_inquiry', function($row){
-                    //     $tq = DB::table('p_penerima_inquiry as ta')
-                    //     ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
-                    //     ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
-                    //     ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
-                    //     ->where('ta.id', $row->id)
-                    //     ->get();
-                    //     return empty($tq) ? [] : json_decode($tq);
-                    // })
+                    ->addColumn('penerima_inquiry', function($row){
+                        $tq = DB::table('p_penerima_inquiry as ta')
+                        ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
+                        ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
+                        ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
+                        ->where('ta.id', $row->id)
+                        ->get();
+                        return empty($tq) ? [] : json_decode($tq);
+                    })
                     ->rawColumns(['action', 'penerima_inquiry','total_inquiry'])
                     ->make(true);
         }
@@ -92,6 +107,59 @@ class TinquiryController extends Controller
         $kode_inq = "INQ-" . strval($count_inq[1] + 1) ;
 
         return view('transaksi/tinquiry/add', compact('kode_inq'));
+    }
+
+    public function pdf(Request $request) {
+        if(isset($request->tglawal) && isset($request->tglakhir)) {
+            $data = DB::table('t_profile_inquiry as ta')
+            ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
+            ->leftJoin('p_penerima_inquiry as tc', 'ta.id', '=', 'tc.id_inquiry')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tb.deleted_at')
+            ->where('ta.tanggal_inquiry', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+            ->where('ta.tanggal_inquiry', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
+            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+            ->groupBy('tc.id_inquiry')
+            ->orderBy('ta.tanggal_inquiry')
+            ->get();
+
+            foreach($data as $d) {
+                $tq = DB::table('p_penerima_inquiry as ta')
+                ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
+                ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
+                ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
+                ->where('ta.id', $d->id)
+                ->get();
+            }
+        } else {
+            $data = DB::table('t_profile_inquiry as ta')
+            ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
+            ->leftJoin('p_penerima_inquiry as tc', 'ta.id', '=', 'tc.id_inquiry')
+            ->whereNull('ta.deleted_at')
+            ->whereNull('tq.deleteq_at')
+            ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+            ->groupBy('tc.id_inquiry')
+            ->orderBy('ta.tanggal_inquiry')
+            ->get();
+
+            foreach($data as $d) {
+                $tq = DB::table('p_penerima_inquiry as ta')
+                ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
+                ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
+                ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
+                ->where('ta.id', $d->id)
+                ->get();
+            }
+        }
+
+        // dd($tb);
+    	$pdf = PDF::loadview('transaksi/tinquiry/pdf',[
+            'data' => $data,
+            'tq' => $tq,
+            'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
+            'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
+        ]);
+    	return $pdf->stream('Laporan Transaksi Inquiry.pdf', array("Attachment" => false));
     }
 
     /**

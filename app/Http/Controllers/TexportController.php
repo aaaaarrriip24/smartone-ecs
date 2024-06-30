@@ -119,7 +119,7 @@ class TexportController extends Controller
             'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
             'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
         ]);
-    	return $pdf->stream('Laporan Transaksi.pdf', array("Attachment" => false));
+    	return $pdf->stream('Laporan Transaksi Export.pdf', array("Attachment" => false));
     }
 
     public function store(Request $request)

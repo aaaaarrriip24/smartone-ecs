@@ -2,6 +2,13 @@
 
 @section('content')
 <!-- start page title -->
+<style>
+    .datepicker-dropdown {
+        top: 340px !important;
+        z-index: 10;
+    }
+
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -12,7 +19,10 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
                     <li class="breadcrumb-item active">Profile Inquiry</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('inquiry/add') }}" type="text">Add</a>
+                        <a href="{{ url('inquiry/add') }}" class="btn btn-sm btn-primary text-light" type="text">Add</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <button class="btn btn-sm btn-secondary btn-pdf">PDF</button>
                     </li>
                 </ol>
             </div>
@@ -21,34 +31,51 @@
     </div>
 </div>
 <!-- end page title -->
-
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title mb-0">Profile Inquiry</h5>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12 table-responsive">
-                        <table id="dt_inquiry"
-                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
-                            style="width:100%">
-                            <thead>
-                                <th>No. </th>
-                                <th>Tanggal Inquiry</th>
-                                <th>Produk Yang Diminta</th>
-                                <th>Quantity</th>
-                                <th>Negara Buyer</th>
-                                <th>Nama Buyer</th>
-                                <th>Jumlah Penerima</th>
-                                <th>Action</th>
-                            </thead>
-                        </table>
+            <form action="{{ url('inquiry/pdf') }}" id="forms" method="post" target="_blank">
+                @csrf
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12 table-responsive">
+                            <div class="col-md-5">
+                                <label class="form-label">Rentang Tanggal</label>
+                                <div class="input-group input-group-sm">
+                                    <input type="text"
+                                        class="form-control form-control-sm datepicker x-readonly tglawal filter"
+                                        readonly placeholder="Select date" onchange="reloadDT('tglawal')"
+                                        value="<?=date('01-m-Y')?>" name="tglawal">
+                                    <div class="input-group-append input-group-prepend">
+                                        <div class="input-group-text">-</div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control form-control-sm datepicker x-readonly tglakhir filter"
+                                        readonly placeholder="Select date" onchange="reloadDT('tglakhir')"
+                                        value="<?=date('d-m-Y')?>" name="tglakhir">
+                                </div>
+                            </div>
+                            <table id="dt_inquiry"
+                                class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                                style="width:100%">
+                                <thead>
+                                    <th>No. </th>
+                                    <th>Tanggal Inquiry</th>
+                                    <th>Produk Yang Diminta</th>
+                                    <th>Quantity</th>
+                                    <th>Negara Buyer</th>
+                                    <th>Nama Buyer</th>
+                                    <th>Jumlah Penerima</th>
+                                    <th>Action</th>
+                                </thead>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            </form>
         </div>
     </div>
 </div>
@@ -85,6 +112,14 @@
 <script>
     let table;
     $(document).ready(function () {
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+
+        $('.filter').on('change', function (e) {
+            table.ajax.reload(null, false);
+        });
 
         table = $('#dt_inquiry').DataTable({
             autoWidth: false,
@@ -98,7 +133,18 @@
             filter: true,
             sort: true,
             info: true,
-            ajax: base_url + "transaksi/inquiry",
+            ajax: {
+                url: base_url + "transaksi/inquiry",
+                type: "GET",
+                data: function (data) {
+                    if ($(".in").val() != "") data.in = $(".in").val();
+                    if ($('.tglawal').val() != '') data.tglawal = $('.tglawal').val();
+                    if ($('.tglakhir').val() != '') data.tglakhir = $('.tglakhir').val();
+                    data.tglawal = moment($('.tglawal').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    data.tglakhir = moment($('.tglakhir').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
+                    return data;
+                }
+            },
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
@@ -125,14 +171,14 @@
                     name: 'qty',
                     className: 'text-end',
                     orderable: true,
-                    render: function(data, type, row) {
+                    render: function (data, type, row) {
                         var qty, satuan_qty;
                         qty = row.qty;
                         satuan_qty = row.satuan_qty;
-                        if(qty == null) {
+                        if (qty == null) {
                             qty = "";
                         }
-                        if(satuan_qty == null) {
+                        if (satuan_qty == null) {
                             satuan_qty = "";
                         }
                         return qty + ' ' + satuan_qty;
@@ -153,7 +199,7 @@
                     name: 'total_inquiry',
                     orderable: true,
                     render: function (data, type, row) {
-                        return row.total_inquiry +"/"+ row.jumlah_perusahaan;
+                        return row.total_inquiry + "/" + row.jumlah_perusahaan;
                     }
                 },
                 {
@@ -166,14 +212,20 @@
             ]
         });
 
+        $(document).on('click', '.btn-pdf', function () {
+            document.getElementById("forms").submit();
+        });
+        
         $(document).on("click", ".btn-penerima", function () {
             let data = table.row($(this).closest('tr')).data();
             let penerima = data.penerima_inquiry;
             $('.select_perusahaan').empty();
             for (let index = 0; index < penerima.length; index++) {
                 const element = penerima[index];
-                $('.select_perusahaan').append(`<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`)                
-               
+                $('.select_perusahaan').append(
+                    `<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`
+                    )
+
             }
             $('#penerimaInquiry').modal('show');
 

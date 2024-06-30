@@ -3,7 +3,7 @@ pa
 <html>
 
 <head>
-    <title>Daftar Perusahaan Peserta Business Matching</title>
+    <title>Daftar Perusahaan Penerima Inquiry</title>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -31,7 +31,7 @@ pa
 <body>
     <div>
         <center>
-            <h5>Daftar Perusahaan Peserta Business Matching</h5>
+            <h5>Daftar Perusahaan Penerima Inquiry</h5>
             <h6>Periode: {{ $tglawal }} s/d {{ $tglakhir }}</h6>
         </center>
         <br />
@@ -49,9 +49,9 @@ pa
                 @foreach( $data as $d )
                 <tr style="background: #4BC0C0;">
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ date('d-m-Y', strtotime($d->tanggal_bm)) }}</td>
+                    <td>{{ date('d-m-Y', strtotime($d->tanggal_inquiry)) }}</td>
                     <td>{{ $d->nama_buyer }}</td>
-                    <td>{{ $d->produk_bm }}</td>
+                    <td>{{ $d->produk_yang_diminta }}</td>
                     <td>{{ $d->en_short_name }}</td>
                 </tr>
                 <tr style="background: #9BDCDC;">
@@ -62,8 +62,7 @@ pa
                     <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Nama Perusahaan</b></td>
                     <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Produk</b></td>
                 </tr>
-                
-                <!-- @foreach( $tb as $k )
+                <!-- @foreach( $tq as $k )
                 <tr style="background: #DBF2F2;">
                     <td>{{ $loop->iteration }}</td>
                     <td colspan="2">{{ $k->nama_perusahaan }}{{ empty($k->nama_tipe) ? "" : ", " .$k->nama_tipe }}</td>

@@ -141,6 +141,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('transaksi/inquiry', [TinquiryController::class, 'index'])->name('tinquiry');
         Route::get('inquiry/add', [TinquiryController::class, 'create']);
         Route::get('inquiry/detail/{id}', [TinquiryController::class, 'detail']);
+        Route::post('inquiry/pdf', [TinquiryController::class, 'pdf']);
         Route::post('inquiry/store', [TinquiryController::class, 'store']);
         Route::get('inquiry/show/{id}', [TinquiryController::class, 'show']);
         Route::post('inquiry/update', [TinquiryController::class, 'update']);

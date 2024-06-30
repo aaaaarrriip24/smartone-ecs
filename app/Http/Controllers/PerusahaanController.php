@@ -165,7 +165,7 @@ class PerusahaanController extends Controller
     	$pdf = PDF::loadview('master/m_perusahaan/pdf',[
             'data' => $data,
         ]);
-    	return $pdf->stream('Laporan Konsultasi.pdf', array("Attachment" => false));
+    	return $pdf->stream('Daftar Perusahaan Anggota ECS.pdf', array("Attachment" => false));
     }
     
     public function detail($id)
