@@ -82,4 +82,64 @@ class BroadcastEmailController extends Controller
         Alert::toast('Send email successfully!', 'success');
         return redirect()->back();
     }
+    
+    public function store(Request $request) {
+        $perusahaan = Perusahaan::leftJoin('t_sub_kategori_perusahaan as tb', 'm_perusahaan.id', '=', 'tb.id_perusahaan')
+        ->whereIn('tb.id_sub_kategori', $request->id_sub_kategori)
+        ->get();
+
+
+        $arrFile = array();
+        if(!empty($request->files)) {
+            foreach ($request->file('files') as $file) {
+                // dd($key);
+                // $file = $request->file($key);
+                // dd($file);
+                $nama_file = time()."_".$file->getClientOriginalName();
+                $path = public_path().'/file_email/';
+                $file->move($path, $nama_file);
+                $name = $nama_file;
+
+                $arrFile[] = $path.$nama_file ; 
+            }
+        }
+
+        // return $arrFile;
+
+        $dataPT = array();
+        foreach ($perusahaan as $key) {
+            $dataPT[] = array(
+                'nama_perusahaan' => $key->nama_perusahaan,
+                'email' => $key->email,
+                'header_email' => $request->header_email,
+                'body_email' => $request->body_email,
+                'attachment' => $arrFile
+            ); 
+        }
+
+        // dd($arrFile);
+        Mail::to(
+            collect($dataPT)->pluck('email')->toArray()
+        )->send(new PerusahaanEmail($dataPT));
+
+        // Mail::send('email.email', $dataPT, function($message)use($dataPT, $arrFile) {
+        //     $message->to(collect($dataPT)->pluck('email')->toArray())
+        //             ->subject(collect($dataPT)->pluck('header_email')->toArray());
+ 
+        //     foreach ($arrFile as $file){
+        //         $message->attach($file);
+        //     }
+        // });
+
+        // Mail::to(
+        //     collect($dataPT)->pluck('email')->toArray()
+        // )->send(new PerusahaanEmail($dataPT, function($message) use($dataPT, $arrFile) {
+        //     foreach ($arrFile as $file){
+        //         $message->attach($file);
+        //     }
+        // }));
+
+        Alert::toast('Send email successfully!', 'success');
+        return redirect()->back();
+    }
 }

@@ -15,14 +15,14 @@ class PerusahaanEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $data;
+    public $dataPT;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($data)
+    public function __construct($dataPT)
     {
-        $this->data = $data;
+        $this->dataPT = $dataPT;
     }
   
     /**
@@ -35,11 +35,11 @@ class PerusahaanEmail extends Mailable
         return $this->subject('Mail from ExportCenter.id')->view('email.email');
     }
     
-    public function attachments(): array
+    public function attachments($dataPT): array
     {
         return [
-            Attachment::fromPath($this->data['attachment'])
-                ->as('foto.png')
+            Attachment::fromPath($this->dataPT['attachment'])
+                ->as($dataPT->attachments)
                 ->withMime('application/pdf')
         ];
     }
