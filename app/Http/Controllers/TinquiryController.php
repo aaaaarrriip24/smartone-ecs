@@ -122,15 +122,6 @@ class TinquiryController extends Controller
             ->groupBy('tc.id_inquiry')
             ->orderBy('ta.tanggal_inquiry')
             ->get();
-
-            foreach($data as $d) {
-                $tq = DB::table('p_penerima_inquiry as ta')
-                ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
-                ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
-                ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
-                ->where('ta.id', $d->id)
-                ->get();
-            }
         } else {
             $data = DB::table('t_profile_inquiry as ta')
             ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
@@ -141,16 +132,12 @@ class TinquiryController extends Controller
             ->groupBy('tc.id_inquiry')
             ->orderBy('ta.tanggal_inquiry')
             ->get();
-
-            foreach($data as $d) {
-                $tq = DB::table('p_penerima_inquiry as ta')
-                ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
-                ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
-                ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
-                ->where('ta.id', $d->id)
-                ->get();
-            }
         }
+        $tq = DB::table('p_penerima_inquiry as ta')
+        ->leftjoin('t_profile_inquiry as tb','tb.id','ta.id_inquiry')
+        ->leftjoin('m_perusahaan as tc','tc.id','ta.id_perusahaan')
+        ->leftjoin('m_tipe_perusahaan as td','td.id','tc.id_tipe')
+        ->get();
 
         // dd($tb);
     	$pdf = PDF::loadview('transaksi/tinquiry/pdf',[

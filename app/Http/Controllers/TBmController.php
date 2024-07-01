@@ -123,15 +123,6 @@ class TBmController extends Controller
             ->groupBy('tc.id_bm')
             ->orderBy('ta.tanggal_bm')
             ->get();
-            
-            foreach($data as $d) {
-                $tb = DB::table('p_peserta_bm')
-                ->leftjoin('m_perusahaan','m_perusahaan.id','p_peserta_bm.id_perusahaan')
-                ->leftjoin('m_tipe_perusahaan','m_tipe_perusahaan.id','m_perusahaan.id_tipe')
-                ->select(DB::raw('m_perusahaan.kode_perusahaan, m_perusahaan.detail_produk_utama,m_perusahaan.nama_perusahaan,p_peserta_bm.id,IFNULL(m_tipe_perusahaan.nama_tipe, "") as nama_tipe'))
-                ->where('p_peserta_bm.id_bm', $d->id)
-                ->get();
-            }
         } else {
             $data = DB::table('t_bm as ta')
             ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
@@ -143,16 +134,13 @@ class TBmController extends Controller
             ->orderBy('ta.tanggal_bm')
             ->get();
             
-            foreach($data as $d) {
-                $tb = DB::table('p_peserta_bm')
-                ->leftjoin('m_perusahaan','m_perusahaan.id','p_peserta_bm.id_perusahaan')
-                ->leftjoin('m_tipe_perusahaan','m_tipe_perusahaan.id','m_perusahaan.id_tipe')
-                ->select(DB::raw('m_perusahaan.kode_perusahaan, m_perusahaan.detail_produk_utama,m_perusahaan.nama_perusahaan,p_peserta_bm.id,IFNULL(m_tipe_perusahaan.nama_tipe, "") as nama_tipe'))
-                ->where('p_peserta_bm.id_bm', $d->id)
-                ->get();
-            }
         }
-
+        $tb = DB::table('p_peserta_bm as ta')
+        ->leftjoin('m_perusahaan as tb','tb.id','ta.id_perusahaan')
+        ->leftjoin('m_tipe_perusahaan as tc','tc.id','tb.id_tipe')
+        ->select(DB::raw('tb.kode_perusahaan,tb.nama_perusahaan, tb.detail_produk_utama,ta.id_bm,ta.id,IFNULL(tc.nama_tipe, "") as nama_tipe'))
+        ->get();
+        
         // dd($tb);
     	$pdf = PDF::loadview('transaksi/bm/pdf',[
             'data' => $data,

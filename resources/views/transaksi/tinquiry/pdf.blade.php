@@ -62,13 +62,13 @@ pa
                     <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Nama Perusahaan</b></td>
                     <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Produk</b></td>
                 </tr>
-                <!-- @foreach( $tq as $k )
+                @foreach( collect($tq)->where("id_inquiry", $d->id)->toArray() as $k)
                 <tr style="background: #DBF2F2;">
                     <td>{{ $loop->iteration }}</td>
                     <td colspan="2">{{ $k->nama_perusahaan }}{{ empty($k->nama_tipe) ? "" : ", " .$k->nama_tipe }}</td>
                     <td colspan="2">{{ empty($k->detail_produk_utama) ? "-" : $k->detail_produk_utama }}</td>
                 </tr>
-                @endforeach -->
+                @endforeach
                 <tr>
                     <td></td>
                     <td></td>
