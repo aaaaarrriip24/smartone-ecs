@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\PerusahaanEmail;
+use App\Mail\BatchMail;
 use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -70,14 +71,14 @@ class BroadcastEmailController extends Controller
         $perusahaan = Perusahaan::where("id", $request->id)->first();
         $attachment = public_path('folder_dok_pendukung/1711940400_img-6.png');
 
-        $data = [
+        $dataPT = [
             'nama_perusahaan' => $perusahaan->nama_perusahaan,
             'email' => $perusahaan->email,
             'attachment' => $attachment
         ];
 
         // dd($data);
-        Mail::to($perusahaan->email)->send(new PerusahaanEmail($data));
+        Mail::to($perusahaan->email)->send(new PerusahaanEmail($dataPT));
   
         Alert::toast('Send email successfully!', 'success');
         return redirect()->back();
@@ -88,21 +89,27 @@ class BroadcastEmailController extends Controller
         ->whereIn('tb.id_sub_kategori', $request->id_sub_kategori)
         ->get();
 
+        dd($perusahaan);
 
-        $arrFile = array();
-        if(!empty($request->files)) {
-            foreach ($request->file('files') as $file) {
-                // dd($key);
-                // $file = $request->file($key);
-                // dd($file);
-                $nama_file = time()."_".$file->getClientOriginalName();
-                $path = public_path().'/file_email/';
-                $file->move($path, $nama_file);
-                $name = $nama_file;
-
-                $arrFile[] = $path.$nama_file ; 
-            }
+        $header = $request->header_email;
+        $body = $request->body_email;
+        foreach ($perusahaan as $user) {
+            $this->sendRawEmailTo($user, $header, $body);
         }
+        // $arrFile = array();
+        // if(!empty($request->files)) {
+        //     foreach ($request->file('files') as $file) {
+        //         // dd($key);
+        //         // $file = $request->file($key);
+        //         // dd($file);
+        //         $nama_file = time()."_".$file->getClientOriginalName();
+        //         $path = public_path().'/file_email/';
+        //         $file->move($path, $nama_file);
+        //         $name = $nama_file;
+
+        //         $arrFile[] = $path.$nama_file ; 
+        //     }
+        // }
 
         // return $arrFile;
 
@@ -113,33 +120,24 @@ class BroadcastEmailController extends Controller
                 'email' => $key->email,
                 'header_email' => $request->header_email,
                 'body_email' => $request->body_email,
-                'attachment' => $arrFile
+                // 'attachment' => $arrFile
             ); 
         }
 
-        // dd($arrFile);
+        dd($dataPT);
         Mail::to(
             collect($dataPT)->pluck('email')->toArray()
-        )->send(new PerusahaanEmail($dataPT));
-
-        // Mail::send('email.email', $dataPT, function($message)use($dataPT, $arrFile) {
-        //     $message->to(collect($dataPT)->pluck('email')->toArray())
-        //             ->subject(collect($dataPT)->pluck('header_email')->toArray());
- 
-        //     foreach ($arrFile as $file){
-        //         $message->attach($file);
-        //     }
-        // });
-
-        // Mail::to(
-        //     collect($dataPT)->pluck('email')->toArray()
-        // )->send(new PerusahaanEmail($dataPT, function($message) use($dataPT, $arrFile) {
-        //     foreach ($arrFile as $file){
-        //         $message->attach($file);
-        //     }
-        // }));
+        )->send(new BatchMail($dataPT));
 
         Alert::toast('Send email successfully!', 'success');
         return redirect()->back();
+    }
+
+    private function sendRawEmailTo($user, $header, $body, $fromEmail = null, $toEmail = null)
+        {
+        $from = (isset($fromEmail) && $fromEmail != null) ? $fromEmail : getenv('MAIL_FROM_EMAIL');
+        $to = (isset($toEmail) && $toEmail != null) ? $toEmail : $user->email;
+
+        return $this->sendTo($user, $subject, 'email.bulk', ['body' => $body], $from, $to);
     }
 }

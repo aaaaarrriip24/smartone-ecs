@@ -7,12 +7,10 @@
 </head>
 
 <body>
-    <h1>Hi, {{ $dataPT['nama_perusahaan'] }}</h1>
-    <p>{{ $dataPT['email'] }}</p>
+    <h1>Hi, {{ $details['nama_perusahaan'] }}</h1>
+    <p>{{ $details['email'] }}</p>
 
     <p>Thank you</p>
-
-    {{ $message->embed($dataPT['attachment']) }}
 
 </body>
 </html>

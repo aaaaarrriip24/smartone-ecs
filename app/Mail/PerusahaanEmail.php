@@ -38,9 +38,7 @@ class PerusahaanEmail extends Mailable
     public function attachments($dataPT): array
     {
         return [
-            Attachment::fromPath($this->dataPT['attachment'])
-                ->as($dataPT->attachments)
-                ->withMime('application/pdf')
+            Attachment::fromPath($this->attachedFile),
         ];
     }
 }
