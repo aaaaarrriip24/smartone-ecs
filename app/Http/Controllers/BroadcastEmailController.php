@@ -89,7 +89,7 @@ class BroadcastEmailController extends Controller
         ->whereIn('tb.id_sub_kategori', $request->id_sub_kategori)
         ->get();
 
-        dd($perusahaan);
+        // dd($perusahaan);
 
         $header = $request->header_email;
         $body = $request->body_email;
@@ -124,7 +124,7 @@ class BroadcastEmailController extends Controller
             ); 
         }
 
-        dd($dataPT);
+        // dd($dataPT);
         Mail::to(
             collect($dataPT)->pluck('email')->toArray()
         )->send(new BatchMail($dataPT));

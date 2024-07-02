@@ -11,11 +11,11 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
                     <li class="breadcrumb-item active">Broadcast Email</li>
-                    <li class="breadcrumb-item">
+                    <!-- <li class="breadcrumb-item">
                         <a href="javascript:void(0);" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Add
                         </a>
-                    </li>
+                    </li> -->
                 </ol>
             </div>
 
