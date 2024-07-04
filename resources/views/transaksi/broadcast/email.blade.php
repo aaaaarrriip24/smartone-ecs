@@ -202,7 +202,10 @@
                         var div = document.createElement("div");
                         div.innerHTML = html;
                         var text = div.textContent || div.innerText || "";
-                        return text;
+
+                        var str = text;
+                        if (str.length > 30) str = str.substring(0, 30);
+                        return str;
                     }
                 },
                 // {
