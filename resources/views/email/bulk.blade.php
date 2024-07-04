@@ -10,7 +10,6 @@
     <h1>Hi, {{ $dataPT->nama_perusahaan }}</h1>
     <p>{{ $dataPT->body_email }}</p>
 
-    <p>Thank you</p>
     @foreach($dataPT->attachment as $d)
         {{ $message->embed($d) }}
     @endforeach
