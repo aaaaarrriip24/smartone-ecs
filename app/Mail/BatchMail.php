@@ -57,8 +57,13 @@ class BatchMail extends Mailable
      */
     public function attachments(): array
     {
+        // return [
+        //     Attachment::fromPath($this->dataPT->attachment),
+        // ];
         return [
-            Attachment::fromPath($this->dataPT->attachment),
+            Attachment::fromPath($this->dataPT->attachment)
+                    ->as('name.pdf')
+                    ->withMime('application/pdf'),
         ];
     }
 }

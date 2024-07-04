@@ -12,7 +12,10 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
                     <li class="breadcrumb-item active">Broadcast Email</li>
                     <li class="breadcrumb-item">
-                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <!-- <a href="javascript:void(0);" class="btn btn-sm btn-primary" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Add
+                        </a> -->
+                        <a href="{{ url('broadcast/add') }}" class="btn btn-sm btn-primary text-white" type="text">
                             Add
                         </a>
                     </li>
@@ -43,7 +46,7 @@
                                 <th>Subject</th>
                                 <th>Body</th>
                                 <!-- <th>Perusahaan</th> -->
-                                <!-- <th>Action</th> -->
+                                <th>Action</th>
                             </thead>
                         </table>
                     </div>
@@ -67,7 +70,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama Perusahaan</label>
-                        <input hidden type="text" name="id_bm" class="get_id_bm">
+                        <input hidden type="text" name="id_bm" class="get_id_template">
                         <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
                             multiple="multiple"></select>
                     </div>
@@ -208,13 +211,13 @@
                         return str;
                     }
                 },
-                // {
-                //     data: 'action',
-                //     name: 'action',
-                //     orderable: false,
-                //     searchable: false,
-                //     width: '10%'
-                // },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable: false,
+                    width: '10%'
+                },
             ]
         });
 

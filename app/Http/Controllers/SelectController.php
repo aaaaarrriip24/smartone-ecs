@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use DataTables;
 
 class SelectController extends Controller
 {
@@ -77,7 +78,9 @@ class SelectController extends Controller
             $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
         }
 
-        $data->orderBy('tc.nama_sub_kategori', 'ASC')->get();
+        $data
+        ->groupBy('ta.id_sub_kategori')
+        ->orderBy('tc.nama_sub_kategori', 'ASC')->get();
         $data = $data->get();
         return $data;
     }
@@ -149,6 +152,40 @@ class SelectController extends Controller
         }
 
         return $data;
+    }
+
+    public function select_perusahaan_sub_kategori(Request $request) {
+        if ($request->ajax()) {
+            $data = DB::table('t_sub_kategori_perusahaan as ta')
+            ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+            ->leftJoin('m_sub_kategori as tc', 'ta.id_sub_kategori', '=', 'tc.id')
+            ->select('*')
+            ->whereNull('ta.deleted_at')
+            ->whereIn('ta.id_sub_kategori', $request->id_sub_kategori);
+
+            if($request->term) {
+                $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
+            }
+
+            $data->orderBy('tc.nama_sub_kategori', 'ASC')->get();
+            $data = $data->get();
+            
+            $data = collect($data)->map(function ($item, $index) {
+                $item->in = $index+1;
+                return $item;
+            })->toArray();
+
+            return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('checkbox', function($row){
+                $input = "<input hidden type='text' name='test[$row->in][id_sub_kategori]' value='$row->id_sub_kategori'>"; 
+                $input .= "<input hidden type='text' name='test[$row->in][email]' value='$row->email'>"; 
+                $input .= "<input hidden type='text' name='test[$row->in][nama_perusahaan]' value='$row->nama_perusahaan'>"; 
+                return $input .= "<input type='checkbox' class='perusahaan-checkbox' name='test[$row->in][id_perusahaan]' value='$row->id_perusahaan'>";
+            })
+            ->rawColumns(['checkbox'])
+            ->make(true);
+        }
     }
 
     public function selecttopik(Request $request) {

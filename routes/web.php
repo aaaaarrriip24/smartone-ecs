@@ -57,6 +57,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
         // Select
         Route::get('select/perusahaan', [SelectController::class, 'selectperusahaan']);
+        Route::post('select/perusahaan/sub_kategori', [SelectController::class, 'select_perusahaan_sub_kategori']);
         Route::get('select/filterperusahaan', [SelectController::class, 'filterperusahaan']);
         Route::get('select/tipe', [SelectController::class, 'selecttipe']);
         Route::get('select/topik', [SelectController::class, 'selecttopik']);
@@ -81,6 +82,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
 
         // BroadcastEmail
         Route::get('transaksi/broadcast', [BroadcastEmailController::class, 'email_index']);
+        Route::get('broadcast/add', [BroadcastEmailController::class, 'create']);
         Route::post('broadcast/send_email', [BroadcastEmailController::class, 'sendEmail']);
         Route::get('broadcast/send_email/{id}', [BroadcastEmailController::class, 'sendEmailId']);
         Route::post('broadcast/store', [BroadcastEmailController::class, 'sendBulk']);

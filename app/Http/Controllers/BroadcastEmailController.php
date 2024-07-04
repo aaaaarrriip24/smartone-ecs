@@ -58,35 +58,41 @@ class BroadcastEmailController extends Controller
                         // <li><a href='.$urlSendEmail.' class="btn btn-sm btn-success">Send Email</a></li>
                         return $button;
                     })
-                    ->addColumn('penerima_email', function($row){
-                        $receipt = DB::table('m_draft as ta')
-                        ->leftJoin('m_perusahaan as td', 'ta.id_perusahaan', '=', 'td.id')
-                        ->leftJoin('m_tipe_perusahaan as te', 'te.id', '=', 'td.id_tipe')
-                        ->whereNull('ta.deleted_at')
-                        ->where('ta.id_template', $row->id)
-                        ->select('td.id', 'td.nama_perusahaan', 'te.nama_tipe', 'td.email')
-                        ->groupBy('ta.id_template')
-                        ->orderBy('ta.id', 'ASC')
-                        ->get();
-                        return empty($receipt) ? [] : json_decode($receipt);
-                    })
-                    ->addColumn('file', function($row){
-                        $file = DB::table('m_draft as ta')
-                        ->leftJoin('m_template as tb', 'ta.id_template', '=', 'tb.id')
-                        ->leftJoin('m_attachment as tc', 'ta.id_template', '=', 'tc.id_template')
-                        ->whereNull('ta.deleted_at')
-                        ->where('ta.id_template', $row->id)
-                        ->select('tc.*')
-                        ->groupBy('ta.id_template')
-                        ->orderBy('ta.id', 'ASC')
-                        ->get();
-                        return empty($file) ? [] : json_decode($file);
-                    })
-                    ->rawColumns(['action', 'penerima_email','file'])
+                    // ->addColumn('penerima_email', function($row){
+                    //     $receipt = DB::table('m_draft as ta')
+                    //     ->leftJoin('m_perusahaan as td', 'ta.id_perusahaan', '=', 'td.id')
+                    //     ->leftJoin('m_tipe_perusahaan as te', 'te.id', '=', 'td.id_tipe')
+                    //     ->whereNull('ta.deleted_at')
+                    //     ->where('ta.id_template', $row->id)
+                    //     ->select('td.id', 'td.nama_perusahaan', 'te.nama_tipe', 'td.email')
+                    //     ->groupBy('ta.id_template')
+                    //     ->orderBy('ta.id', 'ASC')
+                    //     ->get();
+                    //     return empty($receipt) ? [] : json_decode($receipt);
+                    // })
+                    // ->addColumn('file', function($row){
+                    //     $file = DB::table('m_draft as ta')
+                    //     ->leftJoin('m_template as tb', 'ta.id_template', '=', 'tb.id')
+                    //     ->leftJoin('m_attachment as tc', 'ta.id_template', '=', 'tc.id_template')
+                    //     ->whereNull('ta.deleted_at')
+                    //     ->where('ta.id_template', $row->id)
+                    //     ->select('tc.*')
+                    //     ->groupBy('ta.id_template')
+                    //     ->orderBy('ta.id', 'ASC')
+                    //     ->get();
+                    //     return empty($file) ? [] : json_decode($file);
+                    // })
+                    ->rawColumns(['action'
+                    // , 'penerima_email','file'
+                    ])
                     ->make(true);
         }
         
         return view('transaksi/broadcast/email');
+    }
+
+    public function create() {
+        return view('transaksi/broadcast/add');
     }
 
     public function penerima_store(Request $request)
@@ -189,39 +195,26 @@ class BroadcastEmailController extends Controller
     }
 
     public function draftEmail(Request $request) {
-        $sub_kategori = $request->id_sub_kategori;
+        
+        $test = $request->test;
         $template = TemplateModel::insert([
             'subject_email' => $request->subject_email,
             'body_email' => $request->body_email,
             'created_at' => Carbon::now()
         ]);
-
-        // dd($request->id_sub_kategori);
         $id_template = DB::getPdo()->lastInsertId();
-        foreach($sub_kategori as $d => $val) {
-            $perusahaan = Perusahaan::leftJoin('t_sub_kategori_perusahaan as tb', 'm_perusahaan.id', '=', 'tb.id_perusahaan')
-            ->where('tb.id_sub_kategori', $val)
-            ->first();
-
-            // dd($perusahaan);
-            $draft = DraftModel::insert([
-                'id_template' => $id_template,
-                'id_sub_kategori' => $val,
-                'id_perusahaan' => $perusahaan->id,
-                'created_at' => Carbon::now()
-            ]);
-        }
-
+        
         $arrFile = array();
-        $files = $request->file('files');
+        $files = $request->file('sfiles');
+        // return $request->all();
         if(!empty($files)) {
-            foreach ($request->file('files') as $file) {
+            foreach ($request->file('sfiles') as $file) {
                 $nama_file = time()."_".$file->getClientOriginalName();
                 $path = public_path().'/file_email/';
                 $file->move($path, $nama_file);
                 $name = $nama_file;
                 $arrFile[] = $path.$nama_file ; 
-
+                
                 $attch = AttachmentModel::insert([
                     'id_template' => $id_template,
                     'file' => $name,
@@ -230,7 +223,35 @@ class BroadcastEmailController extends Controller
             }
         }
 
-        Alert::toast('Draft Created successfully!', 'success');
+        foreach($test as $d) {
+            $d = (object)$d;
+            $draft = DraftModel::insert([
+                'id_template' => $id_template,
+                'id_sub_kategori' => $d->id_sub_kategori,
+                'id_perusahaan' => $d->id_perusahaan,
+                'email' => $d->email,
+                'flag_status' => 1,
+                'send_at' => Carbon::now(),
+                'created_at' => Carbon::now()
+            ]);
+            
+            $dataPT = new stdClass();
+            $dataPT->nama_perusahaan = $d->nama_perusahaan;
+            $dataPT->email = $d->email;
+            $dataPT->header_email = $request->header_email;
+            $dataPT->body_email = strip_tags($request->body_email);
+            $dataPT->attachment = $arrFile;
+
+            Mail::to($d->email)->send(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
+                foreach ($arrFile as $file){
+                    $message->attach($file);
+                }
+            }));
+        }
+
+        
+
+        Alert::toast('Draft Created & Send email successfully!', 'success');
         return redirect()->back(); 
     }
 
