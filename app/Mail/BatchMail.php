@@ -5,38 +5,60 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Content;
+use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
 class BatchMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $details;
+    public $dataPT;
 
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
-    public function __construct($details)
+    public function __construct($dataPT)
     {
-        $this->details = $details;
+        $this->dataPT = $dataPT;
     }
 
-    /**
-     * Build the message.
-     *
-     * @return $this
-     */
     public function build()
     {
-        return $this->subject('Mail from ExportCenter.id')->view('email.bulk');
+        return $this->subject($this->dataPT->header_email)
+        ->view('email.bulk')
+        ->with([
+            'nama_perusahaan' => $this->dataPT->nama_perusahaan,
+            'email' => $this->dataPT->email,
+            'body_email' => $this->dataPT->body_email,
+        ]);
     }
-
-    // public function attachments($details): array
+    /**
+     * Get the message envelope.
+     */
+    // public function envelope(): Envelope
     // {
-    //     return [
-    //         Attachment::fromPath($details->attachment),
-    //     ];
+    //     return new Envelope($this->subject);
     // }
+
+    // /**
+    //  * Get the message content definition.
+    //  */
+    // public function content(): Content
+    // {
+    //     return new Content($this->content);
+    // }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     */
+    public function attachments(): array
+    {
+        return [
+            Attachment::fromPath($this->dataPT->attachment),
+        ];
+    }
 }

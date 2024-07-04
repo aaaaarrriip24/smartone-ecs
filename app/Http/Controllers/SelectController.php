@@ -69,6 +69,7 @@ class SelectController extends Controller
         $data = DB::table('t_sub_kategori_perusahaan as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
         ->leftJoin('m_sub_kategori as tc', 'ta.id_sub_kategori', '=', 'tc.id')
+        ->select('*')
         ->whereNull('ta.deleted_at')
         ->where('tc.id_kategori', $request->id_kategori);
 

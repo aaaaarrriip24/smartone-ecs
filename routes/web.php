@@ -67,6 +67,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('select/k_produk', [SelectController::class, 'selectk_produk']);
         Route::get('select/sub_produk', [SelectController::class, 'select_sub_kategori']);
         Route::get('select/sub_produk2', [SelectController::class, 'select_sub_kategori2']);
+        Route::get('select/perusahaan2/{id}', [SelectController::class, 'perusahaan2']);
 
         // Perusahaan
         Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
@@ -82,7 +83,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('transaksi/broadcast', [BroadcastEmailController::class, 'email_index']);
         Route::post('broadcast/send_email', [BroadcastEmailController::class, 'sendEmail']);
         Route::get('broadcast/send_email/{id}', [BroadcastEmailController::class, 'sendEmailId']);
-        Route::post('broadcast/store', [BroadcastEmailController::class, 'store']);
+        Route::post('broadcast/store', [BroadcastEmailController::class, 'sendBulk']);
+        Route::post('broadcast/draft', [BroadcastEmailController::class, 'draftEmail']);
         
         // Petugas
         Route::get('master/petugas', [PetugasController::class, 'index'])->name('petugas');

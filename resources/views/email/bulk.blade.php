@@ -7,10 +7,9 @@
 </head>
 
 <body>
-    <h1>Hi, {{ $details['nama_perusahaan'] }}</h1>
-    <p>{{ $details['email'] }}</p>
+    <h1>Hi, {{ $dataPT->nama_perusahaan }}</h1>
+    <p>{{ $dataPT->body_email }}</p>
 
     <p>Thank you</p>
-
 </body>
 </html>

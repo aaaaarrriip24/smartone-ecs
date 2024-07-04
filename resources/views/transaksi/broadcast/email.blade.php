@@ -11,11 +11,11 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
                     <li class="breadcrumb-item active">Broadcast Email</li>
-                    <!-- <li class="breadcrumb-item">
-                        <a href="javascript:void(0);" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <li class="breadcrumb-item">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Add
                         </a>
-                    </li> -->
+                    </li>
                 </ol>
             </div>
 
@@ -42,6 +42,7 @@
                                 <th>No. </th>
                                 <th>Nama Perusahaan</th>
                                 <th>Email</th>
+                                <!-- <th>Perusahaan</th> -->
                                 <!-- <th>Action</th> -->
                             </thead>
                         </table>
@@ -53,11 +54,38 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="penerimaEmail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" action="{{ url('penerima/store') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Penerima Email</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nama Perusahaan</label>
+                        <input hidden type="text" name="id_bm" class="get_id_bm">
+                        <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
+                            multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Add Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-            <form method="post" action="{{ url('broadcast/store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ url('broadcast/draft') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Broadcast Email</h5>
@@ -73,10 +101,6 @@
                             <option value="bySubKategori">Per Sub Kategori Perusahaan</option>
                         </select>
                     </div> -->
-                    <!-- <div class="form-group div_perusahaan d-none">
-                        <label class="form-label mb-1 mt-2 labelInput">Pilih Perusahaan</label>
-                        <select name="id_perusahaan[]" class="form-control form-control-sm form-select select_perusahaan" multiple="multiple"></select>
-                    </div> -->
                     <div class="form-group div_kategori">
                         <label class="form-label mb-1 mt-2 labelInput">Kategori Produk</label>
                         <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk"></select>
@@ -84,11 +108,15 @@
                     <div class="form-group div_sub_kategori">
                         <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
                         <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk"
-                            multiple="multiple"></select>
+                        multiple="multiple"></select>
                     </div>
+                    <!-- <div class="form-group div_perusahaan">
+                        <label class="form-label mb-1 mt-2 labelInput">Pilih Perusahaan</label>
+                        <select name="id_perusahaan[]" class="form-control form-control-sm form-select select_perusahaan" multiple="multiple"></select>
+                    </div> -->
                     <div class="form-group">
-                        <label>Header Email</label>
-                        <input type="text" name="header_email" class="form-control form-control-sm">
+                        <label>Subject Email</label>
+                        <input type="text" name="subject_email" class="form-control form-control-sm">
                     </div>
                     <div class="form-group">
                         <label>Body Email</label>
@@ -97,7 +125,6 @@
                     </div>
                     <div class="form-group">
                         <label>Attachment</label>
-                        <!-- <input type="text" name="header_email" class="form-control form-control-sm"> -->
                         <input type="file" class="form-control" name="files[]" multiple="multiple">
                     </div>
                 </div>
@@ -196,59 +223,22 @@
             ]
         });
 
-        // $(".filter_penerima").select2({
-        //     placeholder: "Pilih Filter Penerima",
-        //     dropdownParent: $('#exampleModal'),
-        //     width: '100%',
-        //     allowClear: true,dropdownParent: $('#exampleModal'),
-        // }).on('select2:select', function (e) {
-        //     var data = e.params.data;
-        //     var value = $(".filter_penerima").val();
-        //     if(value = "byID") {
-        //         $(".div_perusahaan").removeClass("d-none");
-        //         // $(".div_kategori").removeClass("d-none");
-        //         // $(".div_sub_kategori").removeClass("d-none");
-        //     } else if (value = "byKategori") {
-        //         // $(".div_perusahaan").removeClass("d-none");
-        //         $(".div_kategori").removeClass("d-none");
-        //         // $(".div_sub_kategori").removeClass("d-none");
-        //     } else {
-        //         // $(".div_perusahaan").removeClass("d-none");
-        //         $(".div_kategori").removeClass("d-none");
-        //         $(".div_sub_kategori").removeClass("d-none");
-        //     }
-        //     console.log(value);
-        // });
+        $(document).on("click", ".btn-penerima", function () {
+            let data = table.row($(this).closest('tr')).data();
+            let penerima = data.penerima_email;
+            $('.select_perusahaan').empty();
+            for (let index = 0; index < penerima.length; index++) {
+                const element = penerima[index];
+                $('.select_perusahaan').append(
+                    `<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`
+                )
 
-        // $(".filter_penerima").on("change", function() {
-        // });
-
-        $(".select_perusahaan").select2({
-            placeholder: "Pilih Perusahaan",
-            dropdownParent: $('#exampleModal'),
-            width: '100%',
-            allowClear: true,
-            ajax: {
-                url: base_url + 'ppbm/show',
-                dataType: 'json',
-                data: function (params) {
-                    params.id_bm = $('.get_id_bm').val();
-                    return params
-                },
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                id: item.id,
-                                text: item.kode_perusahaan + ', ' + item.nama_perusahaan + ', ' + item.nama_tipe,
-                            }
-                        })
-                    };
-                },
             }
-        }).on('select2:select', function (e) {
-            var data = e.params.data;
-        });
+            $('#penerimaEmail').modal('show');
+
+            console.log(data);
+            $(".get_id_template").val(data.id);
+        })
 
         $(".select_k_produk").select2({
             placeholder: "Pilih Kategori Produk",
@@ -271,6 +261,7 @@
             }
         }).on('select2:select', function (e) {
             var data = e.params.data;
+            console.log(data);
         });
 
         $(".select_sub_produk").select2({
@@ -298,7 +289,55 @@
         }).on('select2:select', function (e) {
             var data = e.params.data;
             console.log(data);
+
+            // var perusahaanSelect = $('.select_sub_produk');
+            // $.ajax({
+            //     type: 'GET',
+            //     url: base_url + 'select/perusahaan2/' + data.id
+            // }).then(function (data) {
+            //     // create the option and append to Select2
+            //     var option = new Option(data.nama_perusahaan, data.id, true, true);
+            //     perusahaanSelect.append(option).trigger('change');
+
+            //     // manually trigger the `select2:select` event
+            //     perusahaanSelect.trigger({
+            //         type: 'select2:select',
+            //         params: {
+            //             data: data
+            //         }
+            //     });
+            // });
         });
+
+        $(".select_perusahaan").select2({
+            placeholder: "Pilih Perusahaan",
+            dropdownParent: $('#penerimaEmail'),
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'penerima/show',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_template = $('.get_id_template').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nama_perusahaan + ', ' + item.nama_tipe,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
+        
+        // Fetch the preselected item, and add to the control
 
         $(".btn-send-all").click(function () {
             var selectRowsCount = $("input[class='perusahaan-checkbox']:checked").length;
