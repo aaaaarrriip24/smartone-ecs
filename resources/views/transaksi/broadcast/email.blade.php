@@ -40,8 +40,8 @@
                                 <!-- <button class="btn btn-sm btn-success btn-send-all">Send Email</button> -->
                                 <!-- <th># </th> -->
                                 <th>No. </th>
-                                <th>Nama Perusahaan</th>
-                                <th>Email</th>
+                                <th>Subject</th>
+                                <th>Body</th>
                                 <!-- <th>Perusahaan</th> -->
                                 <!-- <th>Action</th> -->
                             </thead>
@@ -171,27 +171,39 @@
                     className: 'text-center',
                     width: '5%'
                 },
-                {
-                    data: 'nama_perusahaan',
-                    name: 'nama_perusahaan',
-                    orderable: true,
-                    render: function (data, type, row, meta) {
-                        let text = row.nama_perusahaan;
-                        let result = text.toUpperCase();
-                        let str = row.nama_tipe;
-                        if (str == null) {
-                            str = "";
-                        } else {
-                            str = ", " + row.nama_tipe;
-                        }
+                // {
+                //     data: 'nama_perusahaan',
+                //     name: 'nama_perusahaan',
+                //     orderable: true,
+                //     render: function (data, type, row, meta) {
+                //         let text = row.nama_perusahaan;
+                //         let result = text.toUpperCase();
+                //         let str = row.nama_tipe;
+                //         if (str == null) {
+                //             str = "";
+                //         } else {
+                //             str = ", " + row.nama_tipe;
+                //         }
 
-                        return result + str;
-                    }
+                //         return result + str;
+                //     }
+                // },
+                {
+                    data: 'subject_email',
+                    name: 'subject_email',
+                    orderable: true,
                 },
                 {
-                    data: 'email',
-                    name: 'email',
+                    data: 'body_email',
+                    name: 'body_email',
                     orderable: true,
+                    render: function (data, type, row, meta) {
+                        var html = row.body_email;
+                        var div = document.createElement("div");
+                        div.innerHTML = html;
+                        var text = div.textContent || div.innerText || "";
+                        return text;
+                    }
                 },
                 // {
                 //     data: 'action',
