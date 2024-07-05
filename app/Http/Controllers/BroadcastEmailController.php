@@ -145,7 +145,7 @@ class BroadcastEmailController extends Controller
             $dataPT->body_email = strip_tags($template->body_email);
             $dataPT->attachment = $arrFile;
 
-            Mail::to($d->email)->send(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
+            Mail::to($d->email)->queue(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
                 // if(!empty($arrFile)) {
                     foreach ($arrFile as $file){
                         $message->attach($file);
@@ -155,7 +155,10 @@ class BroadcastEmailController extends Controller
         }
 
         Alert::toast('Draft Sended successfully!', 'success');
-        return redirect()->route('broadcast'); 
+        // return redirect()->route('broadcast'); 
+        return response()->json([
+            "status"=>200, 
+        ]);
     }
 
     public function draftEmail(Request $request) {
@@ -202,11 +205,11 @@ class BroadcastEmailController extends Controller
             $dataPT = new stdClass();
             $dataPT->nama_perusahaan = $d->nama_perusahaan;
             $dataPT->email = $d->email;
-            $dataPT->header_email = $request->header_email;
+            $dataPT->header_email = $request->subject_email;
             $dataPT->body_email = strip_tags($request->body_email);
             $dataPT->attachment = $arrFile;
 
-            Mail::to($d->email)->send(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
+            Mail::to($d->email)->queue(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
                 foreach ($arrFile as $file){
                     $message->attach($file);
                 }
