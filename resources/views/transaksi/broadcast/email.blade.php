@@ -419,6 +419,40 @@
                 }
             });
         });
+
+        $(document).on('click', '.btn-send', function () {
+            var url = $(this).attr('data-href');
+            var id_template = $(this).attr('data-id');
+            var token   = $("meta[name='csrf-token']").attr("content");
+            Swal.fire({
+                title: "Anda yakin ingin mengirim Draft?",
+                text: "Harap Menunggu beberapa saat setelah mengirim!",
+                icon: "info",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Kirim Draft!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: {
+                            "id_template": id_template,
+                            "_token": token,
+                        },
+                        success: function (response) {
+                            table.ajax.reload(null, true);
+                            Swal.fire({
+                                title: "Sended!",
+                                text: "Draft telah terkirim.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                }
+            });
+        });
     });
 
 </script>

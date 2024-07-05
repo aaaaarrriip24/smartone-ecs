@@ -45,17 +45,19 @@ class BroadcastEmailController extends Controller
                         $urlEdit = url('broadcast/edit/'. $row->id_template);
                         $urlDetail = url('broadcast/detail/'. $row->id_template);
                         $urlDelete = url('broadcast/destroy/'. $row->id_template);
+                        $urlSend = url('broadcast/send');
                         $button = '<div class="dropdown">
                                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
                                             <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
                                             <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
+                                            <li><a data-href='.$urlSend.' data-id='.$row->id_template.' class="dropdown-item btn-send">Send</a></li>
                                         </ul>
                                     </div>
                         ';
+                        // <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
                         // <li><a href="#" class="dropdown-item btn-penerima">Penerima</a></li>
                         // <li><a href='.$urlSendEmail.' class="btn btn-sm btn-success">Send Email</a></li>
                         return $button;
@@ -69,59 +71,6 @@ class BroadcastEmailController extends Controller
 
     public function create() {
         return view('transaksi/broadcast/add');
-    }
-
-    public function penerima_store(Request $request)
-    {
-        $post = DraftModel::where('id_template', $request->id_template)->delete();
-
-        $perusahaanArr = array();
-        $subKategoriArr = array();
-        foreach($request->id_sub_kategori as $key1) {
-            $subKategoriArr = $key1;
-            foreach($request->id_perusahaan as $key2) {
-                $perusahaanArr = $key2;
-                // DraftModel::insert([
-                //     'id_template' => $request->id_template,
-                //     'id_sub_kategori' => $subKategoriArr,
-                //     'id_perusahaan' => $perusahaanArr,
-                //     'created_at' => Carbon::now(),
-                // ]);
-            }
-            dd($perusahaanArr);
-        }
-        
-        Alert::toast('Email Penerima Berhasil di Simpan!', 'success');
-        return redirect()->route('tbm');
-    }
-
-    public function sendEmail(Request $request)
-    {
-        $perusahaans = Perusahaan::whereIn("id", $request->ids)->get();
-  
-        foreach ($perusahaans as $key => $perusahaan) {
-            Mail::to($perusahaan->email)->send(new PerusahaanEmail($perusahaan));
-        }
-  
-        return response()->json(['success'=>'Send email successfully.']);
-    }
-
-    public function sendEmailId(Request $request)
-    {
-        $perusahaan = Perusahaan::where("id", $request->id)->first();
-        $attachment = public_path('folder_dok_pendukung/1711940400_img-6.png');
-
-        $dataPT = [
-            'nama_perusahaan' => $perusahaan->nama_perusahaan,
-            'email' => $perusahaan->email,
-            'attachment' => $attachment
-        ];
-
-        // dd($data);
-        Mail::to($perusahaan->email)->send(new PerusahaanEmail($dataPT));
-  
-        Alert::toast('Send email successfully!', 'success');
-        return redirect()->back();
     }
     
     public function store(Request $request) {
@@ -167,7 +116,47 @@ class BroadcastEmailController extends Controller
         )->send(new BatchMail($dataPT));
 
         Alert::toast('Send email successfully!', 'success');
-        return redirect()->back();
+        return redirect()->route('broadcast');
+    }
+
+    public function sendDraft(Request $request) {
+        $id_template = $request->id_template;
+        $template = TemplateModel::find($id_template);
+        $draft = DraftModel::where('id_template', $id_template)->get();
+        $fileAttach = AttachmentModel::where('id_template', $id_template)->get();
+
+        $arrFile = array();
+        $path = public_path().'/file_email/';
+
+        if(!empty($fileAttach)) {
+            foreach($fileAttach as $f) {
+                $arrFile[] = $path.$f->file ; 
+            }
+        } else {
+            $arrFile[] = [0];
+        }
+        
+        foreach($draft as $d) {
+            $PT = Perusahaan::find($d->id_perusahaan);
+
+            $dataPT = new stdClass();
+            $dataPT->nama_perusahaan = $PT->nama_perusahaan;
+            $dataPT->email = $d->email;
+            $dataPT->header_email = $template->subject_email;
+            $dataPT->body_email = strip_tags($template->body_email);
+            $dataPT->attachment = $arrFile;
+
+            Mail::to($d->email)->send(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
+                // if(!empty($arrFile)) {
+                    foreach ($arrFile as $file){
+                        $message->attach($file);
+                    }
+                // }
+            }));
+        }
+
+        Alert::toast('Draft Sended successfully!', 'success');
+        return redirect()->route('broadcast'); 
     }
 
     public function draftEmail(Request $request) {
@@ -225,10 +214,8 @@ class BroadcastEmailController extends Controller
             }));
         }
 
-        
-
         Alert::toast('Draft Created & Send email successfully!', 'success');
-        return redirect()->back(); 
+        return redirect()->route('broadcast'); 
     }
 
     public function sendBulk(Request $request) {
@@ -274,7 +261,11 @@ class BroadcastEmailController extends Controller
             }));
         }
         Alert::toast('Send email successfully!', 'success');
-        return redirect()->back();
+        return redirect()->route('broadcast');
+    }
+
+    public function show(Request $request) {
+
     }
 
     public function destroy($id) {

@@ -81,13 +81,15 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('perusahaan/destroy/{id}', [PerusahaanController::class, 'destroy']);
         
         // BroadcastEmail
-        Route::get('transaksi/broadcast', [BroadcastEmailController::class, 'email_index']);
+        Route::get('transaksi/broadcast', [BroadcastEmailController::class, 'email_index'])->name('broadcast');
         Route::get('broadcast/add', [BroadcastEmailController::class, 'create']);
-        Route::post('broadcast/send_email', [BroadcastEmailController::class, 'sendEmail']);
-        Route::get('broadcast/send_email/{id}', [BroadcastEmailController::class, 'sendEmailId']);
+        // Route::post('broadcast/send_email', [BroadcastEmailController::class, 'sendEmail']);
+        // Route::get('broadcast/send_email/{id}', [BroadcastEmailController::class, 'sendEmailId']);
         Route::post('broadcast/store', [BroadcastEmailController::class, 'sendBulk']);
         Route::post('broadcast/draft', [BroadcastEmailController::class, 'draftEmail']);
+        Route::get('broadcast/show/{id}', [BroadcastEmailController::class, 'show']);
         Route::get('broadcast/destroy/{id}', [BroadcastEmailController::class, 'destroy']);
+        Route::post('broadcast/send', [BroadcastEmailController::class, 'sendDraft']);
         
         // Petugas
         Route::get('master/petugas', [PetugasController::class, 'index'])->name('petugas');
