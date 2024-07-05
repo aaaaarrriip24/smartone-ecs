@@ -16,12 +16,13 @@ use DataTables;
 use DB;
 use Alert;
 use Mail;
+use File;
 
 class BroadcastEmailController extends Controller
 {
     public function email_index(Request $request) {
-        $title = 'Delete Perusahaan!';
-        $text = "Are you sure you want to delete?";
+        $title = 'Hapus Draft!';
+        $text = "Apakah Anda yakin ingin menghapus?";
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
@@ -41,50 +42,25 @@ class BroadcastEmailController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $urlSendEmail = url('broadcast/send_email/'. $row->id);
+                        $urlEdit = url('broadcast/edit/'. $row->id_template);
+                        $urlDetail = url('broadcast/detail/'. $row->id_template);
+                        $urlDelete = url('broadcast/destroy/'. $row->id_template);
                         $button = '<div class="dropdown">
                                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href="#" class="dropdown-item btn-penerima">Penerima</a></li>
-                                            
+                                            <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
+                                            <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
+                                            <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
                                         </ul>
                                     </div>
                         ';
-                        // <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
-                        // <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
-                        // <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
+                        // <li><a href="#" class="dropdown-item btn-penerima">Penerima</a></li>
                         // <li><a href='.$urlSendEmail.' class="btn btn-sm btn-success">Send Email</a></li>
                         return $button;
                     })
-                    // ->addColumn('penerima_email', function($row){
-                    //     $receipt = DB::table('m_draft as ta')
-                    //     ->leftJoin('m_perusahaan as td', 'ta.id_perusahaan', '=', 'td.id')
-                    //     ->leftJoin('m_tipe_perusahaan as te', 'te.id', '=', 'td.id_tipe')
-                    //     ->whereNull('ta.deleted_at')
-                    //     ->where('ta.id_template', $row->id)
-                    //     ->select('td.id', 'td.nama_perusahaan', 'te.nama_tipe', 'td.email')
-                    //     ->groupBy('ta.id_template')
-                    //     ->orderBy('ta.id', 'ASC')
-                    //     ->get();
-                    //     return empty($receipt) ? [] : json_decode($receipt);
-                    // })
-                    // ->addColumn('file', function($row){
-                    //     $file = DB::table('m_draft as ta')
-                    //     ->leftJoin('m_template as tb', 'ta.id_template', '=', 'tb.id')
-                    //     ->leftJoin('m_attachment as tc', 'ta.id_template', '=', 'tc.id_template')
-                    //     ->whereNull('ta.deleted_at')
-                    //     ->where('ta.id_template', $row->id)
-                    //     ->select('tc.*')
-                    //     ->groupBy('ta.id_template')
-                    //     ->orderBy('ta.id', 'ASC')
-                    //     ->get();
-                    //     return empty($file) ? [] : json_decode($file);
-                    // })
-                    ->rawColumns(['action'
-                    // , 'penerima_email','file'
-                    ])
+                    ->rawColumns(['action'])
                     ->make(true);
         }
         
@@ -299,5 +275,28 @@ class BroadcastEmailController extends Controller
         }
         Alert::toast('Send email successfully!', 'success');
         return redirect()->back();
+    }
+
+    public function destroy($id) {
+        $post = TemplateModel::find($id);
+        $post2 = AttachmentModel::where('id_template', $id)->get();
+
+        $path = public_path().'/file_email/';
+        foreach ($post2 as $key) {
+            if (File::exists($path.$key->file)) {
+                File::delete($path.$key->file);
+            }
+            $key->delete();
+        }
+
+        $post3 = DraftModel::where('id_template', $id)->get();
+        foreach ($post3 as $key2) {
+            $key2->delete();
+        }
+        
+        $post->delete();
+        return response()->json([
+            "status"=>200, 
+        ]);        
     }
 }

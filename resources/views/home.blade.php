@@ -190,9 +190,10 @@
                 {
                     data: 'total',
                     name: 'total',
+                    className: 'text-end',
                     orderable: false,
                     searchable: false,
-                    width: '10%'
+                    width: '25%'
                 },
             ]
         });

@@ -156,6 +156,7 @@
             filter: true,
             sort: true,
             info: true,
+    		displayLength: 25,
             ajax: base_url + "transaksi/broadcast",
             columns: [
                 // {
@@ -357,38 +358,66 @@
         
         // Fetch the preselected item, and add to the control
 
-        $(".btn-send-all").click(function () {
-            var selectRowsCount = $("input[class='perusahaan-checkbox']:checked").length;
+        // $(".btn-send-all").click(function () {
+        //     var selectRowsCount = $("input[class='perusahaan-checkbox']:checked").length;
 
-            if (selectRowsCount > 0) {
+        //     if (selectRowsCount > 0) {
 
-                var ids = $.map($("input[class='perusahaan-checkbox']:checked"), function (c) {
-                    return c.value;
-                });
+        //         var ids = $.map($("input[class='perusahaan-checkbox']:checked"), function (c) {
+        //             return c.value;
+        //         });
 
-                $.ajax({
-                    type: 'POST',
-                    url: base_url + "broadcast/send_email",
-                    data: {
-                        ids: ids
-                    },
-                    success: function (data) {
-                        Swal.fire({
-                            title: "Success!",
-                            text: "Send email successfully!",
-                            icon: "success"
-                        });
-                    }
-                });
+        //         $.ajax({
+        //             type: 'POST',
+        //             url: base_url + "broadcast/send_email",
+        //             data: {
+        //                 ids: ids
+        //             },
+        //             success: function (data) {
+        //                 Swal.fire({
+        //                     title: "Success!",
+        //                     text: "Send email successfully!",
+        //                     icon: "success"
+        //                 });
+        //             }
+        //         });
 
-            } else {
-                Swal.fire({
-                    title: "Error!",
-                    text: "Silahkan Pilih Setidaknya 1 Perusahaan",
-                    icon: "error"
-                });
-            }
-            console.log(selectRowsCount);
+        //     } else {
+        //         Swal.fire({
+        //             title: "Error!",
+        //             text: "Silahkan Pilih Setidaknya 1 Perusahaan",
+        //             icon: "error"
+        //         });
+        //     }
+        //     console.log(selectRowsCount);
+        // });
+
+        $(document).on('click', '.btn-delete', function () {
+            var url = $(this).attr('data-href');
+            Swal.fire({
+                title: "Anda yakin ingin menghapus Draft?",
+                text: "Anda tidak akan dapat mengembalikannya!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, Hapus Draft!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        success: function (response) {
+                            table.ajax.reload(null, true);
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Draft telah terhapus.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                }
+            });
         });
     });
 

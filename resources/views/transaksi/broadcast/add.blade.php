@@ -153,6 +153,7 @@
 
         $(".btn-next").on("click", function () {
             $(".step-1").addClass("d-none");
+            $(".btn-next").addClass("d-none");
             $(".step-2").removeClass("d-none");
             $(".btn-back").removeClass("d-none");
             $(".btn-send").removeClass("d-none");
