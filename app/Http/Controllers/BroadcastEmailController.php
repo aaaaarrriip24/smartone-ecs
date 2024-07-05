@@ -51,7 +51,6 @@ class BroadcastEmailController extends Controller
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
                                             <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
                                             <li><a data-href='.$urlSend.' data-id='.$row->id_template.' class="dropdown-item btn-send">Send</a></li>
                                         </ul>
