@@ -147,6 +147,7 @@
 
         $(".btn-back").on("click", function () {
             $(".step-1").removeClass("d-none");
+            $(".btn-next").removeClass("d-none");
             $(".step-2").addClass("d-none");
             $(".btn-back").addClass("d-none");
         });

@@ -42,7 +42,6 @@ class BroadcastEmailController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $urlEdit = url('broadcast/edit/'. $row->id_template);
                         $urlDetail = url('broadcast/detail/'. $row->id_template);
                         $urlDelete = url('broadcast/destroy/'. $row->id_template);
                         $urlSend = url('broadcast/send');
@@ -51,6 +50,7 @@ class BroadcastEmailController extends Controller
                                             Action
                                         </button>
                                         <ul class="dropdown-menu">
+                                            <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
                                             <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
                                             <li><a data-href='.$urlSend.' data-id='.$row->id_template.' class="dropdown-item btn-send">Send</a></li>
                                         </ul>
@@ -192,32 +192,114 @@ class BroadcastEmailController extends Controller
 
         foreach($test as $d) {
             $d = (object)$d;
-            $draft = DraftModel::insert([
-                'id_template' => $id_template,
-                'id_sub_kategori' => $d->id_sub_kategori,
-                'id_perusahaan' => $d->id_perusahaan,
-                'email' => $d->email,
-                'flag_status' => 1,
-                'send_at' => Carbon::now(),
-                'created_at' => Carbon::now()
-            ]);
-            
-            $dataPT = new stdClass();
-            $dataPT->nama_perusahaan = $d->nama_perusahaan;
-            $dataPT->email = $d->email;
-            $dataPT->header_email = $request->subject_email;
-            $dataPT->body_email = strip_tags($request->body_email);
-            $dataPT->attachment = $arrFile;
+            if(!empty($d->id_perusahaan)) {
+                $draft = DraftModel::insert([
+                    'id_template' => $id_template,
+                    'id_sub_kategori' => $d->id_sub_kategori,
+                    'id_perusahaan' => $d->id_perusahaan,
+                    'email' => $d->email,
+                    'flag_status' => 1,
+                    'send_at' => Carbon::now(),
+                    'created_at' => Carbon::now()
+                ]);
+                
+                $dataPT = new stdClass();
+                $dataPT->nama_perusahaan = $d->nama_perusahaan;
+                $dataPT->email = $d->email;
+                $dataPT->header_email = $request->subject_email;
+                $dataPT->body_email = strip_tags($request->body_email);
+                $dataPT->attachment = $arrFile;
 
-            Mail::to($d->email)->queue(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
-                foreach ($arrFile as $file){
-                    $message->attach($file);
-                }
-            }));
+                Mail::to($d->email)->queue(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
+                    foreach ($arrFile as $file){
+                        $message->attach($file);
+                    }
+                }));
+            }
+
         }
 
         Alert::toast('Draft Created & Send email successfully!', 'success');
         return redirect()->route('broadcast'); 
+    }
+
+    public function detail($id) {
+        $id_template = $id;
+        $template = TemplateModel::find($id_template);
+        $draft = DraftModel::where('id_template', $id_template)->get();
+        $subKategori = DB::table('m_draft as ta')->leftJoin('m_sub_kategori as tb', 'ta.id_sub_kategori', '=', 'tb.id')
+        ->where('id_template', $id_template)
+        ->groupBy('id_sub_kategori')
+        ->get();
+        $fileAttach = DB::table('m_attachment')->where('id_template', $id_template)->get();
+
+        // dd($subKategori);
+        foreach ($draft as $key) {
+            $kategori = DB::table('m_sub_kategori as ta')
+            ->leftJoin('m_k_produk as tb', 'ta.id_kategori', '=', 'tb.id')
+            ->where('ta.id', $key->id_sub_kategori)
+            ->first();
+        }
+        return view('transaksi/broadcast/edit', compact('id_template', 'template', 'draft', 'fileAttach', 'kategori', 'subKategori'));
+    }
+
+    public function update(Request $request) {
+        // dd($request->test);
+        $id_template = $request->id_template;
+        $test = $request->test;
+        $template = TemplateModel::where('id', $id_template)->update([
+            'subject_email' => $request->subject_email,
+            'body_email' => $request->body_email,
+            'updated_at' => Carbon::now()
+        ]);
+
+        $arrFile = array();
+        $files = $request->file('sfiles');
+        if(!empty($files)) {
+            $post = AttachmentModel::where('id_template', $id_template)->get();
+            $path = public_path().'/file_email/';
+            foreach ($post as $key) {
+                if (File::exists($path.$key->file)) {
+                    File::delete($path.$key->file);
+                }
+                $key->delete();
+            }
+
+            foreach ($request->file('sfiles') as $file) {
+                $nama_file = time()."_".$file->getClientOriginalName();
+                $path = public_path().'/file_email/';
+                $file->move($path, $nama_file);
+                $name = $nama_file;
+                $arrFile[] = $path.$nama_file ; 
+                
+                $attch = AttachmentModel::insert([
+                    'id_template' => $id_template,
+                    'file' => $name,
+                    'created_at' => Carbon::now()
+                ]);
+            }
+        }
+
+        $post2 = DraftModel::where('id_template', $id_template)->get();
+        foreach($post2 as $key2) {
+            $key2->delete();
+        }
+        foreach($test as $d) {
+            $d = (object)$d;
+            if(!empty($d->id_perusahaan)) {
+                $draft = DraftModel::insert([
+                    'id_template' => $id_template,
+                    'id_sub_kategori' => $d->id_sub_kategori,
+                    'id_perusahaan' => $d->id_perusahaan,
+                    'email' => $d->email,
+                    'flag_status' => 1,
+                    'created_at' => Carbon::now()
+                ]);
+            }
+        }
+
+        Alert::toast('Edit Draft successfully!', 'success');
+        return redirect()->route('broadcast');
     }
 
     public function sendBulk(Request $request) {

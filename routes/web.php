@@ -58,6 +58,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         // Select
         Route::get('select/perusahaan', [SelectController::class, 'selectperusahaan']);
         Route::post('select/perusahaan/sub_kategori', [SelectController::class, 'select_perusahaan_sub_kategori']);
+        Route::post('select/perusahaan/id_template', [SelectController::class, 'select_perusahaan_id_template']);
         Route::get('select/filterperusahaan', [SelectController::class, 'filterperusahaan']);
         Route::get('select/tipe', [SelectController::class, 'selecttipe']);
         Route::get('select/topik', [SelectController::class, 'selecttopik']);
@@ -83,11 +84,11 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         // BroadcastEmail
         Route::get('transaksi/broadcast', [BroadcastEmailController::class, 'email_index'])->name('broadcast');
         Route::get('broadcast/add', [BroadcastEmailController::class, 'create']);
-        // Route::post('broadcast/send_email', [BroadcastEmailController::class, 'sendEmail']);
-        // Route::get('broadcast/send_email/{id}', [BroadcastEmailController::class, 'sendEmailId']);
         Route::post('broadcast/store', [BroadcastEmailController::class, 'sendBulk']);
         Route::post('broadcast/draft', [BroadcastEmailController::class, 'draftEmail']);
+        Route::post('broadcast/update', [BroadcastEmailController::class, 'update']);
         Route::get('broadcast/show/{id}', [BroadcastEmailController::class, 'show']);
+        Route::get('broadcast/detail/{id}', [BroadcastEmailController::class, 'detail']);
         Route::get('broadcast/destroy/{id}', [BroadcastEmailController::class, 'destroy']);
         Route::post('broadcast/send', [BroadcastEmailController::class, 'sendDraft']);
         

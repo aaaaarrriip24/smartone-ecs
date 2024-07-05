@@ -1,41 +1,69 @@
 @extends('layouts.app')
 @section('content')
 <div class="card">
-    <form method="post" action="{{ url('broadcast/draft') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ url('broadcast/update') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
-            <h5 class="modal-title" id="exampleModalLabel">Broadcast Email</h5>
+            <h5 class="modal-title">Broadcast Email</h5>
             <div class="row">
                 <div class="col-sm-6 step-1">
                     <div class="form-group mb-2">
                         <label class="form-label labelInput">Subject Email</label>
-                        <input type="text" name="subject_email" class="form-control form-control-sm">
+                        <input hidden type="text" name="id_template" class="form-control form-control-sm"
+                            value="{{ $template->id }}">
+                        <input type="text" name="subject_email" class="form-control form-control-sm"
+                            value="{{ $template->subject_email }}">
                     </div>
                 </div>
+                @if(empty($fileAttach))
                 <div class="col-sm-6 step-1">
                     <div class="form-group mb-2">
                         <label class="form-label labelInput">Attachment</label>
                         <input type="file" class="form-control" name="sfiles[]" multiple="multiple">
                     </div>
                 </div>
+                @else
+                <div class="col-sm-4 step-1">
+                    <div class="form-group mb-2">
+                        <label class="form-label labelInput">Attachment</label>
+                        <input type="file" class="form-control" name="sfiles[]" multiple="multiple">
+                    </div>
+                </div>
+                <div class="col-sm-2 step-1">
+                    <div class="form-group mb-2">
+                        <label class="form-label labelInput">Lihat File Attachment</label>
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-sm btn-success btn-file" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">Lihat File</button>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="col-sm-6 step-1">
                     <div class="form-group mb-2 div_kategori">
                         <label class="form-label labelInput">Kategori Produk</label>
-                        <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk"></select>
+                        <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk">
+                            <option value="{{ $kategori->id_kategori }}">{{ $kategori->nama_kategori_produk }}</option>
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-6 step-1">
                     <div class="form-group mb-2 div_sub_kategori">
                         <label class="form-label labelInput">Sub Kategori Produk</label>
-                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk typeFilter"
-                            multiple="multiple"></select>
+                        <select name="id_sub_kategori[]"
+                            class="form-control form-control-sm select_sub_produk typeFilter"
+                            multiple="multiple">
+                        @foreach($subKategori as $s)
+                        <option value="{{ $s->id_sub_kategori }}" selected>{{ $s->nama_sub_kategori }}</option>
+                        @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="col-sm-12 step-1">
                     <div class="form-group mb-2">
                         <label class="form-label labelInput">Body Email</label>
                         <textarea class="form-control" name="body_email" placeholder="Catatan" id="summernote"
-                            rows="4"></textarea>
+                            rows="4">{{ strip_tags($template->body_email) }}</textarea>
                     </div>
                 </div>
                 <div class="col-sm-12 step-2 d-none table-responsive">
@@ -57,9 +85,32 @@
             <a href="{{ url('transaksi/broadcast') }}" class="btn btn-md btn-secondary text-white">View</a>
             <button type="button" class="btn btn-md btn-danger btn-back text-white d-none">Back</button>
             <button type="button" class="btn btn-md btn-primary btn-next text-white">Next</button>
-            <button type="submit" class="btn btn-md btn-success btn-send text-send d-none">Send</button>
+            <button type="submit" class="btn btn-md btn-success btn-send text-send d-none">Simpan</button>
         </div>
     </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">File Attachment</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @foreach($fileAttach as $f)
+                <div class="form-group">
+                    <label>File</label>
+                    <a href="{{ asset('file_email/'.$f->file) }}" target="_blank">{{ $f->file }}</a>
+                </div>
+                @endforeach
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @section('js')
@@ -69,7 +120,7 @@
         $(document).on('change', '.typeFilter', function (e) {
             table.ajax.reload(null, false);
         });
-        
+
         table = $('#dt_perusahaan').DataTable({
             autoWidth: false,
             responsive: false,
@@ -147,6 +198,7 @@
 
         $(".btn-back").on("click", function () {
             $(".step-1").removeClass("d-none");
+            $(".btn-next").removeClass("d-none");
             $(".step-2").addClass("d-none");
             $(".btn-back").addClass("d-none");
         });

@@ -188,6 +188,41 @@ class SelectController extends Controller
         }
     }
 
+    public function select_perusahaan_id_template(Request $request) {
+        if ($request->ajax()) {
+            $data = DB::table('t_sub_kategori_perusahaan as ta')
+            ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+            ->leftJoin('m_sub_kategori as tc', 'ta.id_sub_kategori', '=', 'tc.id')
+            ->leftJoin('m_draft as td', 'ta.id_sub_kategori', '=', 'td.id')
+            ->select('*')
+            ->whereNull('ta.deleted_at')
+            ->where('td.id_template', $request->id_template);
+
+            if($request->term) {
+                $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
+            }
+
+            $data->orderBy('tc.nama_sub_kategori', 'ASC')->get();
+            $data = $data->get();
+            
+            $data = collect($data)->map(function ($item, $index) {
+                $item->in = $index+1;
+                return $item;
+            })->toArray();
+
+            return Datatables::of($data)
+            ->addIndexColumn()
+            ->addColumn('checkbox', function($row){
+                $input = "<input hidden type='text' name='test[$row->in][id_sub_kategori]' value='$row->id_sub_kategori'>"; 
+                $input .= "<input hidden type='text' name='test[$row->in][email]' value='$row->email'>"; 
+                $input .= "<input hidden type='text' name='test[$row->in][nama_perusahaan]' value='$row->nama_perusahaan'>"; 
+                return $input .= "<input type='checkbox' class='perusahaan-checkbox' name='test[$row->in][id_perusahaan]' value='$row->id_perusahaan'>";
+            })
+            ->rawColumns(['checkbox'])
+            ->make(true);
+        }
+    }
+
     public function selecttopik(Request $request) {
         $data = DB::table('m_topik')
         ->whereNull('deleted_at')
