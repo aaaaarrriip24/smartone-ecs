@@ -26,12 +26,12 @@ class BatchMail extends Mailable
 
     public function build()
     {
-        return $this->subject($this->dataPT->header_email)
+        return $this->subject($this->dataPT['header_email'])
         ->view('email.bulk')
         ->with([
-            'nama_perusahaan' => $this->dataPT->nama_perusahaan,
-            'email' => $this->dataPT->email,
-            'body_email' => $this->dataPT->body_email,
+            'nama_perusahaan' => $this->dataPT['nama_perusahaan'],
+            'email' => $this->dataPT['email'],
+            'body_email' => $this->dataPT['body_email'],
         ]);
     }
     /**
@@ -62,8 +62,6 @@ class BatchMail extends Mailable
         // ];
         return [
             Attachment::fromPath($this->dataPT->attachment)
-                    ->as('name.pdf')
-                    ->withMime('application/pdf'),
         ];
     }
 }

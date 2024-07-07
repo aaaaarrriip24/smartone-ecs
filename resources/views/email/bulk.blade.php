@@ -7,11 +7,9 @@
 </head>
 
 <body>
-    <h1>Hi, {{ $dataPT->nama_perusahaan }}</h1>
-    <p>{{ $dataPT->body_email }}</p>
+    <h1>Hi, {{ $nama_perusahaan }}</h1>
+    <p>{{ $body_email }}</p>
 
-    @foreach($dataPT->attachment as $d)
-        {{ $message->embed($d) }}
-    @endforeach
+
 </body>
 </html>

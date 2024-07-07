@@ -17,6 +17,7 @@ use DB;
 use Alert;
 use Mail;
 use File;
+use PDF;
 
 class BroadcastEmailController extends Controller
 {
@@ -203,18 +204,21 @@ class BroadcastEmailController extends Controller
                     'created_at' => Carbon::now()
                 ]);
                 
-                $dataPT = new stdClass();
-                $dataPT->nama_perusahaan = $d->nama_perusahaan;
-                $dataPT->email = $d->email;
-                $dataPT->header_email = $request->subject_email;
-                $dataPT->body_email = strip_tags($request->body_email);
-                $dataPT->attachment = $arrFile;
+                $dataPT = array();
+                $dataPT['nama_perusahaan'] = $d->nama_perusahaan;
+                $dataPT['email'] = $d->email;
+                $dataPT['header_email'] = $request->subject_email;
+                $dataPT['body_email'] = strip_tags($request->body_email);
+                // $dataPT->attachment = $arrFile;
 
-                Mail::to($d->email)->queue(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
+                Mail::send('email.bulk', $dataPT, function($message) use ($dataPT, $arrFile) {
+                    $message->to($dataPT["email"], $dataPT["body_email"])
+                    ->subject($dataPT["header_email"]);
+                    
                     foreach ($arrFile as $file){
                         $message->attach($file);
                     }
-                }));
+                });
             }
 
         }
