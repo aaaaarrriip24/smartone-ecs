@@ -13,21 +13,20 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="background-color: rgb(255, 99, 132);">Perusahaan
-                                            Terdaftar</th>
-                                        <th scope="col" style="background-color: rgb(255, 159, 64);">Jumlah Konsultasi</th>
-                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Realisasi Export
-                                            (USD)</th>
-                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Business Matching
-                                        </th>
+                                        <th scope="col" style="background-color: rgb(255, 99, 132);">Perusahaan&nbsp;Terdaftar</th>
+                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Business&nbsp;Matching</th>
+                                        <th scope="col" width="250px" style="background-color: rgb(189,156,255);">Inquiry</th>
+                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Realisasi&nbsp;Export&nbsp;(USD)</th>
+                                        <th scope="col" style="background-color: rgb(255, 159, 64);">Jumlah&nbsp;Konsultasi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="text-end">{{ number_format($perusahaan) }}</td>
-                                        <td class="text-end">{{ number_format($layanan) }}</td>
-                                        <td class="text-end">{{ number_format($export->total) }}</td>
                                         <td class="text-end">{{ number_format($bm) }}</td>
+                                        <td class="text-end">{{ number_format($iq) }}</td>
+                                        <td class="text-end">{{ number_format($export->total) }}</td>
+                                        <td class="text-end">{{ number_format($layanan) }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -171,10 +170,9 @@
             filter: true,
             sort: true,
             info: true,
-            searching: false, 
+            searching: false,
             ajax: base_url + "data_topik",
-            columns: [
-                {
+            columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     orderable: false,

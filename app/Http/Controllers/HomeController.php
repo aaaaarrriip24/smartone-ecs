@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Perusahaan;
 use App\Models\TKonsultasi;
+use App\Models\TInquiry;
 use App\Models\Texport;
 use App\Models\TBm;
 use App\Models\Topik;
@@ -66,8 +67,8 @@ class HomeController extends Controller
                 ->first();
 
                 $bm = TBm::all()->whereNull('deleted_at')->count();
-                Alert::toast('Selamat Datang ' .Auth::user()->name. ' !', 'success');
-                return view('home', compact('perusahaan', 'layanan', 'export', 'bm')); 
+                $iq = TInquiry::all()->whereNull('deleted_at')->count();
+                return view('home', compact('perusahaan', 'layanan', 'export', 'bm', 'iq')); 
             } else {
                 return redirect('/'); 
             }

@@ -55,6 +55,7 @@
         .select2-selection__choice__remove {
             color: black !important;
         }
+
     </style>
 </head>
 
@@ -132,7 +133,7 @@
 
                         <!-- App Search-->
                     </div>
-                    
+
                     @if(Auth::check())
                     <div class="d-flex align-items-center">
 
@@ -776,8 +777,10 @@
                                     <img class="rounded-circle header-profile-user"
                                         src="{{ asset('assets/images/users/avatar-1.jpg')}}" alt="Header Avatar">
                                     <span class="text-start ms-xl-2">
-                                        <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
-                                        <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{{ Auth::user()->roleuser }}</span>
+                                        <span
+                                            class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{{ Auth::user()->name }}</span>
+                                        <span
+                                            class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">{{ Auth::user()->roleuser }}</span>
                                     </span>
                                 </span>
                             </button>
@@ -810,11 +813,11 @@
                                 <a class="dropdown-item" href="auth-lockscreen-basic.html"><i
                                         class="mdi mdi-lock text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Lock screen</span></a> -->
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
                                     <span class="align-middle" data-key="t-logout">Logout</span></a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                <form id="logout-form" action="{{ url('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
@@ -885,7 +888,7 @@
                 <div class="container-fluid">
 
                     @if( empty(Auth::user()->id))
-                    
+
                     @else
                     <div id="two-column-menu">
                         <ul class="navbar-nav" id="navbar-nav">
@@ -901,11 +904,12 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
-                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                    <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Data&nbsp;Master</span>
+                                <a class="nav-link menu-link" href="#sidebarDashboards2" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards2">
+                                    <i class="bx bxs-dashboard"></i> <span
+                                        data-key="t-dashboards">Data&nbsp;Master</span>
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                <div class="collapse menu-dropdown" id="sidebarDashboards2">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
                                             <a href="{{ url('master/perusahaan') }}" class="nav-link"
@@ -913,26 +917,29 @@
                                                 Perusahaan </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-petugas">
-                                                Petugas </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-topik"> Topik
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('master/tipe') }}" class="nav-link" data-key="t-topik"> Tipe
+                                            <a href="{{ url('master/tipe') }}" class="nav-link" data-key="t-topik">
+                                                Tipe&nbsp;Perusahaan
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="{{ url('master/k_produk') }}" class="nav-link" data-key="t-topik">
-                                                Kategori Produk
+                                                Kategori&nbsp;Produk
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ url('master/m_sub_kategori') }}" class="nav-link" data-key="t-topik">
-                                                Sub Kategori
+                                            <a href="{{ url('master/m_sub_kategori') }}" class="nav-link"
+                                                data-key="t-topik">
+                                                Sub&nbsp;Kategori&nbsp;Produk
                                             </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('master/topik') }}" class="nav-link" data-key="t-topik">
+                                                Topik&nbsp;Konsultasi
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-petugas">
+                                                Petugas </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -940,45 +947,117 @@
 
                             <!-- Hide Menu -->
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
-                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                    <i class="bx bxs-dashboard"></i> <span data-key="t-menu2">Transaction</span>
+                                <a class="nav-link menu-link" href="#sidebarDashboards3" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards3">
+                                    <i class="bx bxs-dashboard"></i> <span data-key="t-menu3">Transaction</span>
                                 </a>
-                                <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                <div class="collapse menu-dropdown" id="sidebarDashboards3">
                                     <ul class="nav nav-sm flex-column">
-                                        <!-- <li class="nav-item">
-                                            <a href="{{ url('transaksi/konsultasi') }}" class="nav-link" data-key="t-konsultasi">Konsultasi</a>
-                                        </li> -->
                                         <li class="nav-item">
-                                            <a href="{{ url('transaksi/bm') }}" class="nav-link" data-key="t-bm"> Business&nbsp;Matching</a>
+                                            <a href="{{ url('transaksi/konsultasi') }}" class="nav-link"
+                                                data-key="t-konsultasi">Konsultasi</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ url('transaksi/inquiry') }}" class="nav-link" data-key="t-inquiry">Inquiries</a>
+                                            <a href="{{ url('transaksi/bm') }}" class="nav-link" data-key="t-bm">
+                                                Business&nbsp;Matching</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ url('transaksi/export') }}" class="nav-link" data-key="t-export">Transaksi&nbsp;(USD)</a>
+                                            <a href="{{ url('transaksi/inquiry') }}" class="nav-link"
+                                                data-key="t-inquiry">Inquiries</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="{{ url('transaksi/broadcast') }}" class="nav-link" data-key="t-broadcast">Broadcast&nbsp;Email</a>
+                                            <a href="{{ url('transaksi/export') }}" class="nav-link"
+                                                data-key="t-export">Transaksi&nbsp;(USD)</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('extra/p_inaexport') }}" class="nav-link"
+                                                data-key="t-broadcast">InaExport</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarDashboards4" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards4">
+                                    <i class="bx bxs-dashboard"></i> <span data-key="t-menu4">Laporan</span>
+                                </a>
+                                <div class="collapse menu-dropdown" id="sidebarDashboards4">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="{{ url('laporan/perusahaan') }}" class="nav-link"
+                                                data-key="t-perusahaan">Perusahaan</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('laporan/konsultasi') }}" class="nav-link"
+                                                data-key="t-konsultasi">Konsultasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('laporan/bm') }}" class="nav-link" data-key="t-bm">
+                                                Business&nbsp;Matching</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('laporan/inquiry') }}" class="nav-link"
+                                                data-key="t-inquiry">Inquiries</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('laporan/export') }}" class="nav-link"
+                                                data-key="t-export">Transaksi&nbsp;(USD)</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('laporan/ina_export') }}" class="nav-link"
+                                                data-key="t-broadcast">InaExport</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="{{ url('transaksi/broadcast') }}">
+                                    <i class="bx bxs-dashboard"></i> <span
+                                        data-key="t-broadcast">Broadcast&nbsp;Email</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="#sidebarDashboards6" data-bs-toggle="collapse"
+                                    role="button" aria-expanded="false" aria-controls="sidebarDashboards6">
+                                    <i class="bx bxs-dashboard"></i> <span data-key="t-menu6">Setting</span>
+                                </a>
+                                <!-- <div class="collapse menu-dropdown" id="sidebarDashboards6">
+                                    <ul class="nav nav-sm flex-column">
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/konsultasi') }}" class="nav-link"
+                                                data-key="t-konsultasi">Konsultasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/bm') }}" class="nav-link" data-key="t-bm">
+                                                Business&nbsp;Matching</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/inquiry') }}" class="nav-link"
+                                                data-key="t-inquiry">Inquiries</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/export') }}" class="nav-link"
+                                                data-key="t-export">Transaksi&nbsp;(USD)</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('extra/p_inaexport') }}" class="nav-link"
+                                                data-key="t-broadcast">InaExport</a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                            </li>
 
                             <!-- Kene -->
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('master/perusahaan') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Perusahaan/Perorangan&nbsp;Terdaftar</span>
                                 </a>
-                            </li>
-                            <li class="nav-item">
+                            </li> -->
+                            <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('transaksi/konsultasi') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Konsultasi</span>
-                                </a>
-                            </li>
-                            <!-- <li class="nav-item">
-                                <a class="nav-link menu-link" href="{{ url('transaksi/inquiry') }}">
-                                    <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Inquiries</span>
                                 </a>
                             </li> -->
                             <!-- <li class="nav-item">
@@ -986,17 +1065,17 @@
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">Business&nbsp;Matching</span>
                                 </a>
                             </li> -->
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('extra/p_inaexport') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-dashboards">InaExport</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('transaksi/export') }}">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-export">Transaksi&nbsp;(USD)</span>
                                 </a>
                             </li> -->
-                            
+
                             <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
                                     role="button" aria-expanded="false" aria-controls="sidebarDashboards">
@@ -1047,7 +1126,7 @@
                         </ul>
                     </div>
                     @endif
-                    
+
                 </div>
                 <!-- Sidebar -->
             </div>
@@ -1062,7 +1141,7 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-            
+
             <div class="page-content">
                 <div class="container-fluid">
                     <br>
@@ -1956,6 +2035,7 @@
     <!-- Base Url -->
     <script>
         var base_url = document.querySelector('meta[name="base_url"]').getAttribute('content') + '/';
+
     </script>
     @yield('js')
     @include('sweetalert::alert')

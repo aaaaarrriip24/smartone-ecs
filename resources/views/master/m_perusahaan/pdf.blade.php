@@ -53,7 +53,7 @@ pa
                     <td>{{ $d->alamat_perusahaan }}</td>
                     <td>{{ $d->sub_kategori }} {{ $d->detail_produk_utama }}</td>
                     <td>{{ $d->nama_contact_person }}</td>
-                    <td>{{ $d->email }} <br>{{ $d->telp_contact_person }}</td>
+                    <td>{{ $d->email }} <br>{{ str_replace('`', '', $d->telp_contact_person) }}</td>
                 </tr>
                 @endforeach
             </tbody>

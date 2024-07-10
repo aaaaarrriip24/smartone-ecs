@@ -19,6 +19,8 @@ use App\Http\Controllers\PPBmController;
 use App\Http\Controllers\PPInaexportController;
 use App\Http\Controllers\PPInquiryController;
 use App\Http\Controllers\BroadcastEmailController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,7 @@ Route::get('news', [HomePageController::class, 'news']);
 Route::get('contact', [HomePageController::class, 'contact']);
 
 // Handle Back Button
+Route::post('login_from', [LoginController::class, 'authenticate']);
 Route::group(['middleware' => 'prevent-back-history'],function(){
     // Route Admin
     Route::group(['middleware' => 'admin'],function() {
@@ -119,6 +122,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('k_produk/show/{id}', [KProdukController::class, 'show']);
         Route::post('k_produk/update', [KProdukController::class, 'update']);
         Route::get('k_produk/destroy/{id}', [KProdukController::class, 'destroy']);
+
         // Sub Kategori Produk
         Route::get('master/m_sub_kategori', [MSubKategoriController::class, 'index'])->name('m_sub_kategori');
         Route::post('m_sub_kategori/store', [MSubKategoriController::class, 'store']);
@@ -198,5 +202,14 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('p_inaexport/show/{id}', [PPInaexportController::class, 'show']);
         Route::post('p_inaexport/update', [PPInaexportController::class, 'update']);
         Route::get('p_inaexport/destroy/{id}', [PPInaexportController::class, 'destroy']);
+
+        // Laporan
+        Route::get('laporan/perusahaan', [LaporanController::class, 'perusahaan']);
+        Route::get('laporan/konsultasi', [LaporanController::class, 'konsultasi']);
+        Route::get('laporan/bm', [LaporanController::class, 'bm']);
+        Route::get('laporan/inquiry', [LaporanController::class, 'inquiry']);
+        Route::get('laporan/export', [LaporanController::class, 'export']);
+        Route::get('laporan/ina_export', [LaporanController::class, 'ina_export']);
+        
     });
 });

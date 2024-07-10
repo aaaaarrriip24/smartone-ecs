@@ -65,9 +65,8 @@
                                     <h5 class="text-primary">Welcome Back !</h5>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="POST" action="{{ url('login_from') }}">
                                     @csrf
-
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email</label>
                                             <input id="email" type="email" class="form-control" id="email" placeholder="Enter Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
