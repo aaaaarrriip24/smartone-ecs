@@ -83,14 +83,14 @@
             <div class="col-6">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Telpon Contact Person</label>
-                    <input type="number" name="telp_contact_person" class="form-control form-control-sm"
+                    <input type="text" name="telp_contact_person" class="form-control form-control-sm"
                         value="{{ $data->telp_contact_person }}" disabled>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Telpon Kantor</label>
-                    <input type="number" name="telp_kantor" class="form-control form-control-sm"
+                    <input type="text" name="telp_kantor" class="form-control form-control-sm"
                         value="{{ $data->telp_kantor }}" disabled>
                 </div>
             </div>
@@ -182,8 +182,8 @@
             <div class="col-3">
                 <div class="form-group">
                     <label class="form-label mb-1 mt-2 labelInput">Kapasitas Produksi/ Bulan</label>
-                    <input type="number" name="kapasitas_produksi" class="form-control form-control-sm"
-                        value="{{ $data->kapasitas_produksi }}" disabled>
+                    <input type="text" name="kapasitas_produksi" class="form-control form-control-sm text-end"
+                        value="{{ number_format($data->kapasitas_produksi, 0) }}" disabled>
                 </div>
             </div>
             <div class="col-3">

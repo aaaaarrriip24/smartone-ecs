@@ -190,12 +190,6 @@ class PPInaexportController extends Controller
      */
     public function update(Request $request)
     {
-        $data = PPInaexport::where('id_perusahaan', $request->id_perusahaan)->first();
-        if(!empty($data)) {
-            Alert::toast('Perusahaan Sudah Terdaftar!', 'error');
-            return redirect()->route('p_inaexport');
-        }
-
         PPInaexport::where('id', $request->id)->update([
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_registrasi_inaexport' => date('Y-m-d', strtotime($request->tanggal_registrasi_inaexport)),

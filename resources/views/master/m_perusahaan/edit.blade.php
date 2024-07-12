@@ -204,8 +204,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kapasitas Produksi/ Bulan</label>
-                        <input type="number" name="kapasitas_produksi" class="form-control form-control-sm text-end"
-                            value="{{ $data->kapasitas_produksi }}">
+                        <input type="text" name="kapasitas_produksi" class="form-control form-control-sm text-end"
+                            value="{{ number_format($data->kapasitas_produksi, 0) }}">
                     </div>
                 </div>
                 <div class="col-3">
