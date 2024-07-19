@@ -82,7 +82,7 @@ div@extends('layouts.app')
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Tahun Pendirian</label>
-                        <input type="text" name="tahun_pendirian" class="form-control form-control-sm"
+                        <input type="text" name="tahun_pendirian" class="form-control form-control-sm year_picker"
                             value="{{ $data->tahun_pendirian }}">
                     </div>
                 </div>
@@ -322,6 +322,17 @@ div@extends('layouts.app')
 <script>
     $(document).ready(function () {
         // Select
+        $('.year_picker').datepicker({
+            format: "yyyy",
+            weekStart: 1,
+            orientation: "bottom",
+            language: "ID",
+            keyboardNavigation: false,
+            viewMode: "years",
+            minViewMode: "years",
+            autoclose: true,
+        });
+        
         $(".datepicker").datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
