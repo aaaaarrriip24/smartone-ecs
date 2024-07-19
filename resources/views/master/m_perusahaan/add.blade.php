@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <style>
-    .datepicker {
+    /* .datepicker {
         top: 710px !important;
-    }
+    } */
 </style>
 <div class="card">
     <div class="card-header">
@@ -59,10 +59,16 @@
                         <input type="text" name="alamat_pabrik" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kode Pos</label>
-                        <input class="form-control form-control-sm" name="kode_pos">
+                        <input type="text" name="kode_pos" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Tahun Pendirian</label>
+                        <input type="text" name="tahun_pendirian" class="form-control form-control-sm year_picker">
                     </div>
                 </div>
                 <div class="col-6">
@@ -115,7 +121,8 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Jumlah Karyawan</label>
-                        <input type="number" class="form-control form-control-sm jumlah_karyawan text-end" name="jumlah_karyawan">
+                        <input type="number" class="form-control form-control-sm jumlah_karyawan text-end"
+                            name="jumlah_karyawan">
                         <!-- <select name="jumlah_karyawan" class="form-control form-control-sm form-select jumlah_karyawan">
                             <option disabled selected>Pilih Jumlah Karyawan</option>
                             <option value="1">< 5</option>
@@ -128,14 +135,16 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Skala Perusahaan</label>
-                        <select name="skala_perusahaan_display" class="form-control form-control-sm form-select skala_perusahaan" disabled>
+                        <select name="skala_perusahaan_display"
+                            class="form-control form-control-sm form-select skala_perusahaan" disabled>
                             <option disabled selected>Pilih Skala Perusahaan</option>
                             <option value="Mikro">Mikro</option>
                             <option value="Kecil">Kecil</option>
                             <option value="Menengah">Menengah</option>
                             <option value="Besar">Besar</option>
                         </select>
-                        <select hidden name="skala_perusahaan" class="form-control form-control-sm form-select skala_perusahaan">
+                        <select hidden name="skala_perusahaan"
+                            class="form-control form-control-sm form-select skala_perusahaan">
                             <option disabled selected>Pilih Skala Perusahaan</option>
                             <option value="Mikro">Mikro</option>
                             <option value="Kecil">Kecil</option>
@@ -153,7 +162,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
-                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk" multiple="multiple"></select>
+                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk"
+                            multiple="multiple"></select>
                     </div>
                 </div>
                 <div class="col-3">
@@ -241,14 +251,16 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Status Ekspor</label>
-                        <select name="status_ekspor[]" class="form-control form-control-sm form-select select_negara_ekspor" multiple="multiple">
+                        <select name="status_ekspor[]"
+                            class="form-control form-control-sm form-select select_negara_ekspor" multiple="multiple">
                         </select>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Tanggal Registrasi</label>
-                        <input type="text" value="{{ date('d-m-Y') }}" name="tanggal_registrasi" class="form-control form-control-sm datepicker" required>
+                        <input type="text" value="{{ date('d-m-Y') }}" name="tanggal_registrasi"
+                            class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">
@@ -270,6 +282,18 @@
 <script>
     $(document).ready(function () {
         // Select
+        // year_picker
+        $('.year_picker').datepicker({
+            format: "yyyy",
+            weekStart: 1,
+            orientation: "bottom",
+            language: "ID",
+            keyboardNavigation: false,
+            viewMode: "years",
+            minViewMode: "years",
+            autoclose: true,
+        });
+
         $(".datepicker").datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
@@ -434,30 +458,30 @@
         }).on('select2:select', function (e) {
             var data = e.params.data;
         });
-        
+
         $(".jumlah_karyawan").on("keyup", function (e) {
             var value_kar = $(".jumlah_karyawan").val();
             console.log(value_kar);
-            if(value_kar <= 5) {
+            if (value_kar <= 5) {
                 $(".skala_perusahaan").val("Mikro");
             } else if (value_kar <= 6 || value_kar <= 9) {
                 $(".skala_perusahaan").val("Kecil");
-            } else if(value_kar <= 10 || value_kar <= 30) {
+            } else if (value_kar <= 10 || value_kar <= 30) {
                 $(".skala_perusahaan").val("Menengah");
-            } else if(value_kar >= 30) {
+            } else if (value_kar >= 30) {
                 $(".skala_perusahaan").val("Besar");
             }
         });
         $(".skala_perusahaan").on("change", function (e) {
             var value_skala = $(".skala_perusahaan").val();
             console.log(value_skala);
-            if(value_skala == "Mikro") {
+            if (value_skala == "Mikro") {
                 $(".jumlah_karyawan").val(1);
             } else if (value_skala == "Kecil") {
                 $(".jumlah_karyawan").val(2);
-            } else if(value_skala == "Menengah") {
+            } else if (value_skala == "Menengah") {
                 $(".jumlah_karyawan").val(3);
-            } else if(value_skala == "Besar") {
+            } else if (value_skala == "Besar") {
                 $(".jumlah_karyawan").val(4);
             }
         });

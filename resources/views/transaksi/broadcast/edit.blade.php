@@ -72,10 +72,10 @@
                         <thead>
                             <th># </th>
                             <th>No. </th>
-                            <th>Kode Perusahaan</th>
                             <th>Nama Perusahaan</th>
                             <th>Nama CP</th>
                             <th>Email</th>
+                            <th>Detail Produk Utama</th>
                         </thead>
                     </table>
                 </div>
@@ -161,11 +161,11 @@
                     className: 'text-center',
                     width: '5%'
                 },
-                {
-                    data: 'kode_perusahaan',
-                    name: 'kode_perusahaan',
-                    orderable: true,
-                },
+                // {
+                //     data: 'kode_perusahaan',
+                //     name: 'kode_perusahaan',
+                //     orderable: true,
+                // },
                 {
                     data: 'nama_perusahaan',
                     name: 'nama_perusahaan',
@@ -191,6 +191,11 @@
                 {
                     data: 'email',
                     name: 'email',
+                    orderable: true,
+                },
+                {
+                    data: 'detail_produk_utama',
+                    name: 'detail_produk_utama',
                     orderable: true,
                 },
             ]

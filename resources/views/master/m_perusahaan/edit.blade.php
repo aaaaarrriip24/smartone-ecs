@@ -1,9 +1,10 @@
-@extends('layouts.app')
+div@extends('layouts.app')
 @section('content')
 <style>
     .datepicker {
         top: 710px !important;
     }
+
 </style>
 <div class="card">
     <div class="card-header">
@@ -71,11 +72,18 @@
                             value="{{ $data->alamat_pabrik }}">
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Kode Pos</label>
                         <input type="text" name="kode_pos" class="form-control form-control-sm"
                             value="{{ $data->kode_pos }}">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Tahun Pendirian</label>
+                        <input type="text" name="tahun_pendirian" class="form-control form-control-sm"
+                            value="{{ $data->tahun_pendirian }}">
                     </div>
                 </div>
                 <div class="col-6">
@@ -173,7 +181,8 @@
                 <div class="col-6">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
-                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk" multiple="multiple">
+                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk"
+                            multiple="multiple">
                             @foreach($sub_kategori as $s)
                             <option value="{{ $s->id_sub_kategori }}" selected>{{ $s->nama_sub_kategori }}</option>
                             @endforeach
