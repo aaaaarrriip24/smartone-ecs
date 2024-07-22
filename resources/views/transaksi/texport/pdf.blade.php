@@ -63,7 +63,7 @@ pa
             <tfoot>
                 <tr>
                     <td colspan="5" style="text-align: right; font-size: 14px;"><b>Total</b></td>
-                    <td colspan="2">$ {{ number_format($countTotal->summary, 0) }}</td>
+                    <td colspan="2" style="text-align: right;">{{ number_format($countTotal->summary, 0) }}</td>
                 </tr>
             </tfoot>
         </table>
