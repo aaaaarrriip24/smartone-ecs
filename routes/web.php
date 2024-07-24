@@ -21,6 +21,7 @@ use App\Http\Controllers\PPInquiryController;
 use App\Http\Controllers\BroadcastEmailController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PartisipasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,6 +173,16 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('export/destroy/{id}', [TexportController::class, 'destroy']);
         Route::get('export/download_dok/{file}', [TexportController::class, 'download_dok']);
         Route::get('export/download_bukti/{file}', [TexportController::class, 'download_bukti']);
+
+        // Partisipasi
+        Route::get('transaksi/partisipasi', [PartisipasiController::class, 'index'])->name('t_partisipasi');
+        Route::get('partisipasi/add', [PartisipasiController::class, 'create']);
+        Route::get('partisipasi/detail/{id}', [PartisipasiController::class, 'detail']);
+        Route::post('partisipasi/pdf', [PartisipasiController::class, 'pdf']);
+        Route::post('partisipasi/store', [PartisipasiController::class, 'store']);
+        Route::get('partisipasi/show/{id}', [PartisipasiController::class, 'show']);
+        Route::post('partisipasi/update', [PartisipasiController::class, 'update']);
+        Route::get('partisipasi/destroy/{id}', [PartisipasiController::class, 'destroy']);
 
         // Extra
         // PPBM
