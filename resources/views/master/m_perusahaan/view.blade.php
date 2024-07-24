@@ -37,10 +37,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-12 table-responsive">
-                            <div class="col-md-6">
-                                <div class="row g-0">
-                                    <label class="form-label">Rentang Perusahaan</label>
-                                    <div class="col-sm-5 p-0">
+                            <div class="col-md-12">
+                                <div class="row g-2">
+                                    <!-- <div class="col-sm-5 p-0">
                                         <select name="select_perusahaan1"
                                             class="form-control form-control-sm select_perusahaan1 filter"></select>
                                     </div>
@@ -50,6 +49,31 @@
                                     <div class="col-sm-5 p-0">
                                         <select name="select_perusahaan2"
                                             class="form-control form-control-sm select_perusahaan2 filter"></select>
+                                    </div> -->
+                                    <div class="col-sm-3">
+                                        <label class="form-label labelInput">Provinsi</label>
+                                        <select name="province_id"
+                                            class="form-control form-control-sm province_id filter"></select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="form-label labelInput">Kabupaten/Kota</label>
+                                        <select name="cities_id"
+                                            class="form-control form-control-sm cities_id filter"></select>
+                                    </div>
+                                    <div class="col-sm-3 step-1">
+                                        <!-- <div class="form-group mb-2 div_kategori"> -->
+                                            <label class="form-label labelInput">Kategori Produk</label>
+                                            <select name="id_kategori_produk"
+                                                class="form-control form-control-sm select_k_produk filter"></select>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="col-sm-6 step-1">
+                                        <!-- <div class="form-group mb-2 div_sub_kategori"> -->
+                                            <label class="form-label labelInput">Sub Kategori Produk</label>
+                                            <select name="id_sub_kategori[]"
+                                                class="form-control form-control-sm select_sub_produk filter"
+                                                multiple="multiple"></select>
+                                        <!-- </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -59,13 +83,13 @@
                                 <thead>
                                     <th>No. </th>
                                     <!-- <th>Kode</th> -->
-                                    <th class="d-none">Merk Produk</th>
-                                    <th class="d-none">Detail Produk</th>
+                                    <!-- <th class="d-none">Merk Produk</th>
+                                    <th class="d-none">Detail Produk</th> -->
                                     <th>Nama Perusahaan</th>
                                     <th>Alamat Perusahaan</th>
                                     <!-- <th>Email</th> -->
                                     <th>No. Kontak</th>
-                                    <th>Kategori Produk</th>
+                                    <th>Sub Kategori Produk</th>
                                     <th>Status (CL/ NC)</th>
                                     <th>Action</th>
                                 </thead>
@@ -180,8 +204,14 @@
                 type: "GET",
                 data: function (data) {
                     if ($(".in").val() != "") data.in = $(".in").val();
-                    if ($('.select_perusahaan1').val() != '') data.select_perusahaan1 = $('.select_perusahaan1').val();
-                    if ($('.select_perusahaan2').val() != '') data.select_perusahaan2 = $('.select_perusahaan2').val();
+                    if ($('.province_id').val() != '') data.province_id = $('.province_id').val();
+                    if ($('.select_k_produk').val() != '') data.id_kategori_produk = $('.select_k_produk').val();
+                    if ($('.cities_id').val() != '') data.cities_id = $('.cities_id').val();
+                    if ($('.select_sub_produk').val() != '') {
+                        data.id_sub_kategori = $('.select_sub_produk').val();
+                    } else {
+                        data.id_sub_kategori = [];
+                    }
                     // data.select_perusahaan1 = moment($('.tglawal').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
                     // data.select_perusahaan2 = moment($('.tglakhir').val(), 'DD-MM-YYYY').format('YYYY-MM-DD');
                     return data;
@@ -200,16 +230,16 @@
                 //     name: 'kode_perusahaan',
                 //     orderable: true,
                 // },
-                {
-                    data: 'merek_produk',
-                    name: 'merek_produk',
-                    visible: false,
-                },
-                {
-                    data: 'detail_produk_utama',
-                    name: 'detail_produk_utama',
-                    visible: false,
-                },
+                // {
+                //     data: 'merek_produk',
+                //     name: 'merek_produk',
+                //     visible: false,
+                // },
+                // {
+                //     data: 'detail_produk_utama',
+                //     name: 'detail_produk_utama',
+                //     visible: false,
+                // },
                 {
                     data: 'nama_perusahaan',
                     name: 'nama_perusahaan',
@@ -287,6 +317,104 @@
                     width: '10%'
                 },
             ]
+        });
+
+        $(".province_id").select2({
+            placeholder: "Pilih Provinsi",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'provinces',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.code,
+                                text: item.name,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
+        $('.cities_id').select2({
+            placeholder: 'Pilih Kota',
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + "cities",
+                dataType: 'json',
+                data: function (params) {
+                    params.province_id = $('.province_id').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.code,
+                                text: item.name,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
+        $(".select_k_produk").select2({
+            placeholder: "Pilih Kategori Produk",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/k_produk',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.nama_kategori_produk,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+            console.log(data);
+        });
+
+        $(".select_sub_produk").select2({
+            placeholder: "Pilih Sub Kategori Produk",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/sub_produk2',
+                dataType: 'json',
+                data: function (params) {
+                    params.id_kategori = $('.select_k_produk').val();
+                    return params
+                },
+                processResults: function (data) {
+                    return {
+                        results: data.map(function (item) {
+                            item.id = item.id;
+                            item.text = item.nama_sub_kategori;
+                            item.perusahaan = item.id_perusahaan;
+                            return item;
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+            console.log(data);
         });
 
         $(".select_perusahaan1").select2({

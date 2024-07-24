@@ -223,6 +223,21 @@ class SelectController extends Controller
         }
     }
 
+    public function filterkota(Request $request) {
+        $data = DB::table('indonesia_cities')
+        ->orderBy('name', 'ASC')
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('indonesia_cities')
+            ->where('name', 'LIKE', '%'. $request->term. '%')
+            ->orderBy('name', 'ASC')
+            ->get();
+        }
+
+        return $data;
+    }
+
     public function selecttopik(Request $request) {
         $data = DB::table('m_topik')
         ->whereNull('deleted_at')

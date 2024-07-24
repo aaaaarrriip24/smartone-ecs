@@ -38,11 +38,11 @@ pa
             <thead style="font-size: 14px !important; text-align: center;" class="align-middle">
                 <tr>
                     <th width="5%">No</th>
-                    <th>Nama Perusahaan <br>Skala</th>
+                    <th>Nama&nbsp;Perusahaan <br>Skala</th>
                     <th>Alamat</th>
-                    <th>Produk</th>
+                    <th width="25%">Produk</th>
                     <th>PIC</th>
-                    <th>Email/ <br>Telephone</th>
+                    <th width="10%">Email/ <br>Telephone</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,7 +53,7 @@ pa
                     <td>{{ $d->alamat_perusahaan }}</td>
                     <td>{{ $d->sub_kategori }} {{ $d->detail_produk_utama }}</td>
                     <td>{{ $d->nama_contact_person }}</td>
-                    <td>{{ $d->email }} <br>{{ str_replace('`', '', $d->telp_contact_person) }}</td>
+                    <td>{{ strtolower($d->email) }} <br>{{ str_replace('`', '', $d->telp_contact_person) }}</td>
                 </tr>
                 @endforeach
             </tbody>
