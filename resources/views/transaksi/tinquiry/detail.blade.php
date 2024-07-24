@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="card">
-    <div class="card-header">Add Profile Inquiry</div>
+    <div class="card-header">Detail Profile Inquiry</div>
     <form method="post" action="{{ url('inquiry/store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">

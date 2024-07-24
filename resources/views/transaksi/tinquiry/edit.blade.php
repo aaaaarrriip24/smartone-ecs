@@ -11,8 +11,7 @@
         @csrf
         <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $data->id }}"
             required="required">
-        <input hidden type="text" name="file_lama" class="form-control form-control-sm" value="{{ $data->attached_dokumen }}"
-            required="required">
+        <input hidden type="text" name="file_lama" class="form-control form-control-sm" value="{{ $data->attached_dokumen }}">
         <div class="card-body">
             <div class="row">
                 <div class="col-3">

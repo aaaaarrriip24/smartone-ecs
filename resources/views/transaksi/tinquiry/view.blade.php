@@ -47,14 +47,14 @@
                                 <div class="input-group input-group-sm">
                                     <input type="text"
                                         class="form-control form-control-sm datepicker x-readonly tglawal filter"
-                                        readonly placeholder="Select date" onchange="reloadDT('tglawal')"
+                                        readonly placeholder="Select date"
                                         value="<?=date('01-m-Y')?>" name="tglawal">
                                     <div class="input-group-append input-group-prepend">
                                         <div class="input-group-text">-</div>
                                     </div>
                                     <input type="text"
                                         class="form-control form-control-sm datepicker x-readonly tglakhir filter"
-                                        readonly placeholder="Select date" onchange="reloadDT('tglakhir')"
+                                        readonly placeholder="Select date"
                                         value="<?=date('d-m-Y')?>" name="tglakhir">
                                 </div>
                             </div>

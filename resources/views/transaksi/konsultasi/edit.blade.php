@@ -98,7 +98,7 @@
                         <select name="id_topik[]" class="form-control form-control-sm select_topik" multiple="multiple">
                             @foreach( $topik as $t )
                             @if(!empty($t->id))
-                            <option value="{{ $t->id }}" selected disabled>{{ $t->nama_topik }}</option>
+                            <option value="{{ $t->id }}" selected>{{ $t->nama_topik }}</option>
                             @endif
                             @endforeach
                         </select>
