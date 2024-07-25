@@ -973,10 +973,10 @@
                                             <a href="{{ url('extra/p_inaexport') }}" class="nav-link"
                                             data-key="t-broadcast">InaExport</a>
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a href="{{ url('transaksi/partisipasi') }}" class="nav-link"
                                                 data-key="t-partisipasi">Partisipasi</a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </li>
