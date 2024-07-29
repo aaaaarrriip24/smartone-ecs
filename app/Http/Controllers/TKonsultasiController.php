@@ -160,11 +160,14 @@ class TKonsultasiController extends Controller
         ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
         ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
         ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
+        ->leftJoin('m_k_produk as tkp', 'tb.id_kategori_produk', '=', 'tkp.id')
+        ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
         ->whereNull('td.deleted_at')
-        ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tb.kode_perusahaan', 'tc.nama_topik', 'td.nama_petugas' )
+        ->select(DB::raw('ta.*, group_concat( th.nama_sub_kategori ) AS sub_kategori, tkp.nama_kategori_produk, tb.detail_produk_utama, tb.nama_perusahaan, te.nama_tipe, tb.kode_perusahaan, tc.nama_topik, td.nama_petugas'))
         ->where('ta.id', $id)
         ->first();
 
@@ -194,11 +197,14 @@ class TKonsultasiController extends Controller
         ->leftJoin('t_konsultasi_topik as tf', 'ta.id', '=', 'tf.id_konsultasi')
         ->leftJoin('m_topik as tc', 'tf.id_topik', '=', 'tc.id')
         ->leftJoin('m_petugas as td', 'ta.id_petugas', '=', 'td.id')
+        ->leftJoin('m_k_produk as tkp', 'tb.id_kategori_produk', '=', 'tkp.id')
+        ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
         ->whereNull('td.deleted_at')
-        ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tb.kode_perusahaan', 'tc.nama_topik', 'td.nama_petugas' )
+        ->select(DB::raw('ta.*, group_concat( th.nama_sub_kategori ) AS sub_kategori, tkp.nama_kategori_produk, tb.detail_produk_utama, tb.nama_perusahaan, te.nama_tipe, tb.kode_perusahaan, tc.nama_topik, td.nama_petugas'))
         ->where('ta.id', $id)
         ->first();
 

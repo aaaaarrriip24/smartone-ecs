@@ -35,20 +35,26 @@
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Sub Kategori Produk</label>
+                        <label class="form-label mb-1 mt-0 labelInput">Kategori Produk</label>
+                        <input type="text" class="form-control form-control-sm kategori_produk" disabled>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
                         <input type="text" class="form-control form-control-sm sub_produk" disabled>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Konsultasi</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Tanggal Konsultasi</label>
                         <input type="text" name="tanggal_konsultasi" autocomplete="off"
                             class="form-control form-control-sm datepicker" required>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Cara Konsultasi</label>
+                        <label class="form-label mb-1 mt-2 labelInput">Cara Konsultasi</label>
                         <select name="cara_konsultasi" class="form-control form-control-sm cara_konsultasi" required>
                             <option disabled selected>Pilih Cara Konsultasi</option>
                             <option value="Email">Email</option>
@@ -60,7 +66,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Tempat Pertemuan</label>
                         <input type="text" name="tempat_pertemuan" class="form-control form-control-sm" required>
@@ -144,7 +150,8 @@
                                     .toUpperCase() + ', ' + item
                                     .nama_tipe,
                                 detail_produk_utama: item.detail_produk_utama,
-                                nama_sub_kategori: item.nama_sub_kategori,
+                                nama_kategori_produk: item.nama_kategori_produk,
+                                sub_kategori: item.sub_kategori,
                             }
                         })
                     };
@@ -154,7 +161,8 @@
             var data = e.params.data;
             console.log(data);
             $(".detail_produk").val(data.detail_produk_utama);
-            $(".sub_produk").val(data.nama_sub_kategori);
+            $(".kategori_produk").val(data.nama_kategori_produk);
+            $(".sub_produk").val(data.sub_kategori);
         });
 
         $(".select_topik").select2({

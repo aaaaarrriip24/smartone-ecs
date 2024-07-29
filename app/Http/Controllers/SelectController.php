@@ -131,23 +131,27 @@ class SelectController extends Controller
     public function selectperusahaan(Request $request) {
         $data = DB::table('m_perusahaan as ta')
         ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-        ->leftJoin('m_k_produk as tc', 'ta.id_kategori_produk', '=', 'tc.id')
-        ->leftJoin('m_sub_kategori as td', 'ta.id_sub_kategori', '=', 'td.id')
-        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'), 'td.nama_sub_kategori')
+        ->leftJoin('m_k_produk as tf', 'ta.id_kategori_produk', '=', 'tf.id')
+        ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+        ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe, group_concat( th.nama_sub_kategori ) AS sub_kategori, tf.nama_kategori_produk'))
         ->whereNull('ta.deleted_at')
-        ->orderBy('ta.nama_perusahaan', 'ASC')
+        ->groupBy('ta.id')
+        ->orderBy('ta.id', 'ASC')
         ->get();
 
         if($request->term) {
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-            ->leftJoin('m_k_produk as tc', 'ta.id_kategori_produk', '=', 'tc.id')
-            ->leftJoin('m_sub_kategori as td', 'ta.id_sub_kategori', '=', 'td.id')
-            ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'), 'td.nama_sub_kategori')
+            ->leftJoin('m_k_produk as tf', 'ta.id_kategori_produk', '=', 'tf.id')
+            ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+            ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+            ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe, group_concat( th.nama_sub_kategori ) AS sub_kategori, tf.nama_kategori_produk'))
             ->whereNull('ta.deleted_at')
             ->where('ta.nama_perusahaan', 'LIKE' , '%'. $request->term. '%')
             ->orWhere('ta.kode_perusahaan', 'LIKE', '%'. $request->term. '%')
-            ->orderBy('ta.nama_perusahaan', 'ASC')
+            ->groupBy('ta.id')
+            ->orderBy('ta.id', 'ASC')
             ->get();
         }
 

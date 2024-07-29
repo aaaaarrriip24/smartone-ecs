@@ -23,22 +23,40 @@
                 </div>
             </div>
             <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Detail Produk Utama</label>
+                        <input type="text" class="form-control form-control-sm detail_produk" value="{{ $data->detail_produk_utama }}" disabled>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Kategori Produk</label>
+                        <input type="text" class="form-control form-control-sm kategori_produk" value="{{ $data->nama_kategori_produk }}" disabled>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Sub Kategori Produk</label>
+                        <input type="text" class="form-control form-control-sm sub_produk" value="{{ $data->sub_kategori }}" disabled>
+                    </div>
+                </div>
+            <div class="col-3">
                 <div class="form-group mb-2">
-                    <label class="form-label mb-1 mt-0 labelInput">Tanggal Konsultasi</label>
+                    <label class="form-label mb-1 mt-2 labelInput">Tanggal Konsultasi</label>
                     <input type="date" name="tanggal_konsultasi" class="form-control form-control-sm"
                         value="{{ $data->tanggal_konsultasi }}" disabled>
                 </div>
             </div>
             <div class="col-3">
                 <div class="form-group mb-2">
-                    <label class="form-label mb-1 mt-0 labelInput">Cara Konsultasi</label>
+                    <label class="form-label mb-1 mt-2 labelInput">Cara Konsultasi</label>
                     <select name="cara_konsultasi" class="form-control form-control-sm" required="required" disabled>
                         <option value="{{ $data->cara_konsultasi }}" selected disabled>{{ $data->cara_konsultasi }}
                         </option>
                     </select>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="form-group mb-2">
                     <label class="form-label mb-1 mt-2 labelInput">Tempat Pertemuan</label>
                     <input type="text" name="tempat_pertemuan" class="form-control form-control-sm"
