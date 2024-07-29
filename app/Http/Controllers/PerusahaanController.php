@@ -56,7 +56,7 @@ class PerusahaanController extends Controller
                 $data->where('ta.id_kategori_produk', '=' , $request->id_kategori_produk);
             } 
             if(isset($request->id_sub_kategori)) {
-                $data->whereIn('ta.id_sub_kategori', $request->id_sub_kategori);
+                $data->whereIn('tg.id_sub_kategori', $request->id_sub_kategori);
             } 
             
             if($request->term) {
@@ -137,7 +137,7 @@ class PerusahaanController extends Controller
             $data->where('ta.id_kategori_produk', '=' , $request->id_kategori_produk);
         } 
         if(isset($request->id_sub_kategori)) {
-            $data->whereIn('ta.id_sub_kategori', $request->id_sub_kategori);
+            $data->whereIn('tg.id_sub_kategori', $request->id_sub_kategori);
         } 
         $data->select(DB::raw('ta.*, ti.nama_petugas, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
         ->groupBy('ta.id')
