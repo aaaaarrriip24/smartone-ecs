@@ -49,7 +49,7 @@ class HomeController extends Controller
                 ->leftJoin('t_konsultasi_topik as td', 'ta.id', '=', 'td.id_konsultasi')
                 ->leftJoin('m_topik as tb', 'td.id_topik', '=', 'tb.id')
                 ->select(\DB::raw('count(td.id_topik) as total, tb.nama_topik'))
-                ->whereNull('tb.deleted_at')
+                ->whereNull('ta.deleted_at')
                 ->groupBy('tb.id')
                 ->get();
 
@@ -82,9 +82,12 @@ class HomeController extends Controller
         $topik = DB::table('t_konsultasi as ta')
         ->leftJoin('t_konsultasi_topik as td', 'ta.id', '=', 'td.id_konsultasi')
         ->leftJoin('m_topik as tb', 'td.id_topik', '=', 'tb.id')
-        ->select(\DB::raw('count(td.id_topik) as total, IFNULL(tb.nama_topik, "Belum Memilih Topik") as nama_topik'))
+        ->select(\DB::raw('count(td.id_topik) as total, tb.nama_topik'))
+        ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
+        ->whereNotNull('tb.id')
         ->groupBy('tb.id')
+        ->orderBy('tb.id')
         ->get();
 
         // return DataTables::of($topik)->toJson();
