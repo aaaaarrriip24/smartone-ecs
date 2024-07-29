@@ -178,7 +178,8 @@
                                 id: item.id,
                                 text: item.kode_perusahaan + ", " + item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
                                 detail_produk_utama: item.detail_produk_utama,
-                                nama_sub_kategori: item.nama_sub_kategori,
+                                nama_kategori_produk: item.nama_kategori_produk,
+                                sub_kategori: item.sub_kategori,
                             }
                         })
                     };
@@ -188,7 +189,8 @@
             var data = e.params.data;
             console.log(data);
             $(".detail_produk").val(data.detail_produk_utama);
-            $(".sub_produk").val(data.nama_sub_kategori);
+            $(".kategori_produk").val(data.nama_kategori_produk);
+            $(".sub_produk").val(data.sub_kategori);
         });
 
         $(".select_topik").select2({
