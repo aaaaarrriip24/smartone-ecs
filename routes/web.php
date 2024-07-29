@@ -180,6 +180,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('partisipasi/detail/{id}', [PartisipasiController::class, 'detail']);
         Route::post('partisipasi/pdf', [PartisipasiController::class, 'pdf']);
         Route::post('partisipasi/store', [PartisipasiController::class, 'store']);
+        Route::get('partperusahaan/show', [PPBmController::class, 'partperusahaan']);
         Route::get('partisipasi/show/{id}', [PartisipasiController::class, 'show']);
         Route::post('partisipasi/update', [PartisipasiController::class, 'update']);
         Route::get('partisipasi/destroy/{id}', [PartisipasiController::class, 'destroy']);

@@ -9,6 +9,7 @@ use DataTables;
 use Carbon\Carbon;
 use Alert;
 use DB;
+use PDF;
 
 class PartisipasiController extends Controller
 {
@@ -132,15 +133,105 @@ class PartisipasiController extends Controller
 
     }
 
+    public function pdf(Request $request) {
+        $data = DB::table('t_partisipasi as ta')
+        ->leftJoin('t_partisipasi_perusahaan as tb', 'ta.id', '=', 'tb.id_partisipasi')
+        ->leftJoin('m_perusahaan as tc', 'tc.id', '=', 'tb.id_perusahaan')
+        ->leftJoin('m_tipe_perusahaan as td', 'td.id', '=', 'tc.id_tipe')
+        ->whereNull('ta.deleted_at')
+        ;
+        
+        if(isset($request->kegiatan)) {
+            $data->where('ta.kegiatan', '=' , $request->kegiatan);
+        }
+        if(isset($request->tglawal)) {
+            $data->where('ta.tgl_partisipasi', '>=' , date('Y-m-d', strtotime($request->tglawal)));
+        } 
+        if(isset($request->tglakhir)) {
+            $data->where('ta.tgl_partisipasi', '<=' , date('Y-m-d', strtotime($request->tglakhir)));
+        } 
+        
+        $data->select(DB::raw('group_concat( tc.nama_perusahaan ) as perusahaan, ta.*'))
+        ->groupBy('ta.id')
+        ->orderBy('ta.id', 'ASC')
+        ->get();
+
+        $data = $data->get();
+        
+        $tb = DB::table('t_partisipasi_perusahaan as ta')
+        ->leftjoin('m_perusahaan as tb','tb.id','ta.id_perusahaan')
+        ->leftjoin('m_tipe_perusahaan as tc','tc.id','tb.id_tipe')
+        ->select(DB::raw('tb.kode_perusahaan, tb.nama_perusahaan, tb.detail_produk_utama, ta.id_partisipasi, ta.id, IFNULL(tc.nama_tipe, "") as nama_tipe'))
+        ->get();
+
+        // dd($tb);
+    	$pdf = PDF::loadview('transaksi/partisipasi/pdf',[
+            'data' => $data,
+            'tb' => $tb,
+            'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
+            'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
+        ]);
+    	return $pdf->stream('Laporan Transaksi Partisipasi Perusahaan.pdf', array("Attachment" => false));
+    }
+
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Partisipasi  $partisipasi
      * @return \Illuminate\Http\Response
      */
-    public function show(Partisipasi $partisipasi)
+    public function detail($id)
     {
-        //
+        $data = DB::table('t_partisipasi as ta')
+        ->leftJoin('t_partisipasi_perusahaan as tb', 'ta.id', '=', 'tb.id_partisipasi')
+        ->leftJoin('m_perusahaan as tc', 'tc.id', '=', 'tb.id_perusahaan')
+        ->leftJoin('m_tipe_perusahaan as td', 'td.id', '=', 'tc.id_tipe')
+        ->whereNull('ta.deleted_at')
+        ->where('ta.id', $id)
+        ->groupBy('ta.id')
+        ->orderBy('ta.id', 'ASC')
+        ->first();
+
+        $peserta = DB::table('t_partisipasi_perusahaan as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as tc', 'tb.id_tipe', '=', 'tc.id')
+        ->where('ta.id_partisipasi', $id)
+        ->get();
+
+        // dd($peserta);
+
+        return view('transaksi/partisipasi/detail', [
+            'data' => $data,
+            'peserta' => $peserta,
+            'status' => 200,
+        ]);
+    }
+
+    public function show($id)
+    {
+        $data = DB::table('t_partisipasi as ta')
+        ->leftJoin('t_partisipasi_perusahaan as tb', 'ta.id', '=', 'tb.id_partisipasi')
+        ->leftJoin('m_perusahaan as tc', 'tc.id', '=', 'tb.id_perusahaan')
+        ->leftJoin('m_tipe_perusahaan as td', 'td.id', '=', 'tc.id_tipe')
+        ->whereNull('ta.deleted_at')
+        ->where('ta.id', $id)
+        ->groupBy('ta.id')
+        ->orderBy('ta.id', 'ASC')
+        ->first();
+
+        $peserta = DB::table('t_partisipasi_perusahaan as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as tc', 'tb.id_tipe', '=', 'tc.id')
+        ->where('ta.id_partisipasi', $id)
+        ->get();
+
+        // dd($peserta);
+
+        return view('transaksi/partisipasi/edit', [
+            'data' => $data,
+            'peserta' => $peserta,
+            'status' => 200,
+        ]);
     }
 
     /**
@@ -161,11 +252,47 @@ class PartisipasiController extends Controller
      * @param  \App\Models\Partisipasi  $partisipasi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Partisipasi $partisipasi)
+    public function update(Request $request)
     {
-        //
+        Partisipasi::where('id', $request->id)->update([
+            'tgl_partisipasi' => date('Y-m-d', strtotime($request->tgl_partisipasi)),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        $id_partisipasi = $request->id;
+        $post = PartisipasiPerusahaan::where('id_partisipasi', $id_partisipasi)->delete();
+
+        $perusahaanArr = array();
+        foreach($request->id_perusahaan as $key) {
+            $perusahaanArr = $key;
+            PartisipasiPerusahaan::insert([
+                'id_partisipasi' => $id_partisipasi,
+                'id_perusahaan' => $perusahaanArr,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+
+        Alert::toast('Success Edit Partisipasi Perusahaan!', 'success');
+        return redirect()->route('t_partisipasi');
     }
 
+    public function partperusahaan(Request $request) {
+        $data = DB::table('m_perusahaan as ta')
+        ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+        ->whereNull('ta.deleted_at')
+        ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
+        ->get();
+
+        if($request->term) {
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->whereNull('ta.deleted_at')
+            ->select(DB::raw('ta.*, IFNULL(tb.nama_tipe, "") as nama_tipe'))
+            ->where('ta.nama_perusahaan', 'LIKE', '%'. $request->term. '%')
+            ->get();
+        }
+        return $data;
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -174,6 +301,10 @@ class PartisipasiController extends Controller
      */
     public function destroy(Partisipasi $partisipasi)
     {
-        //
+        $post = Partisipasi::find($id);
+        $post->delete();
+        return response()->json([
+            "status"=>200, 
+        ]);
     }
 }

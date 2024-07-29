@@ -158,17 +158,17 @@
                     orderable: true,
                 },
                 {
+                    data: 'kegiatan',
+                    name: 'kegiatan',
+                    orderable: true,
+                },
+                {
                     data: 'tgl_partisipasi',
                     name: 'tgl_partisipasi',
                     orderable: true,
                     render: function (data, type, row) {
                         return moment(row.tgl_partisipasi).format('DD-MMM-YYYY');
                     }
-                },
-                {
-                    data: 'kegiatan',
-                    name: 'kegiatan',
-                    orderable: true,
                 },
                 {
                     data: 'action',
@@ -237,7 +237,7 @@
             width: '100%',
             allowClear: true,
             ajax: {
-                url: base_url + 'ppbm/show',
+                url: base_url + 'partperusahaan/show',
                 dataType: 'json',
                 data: function (params) {
                     params.id_bm = $('.get_id_bm').val();

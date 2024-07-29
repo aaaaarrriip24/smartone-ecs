@@ -6,7 +6,7 @@
     }
 </style>
 <div class="card">
-    <div class="card-header">Add Partisipasi</div>
+    <div class="card-header">Add Partisipasi Perusahaan</div>
     <form method="post" action="{{ url('partisipasi/store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
