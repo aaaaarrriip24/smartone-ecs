@@ -86,7 +86,7 @@ class PartisipasiController extends Controller
      */
     public function create()
     {
-        $get_code = Partisipasi::orderBy('kode_partisipasi', 'DESC')->first();
+        $get_code = Partisipasi::whereNull('deleted_at')->orderBy('kode_partisipasi', 'DESC')->first();
         if($get_code == null) {
             $kode_code = "PP-" . 1000 ;
         } else {
@@ -225,9 +225,10 @@ class PartisipasiController extends Controller
         ->where('ta.id_partisipasi', $id)
         ->get();
 
-        // dd($peserta);
+        // dd($data);
 
         return view('transaksi/partisipasi/edit', [
+            'id' => $id,
             'data' => $data,
             'peserta' => $peserta,
             'status' => 200,
@@ -255,6 +256,7 @@ class PartisipasiController extends Controller
     public function update(Request $request)
     {
         Partisipasi::where('id', $request->id)->update([
+            'kegiatan' => $request->kegiatan,
             'tgl_partisipasi' => date('Y-m-d', strtotime($request->tgl_partisipasi)),
             'updated_at' => Carbon::now(),
         ]);
@@ -299,10 +301,9 @@ class PartisipasiController extends Controller
      * @param  \App\Models\Partisipasi  $partisipasi
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Partisipasi $partisipasi)
+    public function destroy($id)
     {
-        $post = Partisipasi::find($id);
-        $post->delete();
+        $post = Partisipasi::find($id)->delete();
         return response()->json([
             "status"=>200, 
         ]);

@@ -10,7 +10,7 @@
     <div class="card-header">Edit Partisipasi Perusahaan</div>
     <form method="post" action="{{ url('partisipasi/update') }}" enctype="multipart/form-data">
         @csrf
-        <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $data->id }}"
+        <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $id }}"
             required="required">
         <div class="card-body">
             <div class="row">
