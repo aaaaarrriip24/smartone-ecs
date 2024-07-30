@@ -6,7 +6,7 @@ use Closure;
 use Alert;
 use Auth;
 
-class IsAdmin {
+class IsSuperAdmin {
     /**
      * Handle an incoming request.
      *
@@ -16,11 +16,11 @@ class IsAdmin {
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->roleuser == 'Admin' || Auth::user()->roleuser == 'SuperAdmin') {
+        if (Auth::user()->roleuser == 'SuperAdmin') {
             return $next($request);
         }
 
-        Alert::error('error', "You don't have admin access.");
+        Alert::error('error', "You don't have super admin access.");
         return redirect()->back();
     }
 }

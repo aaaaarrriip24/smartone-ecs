@@ -22,6 +22,7 @@ use App\Http\Controllers\BroadcastEmailController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PartisipasiController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::get('contact', [HomePageController::class, 'contact']);
 Route::post('login_from', [LoginController::class, 'authenticate']);
 Route::group(['middleware' => 'prevent-back-history'],function(){
     // Route Admin
+    Route::get('profile', [ProfileController::class, 'index']);
+    Route::get('change-password', [ProfileController::class, 'index']);
+    Route::post('change-password', [ProfileController::class, 'store'])->name('change.password');
+
     Route::group(['middleware' => 'admin'],function() {
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::get('data_topik', [HomeController::class, 'data_topik']);
