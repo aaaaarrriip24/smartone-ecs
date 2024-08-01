@@ -43,6 +43,7 @@ pa
                     <th>Nama Perusahaan/<br>Petugas</th>
                     <th>Topik</th>
                     <th>Saran dan Solusi</th>
+                    <th>Foto Pertemuan</th>
                 </tr>
             </thead>
             <tbody>
@@ -53,6 +54,12 @@ pa
                     <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}<br>{{ $d->nama_petugas }}</td>
                     <td>{{ $d->nama_topik }}</td>
                     <td>{{ str_replace("&nbsp;", "", strip_tags($d->isi_konsultasi)) }}</td>
+                    <td>
+                        @if(!empty($d->foto_pertemuan))
+                        <img class="rounded border" src="{{ public_path('foto_pertemuan/'. $d->foto_pertemuan) }}"
+                            style="width: 150px; height: 150px" alt="">
+                        @endif
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

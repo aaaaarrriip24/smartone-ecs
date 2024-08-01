@@ -107,7 +107,7 @@ class TKonsultasiController extends Controller
             'data' => $data,
             'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
             'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
-        ]);
+        ])->setPaper('A4', 'landscape');
     	return $pdf->stream('Laporan Konsultasi.pdf', array("Attachment" => false));
     }
 
