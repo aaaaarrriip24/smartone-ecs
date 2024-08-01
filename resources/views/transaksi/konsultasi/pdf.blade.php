@@ -50,10 +50,10 @@ pa
                 @foreach( $data as $d )
                 <tr>
                     <td width="5%">{{ $loop->iteration }}</td>
-                    <td width="10%">{{ date('d-m-Y', strtotime($d->tanggal_konsultasi)) }}/<br>{{ $d->cara_konsultasi }}</td>
-                    <td width="15%">{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}<br>{{ $d->nama_petugas }}</td>
-                    <td width="20%">{{ $d->nama_topik }}</td>
-                    <td width="20%">{{ str_replace("&nbsp;", "", strip_tags($d->isi_konsultasi)) }}</td>
+                    <td>{{ date('d-m-Y', strtotime($d->tanggal_konsultasi)) }}/<br>{{ $d->cara_konsultasi }}</td>
+                    <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}<br>{{ $d->nama_petugas }}</td>
+                    <td>{{ $d->nama_topik }}</td>
+                    <td width="35%">{{ str_replace("&nbsp;", "", strip_tags($d->isi_konsultasi)) }}</td>
                     <td width="250px">
                         @if(!empty($d->foto_pertemuan))
                         <img class="rounded border" src="{{ public_path('foto_pertemuan/'. $d->foto_pertemuan) }}"
