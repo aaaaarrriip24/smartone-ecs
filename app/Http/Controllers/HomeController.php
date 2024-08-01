@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Perusahaan;
 use App\Models\TKonsultasi;
 use App\Models\Tinquiry;
+use App\Models\PPInquiry;
 use App\Models\Texport;
 use App\Models\TBm;
+use App\Models\PPBm;
 use App\Models\Topik;
 use Carbon\Carbon;
 use Auth;
@@ -35,7 +37,7 @@ class HomeController extends Controller
 
     public function index(Request $request) {
         if(Auth::check()) {
-            if(Auth::user()->roleuser == "Admin") {
+            if(Auth::user()->roleuser == "Admin" || Auth::user()->roleuser == "Superadmin") {
                 $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
 
                 // $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
@@ -67,8 +69,10 @@ class HomeController extends Controller
                 ->first();
 
                 $bm = TBm::all()->whereNull('deleted_at')->count();
+                $ptbm = PPBm::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
                 $iq = Tinquiry::all()->whereNull('deleted_at')->count();
-                return view('home', compact('perusahaan', 'layanan', 'export', 'bm', 'iq')); 
+                $ptiq = PPInquiry::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
+                return view('home', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq')); 
             } else {
                 return redirect('/'); 
             }

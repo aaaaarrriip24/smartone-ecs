@@ -17,7 +17,7 @@
             <a href="{{ url('gallery') }}" class="nav-item nav-link">ECS Gallery</a>
             <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
             @if(Auth::check())
-            @if(Auth::user()->roleuser == "Admin")
+            @if(Auth::user()->roleuser == "Admin" || Auth::user()->roleuser == "Superadmin")
             <a href="{{ url('dashboard') }}" class="nav-item nav-link">Dashboard</a>
             @endif
             <a class="nav-item nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

@@ -12,17 +12,17 @@
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-            <h4 class="mb-sm-0">Transaksi Partisipasi Perusahaan</h4>
+            <h4 class="mb-sm-0">Transaksi Layanan Lainnya</h4>
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Transaksi</a></li>
-                    <li class="breadcrumb-item active">Partisipasi Perusahaan</li>
+                    <li class="breadcrumb-item active">Layanan Lainnya</li>
                     <li class="breadcrumb-item">
-                        <a href="{{ url('partisipasi/add') }}" class="btn btn-sm btn-primary text-light" type="text">Add</a>
+                        <a href="{{ url('lain/add') }}" class="btn btn-sm btn-primary text-light" type="text">Add</a>
                     </li>
                     <li class="breadcrumb-item">
-                        <button class="btn btn-sm btn-secondary btn-pdf">PDF</button>
+                        <button class="btn btn-sm btn-secondary btn-pdff">PDF</button>
                     </li>
                 </ol>
             </div>
@@ -36,9 +36,9 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Partisipasi Perusahaan</h5>
+                <h5 class="card-title mb-0">Layanan Lainnya</h5>
             </div>
-            <form action="{{ url('partisipasi/pdf') }}" id="forms" method="post" target="_blank">
+            <form action="{{ url('lain/pdf') }}" id="forms" method="post" target="_blank">
                 @csrf
                 <div class="card-body">
                     <div class="row">
@@ -66,8 +66,9 @@
                                 <thead>
                                     <th>No. </th>
                                     <th>Perusahaan</th>
-                                    <th>Kegiatan</th>
-                                    <th>Tanggal Partisipasi</th>
+                                    <th>Layanan</th>
+                                    <th>Tanggal Layanan</th>
+                                    <th>Keterangan</th>
                                     <th>Action</th>
                                 </thead>
                             </table>
@@ -78,33 +79,6 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="pesertaBM" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <form method="post" action="{{ url('ppbm/store') }}" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Peserta Business Matching</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>Nama Perusahaan</label>
-                        <input hidden type="text" name="id_bm" class="get_id_bm">
-                        <select name="id_perusahaan[]" class="form-control form-control-sm select_perusahaan" required
-                            multiple="multiple"></select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
 @endsection
 
 @section('js')
@@ -133,7 +107,7 @@
             sort: true,
             info: true,
             ajax: {
-                url: base_url + "transaksi/partisipasi",
+                url: base_url + "transaksi/lain",
                 type: "GET",
                 data: function (data) {
                     if ($(".in").val() != "") data.in = $(".in").val();
@@ -153,22 +127,38 @@
                     width: '5%'
                 },
                 {
-                    data: 'perusahaan',
-                    name: 'perusahaan',
+                    data: 'nama_perusahaan',
+                    name: 'nama_perusahaan',
+                    orderable: true,
+                    render: function (data, type, row, meta) {
+                        let text = row.nama_perusahaan;
+                        let result = text.toUpperCase();
+                        let str = row.nama_tipe;
+                        if (str == null) {
+                            str = "";
+                        } else {
+                            str = ", " + row.nama_tipe;
+                        }
+                        return result + str;
+                    }
+                },
+                {
+                    data: 'bentuk_layanan',
+                    name: 'bentuk_layanan',
                     orderable: true,
                 },
                 {
-                    data: 'kegiatan',
-                    name: 'kegiatan',
-                    orderable: true,
-                },
-                {
-                    data: 'tgl_partisipasi',
-                    name: 'tgl_partisipasi',
+                    data: 'tanggal_transaksi',
+                    name: 'tanggal_transaksi',
                     orderable: true,
                     render: function (data, type, row) {
-                        return moment(row.tgl_partisipasi).format('DD-MMM-YYYY');
+                        return moment(row.tanggal_transaksi).format('DD-MMM-YYYY');
                     }
+                },
+                {
+                    data: 'keterangan',
+                    name: 'keterangan',
+                    orderable: true,
                 },
                 {
                     data: 'action',
@@ -181,7 +171,7 @@
             ]
         });
 
-        $(document).on('click', '.btn-pdf', function () {
+        $(document).on('click', '.btn-pdff', function () {
             document.getElementById("forms").submit();
         });
 
@@ -212,52 +202,6 @@
                 }
             });
         });
-
-        $(document).on("click", ".btn-peserta", function () {
-            let data = table.row($(this).closest('tr')).data();
-            let peserta = data.peserta_bm;
-            $('.select_perusahaan').empty();
-            for (let index = 0; index < peserta.length; index++) {
-                const element = peserta[index];
-                $('.select_perusahaan').append(
-                    `<option value="${element.id}" selected>${element.nama_perusahaan} - ${element.nama_tipe}</option>`
-                )
-
-            }
-            $('#pesertaBM').modal('show');
-
-            console.log(data);
-            $(".get_id_bm").val(data.id);
-        })
-
-        // 
-        $(".select_perusahaan").select2({
-            placeholder: "Pilih Perusahaan",
-            dropdownParent: $('#pesertaBM'),
-            width: '100%',
-            allowClear: true,
-            ajax: {
-                url: base_url + 'partperusahaan/show',
-                dataType: 'json',
-                data: function (params) {
-                    params.id_bm = $('.get_id_bm').val();
-                    return params
-                },
-                processResults: function (data) {
-                    return {
-                        results: $.map(data, function (item) {
-                            return {
-                                id: item.id,
-                                text: item.nama_perusahaan + ', ' + item.nama_tipe,
-                            }
-                        })
-                    };
-                },
-            }
-        }).on('select2:select', function (e) {
-            var data = e.params.data;
-        });
     });
-
 </script>
 @endsection

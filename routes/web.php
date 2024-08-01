@@ -23,6 +23,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PartisipasiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LayananController;
+use App\Http\Controllers\TransaksiLayananController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +74,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('select/tipe', [SelectController::class, 'selecttipe']);
         Route::get('select/topik', [SelectController::class, 'selecttopik']);
         Route::get('select/petugas', [SelectController::class, 'selectpetugas']);
+        Route::get('select/layanan', [SelectController::class, 'selectlayanan']);
         Route::get('select/negara', [SelectController::class, 'selectnegara']);
         Route::get('select/bm', [SelectController::class, 'selectbm']);
         Route::get('select/inquiry', [SelectController::class, 'selectinquiry']);
@@ -136,7 +139,23 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::post('m_sub_kategori/update', [MSubKategoriController::class, 'update']);
         Route::get('m_sub_kategori/destroy/{id}', [MSubKategoriController::class, 'destroy']);
 
+        // Layanan Lainnya
+        Route::get('master/layanan', [LayananController::class, 'index'])->name('layanan');
+        Route::post('layanan/store', [LayananController::class, 'store']);
+        Route::get('layanan/show/{id}', [LayananController::class, 'show']);
+        Route::post('layanan/update', [LayananController::class, 'update']);
+        Route::get('layanan/destroy/{id}', [LayananController::class, 'destroy']);
+        
         // Transaksi
+        // Layanan
+        Route::get('transaksi/lain', [TransaksiLayananController::class, 'index'])->name('lain');
+        Route::get('lain/add', [TransaksiLayananController::class, 'create']);
+        Route::get('lain/detail/{id}', [TransaksiLayananController::class, 'detail']);
+        Route::post('lain/pdf', [TransaksiLayananController::class, 'pdf']);
+        Route::post('lain/store', [TransaksiLayananController::class, 'store']);
+        Route::get('lain/show/{id}', [TransaksiLayananController::class, 'show']);
+        Route::post('lain/update', [TransaksiLayananController::class, 'update']);
+        Route::get('lain/destroy/{id}', [TransaksiLayananController::class, 'destroy']);
         // Konsultasi
         Route::get('transaksi/konsultasi', [TKonsultasiController::class, 'index'])->name('tkonsultasi');
         Route::get('konsultasi/add', [TKonsultasiController::class, 'create']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use DataTables;
+use App\Models\TransaksiLain;
 
 class SelectController extends Controller
 {
@@ -125,6 +126,16 @@ class SelectController extends Controller
             ->get();
         }
 
+        return $data;
+    }
+
+    public function selectlayanan(Request $request) {
+        $data = TransaksiLain::whereNull('deleted_at');
+        if($request->term) {
+            $data->where('bentuk_layanan', 'LIKE' , '%'. $request->term. '%');
+        }
+        $data->get();
+        $data = $data->get();
         return $data;
     }
 

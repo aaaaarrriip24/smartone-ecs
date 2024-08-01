@@ -938,6 +938,11 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
+                                            <a href="{{ url('master/layanan') }}" class="nav-link" data-key="t-lain">
+                                                Layanan&nbsp;Lainnya
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-petugas">
                                                 Petugas </a>
                                         </li>
@@ -976,6 +981,10 @@
                                         <li class="nav-item">
                                             <a href="{{ url('transaksi/partisipasi') }}" class="nav-link"
                                                 data-key="t-partisipasi">Partisipasi</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('transaksi/lain') }}" class="nav-link"
+                                                data-key="t-lain">Transaksi&nbsp;Layanan&nbsp;Lainnya</a>
                                         </li>
                                     </ul>
                                 </div>

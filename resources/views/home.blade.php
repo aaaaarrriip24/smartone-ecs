@@ -23,8 +23,8 @@
                                 <tbody>
                                     <tr>
                                         <td class="text-end">{{ number_format($perusahaan) }}</td>
-                                        <td class="text-end">{{ number_format($bm) }}</td>
-                                        <td class="text-end">{{ number_format($iq) }}</td>
+                                        <td class="text-end">{{ number_format($bm) }}/{{ number_format( $ptbm->count_perusahaan )}}</td>
+                                        <td class="text-end">{{ number_format($iq) }}/{{ number_format( $ptiq->count_perusahaan )}}</td>
                                         <td class="text-end">{{ number_format($export->total) }}</td>
                                         <td class="text-end">{{ number_format($layanan) }}</td>
                                     </tr>
