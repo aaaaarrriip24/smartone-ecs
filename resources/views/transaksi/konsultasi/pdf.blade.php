@@ -16,7 +16,7 @@ pa
             margin-left: -15px;
             margin-right: 0cm;
             margin-bottom: 0cm;
-            font-size: 10px;
+            font-size: 11px;
         }
 
         .column {
@@ -53,7 +53,7 @@ pa
                     <td>{{ date('d-m-Y', strtotime($d->tanggal_konsultasi)) }}/<br>{{ $d->cara_konsultasi }}</td>
                     <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}<br>{{ $d->nama_petugas }}</td>
                     <td>{{ $d->nama_topik }}</td>
-                    <td width="30%">{{ str_replace("&nbsp;", "", strip_tags($d->isi_konsultasi)) }}</td>
+                    <td width="32.5%">{{ str_replace("&nbsp;", "", strip_tags($d->isi_konsultasi)) }}</td>
                     <td width="250px">
                         @if(!empty($d->foto_pertemuan))
                         <img class="rounded border" src="{{ public_path('foto_pertemuan/'. $d->foto_pertemuan) }}"
