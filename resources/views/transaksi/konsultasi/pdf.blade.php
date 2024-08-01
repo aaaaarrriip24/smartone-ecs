@@ -36,7 +36,7 @@ pa
         </center>
         <br />
         <table class="table table-bordered">
-            <thead style="font-size: 14px !important; text-align: center;" class="align-middle">
+            <thead style="font-size: 12px !important; text-align: center;" class="align-middle">
                 <tr>
                     <th width="5%">No</th>
                     <th>Tanggal Konsultasi/<br>Cara Konsultasi</th>
