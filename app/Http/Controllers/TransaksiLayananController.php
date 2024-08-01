@@ -148,7 +148,7 @@ class TransaksiLayananController extends Controller
         ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
         ->leftJoin('t_lain as tf', 'ta.id_transaksi_lain', '=', 'tf.id')
         ->whereNull('ta.deleted_at')
-        ->select('ta.*', 'tb.nama_perusahaan', DB::raw('IFNULL(te.nama_tipe, "")', 'tf.bentuk_layanan'))
+        ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tf.bentuk_layanan')
         ->first();
 
         $file = asset('lampiran_lainnya/'.$data->lampiran);
@@ -166,10 +166,10 @@ class TransaksiLayananController extends Controller
         ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
         ->leftJoin('t_lain as tf', 'ta.id_transaksi_lain', '=', 'tf.id')
         ->whereNull('ta.deleted_at')
-        ->select('ta.*', 'tb.nama_perusahaan', DB::raw('IFNULL(te.nama_tipe, "")', 'tf.bentuk_layanan'))
+        ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tf.bentuk_layanan')
         ->first();
 
-        $file = asset('lampiran_lainnya/'.$data->foto_pertemuan);
+        $file = asset('lampiran_lainnya/'.$data->lampiran);
         return view('transaksi/lain/edit', [
             'data' => $data,
             'file' => $file,

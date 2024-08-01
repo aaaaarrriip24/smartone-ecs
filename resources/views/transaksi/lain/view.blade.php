@@ -159,6 +159,16 @@
                     data: 'keterangan',
                     name: 'keterangan',
                     orderable: true,
+                    render: function (data, type, row, meta) {
+                        var html = row.keterangan;
+                        var div = document.createElement("div");
+                        div.innerHTML = html;
+                        var text = div.textContent || div.innerText || "";
+
+                        var str = text;
+                        if (str.length > 30) str = str.substring(0, 30);
+                        return str;
+                    }
                 },
                 {
                     data: 'action',

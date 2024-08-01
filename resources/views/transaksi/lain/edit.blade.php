@@ -8,49 +8,73 @@
 </style>
 <div class="card">
     <div class="card-header">Edit Partisipasi Perusahaan</div>
-    <form method="post" action="{{ url('partisipasi/update') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ url('lain/update') }}" enctype="multipart/form-data">
         @csrf
-        <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $id }}"
-            required="required">
+        <input hidden type="text" name="id" class="form-control form-control-sm" value="{{ $data->id }}" required="required">
         <div class="card-body">
             <div class="row">
-                <div class="col-2">
+                <div class="col-6">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Kode Partisipasi</label>
-                        <input type="text" name="kode_partisipasi" class="form-control form-control-sm"
-                            value="{{ $data->kode_partisipasi }}" required disabled>
-                        <input hidden type="text" name="kode_partisipasi_old" class="form-control form-control-sm"
-                            value="{{ $data->kode_partisipasi }}" required>
+                        <label class="form-label mb-1 mt-0 labelInput">Kode Transaksi Layanan</label>
+                        <input type="text" name="kode_kode_transaksi_layanan_lainnya"
+                            class="form-control form-control-sm" value="{{ $data->kode_transaksi_layanan_lainnya }}"
+                            required disabled>
+                        <input hidden type="text" name="kode_transaksi_layanan_lainnya"
+                            class="form-control form-control-sm" value="{{ $data->kode_transaksi_layanan_lainnya }}">
                     </div>
                 </div>
-                <div class="col-2">
+                <div class="col-6">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Partisipasi</label>
-                        <input type="text" name="tgl_partisipasi" autocomplete="off"
+                        <label class="form-label mb-1 labelInput">Pilih Layanan</label>
+                        <select name="id_transaksi_lain"
+                            class="form-control form-control-sm form-select select_layanan">
+                            <option value="{{ $data->id_transaksi_lain }}">{{ $data->bentuk_layanan }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label mb-1 labelInput">Pilih Perusahaan</label>
+                        <select name="id_perusahaan" class="form-control form-control-sm form-select select_perusahaan">
+                            <option value="{{ $data->id_perusahaan }}">
+                                {{ $data->nama_perusahaan }}{{ !empty($data->nama_tipe) ? ', '.$data->nama_tipe : '' }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-0 labelInput">Tanggal Layanan</label>
+                        <input type="text" name="tanggal_transaksi" autocomplete="off"
                             class="form-control form-control-sm datepicker"
-                            value="{{ date('d-m-Y', strtotime($data->tgl_partisipasi)) }}" required>
+                            value="{{ date('d-m-Y', strtotime($data->tanggal_transaksi)) }}">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Keterangan</label>
+                        <textarea id="summernote" class="form-control" name="keterangan" placeholder="Keterangan"
+                            id="floatingTextarea" rows="3">{{ $data->keterangan }}</textarea>
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
-                        <label class="form-label mb-1 mt-0 labelInput">Nama Kegiatan</label>
-                        <input type="text" name="kegiatan" class="form-control form-control-sm"
-                            value="{{ $data->kegiatan }}" required>
+                        <label class="form-label mb-1 mt-0 labelInput">Lampiran</label>
+                        <input type="file" name="lampiran" class="form-control form-control-sm">
                     </div>
                 </div>
-                <div class="col-5">
-                    <div class="form-group">
-                        <label class="form-label mb-1 labelInput">Peserta Business Matching</label>
-                        <select name="id_perusahaan[]"
-                            class="form-control form-control-sm form-select select_perusahaan" required
-                            multiple="multiple">
-                            @foreach( $peserta as $p )
-                            <option value="{{ $p->id }}" selected>{{ $p->kode_perusahaan }}, {{ $p->nama_perusahaan }}{{ !empty($p->nama_tipe) ? ', ' . $p->nama_tipe : '' }}
-                            </option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="col-3">
+                <div class="form-group">
+                    <label class="form-label mb-1 mt-0 labelInput">Lampiran</label>
+                    @if(!empty($data->lampiran))
+                    <a href="{{ asset('lampiran_lainnya/'.$data->lampiran ) }}"
+                        class="form-control btn btn-sm btn-primary" target="_blank">Lihat Dokumen</a>
+                    @else
+                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Dokumen Masih
+                        Kosong</a>
+                    @endif
                 </div>
+            </div>
             </div>
         </div>
         <div class="card-footer gap-2">
@@ -81,6 +105,28 @@
         $(".datepicker").datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
+        });
+
+        $(".select_layanan").select2({
+            placeholder: "Pilih Layanan",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/layanan',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.bentuk_layanan,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
         });
 
         $(".select_perusahaan").select2({

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Daftar Partisipasi Perusahaan</title>
+    <title>Daftar Layanan Lainnya</title>
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -24,7 +24,7 @@
 <body>
     <div>
         <center>
-            <h5>Daftar Partisipasi Perusahaan</h5>
+            <h5>Daftar Layanan Lainnya</h5>
             <h6>Periode: {{ $tglawal }} s/d {{ $tglakhir }}</h6>
         </center>
         <br />
@@ -32,39 +32,20 @@
             <thead style="background: #4BC0C0; font-size: 14px !important; text-align: center;" class="align-middle">
                 <tr>
                     <th>No.</th>
-                    <th colspan="2">Nama Kegiatan</th>
-                    <th colspan="2">Tanggal Partisipasi</th>
+                    <th>Bentuk Layanan</th>
+                    <th>Tanggal Layanan</th>
+                    <th>Nama Perusahaan</th>
+                    <th>Keterangan</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach( $data as $d )
-                <tr style="background: #4BC0C0;">
-                    <td style="font-size: 12px !important; text-align: center;">{{ $loop->iteration }}</td>
-                    <td colspan="2">{{ $d->kegiatan }}</td>
-                    <td colspan="2">{{ date('d-F-Y', strtotime($d->tgl_partisipasi)) }}</td>
-                </tr>
                 <tr style="background: #9BDCDC;">
-                    <td colspan="5" style="font-size: 14px !important;"><b>Peserta</b></td>
-                </tr>
-                <tr style="background: #DBF2F2;">
-                    <td style="font-size: 12px !important; text-align: center;"><b>No.</b></td>
-                    <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Nama Perusahaan</b></td>
-                    <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Produk</b></td>
-                </tr>
-                
-                @foreach( collect($tb)->where("id_partisipasi", $d->id)->toArray() as $k)
-                <tr style="background: #DBF2F2;">
                     <td style="font-size: 12px !important; text-align: center;">{{ $loop->iteration }}</td>
-                    <td colspan="2">{{ $k->nama_perusahaan }}{{ empty($k->nama_tipe) ? "" : ", " .$k->nama_tipe }}</td>
-                    <td colspan="2">{{ empty($k->detail_produk_utama) ? "-" : $k->detail_produk_utama }}</td>
-                </tr>
-                @endforeach
-                <tr>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
+                    <td>{{ $d->bentuk_layanan }}</td>
+                    <td>{{ date('d-F-Y', strtotime($d->tanggal_transaksi)) }}</td>
+                    <td>{{ $d->nama_perusahaan }}{{ !empty($d->nama_tipe) ? ', '. $d->nama_tipe: '' }}</td>
+                    <td>{{ strip_tags($d->keterangan) }}</td>
                 </tr>
                 @endforeach
             </tbody>
