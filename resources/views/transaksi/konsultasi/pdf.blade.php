@@ -57,7 +57,7 @@ pa
                     <td>
                         @if(!empty($d->foto_pertemuan))
                         <img class="rounded border" src="{{ public_path('foto_pertemuan/'. $d->foto_pertemuan) }}"
-                            style="width: 150px; height: 150px" alt="">
+                            style="width: 250px; height: auto;" alt="">
                         @endif
                     </td>
                 </tr>
