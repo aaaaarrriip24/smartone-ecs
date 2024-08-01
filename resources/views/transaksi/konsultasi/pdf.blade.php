@@ -16,7 +16,7 @@ pa
             margin-left: -15px;
             margin-right: 0cm;
             margin-bottom: 0cm;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         .column {
