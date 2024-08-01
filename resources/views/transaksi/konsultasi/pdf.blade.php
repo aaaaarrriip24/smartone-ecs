@@ -39,7 +39,7 @@ pa
             <thead style="font-size: 12px !important; text-align: center;" class="align-middle">
                 <tr>
                     <th width="5%">No</th>
-                    <th>Tanggal Konsultasi/<br>Cara Konsultasi</th>
+                    <th>Tanggal&nbsp;&&nbsp;Cara<br>Konsultasi</th>
                     <th>Nama Perusahaan/<br>Petugas</th>
                     <th>Topik</th>
                     <th>Saran dan Solusi</th>
