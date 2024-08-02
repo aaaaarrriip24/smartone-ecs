@@ -13,20 +13,29 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" style="background-color: rgb(255, 99, 132);">Perusahaan&nbsp;Terdaftar</th>
-                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Business&nbsp;Matching</th>
-                                        <th scope="col" width="250px" style="background-color: rgb(189,156,255);">Inquiry</th>
-                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Realisasi&nbsp;Export&nbsp;(USD)</th>
-                                        <th scope="col" style="background-color: rgb(255, 159, 64);">Jumlah&nbsp;Konsultasi</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(255, 99, 132);">
+                                            Perusahaan&nbsp;Terdaftar</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(75, 192, 192);">
+                                            Business&nbsp;Matching</th>
+                                        <th class="text-center" scope="col" width="250px" style="background-color: rgb(189,156,255);">
+                                            Inquiry</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(255, 205, 86);">
+                                            Realisasi&nbsp;Export&nbsp;(USD)</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(255, 159, 64);">
+                                            Jumlah&nbsp;Konsultasi</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(124,194,242);">InaExport</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="text-end">{{ number_format($perusahaan) }}</td>
-                                        <td class="text-end">{{ number_format($bm) }}/{{ number_format( $ptbm->count_perusahaan )}}</td>
-                                        <td class="text-end">{{ number_format($iq) }}/{{ number_format( $ptiq->count_perusahaan )}}</td>
+                                        <td class="text-end">
+                                            {{ number_format($bm) }}/{{ number_format( $ptbm->count_perusahaan )}}</td>
+                                        <td class="text-end">
+                                            {{ number_format($iq) }}/{{ number_format( $ptiq->count_perusahaan )}}</td>
                                         <td class="text-end">{{ number_format($export->total) }}</td>
                                         <td class="text-end">{{ number_format($layanan) }}</td>
+                                        <td class="text-end">{{ number_format( $ptina->count_perusahaan )}}</td>
                                     </tr>
                                 </tbody>
                             </table>

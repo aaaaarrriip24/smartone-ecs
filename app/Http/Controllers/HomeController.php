@@ -7,6 +7,7 @@ use App\Models\Perusahaan;
 use App\Models\TKonsultasi;
 use App\Models\Tinquiry;
 use App\Models\PPInquiry;
+use App\Models\PPInaexport;
 use App\Models\Texport;
 use App\Models\TBm;
 use App\Models\PPBm;
@@ -72,7 +73,8 @@ class HomeController extends Controller
                 $ptbm = PPBm::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
                 $iq = Tinquiry::all()->whereNull('deleted_at')->count();
                 $ptiq = PPInquiry::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
-                return view('home', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq')); 
+                $ptina = PPInaexport::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
+                return view('home', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptina')); 
             } else {
                 return redirect('/'); 
             }
