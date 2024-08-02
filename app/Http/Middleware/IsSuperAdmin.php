@@ -16,7 +16,7 @@ class IsSuperAdmin {
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->roleuser == 'SuperAdmin') {
+        if (Auth::user()->roleuser == 'Superadmin') {
             return $next($request);
         }
 

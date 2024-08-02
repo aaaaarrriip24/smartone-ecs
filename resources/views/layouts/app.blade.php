@@ -790,7 +790,7 @@
                                 <a class="dropdown-item" href="{{ url('profile') }}"><i
                                         class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Profile</span></a>
-                                <a class="dropdown-item" href="javascript:void(0);"><i
+                                <a class="dropdown-item" href="{{ url('/') }}"><i
                                         class="mdi mdi-home text-muted fs-16 align-middle me-1"></i> <span
                                         class="align-middle">Home</span></a>
                                 <!-- <a class="dropdown-item" href="apps-chat.html"><i
@@ -1036,30 +1036,16 @@
                                     role="button" aria-expanded="false" aria-controls="sidebarDashboards6">
                                     <i class="bx bxs-dashboard"></i> <span data-key="t-menu6">Setting</span>
                                 </a>
-                                <!-- <div class="collapse menu-dropdown" id="sidebarDashboards6">
+                                @if( Auth::user()->roleuser == 'Superadmin')
+                                <div class="collapse menu-dropdown" id="sidebarDashboards6">
                                     <ul class="nav nav-sm flex-column">
                                         <li class="nav-item">
-                                            <a href="{{ url('transaksi/konsultasi') }}" class="nav-link"
-                                                data-key="t-konsultasi">Konsultasi</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('transaksi/bm') }}" class="nav-link" data-key="t-bm">
-                                                Business&nbsp;Matching</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('transaksi/inquiry') }}" class="nav-link"
-                                                data-key="t-inquiry">Inquiries</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('transaksi/export') }}" class="nav-link"
-                                                data-key="t-export">Transaksi&nbsp;(USD)</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="{{ url('extra/p_inaexport') }}" class="nav-link"
-                                                data-key="t-broadcast">InaExport</a>
+                                            <a href="{{ url('setting/user') }}" class="nav-link"
+                                                data-key="t-user">Management User</a>
                                         </li>
                                     </ul>
-                                </div> -->
+                                </div>
+                                @endif
                             </li>
 
                             <!-- Kene -->

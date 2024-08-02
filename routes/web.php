@@ -25,6 +25,7 @@ use App\Http\Controllers\PartisipasiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\TransaksiLayananController;
+use App\Http\Controllers\ManagementUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +50,20 @@ Route::get('contact', [HomePageController::class, 'contact']);
 Route::post('login_from', [LoginController::class, 'authenticate']);
 Route::group(['middleware' => 'prevent-back-history'],function(){
     // Route Admin
-    Route::get('profile', [ProfileController::class, 'index']);
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile');
+    Route::post('update/profile', [ProfileController::class, 'update']);
     Route::get('change-password', [ProfileController::class, 'index']);
     Route::post('change-password', [ProfileController::class, 'store'])->name('change.password');
+
+    Route::group(['middleware' => 'superadmin'],function() {
+        // User Management
+        Route::get('setting/user', [ManagementUserController::class, 'index'])->name('management');
+        Route::post('user/store', [ManagementUserController::class, 'store']);
+        Route::get('user/show/{id}', [ManagementUserController::class, 'show']);
+        Route::post('user/update', [ManagementUserController::class, 'update']);
+        Route::get('user/destroy/{id}', [ManagementUserController::class, 'destroy']);
+        Route::get('user/send/{id}', [ManagementUserController::class, 'send']);
+    });
 
     Route::group(['middleware' => 'admin'],function() {
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
