@@ -82,6 +82,7 @@ class PerusahaanController extends Controller
                     ->addColumn('action', function($row){
                         $urlEdit = url('perusahaan/show/'. $row->id);
                         $urlDetail = url('perusahaan/detail/'. $row->id);
+                        $urlDetailLayanan = url('perusahaan/detail/layanan/'. $row->id);
                         $urlDelete = url('perusahaan/destroy/'. $row->id);
                         $button = '<div class="dropdown">
                                         <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -90,6 +91,7 @@ class PerusahaanController extends Controller
                                         <ul class="dropdown-menu">
                                             <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
                                             <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
+                                            <li><a href='.$urlDetailLayanan.' class="dropdown-item btn-detail">Detail Layanan</a></li>
                                             <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
                                         </ul>
                                     </div>';
@@ -114,6 +116,105 @@ class PerusahaanController extends Controller
         $kode_pt = "PRS-" . strval($last_pt[1] + 1) ;
         // dd($kode_pt);
         return view('master/m_perusahaan/add', compact('get_pt', 'last_pt', 'kode_pt'));
+    }
+    public function pdf_layanan($id) {
+        $perusahaan = DB::table('m_perusahaan as ta')
+        ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+        ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+        ->leftJoin('m_k_produk as tf', 'ta.id_kategori_produk', '=', 'tf.id')
+        ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+        ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+        ->whereNull('ta.deleted_at')
+        ->select(DB::raw('ta.id, ta.nama_perusahaan, ta.alamat_perusahaan, ta.telp_contact_person, ta.skala_perusahaan, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
+        ->where('ta.id', $id)
+        ->groupBy('ta.id')
+        ->first();
+
+        $konsultasi = DB::table('t_konsultasi as ta')
+        ->leftJoin('t_konsultasi_topik as tb', 'ta.id', '=', 'tb.id_konsultasi')
+        ->leftJoin('m_topik as mt', 'tb.id_topik', '=', 'mt.id')
+        ->leftJoin('m_perusahaan as mp', 'ta.id_perusahaan', '=', 'mp.id')
+        ->leftJoin('m_tipe_perusahaan as mtp', 'mtp.id', '=', 'mp.id_tipe')
+        ->select(DB::raw('DISTINCT ta.* , GROUP_CONCAT(mt.nama_topik) as nama_topik, mp.nama_perusahaan, mtp.nama_tipe'))
+        ->where('ta.id_perusahaan', $id)
+        ->whereNull('ta.deleted_at')
+        ->groupBy('ta.id')
+        ->get();
+
+        $inquiry = DB::table('t_profile_inquiry as ta')
+        ->leftJoin('m_negara as tc', 'ta.id_negara_asal_inquiry', '=', 'tc.id')
+        ->leftJoin('p_penerima_inquiry as tb', 'ta.id', '=', 'tb.id_inquiry')
+        ->leftJoin('m_perusahaan as mp', 'tb.id_perusahaan', '=', 'mp.id')
+        ->leftJoin('m_tipe_perusahaan as mtp', 'mtp.id', '=', 'mp.id_tipe')
+        ->select(DB::raw('DISTINCT ta.* , mp.nama_perusahaan, mtp.nama_tipe, tc.en_short_name'))
+        ->where('tb.id_perusahaan', $id)
+        ->whereNull('ta.deleted_at')
+        ->groupBy('ta.id')
+        ->get();
+        
+        $bm = DB::table('t_bm as ta')
+        ->leftJoin('p_peserta_bm as tb', 'ta.id', '=', 'tb.id_bm')        
+        ->leftJoin('m_negara as tc', 'ta.id_negara_buyer', '=', 'tc.id')
+        ->leftJoin('m_perusahaan as mp', 'tb.id_perusahaan', '=', 'mp.id')
+        ->leftJoin('m_tipe_perusahaan as mtp', 'mtp.id', '=', 'mp.id_tipe')
+        ->select(DB::raw('DISTINCT ta.* , mp.nama_perusahaan, mtp.nama_tipe, tc.en_short_name'))
+        ->where('tb.id_perusahaan', $id)
+        ->whereNull('ta.deleted_at')
+        ->groupBy('ta.id')
+        ->get();
+        
+        $texport = DB::table('t_p_export as ta')
+        ->leftJoin('m_negara as tc', 'ta.id_negara_tujuan', '=', 'tc.id')
+        ->leftJoin('m_perusahaan as mp', 'ta.id_perusahaan', '=', 'mp.id')
+        ->leftJoin('m_tipe_perusahaan as mtp', 'mtp.id', '=', 'mp.id_tipe')
+        ->select(DB::raw('DISTINCT ta.* , mp.nama_perusahaan, mtp.nama_tipe, tc.en_short_name'))
+        ->where('ta.id_perusahaan', $id)
+        ->whereNull('ta.deleted_at')
+        ->groupBy('ta.id')
+        ->get();
+        
+        $countTotal = DB::table('t_p_export as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->leftJoin('m_tipe_perusahaan as td', 'tb.id_tipe', '=', 'td.id')
+        ->leftJoin('m_negara as tc', 'ta.id_negara_tujuan', '=', 'tc.id')
+        ->where('ta.id_perusahaan', $id)
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->whereNull('tc.deleted_at')
+        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name', DB::raw('SUM(ta.nilai_transaksi) as summary'))
+        ->first();
+
+        $tlain = DB::table('t_lain_perusahaan as ta')
+        ->leftJoin('t_lain as tb', 'ta.id_transaksi_lain', '=', 'tb.id')
+        ->leftJoin('m_perusahaan as mp', 'ta.id_perusahaan', '=', 'mp.id')
+        ->leftJoin('m_tipe_perusahaan as mtp', 'mtp.id', '=', 'mp.id_tipe')
+        ->select(DB::raw('DISTINCT ta.* , mp.nama_perusahaan, mtp.nama_tipe, tb.bentuk_layanan'))
+        ->where('ta.id_perusahaan', $id)
+        ->whereNull('ta.deleted_at')
+        ->groupBy('ta.id')
+        ->get();
+
+        $inaexport = DB::table('p_peserta_inaexport as ta')
+        ->leftJoin('m_perusahaan as mp', 'ta.id_perusahaan', '=', 'mp.id')
+        ->leftJoin('m_tipe_perusahaan as mtp', 'mtp.id', '=', 'mp.id_tipe')
+        ->select(DB::raw('DISTINCT ta.* , mp.nama_perusahaan, mtp.nama_tipe'))
+        ->where('ta.id_perusahaan', $id)
+        ->whereNull('ta.deleted_at')
+        ->groupBy('ta.id')
+        ->get();
+        
+        $pdf = PDF::loadview('master/m_perusahaan/pdf_layanan',[
+            'perusahaan' => $perusahaan,
+            'countTotal' => $countTotal,
+            'konsultasi' => $konsultasi,
+            'inquiry' => $inquiry,
+            'bm' => $bm,
+            'texport' => $texport,
+            'inaexport' => $inaexport,
+            'tlain' => $tlain,
+        ])->setPaper('A4', 'potrait');
+    	return $pdf->stream('LAYANAN/ KOMUNIKASI ECS DENGAN '.$perusahaan->nama_perusahaan.''.!empty($perusahaan->nama_tipe) ? ', ' . $perusahaan->nama_tipe : ''.'.pdf', array("Attachment" => false));
     }
 
     public function pdf(Request $request) {

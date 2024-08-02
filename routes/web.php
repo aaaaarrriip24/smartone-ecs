@@ -99,6 +99,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('master/perusahaan', [PerusahaanController::class, 'index'])->name('perusahaan');
         Route::get('perusahaan/add', [PerusahaanController::class, 'create']);
         Route::post('perusahaan/pdf', [PerusahaanController::class, 'pdf']);
+        Route::get('perusahaan/detail/layanan/{id}', [PerusahaanController::class, 'pdf_layanan']);
         Route::get('perusahaan/detail/{id}', [PerusahaanController::class, 'detail']);
         Route::post('perusahaan/store', [PerusahaanController::class, 'store']);
         Route::get('perusahaan/show/{id}', [PerusahaanController::class, 'show']);
