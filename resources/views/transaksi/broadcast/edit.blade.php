@@ -91,11 +91,14 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label class="form-label mb-1 mt-0 labelInput">Kode Inquiry</label>
-                                <input hidden type="text" name="id_inquiry" class="form-control form-control-sm id_inquiry"
+                                <input hidden type="text" name="id_inquiry"
+                                    class="form-control form-control-sm id_inquiry"
                                     value="{{ !empty($data->id_inquiry) ? $data->id_inquiry : null}}">
-                                <input type="text" name="kode_inquiry_disabled" value="{{ !empty($data->kode_inquiry) ? $data->kode_inquiry : $kode_inq }}"
+                                <input type="text" name="kode_inquiry_disabled"
+                                    value="{{ !empty($data->kode_inquiry) ? $data->kode_inquiry : $kode_inq }}"
                                     class="form-control form-control-sm" required disabled>
-                                <input hidden type="text" name="kode_inquiry" value="{{ !empty($data->kode_inquiry) ? $data->kode_inquiry : $kode_inq }}"
+                                <input hidden type="text" name="kode_inquiry"
+                                    value="{{ !empty($data->kode_inquiry) ? $data->kode_inquiry : $kode_inq }}"
                                     class="form-control form-control-sm kode_inquiry" required>
                             </div>
                         </div>
@@ -105,13 +108,15 @@
                                 <input type="text" name="tanggal_inquiry" autocomplete="off"
                                     class="form-control form-control-sm datepicker tanggal_inquiry"
                                     placeholder="Contoh : {{ date('d-m-Y') }}"
-                                    value="{{ date('d-m-Y', strtotime(!empty($data->tanggal_inquiry) ? $data->tanggal_inquiry : date('d-m-Y'))) }}" required>
+                                    value="{{ date('d-m-Y', strtotime(!empty($data->tanggal_inquiry) ? $data->tanggal_inquiry : date('d-m-Y'))) }}"
+                                    required>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label class="form-label mb-1 mt-0 labelInput">Produk Yang Diminta</label>
-                                <input type="text" name="produk_yang_diminta" value="{{ !empty($data->produk_yang_diminta) ? $data->produk_yang_diminta : ''}}"
+                                <input type="text" name="produk_yang_diminta"
+                                    value="{{ !empty($data->produk_yang_diminta) ? $data->produk_yang_diminta : ''}}"
                                     class="form-control form-control-sm produk_diminta" required>
                             </div>
                         </div>
@@ -130,7 +135,7 @@
                                 <select name="satuan_qty" class="form-control form-control-sm select_satuan" required>
                                     @if(!empty($data->satuan_qty))
                                     <option value="{{ $data->satuan_qty }}" selected>{{ $data->satuan_qty }}</option>
-                                    @else 
+                                    @else
                                     <option disabled selected>Pilih Satuan Quantity</option>
                                     @endif
                                     <option value="KG">KG</option>
@@ -148,7 +153,8 @@
                                 <select name="id_negara_asal_inquiry" class="form-control form-control-sm select_negara"
                                     required>
                                     @if(!empty($data->id_negara_asal_inquiry))
-                                    <option value="{{ $data->id_negara_asal_inquiry }}" selected>{{ $data->en_short_name }}</option>
+                                    <option value="{{ $data->id_negara_asal_inquiry }}" selected>
+                                        {{ $data->en_short_name }}</option>
                                     @endif
                                 </select>
                             </div>
@@ -159,7 +165,7 @@
                                 <select name="pihak_buyer" class="form-control form-control-sm select_pihak" required>
                                     @if(!empty($data->pihak_buyer))
                                     <option value="{{ $data->pihak_buyer }}" selected>{{ $data->pihak_buyer }}</option>
-                                    @else 
+                                    @else
                                     <option disabled selected>Pilih Pihak Buyer</option>
                                     @endif
 
@@ -175,14 +181,16 @@
                         <div class="col-3">
                             <div class="form-group">
                                 <label class="form-label mb-1 mt-2 labelInput">Nama Buyer</label>
-                                <input type="text" name="nama_buyer" value="{{ !empty($data->nama_buyer) ? $data->nama_buyer : '' }}"
+                                <input type="text" name="nama_buyer"
+                                    value="{{ !empty($data->nama_buyer) ? $data->nama_buyer : '' }}"
                                     class="form-control form-control-sm nama_buyer" placeholder="John Doe" required>
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label class="form-label mb-1 mt-2 labelInput">Email Buyer</label>
-                                <input type="email" name="email_buyer" value="{{ !empty($data->email_buyer) ? $data->email_buyer : '' }}"
+                                <input type="email" name="email_buyer"
+                                    value="{{ !empty($data->email_buyer) ? $data->email_buyer : '' }}"
                                     class="form-control form-control-sm email_buyer" placeholder="john@email.com"
                                     required>
                             </div>
@@ -191,8 +199,8 @@
                             <div class="form-group">
                                 <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
                                 <input type="number" autocomplete="off" name="telp_buyer"
-                                    value="{{ !empty($data->telp_buyer) ? $data->telp_buyer : '' }}" class="form-control form-control-sm telfon_buyer"
-                                    required>
+                                    value="{{ !empty($data->telp_buyer) ? $data->telp_buyer : '' }}"
+                                    class="form-control form-control-sm telfon_buyer" required>
                             </div>
                         </div>
                     </div>
@@ -368,23 +376,23 @@
             ]
         });
 
-        if ($('input:radio[name="is_inquiry"]').is(':checked')) {
-            if ($(this).val() == 1) {
-                $(".inquiry_tab").removeClass("d-none");
-            } else {
-                $(".inquiry_tab").addClass("d-none");
-                $(".kode_inquiry").removeAttr("required");
-                $(".tanggal_inquiry").removeAttr("required");
-                $(".produk_diminta").removeAttr("required");
-                $(".quantity").removeAttr("required");
-                $(".select_satuan").removeAttr("required");
-                $(".select_negara").removeAttr("required");
-                $(".select_pihak").removeAttr("required");
-                $(".nama_buyer").removeAttr("required");
-                $(".email_buyer").removeAttr("required");
-                $(".telfon_buyer").removeAttr("required");
-            }
-        };
+        if ($('#flexRadioDefault1').is(':checked')) {
+            $(".inquiry_tab").removeClass("d-none");
+        }
+        if ($('#flexRadioDefault2').is(':checked')) {
+            $(".inquiry_tab").addClass("d-none");
+            $(".kode_inquiry").removeAttr("required");
+            $(".tanggal_inquiry").removeAttr("required");
+            $(".produk_diminta").removeAttr("required");
+            $(".quantity").removeAttr("required");
+            $(".select_satuan").removeAttr("required");
+            $(".select_negara").removeAttr("required");
+            $(".select_pihak").removeAttr("required");
+            $(".nama_buyer").removeAttr("required");
+            $(".email_buyer").removeAttr("required");
+            $(".telfon_buyer").removeAttr("required");
+        }
+
 
         $('input:radio[name="is_inquiry"]').change(
             function () {
