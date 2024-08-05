@@ -156,9 +156,9 @@ class BroadcastEmailController extends Controller
             $dataPT = array();
             $dataPT['nama_perusahaan'] = $d->nama_perusahaan;
             $dataPT['email'] = $d->email;
-            $dataPT['header_email'] = $request->subject_email;
-            $dataPT['body_email'] = strip_tags($request->body_email);
-            $dataPT['attachment'] = $arrFile;
+            $dataPT['header_email'] = $template->subject_email;
+            $dataPT['body_email'] = strip_tags($template->body_email);
+            // $dataPT['attachment'] = $arrFile;
                 
             Mail::send('email.bulk', $dataPT, function($message) use ($dataPT, $arrFile) {
                 $message->to($dataPT["email"], $dataPT["body_email"])
