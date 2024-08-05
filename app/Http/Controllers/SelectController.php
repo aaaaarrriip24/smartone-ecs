@@ -174,7 +174,7 @@ class SelectController extends Controller
             $data = DB::table('t_sub_kategori_perusahaan as ta')
             ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
             ->leftJoin('m_sub_kategori as tc', 'ta.id_sub_kategori', '=', 'tc.id')
-            ->select('*')
+            ->select('ta.*', 'tb.nama_perusahaan', 'tb.email', 'tb.id as id_perusahaan', 'tb.id_kategori_produk', 'tb.nama_contact_person', 'tb.detail_produk_utama')
             ->whereNull('ta.deleted_at')
             ->whereIn('ta.id_sub_kategori', $request->id_sub_kategori);
 
@@ -194,6 +194,7 @@ class SelectController extends Controller
             ->addIndexColumn()
             ->addColumn('checkbox', function($row){
                 $input = "<input hidden type='text' name='test[$row->in][id_sub_kategori]' value='$row->id_sub_kategori'>"; 
+                $input .= "<input hidden type='text' name='test[$row->in][id_kategori_produk]' value='$row->id_kategori_produk'>"; 
                 $input .= "<input hidden type='text' name='test[$row->in][email]' value='$row->email'>"; 
                 $input .= "<input hidden type='text' name='test[$row->in][nama_perusahaan]' value='$row->nama_perusahaan'>"; 
                 return $input .= "<input type='checkbox' class='perusahaan-checkbox' name='test[$row->in][id_perusahaan]' value='$row->id_perusahaan'>";
@@ -209,7 +210,7 @@ class SelectController extends Controller
             ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
             ->leftJoin('m_sub_kategori as tc', 'ta.id_sub_kategori', '=', 'tc.id')
             ->leftJoin('m_draft as td', 'ta.id_sub_kategori', '=', 'td.id')
-            ->select('*')
+            ->select('ta.*', 'tb.nama_perusahaan', 'tb.email', 'tb.id as id_perusahaan', 'tb.id_kategori_produk', 'tb.nama_contact_person', 'tb.detail_produk_utama')
             ->whereNull('ta.deleted_at')
             ->where('td.id_template', $request->id_template);
 
@@ -229,6 +230,7 @@ class SelectController extends Controller
             ->addIndexColumn()
             ->addColumn('checkbox', function($row){
                 $input = "<input hidden type='text' name='test[$row->in][id_sub_kategori]' value='$row->id_sub_kategori'>"; 
+                $input .= "<input hidden type='text' name='test[$row->in][id_kategori_produk]' value='$row->id_kategori_produk'>"; 
                 $input .= "<input hidden type='text' name='test[$row->in][email]' value='$row->email'>"; 
                 $input .= "<input hidden type='text' name='test[$row->in][nama_perusahaan]' value='$row->nama_perusahaan'>"; 
                 return $input .= "<input type='checkbox' class='perusahaan-checkbox' name='test[$row->in][id_perusahaan]' value='$row->id_perusahaan'>";

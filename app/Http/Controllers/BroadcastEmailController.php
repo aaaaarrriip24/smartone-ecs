@@ -196,6 +196,7 @@ class BroadcastEmailController extends Controller
             if(!empty($d->id_perusahaan)) {
                 $draft = DraftModel::insert([
                     'id_template' => $id_template,
+                    'id_kategori_produk' => $d->id_kategori_produk,
                     'id_sub_kategori' => $d->id_sub_kategori,
                     'id_perusahaan' => $d->id_perusahaan,
                     'email' => $d->email,
@@ -293,6 +294,7 @@ class BroadcastEmailController extends Controller
             if(!empty($d->id_perusahaan)) {
                 $draft = DraftModel::insert([
                     'id_template' => $id_template,
+                    'id_kategori_produk' => $d->id_kategori_produk,
                     'id_sub_kategori' => $d->id_sub_kategori,
                     'id_perusahaan' => $d->id_perusahaan,
                     'email' => $d->email,
