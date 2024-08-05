@@ -145,20 +145,38 @@ class BroadcastEmailController extends Controller
         foreach($draft as $d) {
             $PT = Perusahaan::find($d->id_perusahaan);
 
-            $dataPT = new stdClass();
-            $dataPT->nama_perusahaan = $PT->nama_perusahaan;
-            $dataPT->email = $d->email;
-            $dataPT->header_email = $template->subject_email;
-            $dataPT->body_email = strip_tags($template->body_email);
-            $dataPT->attachment = $arrFile;
+            // BUG
+            // $dataPT = new stdClass();
+            // $dataPT->nama_perusahaan = $PT->nama_perusahaan;
+            // $dataPT->email = $d->email;
+            // $dataPT->header_email = $template->subject_email;
+            // $dataPT->body_email = strip_tags($template->body_email);
+            // $dataPT->attachment = $arrFile;
 
-            Mail::to($d->email)->queue(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
-                // if(!empty($arrFile)) {
-                    foreach ($arrFile as $file){
-                        $message->attach($file);
-                    }
-                // }
-            }));
+            $dataPT = array();
+            $dataPT['nama_perusahaan'] = $d->nama_perusahaan;
+            $dataPT['email'] = $d->email;
+            $dataPT['header_email'] = $request->subject_email;
+            $dataPT['body_email'] = strip_tags($request->body_email);
+            $dataPT['attachment'] = $arrFile;
+                
+            Mail::send('email.bulk', $dataPT, function($message) use ($dataPT, $arrFile) {
+                $message->to($dataPT["email"], $dataPT["body_email"])
+                ->subject($dataPT["header_email"]);
+                
+                foreach ($arrFile as $file){
+                    $message->attach($file);
+                }
+            });
+            
+            // BUG
+            // Mail::to($d->email)->queue(new BatchMail($dataPT, function($message) use ($dataPT, $arrFile) {
+            //     // if(!empty($arrFile)) {
+            //         foreach ($arrFile as $file){
+            //             $message->attach($file);
+            //         }
+            //     // }
+            // }));
         }
 
         Alert::toast('Draft Sended successfully!', 'success');

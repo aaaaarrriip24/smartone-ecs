@@ -27,7 +27,7 @@ class BatchMail extends Mailable
     public function build()
     {
         return $this->subject($this->dataPT['header_email'])
-        ->view('email.bulk')
+        ->view('email.bulks')
         ->with([
             'nama_perusahaan' => $this->dataPT['nama_perusahaan'],
             'email' => $this->dataPT['email'],
@@ -61,7 +61,7 @@ class BatchMail extends Mailable
         //     Attachment::fromPath($this->dataPT->attachment),
         // ];
         return [
-            Attachment::fromPath($this->dataPT->attachment)
+            Attachment::fromPath($this->dataPT['attachment'])
         ];
     }
 }
