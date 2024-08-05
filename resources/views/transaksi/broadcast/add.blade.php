@@ -18,7 +18,27 @@
                         <input type="file" class="form-control" name="sfiles[]" multiple="multiple">
                     </div>
                 </div>
-                <div class="col-sm-6 step-1">
+                <div class="col-sm-2 step-1">
+                    <div class="form-group mb-2">
+                        <label class="form-label labelInput">Tambahkan ke Inquiry?</label>
+                        <br>
+                        <div class="form-check-inline">
+                            <input class="form-check-input is_inquiry" type="radio" name="is_inquiry" value="1"
+                                id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Ya
+                            </label>
+                        </div>
+                        <div class="form-check-inline">
+                            <input class="form-check-input is_inquiry" type="radio" name="is_inquiry" value="0"
+                                id="flexRadioDefault2">
+                            <label class="form-check-label" for="flexRadioDefault2">
+                                Tidak
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4 step-1">
                     <div class="form-group mb-2 div_kategori">
                         <label class="form-label labelInput">Kategori Produk</label>
                         <select name="id_kategori_produk" class="form-control form-control-sm select_k_produk"></select>
@@ -27,7 +47,8 @@
                 <div class="col-sm-6 step-1">
                     <div class="form-group mb-2 div_sub_kategori">
                         <label class="form-label labelInput">Sub Kategori Produk</label>
-                        <select name="id_sub_kategori[]" class="form-control form-control-sm select_sub_produk typeFilter"
+                        <select name="id_sub_kategori[]"
+                            class="form-control form-control-sm select_sub_produk typeFilter"
                             multiple="multiple"></select>
                     </div>
                 </div>
@@ -38,19 +59,115 @@
                             rows="4"></textarea>
                     </div>
                 </div>
-                <div class="col-sm-12 step-2 d-none table-responsive">
-                    <table id="dt_perusahaan"
-                        class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
-                        <thead>
-                            <th># </th>
-                            <th>No. </th>
-                            <th>Nama Perusahaan</th>
-                            <th>Nama CP</th>
-                            <th>Email</th>
-                            <th>Detail Produk Utama</th>
-                        </thead>
-                    </table>
+                <!-- <div class="inquiry_tab d-none"> -->
+                <div class="card-body inquiry_tab step-1 d-none">
+                    <h5 class="modal-title" id="exampleModalLabel">Inquiry</h5>
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-0 labelInput">Kode Inquiry</label>
+                                <input type="text" name="kode_inquiry_disabled" value="{{ $kode_inq }}"
+                                    class="form-control form-control-sm" required disabled>
+                                <input hidden type="text" name="kode_inquiry" value="{{ $kode_inq }}"
+                                    class="form-control form-control-sm kode_inquiry" required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-0 labelInput">Tanggal Inquiry</label>
+                                <input type="text" name="tanggal_inquiry" autocomplete="off"
+                                    class="form-control form-control-sm datepicker tanggal_inquiry"
+                                    placeholder="Contoh : {{ date('d-m-Y') }}" required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-0 labelInput">Produk Yang Diminta</label>
+                                <input type="text" name="produk_yang_diminta" class="form-control form-control-sm produk_diminta"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-0 labelInput">Quantity</label>
+                                <input type="text" name="qty" class="form-control form-control-sm text-end input-mask quantity"
+                                    data-inputmask="'alias': 'currency', 'prefix': '','digits': '0'"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Satuan Quantity</label>
+                                <select name="satuan_qty" class="form-control form-control-sm select_satuan"
+                                    required>
+                                    <option disabled selected>Pilih Satuan Quantity</option>
+                                    <option value="KG">KG</option>
+                                    <option value="Ton">Ton</option>
+                                    <option value="Pasang">Pasang</option>
+                                    <option value="Kontainer">Kontainer</option>
+                                    <option value="Kodi">Kodi</option>
+                                    <option value="Pcs">Pcs</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Negara Buyer</label>
+                                <select name="id_negara_asal_inquiry" class="form-control form-control-sm select_negara"
+                                    required></select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Pihak Buyer</label>
+                                <select name="pihak_buyer" class="form-control form-control-sm select_pihak"
+                                    required>
+                                    <option disabled selected>Pilih Pihak Buyer</option>
+                                    <option value="Buyer">Buyer</option>
+                                    <option value="Perwadag">Perwadag</option>
+                                    <option value="KBRI">KBRI</option>
+                                    <option value="Konjen">Konjen</option>
+                                    <option value="Buying Agent">Buying Agent</option>
+                                    <option value="Lainnya">Lainnya</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Nama Buyer</label>
+                                <input type="text" name="nama_buyer" class="form-control form-control-sm nama_buyer"
+                                    placeholder="John Doe" required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Email Buyer</label>
+                                <input type="email" name="email_buyer" class="form-control form-control-sm email_buyer"
+                                    placeholder="john@email.com" required>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
+                                <input type="number" autocomplete="off" name="telp_buyer"
+                                    class="form-control form-control-sm telfon_buyer" required>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="col-sm-12 step-2 d-none table-responsive">
+                <table id="dt_perusahaan" class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                    style="width:100%">
+                    <thead>
+                        <th># </th>
+                        <th>No. </th>
+                        <th>Nama Perusahaan</th>
+                        <th>Nama CP</th>
+                        <th>Email</th>
+                        <th>Detail Produk Utama</th>
+                    </thead>
+                </table>
             </div>
         </div>
         <div class="card-footer">
@@ -69,7 +186,43 @@
         $(document).on('change', '.typeFilter', function (e) {
             table.ajax.reload(null, false);
         });
-        
+
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
+        });
+
+        $(".input-mask").inputmask({
+            removeMaskOnSubmit: true,
+            autoUnmask: true,
+            unmaskAsNumber: true
+        });
+
+        $(".select_satuan").select2({});
+        $(".select_pihak").select2({});
+
+        $(".select_negara").select2({
+            placeholder: "Pilih Negara Asal",
+            width: '100%',
+            allowClear: true,
+            ajax: {
+                url: base_url + 'select/negara',
+                dataType: 'json',
+                processResults: function (data) {
+                    return {
+                        results: $.map(data, function (item) {
+                            return {
+                                id: item.id,
+                                text: item.en_short_name,
+                            }
+                        })
+                    };
+                },
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+        });
+
         table = $('#dt_perusahaan').DataTable({
             autoWidth: false,
             responsive: false,
@@ -150,6 +303,24 @@
             ]
         });
 
+        $('input:radio[name="is_inquiry"]').change(
+            function () {
+                if ($(this).val() == 1) {
+                    $(".inquiry_tab").removeClass("d-none");
+                } else {
+                    $(".inquiry_tab").addClass("d-none");
+                    $(".kode_inquiry").removeAttr("required");
+                    $(".tanggal_inquiry").removeAttr("required");
+                    $(".produk_diminta").removeAttr("required");
+                    $(".quantity").removeAttr("required");
+                    $(".select_satuan").removeAttr("required");
+                    $(".select_negara").removeAttr("required");
+                    $(".select_pihak").removeAttr("required");
+                    $(".nama_buyer").removeAttr("required");
+                    $(".email_buyer").removeAttr("required");
+                    $(".telfon_buyer").removeAttr("required");
+                }
+            });
         $(".btn-back").on("click", function () {
             $(".step-1").removeClass("d-none");
             $(".btn-next").removeClass("d-none");

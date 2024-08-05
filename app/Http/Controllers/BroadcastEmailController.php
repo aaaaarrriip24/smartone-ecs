@@ -7,6 +7,8 @@ use App\Models\AttachmentModel;
 use App\Models\DraftModel;
 use App\Models\TemplateModel;
 use App\Models\TEmailModel;
+use App\Models\Tinquiry;
+use App\Models\PPInquiry;
 use App\Mail\BatchMail;
 use App\Models\Perusahaan;
 use Illuminate\Http\Request;
@@ -70,7 +72,11 @@ class BroadcastEmailController extends Controller
     }
 
     public function create() {
-        return view('transaksi/broadcast/add');
+        $get_inq = Tinquiry::orderBy('kode_inquiry', 'DESC')->first();
+        $count_inq = explode("INQ-", $get_inq->kode_inquiry);
+        $kode_inq = "INQ-" . strval($count_inq[1] + 1) ;
+
+        return view('transaksi/broadcast/add', compact('kode_inq'));
     }
     
     public function store(Request $request) {
@@ -167,6 +173,7 @@ class BroadcastEmailController extends Controller
         $test = $request->test;
         $template = TemplateModel::insert([
             'subject_email' => $request->subject_email,
+            'is_inquiry' => $request->is_inquiry,
             'body_email' => $request->body_email,
             'created_at' => Carbon::now()
         ]);
@@ -191,6 +198,46 @@ class BroadcastEmailController extends Controller
             }
         }
 
+        if($request->is_inquiry == 1) {
+            Tinquiry::insert([
+                'kode_inquiry' => $request->kode_inquiry,
+                'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
+                'produk_yang_diminta' => $request->produk_yang_diminta,
+                'qty' => $request->qty,
+                'satuan_qty' => $request->satuan_qty,
+                'id_negara_asal_inquiry' => $request->id_negara_asal_inquiry,
+                'pihak_buyer' => $request->pihak_buyer,
+                'nama_buyer' => $request->nama_buyer,
+                'email_buyer' => $request->email_buyer,
+                'telp_buyer' => $request->telp_buyer,
+                'attached_dokumen' => empty($files) ? '': $name,
+                'created_at' => Carbon::now(),
+            ]);
+
+            $id_inquiry = DB::getPdo()->lastInsertId();
+
+            $templateUpdate = TemplateModel::where('id', $id_template)
+            ->update([
+                'id_inquiry' => $id_inquiry,
+            ]);
+
+            foreach($test as $d) {
+                $d = (object)$d;
+                if(!empty($d->id_perusahaan)) {
+                    $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
+                    $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
+                    $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
+                    
+                    PPInquiry::insert([
+                        'kode_rec_inquiry' => $kode_rec,
+                        'id_inquiry' => $id_inquiry,
+                        'id_perusahaan' => $d->id_perusahaan,
+                        'created_at' => Carbon::now(),
+                    ]);
+                }
+            }
+        }
+        
         foreach($test as $d) {
             $d = (object)$d;
             if(!empty($d->id_perusahaan)) {
@@ -238,14 +285,25 @@ class BroadcastEmailController extends Controller
         ->get();
         $fileAttach = DB::table('m_attachment')->where('id_template', $id_template)->get();
 
-        // dd($subKategori);
+        $data = DB::table('t_profile_inquiry as ta')
+        ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
+        ->leftJoin('m_template as tc', 'tc.id_inquiry', '=', 'ta.id')
+        ->whereNull('tc.deleted_at')
+        ->select('ta.*', 'tc.*', 'tb.en_short_name')
+        ->where('ta.id', $template->id_inquiry)
+        ->first();
+
+        $get_inq = Tinquiry::orderBy('kode_inquiry', 'DESC')->first();
+        $count_inq = explode("INQ-", $get_inq->kode_inquiry);
+        $kode_inq = "INQ-" . strval($count_inq[1] + 1) ;
+        // dd($template);
         foreach ($draft as $key) {
             $kategori = DB::table('m_sub_kategori as ta')
             ->leftJoin('m_k_produk as tb', 'ta.id_kategori', '=', 'tb.id')
             ->where('ta.id', $key->id_sub_kategori)
             ->first();
         }
-        return view('transaksi/broadcast/edit', compact('id_template', 'template', 'draft', 'fileAttach', 'kategori', 'subKategori'));
+        return view('transaksi/broadcast/edit', compact('id_template', 'kode_inq', 'data', 'template', 'draft', 'fileAttach', 'kategori', 'subKategori'));
     }
 
     public function update(Request $request) {
@@ -255,6 +313,8 @@ class BroadcastEmailController extends Controller
         $template = TemplateModel::where('id', $id_template)->update([
             'subject_email' => $request->subject_email,
             'body_email' => $request->body_email,
+            'is_inquiry' => $request->is_inquiry,
+            'id_inquiry' => !empty($request->id_inquiry) ? $request->id_inquiry : null,
             'updated_at' => Carbon::now()
         ]);
 
@@ -282,6 +342,79 @@ class BroadcastEmailController extends Controller
                     'file' => $name,
                     'created_at' => Carbon::now()
                 ]);
+            }
+        }
+
+        if($request->is_inquiry == 1) {
+            $id_inquiry = !empty($request->id_inquiry) ? $request->id_inquiry : null;
+            if($id_inquiry != null) {
+                Tinquiry::where('id', $id_inquiry)
+                ->update([
+                    'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
+                    'produk_yang_diminta' => $request->produk_yang_diminta,
+                    'qty' => $request->qty,
+                    'satuan_qty' => $request->satuan_qty,
+                    'id_negara_asal_inquiry' => $request->id_negara_asal_inquiry,
+                    'pihak_buyer' => $request->pihak_buyer,
+                    'nama_buyer' => $request->nama_buyer,
+                    'email_buyer' => $request->email_buyer,
+                    'telp_buyer' => $request->telp_buyer,
+                    'attached_dokumen' => empty($files) ? '': $name,
+                    'created_at' => Carbon::now(),
+                ]);
+    
+                $post = PPInquiry::where('id_inquiry', $id_inquiry)->delete();
+                foreach($test as $d) {
+                    $d = (object)$d;
+                    if(!empty($d->id_perusahaan)) {
+                        $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
+                        $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
+                        $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
+                        
+                        PPInquiry::insert([
+                            'kode_rec_inquiry' => $kode_rec,
+                            'id_inquiry' => $id_inquiry,
+                            'id_perusahaan' => $d->id_perusahaan,
+                            'created_at' => Carbon::now(),
+                        ]);
+                    }
+                }
+            } else {
+                Tinquiry::insert([
+                    'kode_inquiry' => $request->kode_inquiry,
+                    'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
+                    'produk_yang_diminta' => $request->produk_yang_diminta,
+                    'qty' => $request->qty,
+                    'satuan_qty' => $request->satuan_qty,
+                    'id_negara_asal_inquiry' => $request->id_negara_asal_inquiry,
+                    'pihak_buyer' => $request->pihak_buyer,
+                    'nama_buyer' => $request->nama_buyer,
+                    'email_buyer' => $request->email_buyer,
+                    'telp_buyer' => $request->telp_buyer,
+                    'attached_dokumen' => empty($files) ? '': $name,
+                    'created_at' => Carbon::now(),
+                ]);
+    
+                $id_inquiry = DB::getPdo()->lastInsertId();
+                $templateUpdate = TemplateModel::where('id', $id_template)
+                ->update([
+                    'id_inquiry' => $id_inquiry,
+                ]);
+                foreach($test as $d) {
+                    $d = (object)$d;
+                    if(!empty($d->id_perusahaan)) {
+                        $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
+                        $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
+                        $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
+                        
+                        PPInquiry::insert([
+                            'kode_rec_inquiry' => $kode_rec,
+                            'id_inquiry' => $id_inquiry,
+                            'id_perusahaan' => $d->id_perusahaan,
+                            'created_at' => Carbon::now(),
+                        ]);
+                    }
+                }
             }
         }
 
