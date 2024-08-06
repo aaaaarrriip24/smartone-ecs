@@ -235,4 +235,31 @@ class LaporanController extends Controller
         
         return view('laporan/ina_export');
     }
+
+    public function lain(Request $request)
+    {
+        $title = 'Delete Transaksi Layanan!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
+        if ($request->ajax()) {
+            $data = DB::table('t_lain_perusahaan as ta')
+            ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+            ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
+            ->leftJoin('t_lain as tf', 'ta.id_transaksi_lain', '=', 'tf.id')
+            ->whereNull('ta.deleted_at')
+            ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tf.bentuk_layanan');
+            if(!empty($request->tglawal) && !empty($request->tglakhir)) {
+                $data->where('ta.tanggal_transaksi', '>=' , date('Y-m-d', strtotime($request->tglawal)))
+                ->where('ta.tanggal_transaksi', '<=' , date('Y-m-d', strtotime($request->tglakhir)));
+            }
+            $data->get();
+            $data = $data->get();
+            
+            return Datatables::of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+        return view('laporan/lain');
+    }
 }

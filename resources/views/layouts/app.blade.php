@@ -1020,6 +1020,10 @@
                                             <a href="{{ url('laporan/ina_export') }}" class="nav-link"
                                                 data-key="t-broadcast">InaExport</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a href="{{ url('laporan/lain') }}" class="nav-link"
+                                                data-key="t-broadcast">Layanan Lainnya</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>

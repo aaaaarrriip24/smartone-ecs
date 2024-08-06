@@ -261,6 +261,7 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('laporan/inquiry', [LaporanController::class, 'inquiry']);
         Route::get('laporan/export', [LaporanController::class, 'export']);
         Route::get('laporan/ina_export', [LaporanController::class, 'ina_export']);
+        Route::get('laporan/lain', [LaporanController::class, 'lain']);
         
     });
 });
