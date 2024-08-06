@@ -6,7 +6,7 @@
     }
 </style>
 <div class="card">
-    <div class="card-header">Add Peserta Business Matching</div>
+    <div class="card-header">Add Registrasi InaExport</div>
     <form method="post" action="{{ url('p_inaexport/store') }}" enctype="multipart/form-data">
         @csrf
         <div class="card-body">

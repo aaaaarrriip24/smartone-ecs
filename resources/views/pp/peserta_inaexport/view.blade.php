@@ -14,7 +14,7 @@
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Extra</a></li>
-                    <li class="breadcrumb-item active">Peserta Peserta Inaexport</li>
+                    <li class="breadcrumb-item active">Peserta Inaexport</li>
                     <li class="breadcrumb-item">
                         <a href="{{ url('p_inaexport/add') }}" class="btn btn-sm btn-primary text-light" type="text">Add</a>
                     </li>
@@ -33,7 +33,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Peserta Business Matching</h5>
+                <h5 class="card-title mb-0">Registrasi InaExport</h5>
             </div>
             <form action="{{ url('p_inaexport/pdf') }}" id="forms" method="post" target="_blank">
                 @csrf
