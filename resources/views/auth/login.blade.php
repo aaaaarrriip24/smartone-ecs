@@ -50,7 +50,7 @@
                                     <img src="{{ asset('assets/images/kemendag.png')}}" class="img-fluid w-75" alt="">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Export Center Surabaya</p>
+                            <p class="mt-3 fs-16 fw-medium text-white">Export Center Surabaya</p>
                         </div>
                     </div>
                 </div>
