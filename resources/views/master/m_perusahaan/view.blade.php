@@ -324,7 +324,7 @@
             width: '100%',
             allowClear: true,
             ajax: {
-                url: base_url + 'provinces',
+                url: base_url + 'perusahaan/provinces',
                 dataType: 'json',
                 processResults: function (data) {
                     return {
@@ -346,7 +346,7 @@
             width: '100%',
             allowClear: true,
             ajax: {
-                url: base_url + "cities",
+                url: base_url + "perusahaan/cities",
                 dataType: 'json',
                 data: function (params) {
                     params.province_id = $('.province_id').val();

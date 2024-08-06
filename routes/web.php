@@ -73,6 +73,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('section3', [HomeController::class, 'section3']);
 
         // Data
+        Route::get('perusahaan/provinces', [DataController::class, 'perusahaan_provinces'])->name('perusahaan_provinces');
+        Route::get('perusahaan/cities', [DataController::class, 'perusahaan_cities'])->name('perusahaan_cities');
         Route::get('provinces', [DataController::class, 'provinces'])->name('provinces');
         Route::get('cities', [DataController::class, 'cities'])->name('cities');
         // Route::get('districts', [DataController::class, 'districts'])->name('districts');
