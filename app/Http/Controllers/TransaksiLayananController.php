@@ -148,6 +148,7 @@ class TransaksiLayananController extends Controller
         ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
         ->leftJoin('t_lain as tf', 'ta.id_transaksi_lain', '=', 'tf.id')
         ->whereNull('ta.deleted_at')
+        ->where('ta.id', $id)
         ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tf.bentuk_layanan')
         ->first();
 
@@ -166,6 +167,7 @@ class TransaksiLayananController extends Controller
         ->leftJoin('m_tipe_perusahaan as te', 'tb.id_tipe', '=', 'te.id')
         ->leftJoin('t_lain as tf', 'ta.id_transaksi_lain', '=', 'tf.id')
         ->whereNull('ta.deleted_at')
+        ->where('ta.id', $id)
         ->select('ta.*', 'tb.nama_perusahaan', 'te.nama_tipe', 'tf.bentuk_layanan')
         ->first();
 
