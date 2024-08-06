@@ -48,7 +48,7 @@ pa
                 </tr>
             </thead>
             <tbody>
-                @foreach( $texport as $d )
+                @foreach( $data as $d )
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}</td>
