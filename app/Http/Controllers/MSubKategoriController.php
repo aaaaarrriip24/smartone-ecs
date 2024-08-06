@@ -48,7 +48,7 @@ class MSubKategoriController extends Controller
             return Datatables::of($data)
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $url = url('sub_kategori/destroy/'. $row->id_sub);
+                        $url = url('m_sub_kategori/destroy/'. $row->id_sub);
                         $button = '';
                         $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id_sub."'>Edit</button>";
                         $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id_sub."'>Detail</button>";
