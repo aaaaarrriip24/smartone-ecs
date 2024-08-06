@@ -47,7 +47,7 @@
                         <div class="text-center mt-sm-5 mb-4 text-white-50">
                             <div>
                                 <a href="{{ url('/') }}" class="d-inline-block auth-logo">
-                                    <img src="{{ asset('assets/images/ecs.jpg')}}" class="img-fluid" alt="">
+                                    <img src="{{ asset('assets/images/kemendag.png')}}" class="img-fluid w-75" alt="">
                                 </a>
                             </div>
                             <p class="mt-3 fs-15 fw-medium">Export Center Surabaya</p>
