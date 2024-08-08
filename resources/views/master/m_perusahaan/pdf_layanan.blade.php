@@ -63,7 +63,11 @@
                 <tr>
                     <th class="align-top">Produk</th>
                     <th class="align-top">:</th>
-                    <td>{{ $perusahaan->sub_kategori }} <br> {{ $perusahaan->nama_kategori_produk }}</td>
+                    <td>
+                        {{ $perusahaan->nama_kategori_produk }}
+                        <br> 
+                        {{ $perusahaan->sub_kategori }} 
+                    </td>
                 </tr>
             </thead>
         </table>

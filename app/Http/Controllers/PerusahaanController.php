@@ -91,7 +91,7 @@ class PerusahaanController extends Controller
                                         <ul class="dropdown-menu">
                                             <li><a href='.$urlEdit.' class="dropdown-item btn-edit">Edit</a></li>
                                             <li><a href='.$urlDetail.' class="dropdown-item btn-detail">Detail</a></li>
-                                            <li><a href='.$urlDetailLayanan.' class="dropdown-item btn-detail">Detail Layanan</a></li>
+                                            <li><a href='.$urlDetailLayanan.' class="dropdown-item btn-detail" target="_blank">Detail Layanan</a></li>
                                             <li><a data-href='.$urlDelete.' class="dropdown-item btn-delete">Delete</a></li>
                                         </ul>
                                     </div>';
