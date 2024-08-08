@@ -83,9 +83,12 @@ class DataController extends Controller
             ->orderBy('name', 'ASC')
             ->get();
         } else {
+            $data = DB::table('indonesia_cities')
+            ->where('province_code', $request->province_id)
+            ->orderBy('name', 'ASC')
+            ->get();
             if($request->term) {
                 $data = DB::table('indonesia_cities')
-                ->whereIn('code', $sql)
                 ->where('province_code', $request->province_id)
                 ->where('name', 'LIKE', '%'. $request->term. '%')
                 ->orderBy('name', 'ASC')
