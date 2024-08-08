@@ -13,6 +13,7 @@ use DataTables;
 use Alert;
 use Auth;
 use Mail;
+use DB;
 
 class ManagementUserController extends Controller
 {
@@ -71,17 +72,23 @@ class ManagementUserController extends Controller
      */
     public function store(Request $request)
     {
-        User::insert([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'email' => $request->email,
-            'roleuser' => $request->roleuser,
-            'password' => Hash::make(Str::random(8)),
-            'created_at' => Carbon::now(),
-            // Hash::make($data['password'])
-        ]);
-        Alert::toast('Success Add User!', 'success');
-        return redirect()->back();
+        $email = DB::table('users')->where('email', $request->email)->first();
+        if(empty($email)) {
+            User::insert([
+                'name' => $request->name,
+                'phone' => $request->phone,
+                'email' => $request->email,
+                'roleuser' => $request->roleuser,
+                'password' => Hash::make(Str::random(8)),
+                'created_at' => Carbon::now(),
+                // Hash::make($data['password'])
+            ]);
+            Alert::toast('Success Add User!', 'success');
+            return redirect()->back();
+        } else {
+            Alert::toast('Email Sudah Terdaftar!', 'error');
+            return redirect()->back();
+        }
     }
 
     public function send($id)
