@@ -303,6 +303,14 @@
                     data: 'sub_kategori',
                     name: 'sub_kategori',
                     orderable: true,
+                    render: function (data, type, row, meta) {
+                        if(data == null) {
+                           str = ""; 
+                        } else {
+                            str = data;
+                        }
+                        return str + "<br>" + row.detail_produk_utama;
+                    }
                 },
                 {
                     data: 'status_data',
