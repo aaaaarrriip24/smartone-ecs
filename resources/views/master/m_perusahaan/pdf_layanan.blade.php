@@ -67,6 +67,8 @@
                         {{ $perusahaan->nama_kategori_produk }}
                         <br> 
                         {{ $perusahaan->sub_kategori }} 
+                        <br> 
+                        {{ $perusahaan->detail_produk_utama }} 
                     </td>
                 </tr>
             </thead>

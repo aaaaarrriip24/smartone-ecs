@@ -126,7 +126,7 @@ class PerusahaanController extends Controller
         ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
         ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
         ->whereNull('ta.deleted_at')
-        ->select(DB::raw('ta.id, ta.nama_perusahaan, ta.alamat_perusahaan, ta.telp_contact_person, ta.skala_perusahaan, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
+        ->select(DB::raw('ta.id, ta.nama_perusahaan, ta.alamat_perusahaan, ta.detail_produk_utama, ta.telp_contact_person, ta.skala_perusahaan, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
         ->where('ta.id', $id)
         ->groupBy('ta.id')
         ->first();
