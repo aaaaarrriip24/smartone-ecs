@@ -9,7 +9,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- Favicon -->
-    <link href="{{ asset('assets_users/favicon_io/favicon.ico')}}" rel="icon">
+    <link href="{{ asset('assets/images/favicon_io/favicon.ico')}}" rel="icon">
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/js/layout.js')}}"></script>
@@ -44,7 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="text-center mt-sm-5 mb-4 text-white-50">
+                        <div class="text-center text-white-50">
                             <div>
                                 <a href="{{ url('/') }}" class="d-inline-block auth-logo">
                                     <img src="{{ asset('assets/images/kemendag.png')}}" class="img-fluid w-75" alt="">
@@ -114,6 +114,18 @@
                             <p class="mb-0">Don't have an account ? <a href="auth-signup-basic.html" class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
                         </div> -->
 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center text-white-50">
+                            <div>
+                                <a href="{{ url('/') }}" class="d-inline-block auth-logo">
+                                    <img src="{{ asset('assets/images/stradex.png')}}" class="img-fluid w-50" alt="">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- end row -->

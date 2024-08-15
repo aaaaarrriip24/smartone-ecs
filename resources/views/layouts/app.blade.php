@@ -14,7 +14,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- Favicon -->
-    <link href="{{ asset('assets_users/favicon_io/favicon.ico')}}" rel="icon">
+    <link href="{{ asset('assets/images/favicon_io/favicon.ico')}}" rel="icon">
 
     <!-- Layout config Js -->
     <script src="{{ asset('assets/js/layout.js') }}"></script>
@@ -73,23 +73,25 @@
                             <a href="{{ url('/') }}" class="logo logo-dark text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
-                                                height="50">
+                                        <div class="col-lg-2">
+                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
                                         </div>
-                                        <div class="col-lg-8 mt-2">
-                                            <h3>ECS</h3>
+                                        <div class="col-lg-8 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                                height="50">
+                                            <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
                                     </div>
                                 </span>
                                 <span class="logo-lg">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
-                                                height="50">
+                                        <div class="col-lg-2">
+                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
                                         </div>
-                                        <div class="col-lg-8 mt-2">
-                                            <h3>ECS</h3>
+                                        <div class="col-lg-8 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                                height="50">
+                                            <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
                                     </div>
                                 </span>
@@ -98,23 +100,25 @@
                             <a href="{{ url('/') }}" class="logo logo-light text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
-                                                height="50">
+                                        <div class="col-lg-2">
+                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
                                         </div>
-                                        <div class="col-lg-8 mt-2">
-                                            <h3>ECS</h3>
+                                        <div class="col-lg-8 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                                height="50">
+                                            <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
                                     </div>
                                 </span>
                                 <span class="logo-lg">
                                     <div class="d-flex align-items-center gap-3">
-                                        <div class="col-lg-4">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img" alt=""
-                                                height="50">
+                                        <div class="col-lg-2">
+                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
                                         </div>
-                                        <div class="col-lg-8 mt-2">
-                                            <h3>ECS</h3>
+                                        <div class="col-lg-8 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                                height="50">
+                                            <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
                                     </div>
                                 </span>
@@ -158,7 +162,7 @@
                             </div>
                         </div>
 
-                        <div class="dropdown ms-1 topbar-head-dropdown header-item">
+                        <!-- <div class="dropdown ms-1 topbar-head-dropdown header-item">
                             <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <img id="header-lang-img" src="{{ asset('assets/images/flags/us.svg')}}"
@@ -166,7 +170,6 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-end">
 
-                                <!-- item -->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item language py-2"
                                     data-lang="en" title="English">
                                     <img src="{{ asset('assets/images/flags/us.svg')}}" alt="user-image"
@@ -174,7 +177,6 @@
                                     <span class="align-middle">English</span>
                                 </a>
 
-                                <!-- item-->
                                 <a href="javascript:void(0);" class="dropdown-item notify-item language py-2"
                                     data-lang="id" title="Indonesia">
                                     <img src="{{ asset('assets/images/flags/id.svg')}}" alt="user-image"
@@ -184,7 +186,7 @@
 
 
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- <div class="dropdown topbar-head-dropdown ms-1 header-item">
                             <button type="button" class="btn btn-icon btn-topbar btn-ghost-secondary rounded-circle"
@@ -976,7 +978,7 @@
                                         </li>
                                         <li class="nav-item">
                                             <a href="{{ url('extra/p_inaexport') }}" class="nav-link"
-                                            data-key="t-broadcast">InaExport</a>
+                                                data-key="t-broadcast">InaExport</a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="{{ url('transaksi/partisipasi') }}" class="nav-link"
@@ -1027,7 +1029,7 @@
                                     </ul>
                                 </div>
                             </li>
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="{{ url('transaksi/broadcast') }}">
                                     <i class="bx bxs-dashboard"></i> <span

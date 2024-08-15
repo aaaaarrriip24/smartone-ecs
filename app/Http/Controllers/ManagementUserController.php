@@ -100,8 +100,11 @@ class ManagementUserController extends Controller
         ]);
         Mail::to($data->email)->queue(new SendPasswordMail($data, $password));
         // Mail::to($data->email)->send(new SendPasswordMail($data, $password));
-        Alert::toast('Success Send Password!', 'success');
-        return redirect()->back();
+        // Alert::toast('Success Send Password!', 'success');
+        // return redirect()->back();
+        return response()->json([
+            "status"=>200, 
+        ]);
     }
 
     /**
