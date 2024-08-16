@@ -52,7 +52,7 @@ pa
                     <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}</td>
                     <td>{{ $d->alamat_perusahaan }}</td>
                     <td>{{ $d->detail_produk_utama }}</td>
-                    <td>{{ date('d-m-Y', strtotime($d->tanggal_registrasi_inaexport)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($d->tanggal_registrasi_inaexport)) }}</td>
                 </tr>
                 @endforeach
             </tbody>

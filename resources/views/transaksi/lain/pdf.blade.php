@@ -43,7 +43,7 @@
                 <tr style="background: #9BDCDC;">
                     <td style="font-size: 12px !important; text-align: center;">{{ $loop->iteration }}</td>
                     <td>{{ $d->bentuk_layanan }}</td>
-                    <td>{{ date('d-F-Y', strtotime($d->tanggal_transaksi)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($d->tanggal_transaksi)) }}</td>
                     <td>{{ $d->nama_perusahaan }}{{ !empty($d->nama_tipe) ? ', '. $d->nama_tipe: '' }}</td>
                     <td>{{ strip_tags($d->keterangan) }}</td>
                 </tr>

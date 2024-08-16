@@ -41,6 +41,7 @@ class TexportController extends Controller
             ->where('ta.tanggal_lapor', '>=' , $request->tglawal)
             ->where('ta.tanggal_lapor', '<=' , $request->tglakhir)
             ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
+            ->orderBy('ta.tanggal_lapor', 'ASC')
             ->get();
 
             return Datatables::of($data)
@@ -99,6 +100,7 @@ class TexportController extends Controller
         ->where('ta.tanggal_lapor', '>=' , date('Y-m-d', strtotime($request->tglawal)))
         ->where('ta.tanggal_lapor', '<=' , date('Y-m-d', strtotime($request->tglakhir)))     
         ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
+        ->orderBy('ta.tanggal_lapor', 'ASC')
         ->get();
         
         $countTotal = DB::table('t_p_export as ta')

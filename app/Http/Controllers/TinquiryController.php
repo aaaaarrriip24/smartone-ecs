@@ -42,7 +42,7 @@ class TinquiryController extends Controller
                 ->where('ta.tanggal_inquiry', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
                 ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
                 ->groupBy('tc.id_inquiry')
-                ->orderBy('ta.tanggal_inquiry')
+                ->orderBy('ta.tanggal_inquiry', 'ASC')
                 ->get();
             } else {
                 $data = DB::table('t_profile_inquiry as ta')
@@ -52,7 +52,7 @@ class TinquiryController extends Controller
                 ->whereNull('tb.deleted_at')
                 ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
                 ->groupBy('tc.id_inquiry')
-                ->orderBy('ta.tanggal_inquiry')
+                ->orderBy('ta.tanggal_inquiry', 'ASC')
                 ->get();
             }
 
@@ -120,7 +120,7 @@ class TinquiryController extends Controller
             ->where('ta.tanggal_inquiry', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
             ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
             ->groupBy('tc.id_inquiry')
-            ->orderBy('ta.tanggal_inquiry')
+            ->orderBy('ta.tanggal_inquiry', 'ASC')
             ->get();
         } else {
             $data = DB::table('t_profile_inquiry as ta')
@@ -130,7 +130,7 @@ class TinquiryController extends Controller
             ->whereNull('tq.deleteq_at')
             ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
             ->groupBy('tc.id_inquiry')
-            ->orderBy('ta.tanggal_inquiry')
+            ->orderBy('ta.tanggal_inquiry', 'ASC')
             ->get();
         }
         $tq = DB::table('p_penerima_inquiry as ta')

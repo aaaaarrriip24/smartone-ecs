@@ -41,7 +41,7 @@
                 <tr style="background: #4BC0C0;">
                     <td style="font-size: 12px !important; text-align: center;">{{ $loop->iteration }}</td>
                     <td colspan="2">{{ $d->kegiatan }}</td>
-                    <td colspan="2">{{ date('d-F-Y', strtotime($d->tgl_partisipasi)) }}</td>
+                    <td colspan="2">{{ date('d-M-Y', strtotime($d->tgl_partisipasi)) }}</td>
                 </tr>
                 <tr style="background: #9BDCDC;">
                     <td colspan="5" style="font-size: 14px !important;"><b>Peserta</b></td>

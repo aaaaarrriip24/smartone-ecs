@@ -46,6 +46,7 @@ class TKonsultasiController extends Controller
             ->where('ta.tanggal_konsultasi', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
             ->select('ta.*', 'tb.nama_perusahaan', DB::raw('IFNULL(te.nama_tipe, "") as nama_tipe'), 'tb.kode_perusahaan', DB::raw("GROUP_CONCAT( tc.nama_topik SEPARATOR ', ' ) AS nama_topik"), 'td.nama_petugas' )
             ->groupBy('ta.id')
+            ->orderBy('ta.tanggal_konsultasi', 'ASC')
             ->get();
 
             return Datatables::of($data)
@@ -101,6 +102,7 @@ class TKonsultasiController extends Controller
         ->where('ta.tanggal_konsultasi', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
         ->select('ta.*', 'tb.nama_perusahaan', DB::raw('IFNULL(te.nama_tipe, "") as nama_tipe'), 'tb.kode_perusahaan', DB::raw("GROUP_CONCAT( tc.nama_topik SEPARATOR ', ' ) AS nama_topik"), 'td.nama_petugas' )
         ->groupBy('ta.id')
+        ->orderBy('ta.tanggal_konsultasi', 'ASC')
         ->get();
 
     	$pdf = PDF::loadview('transaksi/konsultasi/pdf',[

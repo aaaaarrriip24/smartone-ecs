@@ -42,7 +42,7 @@ class TBmController extends Controller
                 ->where('ta.tanggal_bm', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
                 ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
                 ->groupBy('tc.id_bm')
-                ->orderBy('ta.tanggal_bm')
+                ->orderBy('ta.tanggal_bm', 'ASC')
                 ->get();
             } else {
                 $data = DB::table('t_bm as ta')
@@ -52,7 +52,7 @@ class TBmController extends Controller
                 ->whereNull('tb.deleted_at')
                 ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
                 ->groupBy('tc.id_bm')
-                ->orderBy('ta.tanggal_bm')
+                ->orderBy('ta.tanggal_bm', 'ASC')
                 ->get();
             }
             
@@ -121,7 +121,7 @@ class TBmController extends Controller
             ->where('ta.tanggal_bm', '<=' , date('Y-m-d', strtotime($request->tglakhir)))
             ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
             ->groupBy('tc.id_bm')
-            ->orderBy('ta.tanggal_bm')
+            ->orderBy('ta.tanggal_bm', 'ASC')
             ->get();
         } else {
             $data = DB::table('t_bm as ta')
@@ -131,7 +131,7 @@ class TBmController extends Controller
             ->whereNull('tb.deleted_at')
             ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
             ->groupBy('tc.id_bm')
-            ->orderBy('ta.tanggal_bm')
+            ->orderBy('ta.tanggal_bm', 'ASC')
             ->get();
             
         }

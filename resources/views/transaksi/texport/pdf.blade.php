@@ -53,7 +53,7 @@ pa
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }}</td>
                     <td>{{ $d->detail_produk_utama }}</td>
-                    <td>{{ date('d-m-Y', strtotime($d->tanggal_lapor)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($d->tanggal_lapor)) }}</td>
                     <td>{{ $d->en_short_name }}</td>
                     <td style="text-align: right;">{{ number_format($d->nilai_transaksi, 0) }}</td>
                     <td>{{ $d->dok_pendukung }}</td>

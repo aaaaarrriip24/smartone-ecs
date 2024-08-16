@@ -49,7 +49,7 @@ pa
                 @foreach( $data as $d )
                 <tr style="background: #4BC0C0;">
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ date('d-m-Y', strtotime($d->tanggal_inquiry)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($d->tanggal_inquiry)) }}</td>
                     <td>{{ $d->nama_buyer }}</td>
                     <td>{{ $d->produk_yang_diminta }}</td>
                     <td>{{ $d->en_short_name }}</td>

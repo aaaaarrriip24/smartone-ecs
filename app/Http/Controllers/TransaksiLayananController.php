@@ -40,6 +40,7 @@ class TransaksiLayananController extends Controller
                 $data->where('ta.tanggal_transaksi', '>=' , date('Y-m-d', strtotime($request->tglawal)))
                 ->where('ta.tanggal_transaksi', '<=' , date('Y-m-d', strtotime($request->tglakhir)));
             }
+            $data->orderBy('ta.tanggal_transaksi', 'ASC');
             $data->get();
             $data = $data->get();
             
@@ -96,6 +97,7 @@ class TransaksiLayananController extends Controller
             $data->where('ta.tanggal_transaksi', '>=' , date('Y-m-d', strtotime($request->tglawal)))
             ->where('ta.tanggal_transaksi', '<=' , date('Y-m-d', strtotime($request->tglakhir)));
         }
+        $data->orderBy('ta.tanggal_transaksi', 'ASC');
         $data->get();
         $data = $data->get();
 

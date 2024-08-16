@@ -90,7 +90,7 @@
                 @foreach( $konsultasi as $d )
                 <tr style="background: #FF9F40;">
                     <td width="5%">{{ $loop->iteration }}</td>
-                    <td width="15%">{{ date('d-m-Y', strtotime($d->tanggal_konsultasi)) }}</td>
+                    <td width="15%">{{ date('d-M-Y', strtotime($d->tanggal_konsultasi)) }}</td>
                     <td width="25%">{{ $d->nama_topik }}</td>
                     <td>{{ str_replace("&nbsp;", "", strip_tags($d->isi_konsultasi)) }}</td>
                 </tr>
@@ -116,7 +116,7 @@
                 @foreach( $inquiry as $d )
                 <tr style="background: #BD9CFF;">
                     <td width="5%">{{ $loop->iteration }}</td>
-                    <td width="15%">{{ date('d-m-Y', strtotime($d->tanggal_inquiry)) }}</td>
+                    <td width="15%">{{ date('d-M-Y', strtotime($d->tanggal_inquiry)) }}</td>
                     <td>{{ $d->en_short_name }}</td>
                     <td>{{ $d->produk_yang_diminta }}</td>
                 </tr>
@@ -143,7 +143,7 @@
                 @foreach( $bm as $d )
                 <tr style="background: #4BC0C0;">
                     <td width="5%">{{ $loop->iteration }}</td>
-                    <td width="15%">{{ date('d-m-Y', strtotime($d->tanggal_bm)) }}</td>
+                    <td width="15%">{{ date('d-M-Y', strtotime($d->tanggal_bm)) }}</td>
                     <td>{{ $d->en_short_name }}</td>
                     <td>{{ $d->produk_bm }}</td>
                 </tr>
@@ -170,7 +170,7 @@
                 @foreach( $texport as $d )
                 <tr style="background: #FFCD56;">
                     <td width="5%">{{ $loop->iteration }}</td>
-                    <td width="15%">{{ date('d-m-Y', strtotime($d->tanggal_lapor)) }}</td>
+                    <td width="15%">{{ date('d-M-Y', strtotime($d->tanggal_lapor)) }}</td>
                     <td>{{ $d->en_short_name }}</td>
                     <td style="text-align: right;">{{ number_format($d->nilai_transaksi, 0) }}</td>
                 </tr>
@@ -198,7 +198,7 @@
             <tbody>
                 @foreach( $inaexport as $d )
                 <tr style="background: #7CC2F2;">
-                    <td>{{ date('d-m-Y', strtotime($d->tanggal_registrasi_inaexport)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($d->tanggal_registrasi_inaexport)) }}</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -222,7 +222,7 @@
                 @foreach( $tlain as $d )
                 <tr style="background: #D8D9DC;">
                     <td style="font-size: 12px !important; text-align: center;">{{ $loop->iteration }}</td>
-                    <td>{{ date('d-m-Y', strtotime($d->tanggal_transaksi)) }}</td>
+                    <td>{{ date('d-M-Y', strtotime($d->tanggal_transaksi)) }}</td>
                     <td>{{ $d->bentuk_layanan }}</td>
                     <td>{{ strip_tags($d->keterangan) }}</td>
                 </tr>
