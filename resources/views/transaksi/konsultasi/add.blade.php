@@ -146,7 +146,7 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.kode_perusahaan + ", " + item.nama_perusahaan
+                                text: item.nama_perusahaan
                                     .toUpperCase() + ', ' + item
                                     .nama_tipe,
                                 detail_produk_utama: item.detail_produk_utama,

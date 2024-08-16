@@ -179,7 +179,7 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.kode_perusahaan + ', ' + item.nama_perusahaan +
+                                text: item.nama_perusahaan +
                                     ', ' + item.nama_tipe,
                             }
                         })

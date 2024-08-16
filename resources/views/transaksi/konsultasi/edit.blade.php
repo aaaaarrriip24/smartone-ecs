@@ -30,7 +30,7 @@
                         <label class="form-label mb-1 mt-0 labelInput">Nama Perusahaan</label>
                         <select name="id_perusahaan" class="form-control form-control-sm select_perusahaan">
                             <option value="{{ $data->id_perusahaan }}" selected>
-                                {{ strtoupper($data->kode_perusahaan) }}, {{ strtoupper($data->nama_perusahaan) }}, {{ strtoupper($data->nama_tipe) }}
+                                {{ strtoupper($data->nama_perusahaan) }}, {{ strtoupper($data->nama_tipe) }}
                             </option>
                         </select>
                     </div>
@@ -176,7 +176,7 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.kode_perusahaan + ", " + item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
+                                text: item.nama_perusahaan.toUpperCase() + ', ' + item.nama_tipe,
                                 detail_produk_utama: item.detail_produk_utama,
                                 nama_kategori_produk: item.nama_kategori_produk,
                                 sub_kategori: item.sub_kategori,
