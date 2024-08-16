@@ -4,6 +4,7 @@
     .datepicker {
         top: 290px !important;
     }
+
 </style>
 <div class="card">
     <div class="card-header">Add Business Matching</div>
@@ -80,34 +81,32 @@
                             placeholder="john@email.com">
                     </div>
                 </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
+                        <input type="number" name="telp_buyer" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Foto</label>
+                        <input type="file" name="foto_bm" class="form-control form-control-sm">
+                    </div>
+                </div>
                 <div class="col-6">
+                    <div class="form-group">
+                        <label class="form-label mb-1 labelInput">Peserta Business Matching</label>
+                        <select name="id_perusahaan[]"
+                            class="form-control form-control-sm form-select select_perusahaan"
+                            multiple="multiple"></select>
+                    </div>
+                </div>
+                <div class="col-12">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Catatan</label>
                         <textarea class="form-control" name="catatan" placeholder="Catatan" id="summernote"
                             rows="4"></textarea>
                         <!-- <input type="text" name="catatan" class="form-control form-control-sm"> -->
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label class="form-label mb-1 mt-2 labelInput">Telfon Buyer</label>
-                                <input type="number" name="telp_buyer" class="form-control form-control-sm">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label class="form-label mb-1 mt-2 labelInput">Foto</label>
-                                <input type="file" name="foto_bm" class="form-control form-control-sm">
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-group">
-                                <label class="form-label mb-1 labelInput">Peserta Business Matching</label>
-                                <select name="id_perusahaan[]" class="form-control form-control-sm form-select select_perusahaan" multiple="multiple"></select>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
