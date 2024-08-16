@@ -62,17 +62,24 @@
                                     </div>
                                     <div class="col-sm-3 step-1">
                                         <!-- <div class="form-group mb-2 div_kategori"> -->
-                                            <label class="form-label labelInput">Kategori Produk</label>
-                                            <select name="id_kategori_produk"
-                                                class="form-control form-control-sm select_k_produk filter"></select>
+                                        <label class="form-label labelInput">Kategori Produk</label>
+                                        <select name="id_kategori_produk"
+                                            class="form-control form-control-sm select_k_produk filter"></select>
+                                        <!-- </div> -->
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <!-- <div class="form-group mb-2 div_kategori"> -->
+                                        <label class="form-label labelInput">Search</label>
+                                        <input type="text" name="searchbox"
+                                            class="form-control form-control-sm searchbox filter">
                                         <!-- </div> -->
                                     </div>
                                     <div class="col-sm-6 step-1">
                                         <!-- <div class="form-group mb-2 div_sub_kategori"> -->
-                                            <label class="form-label labelInput">Sub Kategori Produk</label>
-                                            <select name="id_sub_kategori[]"
-                                                class="form-control form-control-sm select_sub_produk filter"
-                                                multiple="multiple"></select>
+                                        <label class="form-label labelInput">Sub Kategori Produk</label>
+                                        <select name="id_sub_kategori[]"
+                                            class="form-control form-control-sm select_sub_produk filter"
+                                            multiple="multiple"></select>
                                         <!-- </div> -->
                                     </div>
                                 </div>
@@ -199,14 +206,16 @@
             filter: true,
             sort: true,
             info: true,
+            searching: false,
             ajax: {
-                url: base_url + "master/perusahaan",
+                url: base_url + "laporan/perusahaan",
                 type: "GET",
                 data: function (data) {
                     if ($(".in").val() != "") data.in = $(".in").val();
                     if ($('.province_id').val() != '') data.province_id = $('.province_id').val();
                     if ($('.select_k_produk').val() != '') data.id_kategori_produk = $('.select_k_produk').val();
                     if ($('.cities_id').val() != '') data.cities_id = $('.cities_id').val();
+                    if ($('.searchbox').val() != '') data.searchbox = $('.searchbox').val();
                     if ($('.select_sub_produk').val() != '') {
                         data.id_sub_kategori = $('.select_sub_produk').val();
                     } else {
@@ -304,8 +313,8 @@
                     name: 'sub_kategori',
                     orderable: true,
                     render: function (data, type, row, meta) {
-                        if(data == null) {
-                           str = ""; 
+                        if (data == null) {
+                            str = "";
                         } else {
                             str = data;
                         }

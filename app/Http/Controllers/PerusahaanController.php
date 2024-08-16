@@ -58,7 +58,9 @@ class PerusahaanController extends Controller
             if(isset($request->id_sub_kategori)) {
                 $data->whereIn('tg.id_sub_kategori', $request->id_sub_kategori);
             } 
-            
+            if(isset($request->searchbox)) {
+                $data->where('ta.nama_perusahaan', 'LIKE', '%'. $request->searchbox. '%');
+            }
             if($request->term) {
                 $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
             }
@@ -237,13 +239,17 @@ class PerusahaanController extends Controller
         if(isset($request->id_kategori_produk)) {
             $data->where('ta.id_kategori_produk', '=' , $request->id_kategori_produk);
         } 
+        if(!empty($request->searchbox)) {
+            $data->where('ta.nama_perusahaan', 'LIKE', '%'. $request->searchbox. '%');
+        }
         if(isset($request->id_sub_kategori)) {
             $data->whereIn('tg.id_sub_kategori', $request->id_sub_kategori);
         } 
         $data->select(DB::raw('ta.*, ti.nama_petugas, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
         ->groupBy('ta.id')
-        ->orderBy('ta.id', 'ASC');
-        if(empty($request->cities_id) && empty($request->id_sub_kategori)) {
+        ->orderBy('ta.nama_perusahaan', 'ASC');
+
+        if(empty($request->searchbox) && empty($request->cities_id) && empty($request->id_sub_kategori && empty($request->searchbox))) {
             $data->limit(10);
         }
         $data->get();

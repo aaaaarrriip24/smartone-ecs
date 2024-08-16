@@ -67,6 +67,12 @@
                                                 class="form-control form-control-sm select_k_produk filter"></select>
                                         <!-- </div> -->
                                     </div>
+                                    <div class="col-sm-3">
+                                        <!-- <div class="form-group mb-2 div_kategori"> -->
+                                            <label class="form-label labelInput">Search</label>
+                                            <input type="text" name="searchbox" class="form-control form-control-sm searchbox filter">
+                                        <!-- </div> -->
+                                    </div>
                                     <div class="col-sm-6 step-1">
                                         <!-- <div class="form-group mb-2 div_sub_kategori"> -->
                                             <label class="form-label labelInput">Sub Kategori Produk</label>
@@ -199,6 +205,7 @@
             filter: true,
             sort: true,
             info: true,
+            searching: false,
             ajax: {
                 url: base_url + "master/perusahaan",
                 type: "GET",
@@ -207,6 +214,7 @@
                     if ($('.province_id').val() != '') data.province_id = $('.province_id').val();
                     if ($('.select_k_produk').val() != '') data.id_kategori_produk = $('.select_k_produk').val();
                     if ($('.cities_id').val() != '') data.cities_id = $('.cities_id').val();
+                    if ($('.searchbox').val() != '') data.searchbox = $('.searchbox').val();
                     if ($('.select_sub_produk').val() != '') {
                         data.id_sub_kategori = $('.select_sub_produk').val();
                     } else {

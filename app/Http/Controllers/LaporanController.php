@@ -2,7 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TSubKategoriPerusahaan;
+use App\Models\TEPerusahaan;
+use App\Models\Perusahaan;
+use App\Models\Provinsi;
+use App\Models\KabKota;
+use App\Models\Tipe;
+use App\Models\Petugas;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use DataTables;
+use DB;
+use Alert;
+use Mail;
+use App\Mail\PerusahaanEmail;
+use PDF;
 
 class LaporanController extends Controller
 {
@@ -13,56 +27,64 @@ class LaporanController extends Controller
         confirmDelete($title, $text);
 
         if ($request->ajax()) {
-            if(isset($request->select_perusahaan1) && isset($request->select_perusahaan2)) {
-                $data = DB::table('m_perusahaan as ta')
-                ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-                ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
-                ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
-                ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
-                ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
-                ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
-                ->whereNull('ta.deleted_at')
-                ->whereNull('tb.deleted_at')
-                ->whereNull('tc.deleted_at')
-                ->whereNull('td.deleted_at')
-                ->whereNull('tf.deleted_at')
-                ->where('ta.id', '>=' , $request->select_perusahaan1)
-                ->where('ta.id', '<=' , $request->select_perusahaan2)
-                ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, tf.nama_petugas'))
-                ->groupBy('tg.id_perusahaan', 'ta.id')
-                ->orderBy('ta.id', 'ASC')
-                ->get();
-            } else {
-                $data = DB::table('m_perusahaan as ta')
-                ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-                ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
-                ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
-                ->leftJoin('m_petugas as tf', 'ta.id_petugas', '=', 'tf.id')
-                ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
-                ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
-                ->whereNull('ta.deleted_at')
-                ->whereNull('tb.deleted_at')
-                ->whereNull('tc.deleted_at')
-                ->whereNull('td.deleted_at')
-                ->whereNull('tf.deleted_at')
-                ->select(DB::raw('group_concat(th.nama_sub_kategori) as sub_kategori, ta.*, tb.nama_tipe, tc.name as provinsi, td.name as cities, tf.nama_petugas'))
-                ->groupBy('tg.id_perusahaan', 'ta.id')
-                ->orderBy('ta.id', 'ASC')
-                ->get();
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+            ->leftJoin('m_k_produk as tf', 'ta.id_kategori_produk', '=', 'tf.id')
+            ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+            ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+            ->whereNull('ta.deleted_at');
+            
+            if(isset($request->province_id)) {
+                $data->where('ta.id_provinsi', '=' , $request->province_id);
+            } 
+            if(isset($request->cities_id)) {
+                $data->where('ta.id_kabkota', '=' , $request->cities_id);
+            } 
+            if(isset($request->id_kategori_produk)) {
+                $data->where('ta.id_kategori_produk', '=' , $request->id_kategori_produk);
+            } 
+            if(isset($request->id_sub_kategori)) {
+                $data->whereIn('tg.id_sub_kategori', $request->id_sub_kategori);
+            } 
+            if(isset($request->searchbox)) {
+                $data->where('ta.nama_perusahaan', 'LIKE', '%'. $request->searchbox. '%');
+            }
+            if($request->term) {
+                $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
             }
             
-            
+            $data->select(DB::raw('ta.id, ta.nama_perusahaan, ta.detail_produk_utama, ta.alamat_perusahaan, ta.telp_contact_person, ta.skala_perusahaan, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
+            ->groupBy('ta.id')
+            ->orderBy('ta.id', 'ASC')
+            ->get();
+
+            $data = $data->get();
+
             return Datatables::of($data)
-            ->addIndexColumn()
-            ->addColumn('status_data', function($row){
-                $status = 'Completed';
-                if(empty($row->id_tipe) || empty($row->id_provinsi) ||empty($row->id_kabkota) ||empty($row->alamat_perusahaan) ||empty($row->alamat_pabrik) ||empty($row->kode_pos) ||empty($row->nama_contact_person) ||empty($row->jabatan) ||empty($row->telp_contact_person) ||empty($row->telp_kantor) ||empty($row->email) ||empty($row->website) ||empty($row->status_kepemilikan) ||empty($row->skala_perusahaan) ||empty($row->jumlah_karyawan) ||empty($row->id_kategori_produk) ||empty($row->detail_produk_utama) ||empty($row->merek_produk) ||empty($row->hs_code) ||empty($row->kapasitas_produksi) ||empty($row->satuan_kapasitas_produksi) ||empty($row->kepemilikan_legalitas) ||empty($row->kepemilikan_sertifikat) ||empty($row->foto_produk_1) ||empty($row->foto_produk_2) ||empty($row->tanggal_registrasi) ||empty($row->id_petugas)) {
-                    $status = "Not Completed";
-                }
-                return $status;
-            })
-            ->rawColumns(['status_data'])
-            ->make(true);
+                    ->addIndexColumn()
+                    ->addColumn('status_data', function($row){
+                        $status = 'Completed';
+                        if(empty($row->id_tipe) || empty($row->id_provinsi) ||empty($row->id_kabkota) ||empty($row->alamat_perusahaan) ||empty($row->alamat_pabrik) ||empty($row->kode_pos) ||empty($row->nama_contact_person) ||empty($row->jabatan) ||empty($row->telp_contact_person) ||empty($row->telp_kantor) ||empty($row->email) ||empty($row->website) ||empty($row->status_kepemilikan) ||empty($row->skala_perusahaan) ||empty($row->jumlah_karyawan) ||empty($row->id_kategori_produk) ||empty($row->detail_produk_utama) ||empty($row->merek_produk) ||empty($row->hs_code) ||empty($row->kapasitas_produksi) ||empty($row->satuan_kapasitas_produksi) ||empty($row->kepemilikan_legalitas) ||empty($row->kepemilikan_sertifikat) ||empty($row->foto_produk_1) ||empty($row->foto_produk_2) ||empty($row->tanggal_registrasi) ||empty($row->id_petugas)) {
+                            $status = "Not Completed";
+                        }
+                        return $status;
+                    })
+                    ->addColumn('action', function($row){
+                        $urlDetailLayanan = url('perusahaan/detail/layanan/'. $row->id);
+                        $button = '<div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href='.$urlDetailLayanan.' class="dropdown-item btn-detail" target="_blank">Detail Layanan</a></li>
+                                        </ul>
+                                    </div>';
+                        return $button;
+                    })
+                    ->rawColumns(['action', 'status_data'])
+                    ->make(true);
         }
 
         return view('laporan/perusahaan');
