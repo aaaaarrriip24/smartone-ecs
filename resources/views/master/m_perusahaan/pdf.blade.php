@@ -49,7 +49,7 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }} <br>{{ $d->skala_perusahaan }}</td>
-                    <td>{{ $d->alamat_perusahaan }}</td>
+                    <td>{{ $d->alamat_perusahaan }} <br> {{ $d->cities }} <br> {{ $d->provinsi }} </td>
                     <td>{{ !empty($d->sub_kategori) ? $d->sub_kategori : "-" }} <br> {{ $d->detail_produk_utama }}</td>
                     <td>{{ $d->nama_contact_person }}</td>
                     <td>{{ strtolower($d->email) }} <br>{{ str_replace('`', '', $d->telp_contact_person) }}</td>
