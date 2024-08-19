@@ -31,7 +31,7 @@
             </div>
             <div class="col-5">
                 <div class="form-group">
-                    <label class="form-label mb-1 labelInput">Peserta Business Matching</label>
+                    <label class="form-label mb-1 labelInput">Peserta Partisipasi</label>
                     <select name="id_perusahaan[]" class="form-control form-control-sm form-select select_perusahaan"
                         disabled multiple="multiple">
                         @foreach( $peserta as $p )

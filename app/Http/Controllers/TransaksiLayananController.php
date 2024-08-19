@@ -75,11 +75,11 @@ class TransaksiLayananController extends Controller
      */
     public function create()
     {
-        $get_code = TransaksiLainPerusahaan::whereNull('deleted_at')->orderBy('kode_transaksi_layanan_lainnya', 'DESC')->first();
+        $get_code = TransaksiLainPerusahaan::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
         if($get_code == null) {
             $kode_code = "TLL-" . 1000 ;
         } else {
-            $count_code = explode("TLL-", $get_code->kode_transaksi_layanan_lainnya);
+            $count_code = explode("-", $get_code->kode_transaksi_layanan_lainnya);
             $kode_code = "TLL-" . strval($count_code[1] + 1) ;
         }
         // dd($kode_kon);
@@ -125,7 +125,7 @@ class TransaksiLayananController extends Controller
         }
 
         TransaksiLainPerusahaan::insert([
-            'kode_transaksi_layanan_lainnya' => $request->kode_transaksi_layanan_lainnya,
+            'kode_transaksi_layanan_lainnya' => $request->kode_transaksi_layanan_lainnya . "-" . date('y', strtotime($request->tanggal_transaksi)),
             'id_transaksi_lain' => $request->id_transaksi_lain,
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_transaksi' => date('Y-m-d', strtotime($request->tanggal_transaksi)),

@@ -80,9 +80,13 @@ class TKonsultasiController extends Controller
      */
     public function create()
     {
-        $get_kon = TKonsultasi::orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
-        $last_kon = explode("-", $get_kon->kode_konsultasi); 
-        $kode_kon = "KON-" . strval($last_kon[1] + 1) ;
+        $get_kon = TKonsultasi::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        if($get_kon == null) {
+            $kode_kon = "KON-" . 1000 ;
+        } else {
+            $last_kon = explode("-", $get_kon->kode_konsultasi);
+            $kode_kon = "KON-" . strval($last_kon[1] + 1);
+        }
         // dd($kode_kon);
         return view('transaksi/konsultasi/add', compact('kode_kon'));
     }
@@ -129,7 +133,7 @@ class TKonsultasiController extends Controller
         }
 
         TKonsultasi::insert([
-            'kode_konsultasi' => $request->kode_konsultasi,
+            'kode_konsultasi' => $request->kode_konsultasi . "-" . date('y', strtotime($request->tanggal_konsultasi)),
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_konsultasi' => date('Y-m-d', strtotime($request->tanggal_konsultasi)),
             'cara_konsultasi' => $request->cara_konsultasi,

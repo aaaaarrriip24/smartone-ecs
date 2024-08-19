@@ -102,10 +102,14 @@ class TBmController extends Controller
      */
     public function create()
     {
-        $get_bm = TBm::orderBy('kode_bm', 'DESC')->first();
-        $count_bm = explode("BM-", $get_bm->kode_bm);
-        $kode_bm = "BM-" . strval($count_bm[1] + 1) ;
-        
+        $get_bm = TBm::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        if($get_bm == null) {
+            $kode_bm = "BM-" . 1000 ;
+        } else {
+            $count_bm = explode("-", $get_bm->kode_bm);
+            $kode_bm = "BM-" . strval($count_bm[1] + 1);
+        }
+
         // dd($kode_bm);
         return view('transaksi/bm/add', compact('kode_bm'));
     }
@@ -168,7 +172,7 @@ class TBmController extends Controller
         }
 
         TBm::insert([
-            'kode_bm' => $request->kode_bm,
+            'kode_bm' => $request->kode_bm . "-" . date('y', strtotime($request->tanggal_bm)),
             'tanggal_bm' => date('Y-m-d', strtotime($request->tanggal_bm)),
             'produk_bm' => $request->produk_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,
@@ -283,7 +287,6 @@ class TBmController extends Controller
         }
 
         TBm::where('id', $request->id)->update([
-            'kode_bm' => $request->kode_bm_old,
             'tanggal_bm' => date('Y-m-d', strtotime($request->tanggal_bm)),
             'produk_bm' => $request->produk_bm,
             'pelaksanaan_bm' => $request->pelaksanaan_bm,

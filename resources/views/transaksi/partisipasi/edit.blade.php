@@ -40,12 +40,12 @@
                 </div>
                 <div class="col-5">
                     <div class="form-group">
-                        <label class="form-label mb-1 labelInput">Peserta Business Matching</label>
+                        <label class="form-label mb-1 labelInput">Peserta Partisipasi</label>
                         <select name="id_perusahaan[]"
                             class="form-control form-control-sm form-select select_perusahaan" required
                             multiple="multiple">
                             @foreach( $peserta as $p )
-                            <option value="{{ $p->id }}" selected>{{ $p->kode_perusahaan }}, {{ $p->nama_perusahaan }}{{ !empty($p->nama_tipe) ? ', ' . $p->nama_tipe : '' }}
+                            <option value="{{ $p->id_perusahaan }}" selected>{{ $p->nama_perusahaan }}{{ !empty($p->nama_tipe) ? ', ' . $p->nama_tipe : '' }}
                             </option>
                             @endforeach
                         </select>
@@ -99,7 +99,7 @@
                         results: $.map(data, function (item) {
                             return {
                                 id: item.id,
-                                text: item.kode_perusahaan + ', ' + item.nama_perusahaan +
+                                text: item.nama_perusahaan +
                                     ', ' + item.nama_tipe,
                             }
                         })

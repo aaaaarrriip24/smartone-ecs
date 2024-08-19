@@ -73,7 +73,7 @@ class LayananController extends Controller
     public function store(Request $request)
     {
         TransaksiLain::insert([
-            'kode_layanan_lainnya' => $request->kode_layanan_lainnya,
+            'kode_layanan_lainnya' => $request->kode_layanan_lainnya . "-" . date('y', strtotime($request->tgl_partisipasi)),
             'bentuk_layanan' => $request->bentuk_layanan,
             'created_at' => Carbon::now(),
         ]);

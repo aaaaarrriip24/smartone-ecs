@@ -75,11 +75,14 @@ class TexportController extends Controller
      */
     public function create()
     {
-        $get_trn = DB::table('t_p_export')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
-        $count_trn = explode("-", $get_trn->kode_export);
-        $kode_trn = "TRS-" . strval($count_trn[1] + 1) ;
+        $get_trn = DB::table('t_p_export')->whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        if($get_trn == null) {
+            $kode_trn = "TRS-" . 1000 ;
+        } else {
+            $count_trn = explode("-", $get_trn->kode_export);
+            $kode_trn = "TRS-" . strval($count_trn[1] + 1);
+        }
 
-        // dd($kode_trn);
         return view('transaksi/texport/add', compact('kode_trn'));
     }
 
@@ -140,7 +143,7 @@ class TexportController extends Controller
         }
 
         Texport::insert([
-            'kode_export' => $request->kode_export,
+            'kode_export' => $request->kode_export . "-" . date('y', strtotime($request->tanggal_lapor)),
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_export' => date('Y-m-d', strtotime($request->tanggal_export)),
             'tanggal_lapor' => date('Y-m-d', strtotime($request->tanggal_lapor)),

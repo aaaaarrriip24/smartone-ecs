@@ -57,7 +57,7 @@ class PPInaexportController extends Controller
                         $button = '';
                         $button .= " <a href='".$urlEdit."' class='btn btn-outline-warning btn-sm btn-edit'>Edit</a>";
                         $button .= " <a href='".$urlDetail."' class='btn btn-outline-primary btn-sm btn-detail'>Detail</a>";
-                        $button .= " <button data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
+                        $button .= " <button type='button' data-href='".$urlDelete."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
                         return $button;
                     })
                     ->rawColumns(['action', 'peserta_ina'])
@@ -73,9 +73,13 @@ class PPInaexportController extends Controller
      */
     public function create()
     {
-        $get_ina = DB::table('p_peserta_inaexport')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
-        $last_ina = explode("-", $get_ina->kode_ina_export); 
-        $kode_ina = "PRS-" . strval($last_ina[1] + 1) ;
+        $get_ina = DB::table('p_peserta_inaexport')->whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        if($get_ina == null) {
+            $kode_ina = "PRS-" . 1000;
+        } else {
+            $last_ina = explode("-", $get_ina->kode_ina_export);
+            $kode_ina = "PRS-" . strval($last_ina[1] + 1);
+        }
 
         return view('pp/peserta_inaexport/add', compact('get_ina', 'last_ina', 'kode_ina'));
     }
@@ -116,7 +120,7 @@ class PPInaexportController extends Controller
         }
         
         PPInaexport::insert([
-            'kode_ina_export' => $request->kode_ina_export,
+            'kode_ina_export' => $request->kode_ina_export . "-" . date('y', strtotime($request->tanggal_registrasi_inaexport)),
             'id_perusahaan' => $request->id_perusahaan,
             'tanggal_registrasi_inaexport' => date('Y-m-d', strtotime($request->tanggal_registrasi_inaexport)),
             'id_petugas' => $request->id_petugas,

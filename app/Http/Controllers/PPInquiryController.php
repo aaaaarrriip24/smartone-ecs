@@ -83,13 +83,17 @@ class PPInquiryController extends Controller
         $perusahaanArr = array();
         foreach($request->id_perusahaan as $key) {
             
-            $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
-            $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
-            $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
-            
+            $get_rec = PPInquiry::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+            if($get_rec == null) {
+                $kode_rec = "INPR-" . 1000 . "-" . date('y');
+            } else {
+                $count_rec = explode("-", $get_rec->kode_rec_inquiry);
+                $kode_rec = "INPR-" . strval($count_rec[1] + 1) . "-" . date('y');
+            }
+
             $perusahaanArr = $key;
             PPInquiry::insert([
-                'kode_rec_inquiry' => $kode_rec,
+                'kode_rec_inquiry' => $kode_rec . "-" . date('y'),
                 'id_inquiry' => $id_inquiry,
                 'id_perusahaan' => $perusahaanArr,
                 'created_at' => Carbon::now(),

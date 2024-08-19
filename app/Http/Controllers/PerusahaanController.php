@@ -113,9 +113,17 @@ class PerusahaanController extends Controller
      */
     public function create()
     {
-        $get_pt = DB::table('m_perusahaan')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
-        $last_pt = explode("-", $get_pt->kode_perusahaan); 
-        $kode_pt = "PRS-" . strval($last_pt[1] + 1) ;
+        // $get_pt = DB::table('m_perusahaan')->orderBy('id', 'DESC')->orderBy('created_at', 'DESC')->first();
+        // $last_pt = explode("-", $get_pt->kode_perusahaan); 
+        // $kode_pt = "PRS-" . strval($last_pt[1] + 1) ;
+
+        $get_pt = DB::table('m_perusahaan')->whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        if($get_pt == null) {
+            $kode_pt = "PRS-" . 1000;
+        } else {
+            $last_pt = explode("-", $get_pt->kode_perusahaan);
+            $kode_pt = "PRS-" . strval($last_pt[1] + 1);
+        }
         // dd($kode_pt);
         return view('master/m_perusahaan/add', compact('get_pt', 'last_pt', 'kode_pt'));
     }
@@ -322,7 +330,7 @@ class PerusahaanController extends Controller
         }
         
         Perusahaan::insert([
-            'kode_perusahaan' => $request->kode_perusahaan,
+            'kode_perusahaan' => $request->kode_perusahaan . "-" . date('y', strtotime($request->tanggal_registrasi)),
             'nama_perusahaan' => trim(strtoupper($request->nama_perusahaan)),
             'id_tipe' => $request->id_tipe,
             'id_provinsi' => $request->id_provinsi,

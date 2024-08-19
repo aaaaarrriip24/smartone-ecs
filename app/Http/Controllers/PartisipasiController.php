@@ -108,7 +108,7 @@ class PartisipasiController extends Controller
     {
         if(!empty($request->id_perusahaan)) {
             Partisipasi::insert([
-                'kode_partisipasi' => $request->kode_partisipasi,
+                'kode_partisipasi' => $request->kode_partisipasi . "-" . date('y', strtotime($request->tgl_partisipasi)),
                 'tgl_partisipasi' => date('Y-m-d', strtotime($request->tgl_partisipasi)),
                 'kegiatan' => $request->kegiatan,
                 'created_at' => Carbon::now(),

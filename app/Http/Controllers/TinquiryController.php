@@ -102,9 +102,13 @@ class TinquiryController extends Controller
      */
     public function create()
     {
-        $get_inq = Tinquiry::orderBy('kode_inquiry', 'DESC')->first();
-        $count_inq = explode("INQ-", $get_inq->kode_inquiry);
-        $kode_inq = "INQ-" . strval($count_inq[1] + 1) ;
+        $get_inq = Tinquiry::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+        if($get_inq == null) {
+            $kode_inq = "INQ-" . 1000 ;
+        } else {
+            $count_inq = explode("-", $get_inq->kode_inquiry);
+            $kode_inq = "INQ-" . strval($count_inq[1] + 1);
+        }
 
         return view('transaksi/tinquiry/add', compact('kode_inq'));
     }
@@ -165,7 +169,7 @@ class TinquiryController extends Controller
         }
         
         Tinquiry::insert([
-            'kode_inquiry' => $request->kode_inquiry,
+            'kode_inquiry' => $request->kode_inquiry . "-" . date('y', strtotime($request->tanggal_inquiry)),
             'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
             'produk_yang_diminta' => $request->produk_yang_diminta,
             'qty' => $request->qty,
@@ -185,12 +189,13 @@ class TinquiryController extends Controller
         foreach($request->id_perusahaan as $key) {
             
             $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
-            $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
+            $count_rec = explode("-", $get_rec->kode_rec_inquiry);
+            // dd($count_rec[1]);
             $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
-            
+
             $perusahaanArr = $key;
             PPInquiry::insert([
-                'kode_rec_inquiry' => $kode_rec,
+                'kode_rec_inquiry' => $kode_rec . "-" . date('y', strtotime($request->tanggal_inquiry)),
                 'id_inquiry' => $id_inquiry,
                 'id_perusahaan' => $perusahaanArr,
                 'created_at' => Carbon::now(),
@@ -281,7 +286,6 @@ class TinquiryController extends Controller
         }
 
         Tinquiry::where('id', $request->id)->update([
-            'kode_inquiry' => $request->kode_inquiry,
             'tanggal_inquiry' => date('Y-m-d', strtotime($request->tanggal_inquiry)),
             'produk_yang_diminta' => $request->produk_yang_diminta,
             'qty' => $request->qty,
@@ -301,10 +305,14 @@ class TinquiryController extends Controller
         $perusahaanArr = array();
         foreach($request->id_perusahaan as $key) {
             
-            $get_rec = PPInquiry::orderBy('kode_rec_inquiry', 'DESC')->first();
-            $count_rec = explode("INPR-", $get_rec->kode_rec_inquiry);
-            $kode_rec = "INPR-" . strval($count_rec[1] + 1) ; 
-            
+            $get_rec = PPInquiry::whereNull('deleted_at')->orderBy('created_at', 'DESC')->first();
+            if($get_rec == null) {
+                $kode_rec = "INPR-" . 1000 . "-" . date('y', strtotime($request->tanggal_inquiry));
+            } else {
+                $count_rec = explode("-", $get_rec->kode_rec_inquiry);
+                $kode_rec = "INPR-" . strval($count_rec[1] + 1) . "-" . date('y', strtotime($request->tanggal_inquiry));
+            }
+
             $perusahaanArr = $key;
             PPInquiry::insert([
                 'kode_rec_inquiry' => $kode_rec,
