@@ -7,11 +7,11 @@
 </head>
 
 <body>
-    <h1>Hi, {{ $data['name'] }}</h1>
-    <p>Email anda {{ $data['email'] }}</p>
+    <h1>Hi, {{ $details['name'] }}</h1>
+    <p>Email anda {{ $details['email'] }}</p>
 
     <p>Berikut adalah kata sandi Anda untuk mengakses exportcenter.id</p>
-    <p>{{ $password }}</p>
+    <p>{{ $details['password'] }}</p>
 
     <p>Terima Kasih</p>
 </body>

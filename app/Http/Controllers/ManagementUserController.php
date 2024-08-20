@@ -43,7 +43,7 @@ class ManagementUserController extends Controller
                         $button = '';
                         $button .= " <button type='button' class='btn btn-outline-warning btn-sm btn-edit' value='".$row->id."'>Edit</button>";
                         $button .= " <button type='button' class='btn btn-outline-primary btn-sm btn-detail' value='".$row->id."'>Detail</button>";
-                        $button .= " <button data-href='".$urlSend."' class='btn btn-outline-success btn-sm btn-send' >Send Password</button>";
+                        $button .= " <button data-href='".$urlSend."' data-id='".$row->id."' class='btn btn-outline-success btn-sm btn-send' >Send Password</button>";
                         $button .= " <button data-href='".$url."' class='btn btn-outline-danger btn-sm btn-delete' >Delete</button>";
                         return $button;
                     })
@@ -91,19 +91,21 @@ class ManagementUserController extends Controller
         }
     }
 
-    public function send($id)
+    public function send(Request $request)
     {
-        $data = User::findOrFail($id);
+        $data = User::findOrFail($request->id);
         $password = Str::random(8);
         $update = User::where('id', $data->id)->update([
             'password' => Hash::make($password),
         ]);
-        Mail::to($data->email)->queue(new SendPasswordMail($data, $password));
-        // Mail::to($data->email)->send(new SendPasswordMail($data, $password));
-        // Alert::toast('Success Send Password!', 'success');
-        // return redirect()->back();
+        $details = [
+            'name' => $data->name,
+            'email' => $data->email,
+            'password' => $password
+        ];
+        Mail::to($data->email)->queue(new SendPasswordMail($details));
         return response()->json([
-            "status"=>200, 
+            "status" => 200
         ]);
     }
 

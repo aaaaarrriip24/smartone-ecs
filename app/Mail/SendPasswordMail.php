@@ -15,18 +15,16 @@ class SendPasswordMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
   
-    public $data;
-    public $password;
+    public $details;
   
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data, $password)
+    public function __construct($details)
     {
-        $this->data = $data;
-        $this->password = $password;
+        $this->details = $details;
     }
   
     /**

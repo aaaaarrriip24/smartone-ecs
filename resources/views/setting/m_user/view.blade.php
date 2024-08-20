@@ -12,7 +12,8 @@
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
                     <li class="breadcrumb-item active">User</li>
                     <li class="breadcrumb-item">
-                        <a href="javascript:void(0);" class="btn btn-sm btn-primary text-white" type="text" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <a href="javascript:void(0);" class="btn btn-sm btn-primary text-white" type="text"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Add
                         </a>
                     </li>
@@ -33,8 +34,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-sm-12 table-responsive">
-                        <table id="dt_user"
-                            class="table table-bordered dt-responsive nowrap table-striped align-middle"
+                        <table id="dt_user" class="table table-bordered dt-responsive nowrap table-striped align-middle"
                             style="width:100%">
                             <thead>
                                 <th>No. </th>
@@ -154,8 +154,8 @@
             <div class="modal-body">
                 <div class="form-group mb-2">
                     <label>Name</label>
-                    <input type="text" disabled name="name" class="name form-control form-control-sm" placeholder="John Doe"
-                        required>
+                    <input type="text" disabled name="name" class="name form-control form-control-sm"
+                        placeholder="John Doe" required>
                 </div>
                 <div class="form-group mb-2">
                     <label>Email</label>
@@ -168,8 +168,8 @@
                 </div>
                 <div class="form-group mb-2">
                     <label>Roleuser</label>
-                    <select name="roleuser" disabled class="roleuser form-control form-control-sm form-select selectroledetail"
-                        id="" required>
+                    <select name="roleuser" disabled
+                        class="roleuser form-control form-control-sm form-select selectroledetail" id="" required>
                         <option value="" selected disabled>Pilih Roleuser</option>
                         <option value="Superadmin">Superadmin</option>
                         <option value="Admin">Admin</option>
@@ -275,33 +275,65 @@
                 }
             });
         });
-        $(document).on('click', '.btn-send', function () {
-            var url = $(this).attr('data-href');
-            Swal.fire({
-                title: "Send Password?",
-                text: "You want to send Password to this User!",
-                icon: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Send it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        type: "GET",
-                        url: url,
-                        success: function (response) {
-                            table.ajax.reload(null, true);
-                            Swal.fire({
-                                title: "Sended!",
-                                text: "User has received password email.",
-                                icon: "success"
-                            });
-                        }
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('click', '.btn-send', function (e) {
+            e.preventDefault();
+
+            var id = $(this).attr('data-id');
+            console.log(id);
+            
+            $.ajax({
+                type: 'POST',
+                url: "{{ url('user/send') }}",
+                data: {
+                    id: id
+                },
+                success: function (data) {
+                    // alert(data.id);
+                    table.ajax.reload(null, true);
+                    Swal.fire({
+                        title: "Sended!",
+                        text: "User has received password email.",
+                        icon: "success"
                     });
                 }
             });
         });
+
+        // $(document).on('click', '.btn-send', function () {
+        //     var url = $(this).attr('data-href');
+        //     Swal.fire({
+        //         title: "Send Password?",
+        //         text: "You want to send Password to this User!",
+        //         icon: "question",
+        //         showCancelButton: true,
+        //         confirmButtonColor: "#3085d6",
+        //         cancelButtonColor: "#d33",
+        //         confirmButtonText: "Yes, Send it!"
+        //     }).then((result) => {
+        //         if (result.isConfirmed) {
+        //             $.ajax({
+        //                 type: "GET",
+        //                 url: url,
+        //                 success: function (response) {
+        //                     table.ajax.reload(null, true);
+        //                     Swal.fire({
+        //                         title: "Sended!",
+        //                         text: "User has received password email.",
+        //                         icon: "success"
+        //                     });
+        //                 }
+        //             });
+        //         }
+        //     });
+        // });
+
         $(document).on('click', '.btn-delete', function () {
             var url = $(this).attr('data-href');
             Swal.fire({

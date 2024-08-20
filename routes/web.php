@@ -62,7 +62,8 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('user/show/{id}', [ManagementUserController::class, 'show']);
         Route::post('user/update', [ManagementUserController::class, 'update']);
         Route::get('user/destroy/{id}', [ManagementUserController::class, 'destroy']);
-        Route::get('user/send/{id}', [ManagementUserController::class, 'send']);
+        // Route::get('user/send/{id}', [ManagementUserController::class, 'send']);
+        Route::post('user/send', [ManagementUserController::class, 'send']);
     });
 
     Route::group(['middleware' => 'admin'],function() {
