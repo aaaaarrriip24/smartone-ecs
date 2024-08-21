@@ -73,7 +73,7 @@ class BroadcastEmailController extends Controller
 
     public function create() {
         $get_inq = Tinquiry::orderBy('kode_inquiry', 'DESC')->first();
-        $count_inq = explode("INQ-", $get_inq->kode_inquiry);
+        $count_inq = explode("-", $get_inq->kode_inquiry);
         $kode_inq = "INQ-" . strval($count_inq[1] + 1) ;
 
         return view('transaksi/broadcast/add', compact('kode_inq'));
@@ -312,7 +312,7 @@ class BroadcastEmailController extends Controller
         ->first();
 
         $get_inq = Tinquiry::orderBy('kode_inquiry', 'DESC')->first();
-        $count_inq = explode("INQ-", $get_inq->kode_inquiry);
+        $count_inq = explode("-", $get_inq->kode_inquiry);
         $kode_inq = "INQ-" . strval($count_inq[1] + 1) ;
         // dd($template);
         foreach ($draft as $key) {
