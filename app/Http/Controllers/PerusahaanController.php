@@ -65,7 +65,7 @@ class PerusahaanController extends Controller
                 $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
             }
             
-            $data->select(DB::raw('ta.id, ta.nama_perusahaan, ta.detail_produk_utama, ta.alamat_perusahaan, ta.telp_contact_person, ta.skala_perusahaan, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
+            $data->select(DB::raw('ta.*, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
             ->groupBy('ta.id')
             ->orderBy('ta.id', 'ASC')
             ->get();
