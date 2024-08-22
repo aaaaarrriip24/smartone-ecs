@@ -20,7 +20,7 @@
         <img src="https://smart.osakimedical.co.id/assets/img/err.jpg" style="width: 70%; height:100%;" />
     </div>
     <div class="col-sm-12 text-center">
-        <h3 style="font-size: 35px;">Website Under Constraction.</h3>
+        <h3 style="font-size: 35px;">Website Under Construction.</h3>
     </div>
 
     </div>
