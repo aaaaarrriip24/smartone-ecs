@@ -31,7 +31,7 @@ class LayananController extends Controller
         if($get_code == null) {
             $kode_code = "KLL-" . 1000 ;
         } else {
-            $count_code = explode("KLL-", $get_code->kode_layanan_lainnya);
+            $count_code = explode("-", $get_code->kode_layanan_lainnya);
             $kode_code = "KLL-" . strval($count_code[1] + 1) ;
         }
 
