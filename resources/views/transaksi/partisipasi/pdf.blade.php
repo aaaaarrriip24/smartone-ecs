@@ -24,25 +24,15 @@
 <body>
     <div>
         <center>
-            <h5>Daftar Partisipasi Perusahaan</h5>
-            <h6>Periode: {{ $tglawal }} s/d {{ $tglakhir }}</h6>
+            <h5>Daftar Perusahaan</h5>
         </center>
         <br />
+        @foreach( $data as $d )
+        <center>
+            <h6>{{ $d->kegiatan }}</h6>
+        </center>
         <table class="table table-bordered">
-            <thead style="background: #4BC0C0; font-size: 14px !important; text-align: center;" class="align-middle">
-                <tr>
-                    <th>No.</th>
-                    <th colspan="2">Nama Kegiatan</th>
-                    <th colspan="2">Tanggal Partisipasi</th>
-                </tr>
-            </thead>
             <tbody>
-                @foreach( $data as $d )
-                <tr style="background: #4BC0C0;">
-                    <td style="font-size: 12px !important; text-align: center;">{{ $loop->iteration }}</td>
-                    <td colspan="2">{{ $d->kegiatan }}</td>
-                    <td colspan="2">{{ date('d-M-Y', strtotime($d->tgl_partisipasi)) }}</td>
-                </tr>
                 <tr style="background: #9BDCDC;">
                     <td colspan="5" style="font-size: 14px !important;"><b>Peserta</b></td>
                 </tr>
@@ -66,9 +56,9 @@
                     <td style="border: none;"></td>
                     <td style="border: none;"></td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
+        @endforeach
 
     </div>
 

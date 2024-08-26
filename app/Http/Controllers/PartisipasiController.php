@@ -90,7 +90,7 @@ class PartisipasiController extends Controller
         if($get_code == null) {
             $kode_code = "PP-" . 1000 ;
         } else {
-            $count_code = explode("PP-", $get_code->kode_partisipasi);
+            $count_code = explode("-", $get_code->kode_partisipasi);
             $kode_code = "PP-" . strval($count_code[1] + 1) ;
         }
         
