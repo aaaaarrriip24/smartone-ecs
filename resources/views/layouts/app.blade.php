@@ -1023,6 +1023,10 @@
                                                 data-key="t-broadcast">InaExport</a>
                                         </li>
                                         <li class="nav-item">
+                                            <a href="{{ url('laporan/partisipasi') }}" class="nav-link"
+                                                data-key="t-broadcast">Partisipasi</a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a href="{{ url('laporan/lain') }}" class="nav-link"
                                                 data-key="t-broadcast">Layanan Lainnya</a>
                                         </li>

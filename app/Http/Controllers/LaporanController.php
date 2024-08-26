@@ -258,6 +258,44 @@ class LaporanController extends Controller
         return view('laporan/ina_export');
     }
 
+    public function partisipasi(Request $request) {
+        $title = 'Delete Perusahaan!';
+        $text = "Are you sure you want to delete?";
+        confirmDelete($title, $text);
+
+        if ($request->ajax()) {
+            $data = DB::table('t_partisipasi as ta')
+            ->leftJoin('t_partisipasi_perusahaan as tb', 'ta.id', '=', 'tb.id_partisipasi')
+            ->leftJoin('m_perusahaan as tc', 'tc.id', '=', 'tb.id_perusahaan')
+            ->leftJoin('m_tipe_perusahaan as td', 'td.id', '=', 'tc.id_tipe')
+            ->whereNull('ta.deleted_at')
+            ;
+            
+            if(isset($request->id_perusahaan)) {
+                $data->where('tb.id_perusahaan', '=' , $request->id_perusahaan);
+            }
+            if(isset($request->tglawal)) {
+                $data->where('ta.tgl_partisipasi', '>=' , date('Y-m-d', strtotime($request->tglawal)));
+            } 
+            if(isset($request->tglakhir)) {
+                $data->where('ta.tgl_partisipasi', '<=' , date('Y-m-d', strtotime($request->tglakhir)));
+            } 
+            
+            $data->select(DB::raw('group_concat( tc.nama_perusahaan ) as perusahaan, ta.*'))
+            ->groupBy('ta.id')
+            ->orderBy('ta.id', 'ASC')
+            ->get();
+
+            $data = $data->get();
+
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->make(true);
+        }
+        
+        return view('laporan/partisipasi');
+    }
+
     public function lain(Request $request)
     {
         $title = 'Delete Transaksi Layanan!';
