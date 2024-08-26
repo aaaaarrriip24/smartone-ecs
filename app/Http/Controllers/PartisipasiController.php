@@ -159,9 +159,17 @@ class PartisipasiController extends Controller
         $data = $data->get();
         
         $tb = DB::table('t_partisipasi_perusahaan as ta')
+        ->leftjoin('t_partisipasi as tx','tx.id','ta.id_partisipasi')
         ->leftjoin('m_perusahaan as tb','tb.id','ta.id_perusahaan')
         ->leftjoin('m_tipe_perusahaan as tc','tc.id','tb.id_tipe')
-        ->select(DB::raw('tb.kode_perusahaan, tb.nama_perusahaan, tb.detail_produk_utama, ta.id_partisipasi, ta.id, IFNULL(tc.nama_tipe, "") as nama_tipe'))
+        ->leftJoin('indonesia_provinces as td', 'tb.id_provinsi', '=', 'td.code')
+        ->leftJoin('indonesia_cities as te', 'tb.id_kabkota', '=', 'te.code')
+        ->leftJoin('m_k_produk as tf', 'tb.id_kategori_produk', '=', 'tf.id')
+        ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id_perusahaan')
+        ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+        ->select(DB::raw('tb.kode_perusahaan, group_concat( th.nama_sub_kategori ) AS sub_kategori, tf.nama_kategori_produk, td.name as provinsi, te.name as kabkota ,tb.skala_perusahaan, tb.nama_contact_person, tb.telp_contact_person, tb.alamat_perusahaan, tb.alamat_pabrik, tb.email, tb.nama_perusahaan, tb.detail_produk_utama, ta.id_partisipasi, ta.id, IFNULL(tc.nama_tipe, "") as nama_tipe'))
+        ->groupBy('tx.id')
+        ->groupBy('tb.id')
         ->get();
 
         // dd($tb);
@@ -170,7 +178,7 @@ class PartisipasiController extends Controller
             'tb' => $tb,
             'tglawal' => Carbon::parse($request->tglawal)->isoFormat('D MMMM'),
             'tglakhir' => Carbon::parse($request->tglakhir)->isoFormat('D MMMM Y'),
-        ]);
+        ])->setPaper('A4', 'landscape');
     	return $pdf->stream('Laporan Transaksi Partisipasi Perusahaan.pdf', array("Attachment" => false));
     }
 

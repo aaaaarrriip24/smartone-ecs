@@ -33,23 +33,27 @@
         </center>
         <table class="table table-bordered">
             <tbody>
-                <tr style="background: #9BDCDC;">
-                    <td colspan="5" style="font-size: 14px !important;"><b>Peserta</b></td>
-                </tr>
-                <tr style="background: #DBF2F2;">
+                <tr>
                     <td style="font-size: 12px !important; text-align: center;"><b>No.</b></td>
-                    <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Nama Perusahaan</b></td>
-                    <td colspan="2" style="font-size: 12px !important; text-align: center;"><b>Produk</b></td>
+                    <td style="font-size: 12px !important; text-align: center;"><b>Nama Perusahaan <br>Skala Perusahaan</b></td>
+                    <td style="font-size: 12px !important; text-align: center;"><b>Alamat</b></td>
+                    <td style="font-size: 12px !important; text-align: center;"><b>Produk</b></td>
+                    <td style="font-size: 12px !important; text-align: center;"><b>PIC</b></td>
+                    <td style="font-size: 12px !important; text-align: center;"><b>Email/ <br>Telephone</b></td>
                 </tr>
-                
+
                 @foreach( collect($tb)->where("id_partisipasi", $d->id)->toArray() as $k)
-                <tr style="background: #DBF2F2;">
+                <tr>
                     <td style="font-size: 12px !important; text-align: center;">{{ $loop->iteration }}</td>
-                    <td colspan="2">{{ $k->nama_perusahaan }}{{ empty($k->nama_tipe) ? "" : ", " .$k->nama_tipe }}</td>
-                    <td colspan="2">{{ empty($k->detail_produk_utama) ? "-" : $k->detail_produk_utama }}</td>
+                    <td>{{ $k->nama_perusahaan }}{{ empty($k->nama_tipe) ? "" : ", " .$k->nama_tipe }} <br>{{ empty($k->skala_perusahaan) ? " " : $k->skala_perusahaan}}</td>
+                    <td>{{ empty($k->alamat_perusahaan) ? $k->alamat_pabrik : $k->alamat_perusahaan }} <br> {{ $k->kabkota }}<br> {{ $k->provinsi }} </td>
+                    <td>{{ empty($k->nama_kategori_produk) ? "" : $k->nama_kategori_produk }}<br> {{ !empty($k->sub_kategori) ? $k->sub_kategori : "" }} <br> {{ empty($k->detail_produk_utama) ? "-" : $k->detail_produk_utama }} </td>
+                    <td>{{ empty($k->nama_contact_person) ? "-" : $k->nama_contact_person }}</td>
+                    <td>{{ empty($k->email) ? "-" : $k->email }} <br>{{ empty($k->telp_kantor) ? $k->telp_contact_person : $k->telp_kantor }}</td>
                 </tr>
                 @endforeach
                 <tr>
+                    <td style="border: none;"></td>
                     <td style="border: none;"></td>
                     <td style="border: none;"></td>
                     <td style="border: none;"></td>
