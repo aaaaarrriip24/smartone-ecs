@@ -170,6 +170,7 @@ class PartisipasiController extends Controller
         ->select(DB::raw('tb.kode_perusahaan, group_concat( th.nama_sub_kategori ) AS sub_kategori, tf.nama_kategori_produk, td.name as provinsi, te.name as kabkota ,tb.skala_perusahaan, tb.nama_contact_person, tb.telp_contact_person, tb.alamat_perusahaan, tb.alamat_pabrik, tb.email, tb.nama_perusahaan, tb.detail_produk_utama, ta.id_partisipasi, ta.id, IFNULL(tc.nama_tipe, "") as nama_tipe'))
         ->groupBy('tx.id')
         ->groupBy('tb.id')
+        ->orderBy('tb.nama_perusahaan', 'ASC')
         ->get();
 
         // dd($tb);

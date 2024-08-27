@@ -153,6 +153,9 @@
                     data: 'perusahaan',
                     name: 'perusahaan',
                     orderable: true,
+                    render: function(data, type, row) {
+                        return row.perusahaan.substr(0,30);
+                    }
                 },
                 {
                     data: 'kegiatan',
