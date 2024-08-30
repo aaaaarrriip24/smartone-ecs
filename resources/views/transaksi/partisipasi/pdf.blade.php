@@ -34,12 +34,12 @@
         <table class="table table-bordered">
             <tbody>
                 <tr>
-                    <td style="font-size: 12px !important; text-align: center;"><b>No.</b></td>
-                    <td style="font-size: 12px !important; text-align: center;"><b>Nama Perusahaan <br>Skala Perusahaan</b></td>
-                    <td style="font-size: 12px !important; text-align: center;"><b>Alamat</b></td>
-                    <td style="font-size: 12px !important; text-align: center;"><b>Produk</b></td>
-                    <td style="font-size: 12px !important; text-align: center;"><b>PIC</b></td>
-                    <td style="font-size: 12px !important; text-align: center;"><b>Email/ <br>Telephone</b></td>
+                    <td width="3%" style="font-size: 12px !important; text-align: center;"><b>No.</b></td>
+                    <td width="15%" style="font-size: 12px !important; text-align: center;"><b>Nama Perusahaan <br>Skala Perusahaan</b></td>
+                    <td width="25%" style="font-size: 12px !important; text-align: center;"><b>Alamat</b></td>
+                    <td width="15%" style="font-size: 12px !important; text-align: center;"><b>Produk</b></td>
+                    <td width="12%" style="font-size: 12px !important; text-align: center;"><b>PIC</b></td>
+                    <td width="10%" style="font-size: 12px !important; text-align: center;"><b>Email/ <br>Telephone</b></td>
                 </tr>
 
                 @foreach( collect($tb)->where("id_partisipasi", $d->id)->toArray() as $k)
@@ -53,12 +53,12 @@
                 </tr>
                 @endforeach
                 <tr>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
-                    <td style="border: none;"></td>
+                    <td width="3%" style="border: none;"></td>
+                    <td width="15%" style="border: none;"></td>
+                    <td width="25%" style="border: none;"></td>
+                    <td width="15%" style="border: none;"></td>
+                    <td width="12%" style="border: none;"></td>
+                    <td width="10%" style="border: none;"></td>
                 </tr>
             </tbody>
         </table>

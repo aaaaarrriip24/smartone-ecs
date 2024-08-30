@@ -11,10 +11,10 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Master</a></li>
                     <li class="breadcrumb-item active">Perusahaan</li>
-                    <li class="breadcrumb-item">
+                    <!-- <li class="breadcrumb-item">
                         <a href="{{ url('perusahaan/add') }}" class="btn btn-sm btn-primary text-light"
                             type="text">Add</a>
-                    </li>
+                    </li> -->
                     <li class="breadcrumb-item">
                         <button class="btn btn-sm btn-secondary btn-pdf">PDF</button>
                     </li>

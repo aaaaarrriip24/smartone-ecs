@@ -36,18 +36,18 @@
         <table class="table table-bordered">
             <thead style="font-size: 14px !important; text-align: center;" class="align-middle">
                 <tr>
-                    <th width="5%">No</th>
-                    <th>Nama&nbsp;Perusahaan <br>Skala</th>
-                    <th>Alamat</th>
-                    <th width="25%">Produk</th>
-                    <th>PIC</th>
+                    <th width="3%">No</th>
+                    <th width="15%">Nama&nbsp;Perusahaan/ <br>Skala</th>
+                    <th width="25%">Alamat</th>
+                    <th width="15%">Produk</th>
+                    <th width="10%">PIC</th>
                     <th width="10%">Email/ <br>Telephone</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach( $data as $d )
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td style="text-align: center;">{{ $loop->iteration }}</td>
                     <td>{{ $d->nama_perusahaan }}, {{ $d->nama_tipe }} <br>{{ $d->skala_perusahaan }}</td>
                     <td>{{ $d->alamat_perusahaan }} <br> {{ $d->cities }} <br> {{ $d->provinsi }} </td>
                     <td>{{ empty($d->nama_kategori_produk) ? "" : $d->nama_kategori_produk }} <br>{{ !empty($d->sub_kategori) ? $d->sub_kategori : "-" }} <br> {{ $d->detail_produk_utama }}</td>
