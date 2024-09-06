@@ -52,8 +52,8 @@
                     <th class="align-top">Alamat Perusahaan</th>
                     <th class="align-top">:</th>
                     <td>{{ $perusahaan->alamat_perusahaan }} <br>
-                        {{ $perusahaan->cities }} <br>
-                        {{ $perusahaan->provinsi }} </td>
+                        {{ Str::title($perusahaan->cities) }} <br>
+                        {{ Str::title($perusahaan->provinsi) }} </td>
                 </tr>
                 <tr>
                     <th>Skala Perusahaan</th>
