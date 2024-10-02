@@ -40,7 +40,7 @@
 <body>
     
     <footer>
-        <a href="https://exportcenter.id/">Export Center</a>
+        <a href="https://exportcenter.id/laporan/perusahaan">Export Center</a>
     </footer>
     
     <div>

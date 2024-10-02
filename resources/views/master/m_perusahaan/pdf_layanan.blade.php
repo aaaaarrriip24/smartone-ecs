@@ -26,10 +26,22 @@
             line-break: auto;
         }
 
+        footer {
+            position: fixed; 
+            bottom: -60px; 
+            left: 0px; 
+            right: 0px;
+            height: 75px;
+            text-align: center;
+            line-height: 35px;
+        }
     </style>
 </head>
 
 <body>
+    <footer>
+        <a href="https://exportcenter.id/laporan/perusahaan">Export Center</a>
+    </footer>
     <div>
         <center>
             <p style="font-size: 16px !important;"><b>LAYANAN/ KOMUNIKASI ECS DENGAN
