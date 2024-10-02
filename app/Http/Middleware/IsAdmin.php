@@ -16,11 +16,16 @@ class IsAdmin {
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->roleuser == 'Admin' || Auth::user()->roleuser == 'Superadmin') {
-            return $next($request);
+        if(Auth::check()) {
+            if (Auth::user()->roleuser == 'Admin' || Auth::user()->roleuser == 'Superadmin') {
+                return $next($request);
+            }
+    
+            Alert::error('error', "You don't have admin access.");
+            return redirect()->back();
+        } else {
+            Alert::error('error', "Please login first.");
+            return redirect()->back();
         }
-
-        Alert::error('error', "You don't have admin access.");
-        return redirect()->back();
     }
 }
