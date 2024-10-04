@@ -30,9 +30,9 @@
                                     <tr>
                                         <td class="text-end">{{ number_format($perusahaan) }}</td>
                                         <td class="text-end">
-                                            {{ number_format($bm) }}/{{ number_format( $ptbm->count_perusahaan )}}</td>
+                                            {{ number_format($bm) }}/{{ number_format( $ptbm2->jumlah_perusahaan )}}</td>
                                         <td class="text-end">
-                                            {{ number_format($iq) }}/{{ number_format( $ptiq->count_perusahaan )}}</td>
+                                            {{ number_format($iq) }}/{{ number_format( $ptiq2->jumlah_perusahaan )}}</td>
                                         <td class="text-end">{{ number_format($export->total) }}</td>
                                         <td class="text-end">{{ number_format($layanan) }}</td>
                                         <td class="text-end">{{ number_format( $ptina->count_perusahaan )}}</td>

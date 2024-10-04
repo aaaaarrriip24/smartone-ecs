@@ -69,12 +69,32 @@ class HomeController extends Controller
                 ->whereNull('tb.deleted_at')
                 ->first();
 
+                $ptiq2 = DB::table('t_profile_inquiry as ta')
+                ->leftJoin('m_negara as tb', 'ta.id_negara_asal_inquiry', '=', 'tb.id')
+                ->leftJoin('p_penerima_inquiry as tc', 'ta.id', '=', 'tc.id_inquiry')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->select('ta.*', 'tb.en_short_name', DB::raw("COUNT(ta.id) AS jumlah_inquiry,COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+                // ->groupBy('tc.id_inquiry')
+                ->orderBy('ta.tanggal_inquiry', 'ASC')
+                ->first();
+
+                $ptbm2 = DB::table('t_bm as ta')
+                ->leftJoin('m_negara as tb', 'ta.id_negara_buyer', '=', 'tb.id')
+                ->leftJoin('p_peserta_bm as tc', 'ta.id', '=', 'tc.id_bm')
+                ->whereNull('ta.deleted_at')
+                ->whereNull('tb.deleted_at')
+                ->select('ta.*', 'tb.en_short_name', DB::raw("group_concat(tc.id_perusahaan) AS perusahaan, COUNT(tc.id_perusahaan) AS jumlah_perusahaan"))
+                // ->groupBy('tc.id_bm')
+                ->orderBy('ta.tanggal_bm', 'ASC')
+                ->first();
+
                 $bm = TBm::all()->whereNull('deleted_at')->count();
                 $ptbm = PPBm::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
                 $iq = Tinquiry::all()->whereNull('deleted_at')->count();
                 $ptiq = PPInquiry::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
                 $ptina = PPInaexport::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
-                return view('home', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptina')); 
+                return view('home', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptiq2', 'ptbm2', 'ptina')); 
             } else {
                 return redirect('/'); 
             }
