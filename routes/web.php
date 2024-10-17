@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
@@ -26,6 +25,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\TransaksiLayananController;
 use App\Http\Controllers\ManagementUserController;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +45,7 @@ Route::get('supplier', [HomePageController::class, 'supplier']);
 Route::get('gallery', [HomePageController::class, 'gallery']);
 Route::get('news', [HomePageController::class, 'news']);
 Route::get('contact', [HomePageController::class, 'contact']);
+Route::get('lang/{locale}', [LanguageController::class, 'index']);
 
 // Handle Back Button
 Route::post('login_from', [LoginController::class, 'authenticate']);
