@@ -115,7 +115,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ session('locale') == 'id' ? $item->judul : $item->judul }}</h5>
                                 <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit($item->isi, 70, '...') }}</p>
-                                <a href="{{ url('berita/' . $item->id) }}" class="btn btn-primary">Read More</a>
+                                <a href="{{ url('news/detail/' . $item->id) }}" class="btn btn-primary">Read More</a>
                             </div>
                         </div>
                     </div>

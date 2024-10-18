@@ -216,7 +216,7 @@
                         </div>
                         <h4 class="mb-3">{{ session('locale') == 'id' ? $item->judul : $item->judul }}</h4>
                         <p class="text-justify">{{ Str::limit($item->isi, 150, '...') }}</p>
-                        <a class="btn-slide mt-2" href="{{ url('news/' . $item->id) }}">
+                        <a class="btn-slide mt-2" href="{{ url('news/detail/' . $item->id) }}">
                             <i class="fa fa-arrow-right"></i>
                             <span>Read More</span>
                         </a>
