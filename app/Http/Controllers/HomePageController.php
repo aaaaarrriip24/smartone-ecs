@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Alert;
 use App\Models\Perusahaan;
+use App\Models\Berita;
 use App\Models\TKonsultasi;
 use App\Models\Tinquiry;
 use App\Models\PPInquiry;
@@ -23,6 +24,7 @@ class HomePageController extends Controller
     public function index(Request $request)
     {
         $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
+        $berita = Berita::whereNull('deleted_at')->orderBy('created_at', 'ASC')->take(3)->get();
 
         // $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
         $layanan = DB::table('t_konsultasi as ta')
@@ -77,7 +79,23 @@ class HomePageController extends Controller
         $iq = Tinquiry::all()->whereNull('deleted_at')->count();
         $ptiq = PPInquiry::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
         $ptina = PPInaexport::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
-        return view('welcome', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptiq2', 'ptbm2', 'ptina')); 
+        return view('welcome', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptiq2', 'ptbm2', 'ptina', 'berita')); 
+    }
+
+    public function berita() {
+        $berita = Berita::whereNull('deleted_at')->orderBy('created_at', 'DESC')->get();
+        return view('company_profile/news', compact('berita')); 
+    }
+
+    public function berita_detail($id) {
+        $berita = Berita::find($id);
+
+        $otherBerita = Berita::where('id', '!=', $id)
+        ->whereNull('deleted_at')
+        ->limit(3)
+        ->get();
+
+        return view('company_profile/news_detail', compact('berita', 'otherBerita')); 
     }
 
     public function data_topik(Request $request) {

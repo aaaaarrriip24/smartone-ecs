@@ -200,42 +200,32 @@
             <h1 class="mb-5">Explore Our News</h1>
         </div>
         <div class="row g-4">
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75"
-                            src="{{ asset('assets/images/ecs/icon_layanan/Business Matching.png')}}" alt="">
+            @foreach($berita as $item)
+                <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item p-4">
+                        <div class="overflow-hidden text-center mb-4">
+                            @if(!empty($item->gambar))
+                                @php
+                                    $gambarArray = json_decode($item->gambar);
+                                    $firstImage = !empty($gambarArray) ? $gambarArray[0] : 'default.png';
+                                @endphp
+                                <img class="img-fluid w-75" src="{{ asset('images/' . $firstImage) }}" alt="">
+                            @else
+                                <img class="img-fluid w-75" src="{{ asset('assets/images/default.png') }}" alt="Default Image">
+                            @endif
+                        </div>
+                        <h4 class="mb-3">{{ session('locale') == 'id' ? $item->judul : $item->judul }}</h4>
+                        <p class="text-justify">{{ Str::limit($item->isi, 150, '...') }}</p>
+                        <a class="btn-slide mt-2" href="{{ url('news/' . $item->id) }}">
+                            <i class="fa fa-arrow-right"></i>
+                            <span>Read More</span>
+                        </a>
                     </div>
-                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Bussiness Matching' : 'Business Matching' }}</h4>
-                    <p class="text-justify">Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis
-                        kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.</p>
-                    <a class="btn-slide mt-2" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Konsultasi.png')}}"
-                            alt="">
-                    </div>
-                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</h4>
-                    <p class="text-justify">Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum
-                        dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.</p>
-                    <a class="btn-slide mt-2" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75"
-                            src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
-                    </div>
-                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang' : 'Trade Case Mediation' }}</h4>
-                    <p class="text-justify">Mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional,
-                        membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.</p>
-                    <a class="btn-slide mt-2" href="{{ url('our-mediasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
+            @endforeach
+        </div>
+        <div class="text-center mt-4">
+            <a class="btn btn-primary" href="{{ url('news') }}">Read More News</a>
         </div>
     </div>
 </div>
@@ -875,6 +865,5 @@
 
         $(".dt-length").addClass("d-none");
     });
-
 </script>
 @endsection

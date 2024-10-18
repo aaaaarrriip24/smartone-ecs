@@ -59,9 +59,15 @@ Route::get('other-relasi', [HomePageController::class, 'other_relasi']);
 
 // Data
 Route::get('data_topik', [HomePageController::class, 'data_topik']);
+Route::get('data_berita', [HomePageController::class, 'data_berita']);
 Route::get('section1', [HomePageController::class, 'section1']);
 Route::get('section2', [HomePageController::class, 'section2']);
 Route::get('section3', [HomePageController::class, 'section3']);
+
+// Berita
+Route::get('news', [HomePageController::class, 'berita']);
+Route::get('news/detail/{id}', [HomePageController::class, 'berita_detail']);
+
 
 Route::get('/change-language', function (Request $request) {
     $locale = $request->input('locale');
