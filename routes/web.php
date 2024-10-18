@@ -56,6 +56,13 @@ Route::get('other-service', [HomePageController::class, 'other_service']);
 Route::get('our-supplier', [HomePageController::class, 'our_supplier']);
 Route::get('our-market', [HomePageController::class, 'our_market']);
 Route::get('other-relasi', [HomePageController::class, 'other_relasi']);
+
+// Data
+Route::get('data_topik', [HomePageController::class, 'data_topik']);
+Route::get('section1', [HomePageController::class, 'section1']);
+Route::get('section2', [HomePageController::class, 'section2']);
+Route::get('section3', [HomePageController::class, 'section3']);
+
 Route::get('/change-language', function (Request $request) {
     $locale = $request->input('locale');
     Session::put('locale', $locale);
@@ -93,10 +100,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
         Route::get('berita/destroy/{id}', [BeritaController::class, 'destroy']);
 
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
-        Route::get('data_topik', [HomeController::class, 'data_topik']);
-        Route::get('section1', [HomeController::class, 'section1']);
-        Route::get('section2', [HomeController::class, 'section2']);
-        Route::get('section3', [HomeController::class, 'section3']);
 
         // Data
         Route::get('perusahaan/provinces', [DataController::class, 'perusahaan_provinces'])->name('perusahaan_provinces');
