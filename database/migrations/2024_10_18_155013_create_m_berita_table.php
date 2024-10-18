@@ -13,14 +13,17 @@ class CreateMBeritaTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_berita', function (Blueprint $table) {
-            $table->id(); // Membuat kolom id
-            $table->string('judul_berita'); // Membuat kolom judul_berita
-            $table->text('deskripsi'); // Membuat kolom deskripsi
-            $table->unsignedBigInteger('id_penulis'); // Membuat kolom id_penulis
-            $table->integer('terbaca')->default(0); // Membuat kolom terbaca dengan default 0
-            $table->timestamps(); // Menambahkan created_at dan updated_at
-            $table->softDeletes(); // Menambahkan deleted_at untuk soft delete
+        Schema::create('berita', function (Blueprint $table) {
+            $table->id(); // ID unik
+            $table->string('judul')->nullable(); // Judul berita, nullable
+            $table->text('isi')->nullable(); // Isi berita, nullable
+            $table->text('gambar')->nullable(); // Nama file gambar dalam format teks, nullable
+            $table->unsignedBigInteger('id_penulis')->nullable(); // ID penulis, nullable
+            $table->timestamps(); // Untuk created_at dan updated_at
+            $table->softDeletes(); // Menambahkan kolom deleted_at untuk soft deletes
+
+            // Jika Anda ingin menambahkan foreign key
+            // $table->foreign('id_penulis')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

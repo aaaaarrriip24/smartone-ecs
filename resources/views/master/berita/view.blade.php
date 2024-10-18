@@ -51,7 +51,7 @@
 
 <!-- Add Modal -->
 <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form method="post" action="{{ url('berita/store') }}" enctype="multipart/form-data">
                 @csrf
@@ -62,21 +62,22 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Judul Berita</label>
-                        <input type="text" name="judul" class="form-control form-control-sm" required="required">
+                        <input type="text" name="judul" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
                         <label>Isi Berita</label>
-                        <textarea name="isi" class="form-control form-control-sm" required="required"></textarea>
+                        <textarea name="isi" class="form-control form-control-sm" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Gambar</label>
-                        <input type="file" name="gambar" class="form-control form-control-sm" accept="image/*" required="required">
+                        <input type="file" name="gambar[]" class="form-control form-control-sm" accept="image/*" multiple required>
+                        <div id="previewImages" class="mt-2"></div> <!-- Tempat untuk preview gambar -->
                     </div>
                     <div class="form-group">
                         <label>Penulis</label>
-                        <select name="id_penulis" class="form-control form-control-sm selectPetugas" required="required">
+                        <select name="id_penulis" class="form-control form-control-sm selectPetugas" required>
                             <option value="">Pilih Penulis</option>
-                            @foreach($penulis as $penulisItem) <!-- Pastikan $penulis sudah didefinisikan dalam controller -->
+                            @foreach($penulis as $penulisItem)
                                 <option value="{{ $penulisItem->id }}">{{ $penulisItem->nama_petugas }}</option>
                             @endforeach
                         </select>
@@ -91,13 +92,17 @@
     </div>
 </div>
 
+
+
 <!-- Edit Modal -->
 <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form method="post" action="{{ url('berita/update') }}" enctype="multipart/form-data">
                 @csrf
-                <input hidden type="text" class="form-control" id="id" name="id">
+                @method('PUT') <!-- Tambahkan ini untuk mengindikasikan metode PUT -->
+                <input type="hidden" name="id" id="editBeritaId"> <!-- Hidden input untuk ID berita yang akan diedit -->
+                
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalEditLabel">Edit Berita</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -105,11 +110,26 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Judul Berita</label>
-                        <input type="text" name="judul" class="form-control form-control-sm judul" required="required">
+                        <input type="text" name="judul" class="form-control form-control-sm" id="editJudul" required="required">
                     </div>
                     <div class="form-group">
                         <label>Isi Berita</label>
-                        <textarea name="isi" class="form-control form-control-sm isi" required="required"></textarea>
+                        <textarea name="isi" class="form-control form-control-sm" id="editIsi" required="required"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Gambar</label>
+                        <input type="file" name="gambar[]" class="form-control form-control-sm" accept="image/*" multiple>
+                        <small class="form-text text-muted">Kosongkan jika tidak ingin mengubah gambar.</small>
+                        <div id="existingImages" class="mt-2"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Penulis</label>
+                        <select name="id_penulis" class="form-control form-control-sm selectPetugas" id="editPenulis" required="required">
+                            <option value="">Pilih Penulis</option>
+                            @foreach($penulis as $penulisItem)
+                                <option value="{{ $penulisItem->id }}">{{ $penulisItem->nama_petugas }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -121,9 +141,10 @@
     </div>
 </div>
 
+
 <!-- Detail Modal -->
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalDetailLabel">Detail Berita</h5>
@@ -132,11 +153,25 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label>Judul Berita</label>
-                    <input type="text" name="judul" class="form-control form-control-sm judul" disabled readonly>
+                    <input type="text" name="judul" class="form-control form-control-sm" id="detailJudul" disabled>
                 </div>
                 <div class="form-group">
                     <label>Isi Berita</label>
-                    <textarea name="isi" class="form-control form-control-sm isi" disabled readonly></textarea>
+                    <textarea name="isi" class="form-control form-control-sm" id="detailIsi" disabled></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Gambar</label>
+                    <div id="existingImagesDetail" class="mt-2"></div> <!-- Tempat untuk menampilkan gambar -->
+                </div>
+                <div class="form-group">
+                    <label>Penulis</label>
+                    <label>Penulis</label>
+                    <select name="id_penulis" class="form-control form-control-sm selectPetugas" id="detailPenulis" disabled>
+                        <option value="">Pilih Penulis</option>
+                        @foreach($penulis as $penulisItem)
+                            <option value="{{ $penulisItem->id }}">{{ $penulisItem->nama_petugas }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="modal-footer">
@@ -182,6 +217,16 @@
                     data: 'isi', // Sesuaikan dengan nama kolom di database
                     name: 'isi',
                     orderable: true,
+                    render: function(data, type, row) {
+                    if (type === 'display') {
+                            // Batasi panjang teks
+                            var limit = 100; // Ganti dengan batas karakter yang diinginkan
+                            if (data.length > limit) {
+                                return '<span class="truncate">' + data.substring(0, limit) + '...</span>';
+                            }
+                        }
+                        return data; // Kembalikan data asli jika tidak dalam mode tampilan
+                    }
                 },
                 {
                     data: 'action',
@@ -193,21 +238,58 @@
             ]
         });
 
+        $('input[type="file"][name="gambar[]"]').on('change', function (event) {
+            var files = event.target.files; // Mengambil file yang dipilih
+            $('#previewImages').empty(); // Kosongkan preview sebelumnya
+
+            // Loop melalui setiap file
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var reader = new FileReader();
+
+                // Ketika file selesai dibaca
+                reader.onload = (function (file) {
+                    return function (e) {
+                        // Tambahkan gambar ke div preview
+                        $('#previewImages').append('<img src="' + e.target.result + '" class="img-thumbnail" style="max-width: 150px; margin-right: 5px; height: auto;">');
+                    };
+                })(file);
+
+                // Membaca file sebagai URL
+                reader.readAsDataURL(file);
+            }
+        });
+
         $(document).on('click', '.btn-edit', function () {
             var id = $(this).val();
             $('#modalEdit').modal('show');
 
             $.ajax({
                 type: "GET",
-                url: base_url + "berita/show/" + id, // Ubah ke URL berita
+                url: base_url + "berita/show/" + id,
                 success: function (response) {
                     console.log(response);
-                    $('#id').val(id);
-                    $('.judul').val(response.data.judul); // Sesuaikan dengan nama kolom di database
-                    $('.isi').val(response.data.isi); // Sesuaikan dengan nama kolom di database
+                    $('#editBeritaId').val(response.data.id);
+                    $('#editJudul').val(response.data.judul);
+                    $('#editIsi').val(response.data.isi);
+                    $('#editPenulis').val(response.data.id_penulis);
+
+                    // Tampilkan gambar yang ada
+                    var existingImagesHtml = '';
+                    if (response.data.gambar) {
+                        var gambarArray = JSON.parse(response.data.gambar);
+                        gambarArray.forEach(function(gambar) {
+                            existingImagesHtml += '<img src="' + base_url + 'images/' + gambar + '" class="img-thumbnail image-consistent" style="margin-right: 5px; width: 150px; height: 150px; object-fit: cover;">';
+                        });
+                    }
+                    $('#existingImages').html(existingImagesHtml);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching data:', error);
                 }
             });
         });
+
 
         // $('.select2').select2(
         //     dropdownParent: $('#modalAdd')
@@ -219,12 +301,25 @@
 
             $.ajax({
                 type: "GET",
-                url: base_url + "berita/show/" + id, // Ubah ke URL berita
+                url: base_url + "berita/show/" + id,
                 success: function (response) {
                     console.log(response);
-                    $('#id').val(id);
-                    $('.judul').val(response.data.judul); // Sesuaikan dengan nama kolom di database
-                    $('.isi').val(response.data.isi); // Sesuaikan dengan nama kolom di database
+                    $('#detailJudul').val(response.data.judul);
+                    $('#detailIsi').val(response.data.isi);
+                    $('#detailPenulis').val(response.data.id_penulis); // Pastikan ini sesuai dengan respons
+
+                    // Tampilkan gambar yang ada
+                    var existingImagesHtml = '';
+                    if (response.data.gambar) {
+                        var gambarArray = JSON.parse(response.data.gambar);
+                        gambarArray.forEach(function(gambar) {
+                            existingImagesHtml += '<img src="' + base_url + 'images/' + gambar + '" class="img-thumbnail image-consistent" style="margin-right: 5px; width: 150px; height: 150px; object-fit: cover;">';
+                        });
+                    }
+                    $('#existingImagesDetail').html(existingImagesHtml);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching data:', error);
                 }
             });
         });

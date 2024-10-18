@@ -47,17 +47,30 @@ class BeritaController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi input
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'isi' => 'required|string',
+            'gambar' => 'nullable|array',
+            'gambar.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar
+        ]);
+
         // Mengunggah gambar
+        $filenames = []; // Array untuk menyimpan nama file gambar
         if ($request->hasFile('gambar')) {
-            $imageName = time().'.'.$request->gambar->extension();  
-            $request->gambar->move(public_path('images'), $imageName); // Pindahkan gambar ke direktori yang sesuai
+            $images = $request->file('gambar'); // Ambil array gambar
+            foreach ($images as $image) {
+                $imageName = time() . '_' . uniqid() . '.' . $image->extension();  
+                $image->move(public_path('images'), $imageName); // Pindahkan gambar ke direktori yang sesuai
+                $filenames[] = $imageName; // Tambahkan nama file ke array
+            }
         }
 
         // Menyimpan data berita
         Berita::insert([
             'judul' => $request->judul,
             'isi' => $request->isi,
-            'gambar' => $imageName, // Simpan nama file gambar
+            'gambar' => json_encode($filenames), // Simpan nama file gambar sebagai JSON
             'id_penulis' => $request->id_penulis, // Simpan id_penulis
             'created_at' => Carbon::now(),
         ]);
@@ -68,21 +81,61 @@ class BeritaController extends Controller
 
     public function show($id)
     {
-        $data = Berita::findOrFail($id);
+        // Cari berita berdasarkan ID
+        $berita = Berita::find($id);
+
+        if (!$berita) {
+            return response()->json(['message' => 'Berita tidak ditemukan'], 404);
+        }
+
+        // Mengembalikan data berita dengan gambar
         return response()->json([
-            "status" => 200,
-            "data" => $data
+            'data' => [
+                'id' => $berita->id,
+                'judul' => $berita->judul,
+                'isi' => $berita->isi,
+                'gambar' => $berita->gambar, // Asumsi kolom 'gambar' berisi string JSON
+                'id_penulis' => $berita->id_penulis,
+            ]
         ]);
     }
 
     public function update(Request $request)
     {
-        Berita::where('id', $request->id)
-        ->update([
-            'judul' => $request->judul, // Mengganti sesuai kolom yang relevan
-            'isi' => $request->isi, // Mengganti sesuai kolom yang relevan
-            'updated_at' => Carbon::now(),
+        // Validasi input
+        $request->validate([
+            'judul' => 'required|string|max:255',
+            'isi' => 'required|string',
+            'gambar' => 'nullable|array',
+            'gambar.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar
         ]);
+
+        // Cari berita berdasarkan ID
+        $berita = Berita::find($request->id);
+        if (!$berita) {
+            Alert::toast('Berita tidak ditemukan!', 'error');
+            return redirect()->route('berita');
+        }
+
+        // Update data judul dan isi
+        $berita->judul = $request->judul;
+        $berita->isi = $request->isi;
+        $berita->updated_at = Carbon::now();
+
+        // Proses gambar jika ada
+        if ($request->hasFile('gambar')) {
+            $imageNames = [];
+            foreach ($request->file('gambar') as $image) {
+                $imageName = time() . '_' . uniqid() . '.' . $image->extension();
+                $image->move(public_path('images'), $imageName);
+                $imageNames[] = $imageName; // Simpan nama file gambar
+            }
+            $berita->gambar = json_encode($imageNames); // Simpan nama gambar sebagai JSON
+        }
+
+        // Simpan perubahan
+        $berita->save();
+
         Alert::toast('Success Edit Berita!', 'success');
         return redirect()->route('berita'); // Pastikan ada rute yang sesuai
     }
