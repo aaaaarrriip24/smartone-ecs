@@ -514,7 +514,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Toto Dirgantoro.png')}}" alt="">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Toto-Dirgantoro.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Toto Dirgantoro</h5>
                     <p>{{ Str::limit('Kepala Pengelola Export Center Surabaya', 150, $end='...') }}</p>
