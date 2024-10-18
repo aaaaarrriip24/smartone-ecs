@@ -8,6 +8,10 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
+    <!-- csrf -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- base_url -->
+    <meta name="base_url" content="{{ url('') }}" />
     <!-- Favicon -->
     <link href="{{ asset('assets/images/favicon_io/favicon.ico')}}" rel="icon">
 
@@ -30,6 +34,17 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('assets_users/css/style.css')}}" rel="stylesheet">
+
+    <!-- Datatables -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
+    <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
+
+    <style>
+        .text-justify {
+            text-align: justify;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,11 +66,11 @@
         style="margin-top: 6rem;">
         <div class="container py-5">
             <div class="row g-5">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-7">
                     <h4 class="text-light mb-4">Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jl. Kedung Doro No.80-90, Sawahan, Kec. Sawahan, Surabaya, Jawa Timur 60251</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>(+62)857 5587 9497</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>exportcenter.surabaya@kemendag.go.id</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -65,23 +80,23 @@
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Air Freight</a>
-                    <a class="btn btn-link" href="">Sea Freight</a>
-                    <a class="btn btn-link" href="">Road Freight</a>
-                    <a class="btn btn-link" href="">Logistic Solutions</a>
-                    <a class="btn btn-link" href="">Industry solutions</a>
+                    <a class="btn btn-link" href="{{ url('our-bm') }}">{{ session('locale') == 'id' ? 'Bussiness Matching' : 'Business Matching' }}</a>
+                    <a class="btn btn-link" href="{{ url('our-konsultasi') }}">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</a>
+                    <a class="btn btn-link" href="{{ url('our-mediasi') }}">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang' : 'Trade Case Mediation' }}</a>
+                    <a class="btn btn-link" href="{{ url('our-panduan') }}">{{ session('locale') == 'id' ? 'Pendampingan InaExport' : 'InaExport Mentoring' }}</a>
+                    <a class="btn btn-link" href="{{ url('our-inquiries') }}">{{ session('locale') == 'id' ? 'Penyebaran Inquiry' : 'Inquiry Dissemination' }}</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-light mb-4">Quick Links</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Our Services</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">Support</a>
+                    <a class="btn btn-link" href="{{ url('about') }}">About Us</a>
+                    <a class="btn btn-link" href="{{ url('contact') }}">Contact Us</a>
+                    <a class="btn btn-link" href="{{ url('services') }}">Our Services</a>
+                    <a class="btn btn-link" href="{{ url('terms') }}">Terms & Condition</a>
+                    <a class="btn btn-link" href="{{ url('support') }}">Support</a>
                 </div>
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-2 col-md-">
                     <h4 class="text-light mb-4">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p></p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
                         <button type="button"
@@ -112,9 +127,13 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
 
+    <!-- Datatables -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('assets_users/lib/wow/wow.min.js')}}"></script>
     <script src="{{ asset('assets_users/lib/easing/easing.min.js')}}"></script>

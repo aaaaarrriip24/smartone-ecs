@@ -3,7 +3,8 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light shadow border-top border-5 border-primary sticky-top p-0">
     <a href="{{ url('/') }}" class="navbar-brand bg-white d-flex align-items-center px-4 px-lg-5">
-        <img src="{{ asset('assets/images/kemendag.png')}}" class="" style="background: white;width: 180px; display: inline-block;" alt="">
+        <img src="{{ asset('assets/images/kemendag.png')}}" class=""
+            style="background: white;width: 180px; display: inline-block;" alt="">
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -17,42 +18,171 @@
 <div class="container-fluid p-0 pb-5">
     <div class="owl-carousel header-carousel position-relative mb-5">
         <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{{ asset('assets_users/img/carousel-1.jpg')}}" alt="">
+            <img class="img-fluid" src="{{ asset('assets/images/ecs/slide_welcome/1.jpg')}}" alt="">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                style="background: rgba(6, 3, 21, .5);">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h1 class="display-3 text-white animated slideInDown mb-4">Export Center Surabaya</h1>
-                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik
-                                untuk
-                                konsultasi dan informasi mengenai pasar ekspor.</h5>
-                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor
-                                at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
-                                elitr.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
-                                More</a>
-                        </div>
-                    </div>
-                </div>
+                style="background: rgba(6, 3, 21, .0);">
             </div>
         </div>
         <div class="owl-carousel-item position-relative">
-            <img class="img-fluid" src="{{ asset('assets_users/img/carousel-2.jpg')}}" alt="">
+            <img class="img-fluid" src="{{ asset('assets/images/ecs/slide_welcome/2.jpg')}}" alt="">
             <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
-                style="background: rgba(6, 3, 21, .5);">
-                <div class="container">
-                    <div class="row justify-content-start">
-                        <div class="col-10 col-lg-8">
-                            <h1 class="display-3 text-white animated slideInDown mb-4">Export Center Surabaya</h1>
-                            <h5 class="display-8 text-white text-uppercase mb-3 animated slideInDown">Layanan publik
-                                untuk
-                                konsultasi dan informasi mengenai pasar ekspor.</h5>
-                            <p class="fs-5 fw-medium text-white mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor
-                                at sed stet sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea
-                                elitr.</p>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read
-                                More</a>
+                style="background: rgba(6, 3, 21, .0);">
+            </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{{ asset('assets/images/ecs/slide_welcome/3.jpg')}}" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                style="background: rgba(6, 3, 21, .0);">
+            </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{{ asset('assets/images/ecs/slide_welcome/4.jpg')}}" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                style="background: rgba(6, 3, 21, .0);">
+            </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid" src="{{ asset('assets/images/ecs/slide_welcome/5.jpg')}}" alt="">
+            <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                style="background: rgba(6, 3, 21, .0);">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Carousel End -->
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-secondary text-uppercase">Our Services</h6>
+            <h1 class="mb-5">Explore Our Services</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75"
+                            src="{{ asset('assets/images/ecs/icon_layanan/Business Matching.png')}}" alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Bussiness Matching' : 'Business Matching' }}</h4>
+                    <p class="text-justify">Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis
+                        kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Konsultasi.png')}}"
+                            alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</h4>
+                    <p class="text-justify">Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum
+                        dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75"
+                            src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang' : 'Trade Case Mediation' }}</h4>
+                    <p class="text-justify">Mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional,
+                        membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-mediasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75"
+                            src="{{ asset('assets/images/ecs/icon_layanan/Pendampingan InaExport.png')}}" alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Pendampingan InaExport' : 'InaExport Mentoring' }}</h4>
+                    <p class="text-justify">Pendampingan InaExport mendukung perusahaan dalam memanfaatkan platform InaExport, memberikan
+                        pelatihan dan strategi untuk meningkatkan visibilitas produk di pasar internasional.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-panduan') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75"
+                            src="{{ asset('assets/images/ecs/icon_layanan/Penyebaran Inquiry.png')}}" alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Penyebaran Inquiry' : 'Inquiry Dissemination' }}</h4>
+                    <p class="text-justify">Penyebaran Inquiry mempromosikan produk Anda kepada calon pembeli di pasar global dengan
+                        mengelola dan menyebarkan permintaan informasi dari buyer kepada pelaku usaha yang relevan.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-inquiries') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+<!-- Dashboard -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-body">
+                    <div class="row">
+                        <!-- Template -->
+                        <div class="col-md-12">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" scope="col" style="background-color: rgb(255, 99, 132);">
+                                            Perusahaan&nbsp;Terdaftar</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(75, 192, 192);">
+                                            Business&nbsp;Matching</th>
+                                        <th class="text-center" scope="col" width="250px" style="background-color: rgb(189,156,255);">
+                                            Inquiry</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(255, 205, 86);">
+                                            Realisasi&nbsp;Export&nbsp;(USD)</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(255, 159, 64);">
+                                            Jumlah&nbsp;Konsultasi</th>
+                                        <th class="text-center" scope="col" style="background-color: rgb(124,194,242);">InaExport</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-end">{{ number_format($perusahaan) }}</td>
+                                        <td class="text-end">
+                                            {{ number_format($bm) }}/{{ number_format( $ptbm2->jumlah_perusahaan )}}</td>
+                                        <td class="text-end">
+                                            {{ number_format($iq) }}/{{ number_format( $ptiq2->jumlah_perusahaan )}}</td>
+                                        <td class="text-end">{{ number_format($export->total) }}</td>
+                                        <td class="text-end">{{ number_format($layanan) }}</td>
+                                        <td class="text-end">{{ number_format( $ptina->count_perusahaan )}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <canvas id="chart_layanan_konsultasi" style="width: 900px; height: 500px"></canvas>
+                        </div>
+                        <!-- <div class="col-md-6">
+                            <canvas id="chart_topik" style="width: 900px; height: 500px"></canvas>
+                        </div> -->
+                        <div class="col-md-6">
+                            <table id="dt_topik" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="background-color: rgb(255, 99, 132);">No.
+                                        </th>
+                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Topik Konsultasi
+                                        </th>
+                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Data Konsultasi
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -60,8 +190,56 @@
         </div>
     </div>
 </div>
-<!-- Carousel End -->
+<!-- Dashboard -->
 
+<!-- News Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-secondary text-uppercase">ECS News</h6>
+            <h1 class="mb-5">Explore Our News</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75"
+                            src="{{ asset('assets/images/ecs/icon_layanan/Business Matching.png')}}" alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Bussiness Matching' : 'Business Matching' }}</h4>
+                    <p class="text-justify">Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis
+                        kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Konsultasi.png')}}"
+                            alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</h4>
+                    <p class="text-justify">Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum
+                        dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item p-4">
+                    <div class="overflow-hidden text-center mb-4">
+                        <img class="img-fluid w-75"
+                            src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
+                    </div>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang' : 'Trade Case Mediation' }}</h4>
+                    <p class="text-justify">Mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional,
+                        membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.</p>
+                    <a class="btn-slide mt-2" href="{{ url('our-mediasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- News End -->
 
 <!-- About Start -->
 <!-- <div class="container-fluid overflow-hidden py-5 px-lg-0">
@@ -102,7 +280,7 @@
 
 
 <!-- Fact Start -->
-<div class="container-xxl py-5">
+<!-- <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -144,86 +322,11 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Fact End -->
 
-
-<!-- Service Start -->
-<div class="container-xxl py-5">
-    <div class="container py-5">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">Our Services</h6>
-            <h1 class="mb-5">Explore Our Services</h1>
-        </div>
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/service-1.jpg')}}" alt="">
-                    </div>
-                    <h4 class="mb-3">Air Freight</h4>
-                    <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                    <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/service-2.jpg')}}" alt="">
-                    </div>
-                    <h4 class="mb-3">Ocean Freight</h4>
-                    <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                    <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/service-3.jpg')}}" alt="">
-                    </div>
-                    <h4 class="mb-3">Road Freight</h4>
-                    <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                    <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/service-4.jpg')}}" alt="">
-                    </div>
-                    <h4 class="mb-3">Train Freight</h4>
-                    <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                    <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/service-5.jpg')}}" alt="">
-                    </div>
-                    <h4 class="mb-3">Customs Clearance</h4>
-                    <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                    <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="service-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/service-6.jpg')}}" alt="">
-                    </div>
-                    <h4 class="mb-3">Warehouse Solutions</h4>
-                    <p>Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam lorem diam.</p>
-                    <a class="btn-slide mt-2" href=""><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Service End -->
-
-
 <!-- Feature Start -->
-<div class="container-fluid overflow-hidden py-5 px-lg-0">
+<!-- <div class="container-fluid overflow-hidden py-5 px-lg-0">
     <div class="container feature py-5 px-lg-0">
         <div class="row g-5 mx-lg-0">
             <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
@@ -262,7 +365,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Feature End -->
 
 
@@ -344,7 +447,7 @@
 
 
 <!-- Quote Start -->
-<div class="container-xxl py-5">
+<!-- <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
@@ -396,7 +499,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!-- Quote End -->
 
 
@@ -411,67 +514,169 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/team-1.jpg')}}" alt="">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Toto Dirgantoro.png')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <p>Designation</p>
+                    <h5 class="mb-0">Toto Dirgantoro</h5>
+                    <p>{{ Str::limit('Kepala Pengelola Export Center Surabaya', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
                         </span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/team-2.jpg')}}" alt="">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Adistiar-Prayoga.png')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <p>Designation</p>
+                    <h5 class="mb-0">Adistiar Prayoga</h5>
+                    <p>{{ Str::limit('Staff Senior Bidang Keuangan', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
                         </span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/team-3.jpg')}}" alt="">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Bu Rima.jpg')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <p>Designation</p>
+                    <h5 class="mb-0">Lies Rimayani</h5>
+                    <p>{{ Str::limit('Staff Junior Keuangan', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
                         </span>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                        <img class="img-fluid" src="{{ asset('assets_users/img/team-4.jpg')}}" alt="">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Jalian Setiarsa.png')}}" alt="">
                     </div>
-                    <h5 class="mb-0">Full Name</h5>
-                    <p>Designation</p>
+                    <h5 class="mb-0">Jalian Setiarsa</h5>
+                    <p>{{ Str::limit('Koordinator Tenaga Teknis', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Arie Indarwanto.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Arie Indarwanto</h5>
+                    <p>{{ Str::limit('Tenaga Teknis Bidang Prosedur Ekspor, Logistik dan Kepabeanan ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Aksamil Khair.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Aksamil Khair</h5>
+                    <p>{{ Str::limit('Tenaga Teknis Bidang Implementasi Hasil Perjanjian Perdagangan Internasional, Inaexport dan Hubungan Antar Lembaga ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Permadani Anggi Palupi.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Permadani Anggi Palupi</h5>
+                    <p>{{ Str::limit('Koordinator Tenaga Pendukung Bidang Keuangan ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Faya Valentia.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Faya Valentia Ivany</h5>
+                    <p>{{ Str::limit('Tenaga Pendukung Bidang Sekretariat ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Maulidina Fahria.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Maulidina Fahria W</h5>
+                    <p>{{ Str::limit('Tenaga Pendukung Bidang Kegiatan ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Layla Novia Rahmah.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Layla Novia Rahmah</h5>
+                    <p>{{ Str::limit('Tenaga Pendukung Bidang Konsultasi ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
                         </span>
                     </div>
                 </div>
@@ -529,4 +734,147 @@
     </div>
 </div>
 <!-- Testimonial End -->
+@endsection
+@section('js')
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript">
+    var barLayanan = document.getElementById("chart_layanan_konsultasi").getContext('2d');
+    $.get(base_url + "section2", function (result, status) {
+        const labels = result.label
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Data Layanan Konsultasi ECS',
+                data: result.data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        console.log(data);
+
+        var myChart = new Chart(barLayanan, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+
+        });
+    });
+
+</script>
+<script type="text/javascript">
+    var barTopik = document.getElementById("chart_topik").getContext('2d');
+    $.get(base_url + "section3", function (result, status) {
+        const labels = result.label
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Data Topik Layanan',
+                data: result.data,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
+                borderWidth: 1
+            }]
+        };
+        console.log(data);
+
+        var myChart = new Chart(barTopik, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            },
+
+        });
+    });
+
+</script>
+<script>
+    let table;
+    $(document).ready(function () {
+        table = $('#dt_topik').DataTable({
+            autoWidth: false,
+            responsive: false,
+            scrollCollapse: true,
+            processing: true,
+            serverSide: true,
+            displayLength: 5,
+            paginate: true,
+            lengthChange: true,
+            filter: true,
+            sort: true,
+            info: true,
+            searching: false,
+            ajax: base_url + "data_topik",
+            columns: [{
+                    data: 'DT_RowIndex',
+                    name: 'DT_RowIndex',
+                    orderable: false,
+                    searchable: false,
+                    className: 'text-center',
+                    width: '5%'
+                },
+                {
+                    data: 'nama_topik',
+                    name: 'nama_topik',
+                    orderable: true,
+                },
+                {
+                    data: 'total',
+                    name: 'total',
+                    className: 'text-end',
+                    orderable: false,
+                    searchable: false,
+                    width: '25%'
+                },
+            ]
+        });
+
+        $(".dt-length").addClass("d-none");
+    });
+
+</script>
 @endsection

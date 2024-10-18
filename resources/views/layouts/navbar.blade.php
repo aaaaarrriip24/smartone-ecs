@@ -14,7 +14,7 @@
                 <a class="dropdown-item" href="{{ url('our-konsultasi') }}">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</a>
                 <a class="dropdown-item" href="{{ url('our-inquiries') }}">{{ session('locale') == 'id' ? 'Penyebaran Inquiry' : 'Inquiry Dissemination' }}</a>
                 <a class="dropdown-item" href="{{ url('our-bm') }}">{{ session('locale') == 'id' ? 'Bussiness Matching' : 'Business Matching' }}</a>
-                <a class="dropdown-item" href="{{ url('our-panduan') }}">{{ session('locale') == 'id' ? 'Panduan Aplikasi InaExport' : 'InaExport Application Guide' }}</a>
+                <a class="dropdown-item" href="{{ url('our-panduan') }}">{{ session('locale') == 'id' ? 'Pendampingan InaExport' : 'InaExport Mentoring' }}</a>
                 <a class="dropdown-item" href="{{ url('other-service') }}">{{ session('locale') == 'id' ? 'Layanan Lainnya' : 'Other Services' }}</a>
             </div>
         </li>
@@ -33,7 +33,7 @@
         </li>
 
         <a href="{{ url('news') }}" class="nav-item nav-link">{{ session('locale') == 'id' ? 'Kegiatan' : 'News' }}</a>
-        <a href="{{ url('info_system') }}"
+        <a href="{{ url('dashboard') }}"
             class="nav-item nav-link">{{ session('locale') == 'id' ? 'Sistem Informasi' : 'Information System' }}</a>
         <a href="{{ url('contact') }}"
             class="nav-item nav-link">{{ session('locale') == 'id' ? 'Hubungi Kami' : 'Contact Us' }}</a>
@@ -66,10 +66,6 @@
                 class="fab fa-instagram fa-lg"></i></a>
 
         @if(Auth::check())
-        @if(Auth::user()->roleuser == "Admin" || Auth::user()->roleuser == "Superadmin")
-        <a href="{{ url('dashboard') }}"
-            class="nav-item nav-link"><i class="fas fa-home"></i></a>
-        @endif
         <a class="nav-item nav-link" href="{{ route('logout') }}"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
