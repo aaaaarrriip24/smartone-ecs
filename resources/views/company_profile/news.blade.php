@@ -10,27 +10,8 @@
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
-            <a href="{{ url('about') }}" class="nav-item nav-link">About ECS</a>
-            <a href="{{ url('supplier') }}" class="nav-item nav-link ">Supplier List</a>
-            <a href="{{ url('news') }}" class="nav-item nav-link active">News</a>
-            <a href="{{ url('gallery') }}" class="nav-item nav-link">ECS Gallery</a>
-            <a href="{{ url('contact') }}" class="nav-item nav-link">Contact</a>
-            @if(Auth::check())
-            <a class="nav-item nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
-                <span class="align-middle" data-key="t-logout">Logout</span></a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-            @else
-            <a href="{{ route('login') }}" class="nav-item nav-link">Login</a>
-            @endif
-        </div>
-        <h4 class="m-0 pe-lg-5 d-none d-lg-block"><i class="fa fa-headphones text-primary me-3"></i>+0857-5587-9497</h4>
-    </div>
+    @include('layouts.navbar')
+
 </nav>
 <!-- Navbar End -->
 

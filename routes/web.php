@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomePageController;
@@ -41,11 +43,25 @@ Auth::routes();
 
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('about', [HomePageController::class, 'about']);
-Route::get('supplier', [HomePageController::class, 'supplier']);
+Route::get('services', [HomePageController::class, 'services']);
 Route::get('gallery', [HomePageController::class, 'gallery']);
 Route::get('news', [HomePageController::class, 'news']);
 Route::get('contact', [HomePageController::class, 'contact']);
-Route::get('lang/{locale}', [LanguageController::class, 'index']);
+Route::get('our-konsultasi', [HomePageController::class, 'our_konsultasi']);
+Route::get('our-inquiries', [HomePageController::class, 'our_inquiries']);
+Route::get('our-bm', [HomePageController::class, 'our_bm']);
+Route::get('our-panduan', [HomePageController::class, 'our_panduan']);
+Route::get('other-service', [HomePageController::class, 'other_service']);
+Route::get('our-supplier', [HomePageController::class, 'our_supplier']);
+Route::get('our-market', [HomePageController::class, 'our_market']);
+Route::get('other-relasi', [HomePageController::class, 'other_relasi']);
+Route::get('/change-language', function (Request $request) {
+    $locale = $request->input('locale');
+    Session::put('locale', $locale);
+    
+    return redirect()->back();
+})->name('change-language');
+
 
 // Handle Back Button
 Route::post('login_from', [LoginController::class, 'authenticate']);
