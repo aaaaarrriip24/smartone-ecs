@@ -945,6 +945,11 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
+                                            <a href="{{ url('master/berita') }}" class="nav-link" data-key="t-lain">
+                                                Berita
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a href="{{ url('master/petugas') }}" class="nav-link" data-key="t-petugas">
                                                 Petugas </a>
                                         </li>

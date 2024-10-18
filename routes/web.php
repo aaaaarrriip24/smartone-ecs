@@ -27,6 +27,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\TransaksiLayananController;
 use App\Http\Controllers\ManagementUserController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\LanguageController;
 
 /*
@@ -84,6 +85,13 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     });
 
     Route::group(['middleware' => 'admin'],function() {
+        // News
+        Route::get('master/berita', [BeritaController::class, 'index'])->name('berita');
+        Route::post('berita/store', [BeritaController::class, 'store']);
+        Route::get('berita/show/{id}', [BeritaController::class, 'show']);
+        Route::post('berita/update', [BeritaController::class, 'update']);
+        Route::get('berita/destroy/{id}', [BeritaController::class, 'destroy']);
+
         Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::get('data_topik', [HomeController::class, 'data_topik']);
         Route::get('section1', [HomeController::class, 'section1']);
