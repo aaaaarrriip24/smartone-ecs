@@ -30,62 +30,85 @@
 <!-- Page Header End -->
 
 
-<!-- Contact Start -->
-<div class="container-fluid overflow-hidden py-5 px-lg-0">
-    <div class="container contact-page py-5 px-lg-0">
-        <div class="row g-5 mx-lg-0">
-            <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">Get In Touch</h6>
-                <h1 class="mb-4">Contact For Any Query</h1>
-                <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with
-                    Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a
-                        href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                <div class="bg-light p-4">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message"
-                                        style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
+<!-- Content -->
+    <!-- Penyebaran Inquiry Start -->
+    <div class="container-fluid overflow-hidden py-3 px-lg-0">
+        <div class="container about py-5 px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets_users/img/inquiry2.jpg')}}"
+                            style="object-fit: cover;" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s">
-                <div class="position-relative h-100">
-                    <iframe class="position-absolute w-100 h-100" style="object-fit: cover;"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="text-secondary text-uppercase mb-2">Layanan Kami</h6>
+                    <h1 class="mb-4">Penyebaran Inquiry</h1>
+                    <p class="mb-4 text-justify">
+                        Penyebaran inquiry merupakan proses penting yang berfungsi untuk menjembatani komunikasi antara eksportir dan buyer internasional. Melalui penyebaran ini, eksportir dapat menerima informasi terkait permintaan produk dari buyer di luar negeri, yang pada gilirannya membuka peluang untuk menjalin kerjasama dan transaksi perdagangan. Proses ini tidak hanya meningkatkan keterhubungan antara kedua belah pihak, tetapi juga memastikan bahwa eksporter mendapatkan akses ke potensi pasar yang lebih luas, sehingga dapat memperluas jaringan bisnis dan meningkatkan kesempatan untuk sukses di pasar global.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Contact End -->
+    <!-- Penyebaran Inquiry End -->
+
+    <!-- Feature Start -->
+    <div id="services" class="container-fluid overflow-hidden  px-lg-0">
+        <div class="container feature py-5 px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-secondary text-uppercase mb-3">Penyebaran Inquiry</h6>
+                    <h1 class="mb-5">Aspek yang Mencakup Penyebaran Inquiry</h1>
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
+                        <i class="fa fa-solid fa-paper-plane text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Pengumpulan Inquiry</h5>
+                            <p class="mb-0 text-justify">
+                                ECS berfungsi sebagai penghubung dengan Perwakilan Perdagangan (Perwadag) RI di luar negeri, yang secara rutin menerima permintaan dari buyer yang mencari produk tertentu. Inquiry ini sangat penting bagi eksportir, karena mereka mencerminkan minat pasar terhadap produk Indonesia.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mb-4 wow fadeIn" data-wow-delay="0.5s">
+                        <i class="fa fa-solid fa-share-alt text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Distribusi Inquiry</h5>
+                            <p class="mb-0 text-justify">
+                                Setelah inquiry diterima, ECS mendistribusikan informasi tersebut kepada perusahaan yang dapat memenuhi permintaan. ECS menggunakan database perusahaan yang ada untuk memastikan bahwa inquiry disampaikan kepada eksportir yang tepat, sehingga meningkatkan peluang terjadinya transaksi.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <i class="fa fa-solid fa-comments text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Proses Respon</h5>
+                            <p class="mb-0 text-justify">
+                                ECS membantu perusahaan untuk memahami cara yang efektif dalam merespon inquiry. Ini termasuk memberikan panduan tentang penyusunan proposal yang menarik dan persiapan untuk negosiasi yang mungkin terjadi setelah inquiry direspon.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-1 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <i class="fa fa-solid fa-handshake text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Potensi Transaksi</h5>
+                            <p class="mb-0 text-justify">
+                                Setelah inquiry direspon dengan baik, ECS berusaha untuk mengubahnya menjadi transaksi dagang. Ini mencakup penyiapan semua dokumen yang diperlukan dan memastikan bahwa produk dapat dikirim sesuai dengan kesepakatan yang dibuat.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100"
+                            src="{{ asset('assets_users/img/inquiry.jpg')}}" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+<!-- Content -->
 
 
 @endsection
