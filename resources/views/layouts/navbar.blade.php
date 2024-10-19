@@ -3,11 +3,11 @@
         <a href="{{ url('/') }}"
             class="nav-item nav-link active">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a>
         <a href="{{ url('about') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Tentang ECS' : 'About ECS' }}</a>
+            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Tentang' : 'About' }}</a>
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ session('locale') == 'id' ? 'Layanan Kami' : 'Our Services' }}
+                {{ session('locale') == 'id' ? 'Layanan' : 'Services' }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -22,7 +22,7 @@
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ session('locale') == 'id' ? 'Rekan Kami' : 'Our Partner' }}
+                {{ session('locale') == 'id' ? 'Rekan' : 'Partner' }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -34,9 +34,9 @@
 
         <a href="{{ url('news') }}" class="nav-item nav-link">{{ session('locale') == 'id' ? 'Kegiatan' : 'News' }}</a>
         <a href="{{ url('dashboard') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Sistem Informasi' : 'Information System' }}</a>
+            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Informasi' : 'Information' }}</a>
         <a href="{{ url('contact') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Hubungi Kami' : 'Contact Us' }}</a>
+            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Kontak' : 'Contact' }}</a>
 
         @php $locale = session()->get('locale'); @endphp
         <li class="nav-item dropdown">
@@ -64,22 +64,6 @@
 
         <a href="https://www.instagram.com/exportcenter_sby/" class="nav-item nav-link"><i
                 class="fab fa-instagram fa-lg"></i></a>
-
-        @if(Auth::check())
-        <a class="nav-item nav-link" href="{{ route('logout') }}"
-            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-            <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
-            <span class="align-middle"
-                data-key="t-logout"><i class="fas fa-sign-out-alt"></i></span></a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-            @csrf
-        </form>
-        @else
-        <a href="{{ route('login') }}" class="nav-item nav-link"><i class="fas fa-sign-in-alt"></i></a>
-        @endif
-
-        <a href="#" class="nav-item nav-link"><i class="fas fa-users"></i></a>
-
     </div>
 
 </div>
