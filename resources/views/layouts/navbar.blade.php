@@ -3,11 +3,11 @@
         <a href="{{ url('/') }}"
             class="nav-item nav-link active">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a>
         <a href="{{ url('about') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Tentang&nbsp;ECS' : 'About&nbsp;ECS' }}</a>
+            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Tentang ECS' : 'About ECS' }}</a>
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ session('locale') == 'id' ? 'Layanan&nbsp;Kami' : 'Our&nbsp;Services' }}
+                {{ session('locale') == 'id' ? 'Layanan Kami' : 'Our Services' }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -22,7 +22,7 @@
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ session('locale') == 'id' ? 'Rekan&nbsp;Kami' : 'Our&nbsp;Partner' }}
+                {{ session('locale') == 'id' ? 'Rekan Kami' : 'Our Partner' }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -34,9 +34,9 @@
 
         <a href="{{ url('news') }}" class="nav-item nav-link">{{ session('locale') == 'id' ? 'Kegiatan' : 'News' }}</a>
         <a href="{{ url('dashboard') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Sistem&nbsp;Informasi' : 'Information&nbsp;System' }}</a>
+            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Sistem Informasi' : 'Information System' }}</a>
         <a href="{{ url('contact') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Hubungi&nbsp;Kami' : 'Contact&nbsp;Us' }}</a>
+            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Hubungi Kami' : 'Contact Us' }}</a>
 
         @php $locale = session()->get('locale'); @endphp
         <li class="nav-item dropdown">
