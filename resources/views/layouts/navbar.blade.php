@@ -1,11 +1,11 @@
 <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
         <a href="{{ url('/') }}"
-            class="nav-item nav-link {{ url()->current()=='/' ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('/') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a>
         <a href="{{ url('about') }}"
-            class="nav-item nav-link {{ url()->current()=='about' ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Tentang' : 'About' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('about') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Tentang' : 'About' }}</a>
         <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+            <a id="navbarDropdown" class="nav-link {{ url()->current()==url('our-konsultasi') || url()->current()==url('our-inquiries') || url()->current()==url('our-bm') || url()->current()==url('our-panduan') || url()->current()==url('other-service') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ session('locale') == 'id' ? 'Layanan' : 'Services' }}
                 <span class="caret"></span>
@@ -20,7 +20,7 @@
         </li>
 
         <li class="nav-item dropdown">
-            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+            <a id="navbarDropdown" class="nav-link {{ url()->current()==url('our-supplier') || url()->current()==url('our-market') || url()->current()==url('other-relasi') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
                 {{ session('locale') == 'id' ? 'Rekan' : 'Partner' }}
                 <span class="caret"></span>
@@ -32,11 +32,11 @@
             </div>
         </li>
 
-        <a href="{{ url('news') }}" class="nav-item nav-link">{{ session('locale') == 'id' ? 'Kegiatan' : 'News' }}</a>
+        <a href="{{ url('news') }}" class="nav-item nav-link {{ url()->current()==url('news') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Kegiatan' : 'News' }}</a>
         <a href="{{ url('dashboard') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Informasi' : 'Information' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('dashboard') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Informasi' : 'Information' }}</a>
         <a href="{{ url('contact') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Kontak' : 'Contact' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('contact') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Kontak' : 'Contact' }}</a>
 
         @php $locale = session()->get('locale'); @endphp
         <li class="nav-item dropdown">
