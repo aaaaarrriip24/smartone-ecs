@@ -43,7 +43,7 @@
             <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
                 <h6 class="text-secondary text-uppercase mb-3">About Us</h6>
                 <h1 class="mb-5">Welcome to Export Center Surabaya</h1>
-                <p class="mb-5">At Export Center Surabaya, we are dedicated to facilitating international trade and export activities for businesses in Indonesia. Our mission is to empower local entrepreneurs and companies to reach global markets with confidence and ease.</p>
+                <p class="mb-5">Kami hadir untuk mendukung dan memudahkan Anda dalam menjelajahi dunia ekspor. Dengan berbagai layanan komprehensif seperti konsultasi ekspor, penyebaran inquiry, business matching, hingga bantuan dalam aplikasi InaExport, kami siap menjadi mitra terpercaya dalam perjalanan Anda menuju pasar internasional. Mari bersama-sama wujudkan potensi ekspor Anda dan raih kesuksesan di kancah global</p>
                 <div class="row g-4 mb-5">
                     <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
                         <i class="fa fa-globe fa-3x text-primary mb-3"></i>
@@ -69,10 +69,14 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6>
-                <h1 class="mb-5">#1 Place To Manage All Of Your Shipments</h1>
-                <p class="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
-                    eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
+                <!-- <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6> -->
+                <h1 class="mb-5">Menuju Pasar Global, Bersama Wujudkan Sukses Ekspor</h1>
+                <p>ECS menyediakan berbagai layanan untuk mendukung pelaku usaha dalam proses ekspor, mulai dari konsultasi terkait prosedur dan legalitas, penyebaran inquiry dari calon pembeli internasional, hingga business matching untuk memfasilitasi pertemuan dan negosiasi antara eksportir dan buyer. Melalui aplikasi InaExport, ECS juga membantu perusahaan terhubung dengan perwakilan perdagangan di luar negeri. Selain itu, ECS memfasilitasi penyelesaian sengketa antara eksportir dan buyer guna memastikan kelancaran transaksi ekspor.
+                </p>
+
+                <p class="mb-5">
+                    Dengan antarmuka yang intuitif dan dukungan pelanggan yang siap membantu, kami adalah solusi terbaik untuk memastikan pengiriman Anda berjalan lancar. Bergabunglah dengan kami dan rasakan kemudahan dalam mengelola semua pengiriman Anda di satu tempat!
+                </p>
                 <div class="d-flex align-items-center">
                     <i class="fa fa-headphones fa-2x flex-shrink-0 bg-primary p-3 text-white"></i>
                     <div class="ps-4">
@@ -116,29 +120,40 @@
         <div class="row g-5 mx-lg-0">
             <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="text-secondary text-uppercase mb-3">Our Features</h6>
-                <h1 class="mb-5">We Are Trusted Logistics Company Since 1990</h1>
-                <div class="d-flex mb-5 wow fadeInUp" data-wow-delay="0.3s">
+                <h1 class="mb-5">Layanan Komprehensif ECS untuk Mendukung Kesuksesan Ekspor Bisnis Anda.</h1>
+                <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.3s">
                     <i class="fa fa-globe text-primary fa-3x flex-shrink-0"></i>
                     <div class="ms-4">
-                        <h5>Worldwide Service</h5>
-                        <p class="mb-0">Diam dolor ipsum sit amet eos erat ipsum lorem sed stet lorem sit clita duo
-                            justo magna erat amet</p>
+                        <h5>Bussiness Matching</h5>
+                        <p class="mb-0">Dengan business matching yang efektif, perusahaan dapat memaksimalkan potensi mereka dan menciptakan hubungan yang saling menguntungkan di dunia bisnis.</p>
                     </div>
                 </div>
-                <div class="d-flex mb-5 wow fadeIn" data-wow-delay="0.5s">
-                    <i class="fa fa-shipping-fast text-primary fa-3x flex-shrink-0"></i>
+                <div class="d-flex mb-4 wow fadeIn" data-wow-delay="0.5s">
+                    <i class="fa fa-shipping-fast text-primary fa-3x flex-shrink-0 fs-5"></i>
                     <div class="ms-4">
-                        <h5>On Time Delivery</h5>
-                        <p class="mb-0">Diam dolor ipsum sit amet eos erat ipsum lorem sed stet lorem sit clita duo
-                            justo magna erat amet</p>
+                        <h5>Penyebaran Inquiry</h5>
+                        <p class="mb-0">Dengan proses penyebaran inquiry yang efektif, perusahaan dapat meningkatkan kepuasan pelanggan dan mengoptimalkan produk atau layanan yang ditawarkan.</p>
                     </div>
                 </div>
-                <div class="d-flex mb-0 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.7s">
                     <i class="fa fa-headphones text-primary fa-3x flex-shrink-0"></i>
                     <div class="ms-4">
-                        <h5>24/7 Telephone Support</h5>
-                        <p class="mb-0">Diam dolor ipsum sit amet eos erat ipsum lorem sed stet lorem sit clita duo
-                            justo magna erat amet</p>
+                        <h5>Konsultasi Ekspor</h5>
+                        <p class="mb-0">Dengan dukungan dari para ahli, konsultasi ekspor membantu Anda mengurangi risiko dan meningkatkan peluang sukses di pasar global.</p>
+                    </div>
+                </div>
+                <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.7s">
+                    <i class="fa fa-headphones text-primary fa-3x flex-shrink-0"></i>
+                    <div class="ms-4">
+                        <h5>Panduan Aplikasi Inaexport</h5>
+                        <p class="mb-0">Dengan dukungan dari para ahli, konsultasi ekspor membantu Anda mengurangi risiko dan meningkatkan peluang sukses di pasar global.</p>
+                    </div>
+                </div>
+                <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.7s">
+                    <i class="fa fa-headphones text-primary fa-3x flex-shrink-0"></i>
+                    <div class="ms-4">
+                        <h5>layanan Lainnya</h5>
+                        <p class="mb-0">Dengan dukungan dari para ahli, konsultasi ekspor membantu Anda mengurangi risiko dan meningkatkan peluang sukses di pasar global.</p>
                     </div>
                 </div>
             </div>
@@ -165,7 +180,7 @@
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Toto Dirgantoro.png')}}" alt="">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Dirgantoro.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Toto Dirgantoro</h5>
                     <p>{{ Str::limit('Kepala Pengelola Export Center Surabaya', 150, $end='...') }}</p>

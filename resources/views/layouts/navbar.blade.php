@@ -1,9 +1,9 @@
 <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
         <a href="{{ url('/') }}"
-            class="nav-item nav-link active">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a>
+            class="nav-item nav-link {{ url()->current()=='/' ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a>
         <a href="{{ url('about') }}"
-            class="nav-item nav-link">{{ session('locale') == 'id' ? 'Tentang' : 'About' }}</a>
+            class="nav-item nav-link {{ url()->current()=='about' ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Tentang' : 'About' }}</a>
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
