@@ -64,6 +64,8 @@ Route::get('section1', [HomePageController::class, 'section1']);
 Route::get('section2', [HomePageController::class, 'section2']);
 Route::get('section3', [HomePageController::class, 'section3']);
 
+// Contact
+Route::post('contact/send/', [HomePageController::class, 'send'])->name('contact.send');
 // Berita
 Route::get('news', [HomePageController::class, 'berita']);
 Route::get('news/detail/{id}', [HomePageController::class, 'berita_detail']);

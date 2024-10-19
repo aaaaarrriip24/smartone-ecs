@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Alert;
+use App\Mail\MessageSent;
 use App\Models\Perusahaan;
+use App\Models\EmailContact;
 use App\Models\Berita;
 use App\Models\TKonsultasi;
 use App\Models\Tinquiry;
@@ -18,6 +20,7 @@ use App\Models\Topik;
 use Carbon\Carbon;
 use DB;
 use DataTables;
+use Mail;
 
 class HomePageController extends Controller
 {
@@ -172,6 +175,37 @@ class HomePageController extends Controller
         ]);
     }
     
+    public function send(Request $request) {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+    
+        // Siapkan data yang akan dikirim
+        $data = [
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'header_email' => $request->input('subject'), // Pastikan ini sesuai
+            'body_email' => $request->input('message'),
+        ];
+    
+        // Simpan pesan ke database
+        EmailContact::create($data);
+    
+        // Alamat email tujuan
+        $recipientEmail = 'arifsyahputra137@gmail.com'; // Ganti dengan alamat email tujuan
+    
+        // Kirim email
+        Mail::send('email.contact', $data, function($message) use ($recipientEmail, $data) {
+            $message->to($recipientEmail)
+                    ->subject($data['header_email']); // Pastikan ini menggunakan header_email
+        });
+
+        Alert::toast('Berhasil Mengirim Pesan!', 'success');
+        return redirect()->back();
+    }
     public function about()
     {
         return view('company_profile/about');
