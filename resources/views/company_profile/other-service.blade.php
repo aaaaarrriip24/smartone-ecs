@@ -20,8 +20,8 @@
         <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Layanan Lainnya' : 'Other Services' }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Halaman' : 'Page' }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ session('locale') == 'id' ? 'Halaman' : 'Page' }}</a></li>
                 <li class="breadcrumb-item text-white active" aria-current="page">{{ session('locale') == 'id' ? 'Layanan Lainnya' : 'Other Services' }}</li>
             </ol>
         </nav>
@@ -37,7 +37,7 @@
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
-                        <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets_users/img/inquiry2.jpg')}}"
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets_users/img/other2.jpg')}}"
                             style="object-fit: cover;" alt="">
                     </div>
                 </div>
@@ -51,24 +51,6 @@
         </div>
     </div>
     <!-- Layanan Lainnya End -->
-
-    <!-- Fact Start -->
-    <div class="container-fluid py-5 ">
-        <div class="row">
-            <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6>
-                <h1 class="mb-3">Dukungan Penuh untuk Perjalanan Ekspor Anda</h1>
-                <div class = "page-ekspor p-5">
-                    <p class="text-justify p-3 text-white">
-                        Kami memahami bahwa setiap perjalanan ekspor memiliki tantangannya sendiri. Layanan kami mencakup solusi bagi berbagai kebutuhan bisnis, mulai dari pembiayaan hingga penyelesaian sengketa dengan buyer internasional. Tim kami siap memberikan dukungan yang dibutuhkan untuk memastikan proses ekspor Anda berjalan lancar dan efisien. Apapun kebutuhan Anda, kami siap membantu agar Anda bisa fokus pada hal yang paling penting: mengembangkan bisnis Anda ke tingkat internasional.
-                    </p>
-                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">Hubungi Kami</a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- Fact End -->
 
     <!-- Feature Start -->
     <div id="services" class="container-fluid overflow-hidden  px-lg-0">
@@ -108,13 +90,33 @@
                 <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <img class="position-absolute img-fluid w-100 h-100"
-                            src="{{ asset('assets_users/img/inquiry.jpg')}}" style="object-fit: cover;" alt="">
+                            src="{{ asset('assets_users/img/other1.jpg')}}" style="object-fit: cover;" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Feature End -->
+
+    <!-- Fact Start -->
+    <div class="container py-5 ">
+        <div class="row">
+            <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6>
+                <h1 class="mb-3">Dukungan Penuh untuk Perjalanan Ekspor Anda</h1>
+                <div class = "page-ekspor p-5">
+                    <p class="text-justify p-3 text-white">
+                        Kami memahami bahwa setiap perjalanan ekspor memiliki tantangannya sendiri. Layanan kami mencakup solusi bagi berbagai kebutuhan bisnis, mulai dari pembiayaan hingga penyelesaian sengketa dengan buyer internasional. Tim kami siap memberikan dukungan yang dibutuhkan untuk memastikan proses ekspor Anda berjalan lancar dan efisien. Apapun kebutuhan Anda, kami siap membantu agar Anda bisa fokus pada hal yang paling penting: mengembangkan bisnis Anda ke tingkat internasional.
+                    </p>
+                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">Hubungi Kami</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Fact End -->
+
+
 
 <!-- Content -->
 

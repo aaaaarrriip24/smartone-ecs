@@ -31,7 +31,7 @@
 
 
 <!-- About Start -->
-<div class="container-fluid overflow-hidden py-5 px-lg-0">
+<div class="container-fluid overflow-hidden px-lg-0">
     <div class="container about py-5 px-lg-0">
         <div class="row g-5 mx-lg-0">
             <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
