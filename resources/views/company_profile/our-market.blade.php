@@ -20,8 +20,8 @@
         <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Pasar' : 'Market' }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Halaman' : 'Page' }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ session('locale') == 'id' ? 'Halaman' : 'Page' }}</a></li>
                 <li class="breadcrumb-item text-white active" aria-current="page">{{ session('locale') == 'id' ? 'Pasar' : 'Market' }}</li>
             </ol>
         </nav>
@@ -30,62 +30,115 @@
 <!-- Page Header End -->
 
 
-<!-- Contact Start -->
-<div class="container-fluid overflow-hidden py-5 px-lg-0">
-    <div class="container contact-page py-5 px-lg-0">
-        <div class="row g-5 mx-lg-0">
-            <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase">Get In Touch</h6>
-                <h1 class="mb-4">Contact For Any Query</h1>
-                <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with
-                    Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a
-                        href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
-                <div class="bg-light p-4">
-                    <form>
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message"
-                                        style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
+<!-- Content -->
+    <!-- Our Market Start -->
+    <div class="container-fluid overflow-hidden py-3 px-lg-0">
+        <div class="container about px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="{{ asset('assets_users/img/market1.jpg')}}"
+                            style="object-fit: cover;" alt="">
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s">
-                <div class="position-relative h-100">
-                    <iframe class="position-absolute w-100 h-100" style="object-fit: cover;"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="text-secondary text-uppercase mb-2">Partner</h6>
+                    <h1 class="mb-4">Our Market</h1>
+                    <p class="mb-4 text-justify">
+                        ECS berperan sebagai jembatan yang menghubungkan pelaku usaha dengan pasar internasional, memberikan dukungan yang komprehensif dalam memahami dinamika pasar, persyaratan ekspor, serta strategi untuk memasuki pasar yang paling sesuai dengan produk mereka.
+                    </p>
+                    <a href="#market" class="btn btn-primary py-3 px-5">Explore More</a>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- Contact End -->
+    <!-- Our Market End -->
+
+    <!-- Feature Start -->
+    <div id="market" class="container-fluid overflow-hidden px-lg-0">
+        <div class="container feature py-5 mt-5 px-lg-0">
+            <div class="row g-5 mx-lg-0">
+                <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
+                    <h1 class="mb-5">Our Market</h1>
+                    <p class="text-justify mb-5">
+                        Export Center Surabaya (ECS) dapat menawarkan berbagai peluang pasar yang menarik kepada calon klien, antara lain:
+                    </p>
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
+                        <i class="fa fa-solid fa-globe-asia text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Pasar Negara Berkembang</h5>
+                            <p class="mb-0 text-justify">
+                                ECS bisa membantu calon klien dalam mengakses pasar di negara-negara berkembang seperti Asia Tenggara, Afrika, dan Amerika Latin. Pasar-pasar ini sedang mengalami pertumbuhan permintaan yang pesat untuk produk-produk berkualitas dari Indonesia.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-4 mb-4 wow fadeIn" data-wow-delay="0.5s">
+                        <i class="fa fa-solid  fa-euro-sign text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Pasar Eropa dan Amerika Utara</h5>
+                            <p class="mb-0 text-justify">
+                                ECS dapat membuka akses ke pasar premium di Eropa dan Amerika Utara, di mana produk dengan nilai tambah tinggi seperti makanan organik, kerajinan tangan, dan tekstil khas Indonesia memiliki potensi besar. Layanan ECS membantu dalam memenuhi standar sertifikasi dan regulasi yang ketat.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <i class="fa fa-solid fa-leaf text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Pasar Produk yang Spesifik</h5>
+                            <p class="mb-0 text-justify">
+                                Bagi pelaku usaha dengan produk-produk spesifik, seperti produk ramah lingkungan atau fashion berbahan dasar alami, ECS dapat membantu menemukan buyer yang fokus pada produk-produk unik dan inovatif di pasar internasional.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <i class="fa fa-solid fa-mosque text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Pasar Timur Tengah</h5>
+                            <p class="mb-0 text-justify">
+                                Dengan koneksi ke Perwakilan Perdagangan Indonesia di Timur Tengah, ECS dapat memfasilitasi ekspor produk-produk seperti makanan halal, rempah-rempah, dan produk agrikultur yang sangat diminati di kawasan ini.                            
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex  mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                        <i class="fa fa-solid fa-laptop text-primary fa-3x flex-shrink-0"></i>
+                        <div class="ms-4">
+                            <h5>Pasar Digital Global</h5>
+                            <p class="mb-0 text-justify">
+                                Dengan semakin berkembangnya e-commerce lintas negara, ECS dapat membantu klien memasuki pasar digital internasional melalui platform perdagangan online, seperti Tokopedia atau Alibaba, sehingga produk mereka dapat diakses oleh pembeli di seluruh dunia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100"
+                            src="{{ asset('assets_users/img/inquiry.jpg')}}" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feature End -->
+
+    <!-- Fact Start -->
+    <div class="container py-5 ">
+        <div class="row">
+            <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6>
+                <h3 class="mb-3">Bawa Produk Lokal ke Pasar Global: Eropa, Timur Tengah, dan Pasar Digital, Kami Siap Membuka Peluang Baru.</h3>
+                <div class = "page-ekspor p-5">
+                    <p class="text-justify p-3 text-white">
+                        Export Center Surabaya memiliki peran penting dalam membantu pelaku usaha Indonesia, terutama dari Jawa Timur dan sekitarnya, untuk memasuki pasar internasional. Oleh karena itu, pasar yang cocok untuk Export Center Surabaya mencakup beberapa segmen spesifik yang bisa mendapatkan manfaat besar dari layanan dan panduan ekspor yang ditawarkan.
+                    </p>
+                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">Hubungi Kami</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Fact End -->
+
+<!-- Content -->
 
 
 @endsection
