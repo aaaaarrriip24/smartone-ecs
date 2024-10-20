@@ -53,6 +53,24 @@
     </div>
     <!-- Penyebaran Inquiry End -->
 
+    <!-- Fact Start -->
+    <div class="container-fluid py-5 ">
+        <div class="row">
+            <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
+                <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6>
+                <h1 class="mb-3">Jawab Peluang, Raih Kesempatan Emas</h1>
+                <div class = "page-ekspor p-5">
+                    <p class="text-justify p-3 text-white">
+                        Jangan lewatkan peluang bisnis internasional dengan layanan penyebaran inquiry kami. Inquiry dari buyer luar negeri adalah kunci untuk membuka potensi transaksi dagang baru. Kami bekerja sama dengan perwakilan perdagangan Indonesia di luar negeri, seperti Atase Perdagangan dan ITPC, untuk menyebarkan permintaan yang kami terima langsung kepada perusahaan yang sesuai. Respon yang cepat dan tepat bisa menjadi pintu masuk bagi perusahaan Anda menuju transaksi yang
+                    </p>
+                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">Hubungi Kami</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Fact End -->
+
     <!-- Feature Start -->
     <div id="services" class="container-fluid overflow-hidden  px-lg-0">
         <div class="container feature py-5 px-lg-0">
