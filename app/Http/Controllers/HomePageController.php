@@ -246,9 +246,48 @@ class HomePageController extends Controller
     {
         return view('company_profile/other-service');
     }
-    public function our_supplier()
+    public function our_supplier(Request $request)
     {
-        return view('company_profile/our-supplier');
+        $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
+
+        $layanan = DB::table('t_konsultasi as ta')
+        ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
+        ->whereNull('ta.deleted_at')
+        ->whereNull('tb.deleted_at')
+        ->count();
+
+        $ptina = PPInaexport::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
+
+        if ($request->ajax()) {
+            $data = DB::table('m_perusahaan as ta')
+            ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+            ->leftJoin('m_k_produk as tf', 'ta.id_kategori_produk', '=', 'tf.id')
+            ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+            ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+            ->whereNull('ta.deleted_at');
+            
+            if(isset($request->searchbox)) {
+                $data->where('ta.nama_perusahaan', 'LIKE', '%'. $request->searchbox. '%');
+            }
+            if($request->term) {
+                $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
+            }
+            
+            $data->select(DB::raw('ta.*, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
+            ->groupBy('ta.id')
+            ->orderBy('ta.id', 'ASC')
+            ->get();
+
+            $data = $data->get();
+
+            return Datatables::of($data)
+            ->addIndexColumn()
+            ->make(true);
+        }
+
+        return view('company_profile/our-supplier', compact('perusahaan', 'layanan', 'ptina'));
     }
     public function our_market()
     {
