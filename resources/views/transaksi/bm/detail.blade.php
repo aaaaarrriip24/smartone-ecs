@@ -81,11 +81,9 @@
                 <div class="form-group mb-2">
                     <label class="form-label mb-1 mt-2 labelInput">Foto Business Matching</label>
                     @if(!empty($data->foto_bm))
-                    <a href="{{ asset('foto_bm/'.$data->foto_bm ) }}" class="form-control btn btn-sm btn-primary"
-                        target="_blank">Lihat Foto</a>
+                    <img id="oldImage" src="{{ asset('foto_bm/'.$data->foto_bm ) }}" class="rounded" style="max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" alt="Preview">
                     @else
-                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto
-                        Masih Kosong</a>
+                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih Kosong</a>
                     @endif
                 </div>
             </div>

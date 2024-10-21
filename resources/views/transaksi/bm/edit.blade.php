@@ -97,15 +97,9 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <div class="form-group mb-2">
-                        <label class="form-label mb-1 mt-2 labelInput">Foto Business Matching</label>
-                        @if(!empty($data->foto_bm))
-                        <a href="{{ asset('foto_bm/'.$data->foto_bm ) }}" class="form-control btn btn-sm btn-primary"
-                            target="_blank">Lihat Foto</a>
-                        @else
-                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto
-                            Masih Kosong</a>
-                        @endif
+                    <div class="form-group">
+                        <label class="form-label mb-1 mt-2 labelInput">Upload File Foto Business Matching</label>
+                        <input type="file" name="foto_bm" class="form-control form-control-sm" id="fotoInput">
                     </div>
                 </div>
                 <div class="col-6">
@@ -118,6 +112,19 @@
                             <option value="{{ $p->id }}" selected>{{ $p->nama_perusahaan }}</option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-group">
+                        <label class="form-label mb-1 labelInput">Foto Business Matching</label>
+                        @if(!empty($data->foto_bm))
+                        <img src="{{ asset('foto_bm/'.$data->foto_bm ) }}" class="rounded oldImage" style="max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" alt="Preview">
+                        <img src="#" alt="Image Preview" class="rounded imagePreview" style="display: none; max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" />
+                        @else
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning oldImage" disabled>Foto Masih
+                            Kosong</a>
+                        <img src="#" alt="Image Preview" class="rounded imagePreview" style="display: none; max-width: 100%; max-height: 480px; height: auto; object-fit: contain;" />
+                        @endif
                     </div>
                 </div>
                 <div class="col-12">
@@ -142,6 +149,29 @@
 <script>
     $(document).ready(function () {
         // Select
+
+        $('#fotoInput').on('change', function(event) {
+            const input = this;
+            const preview = $('.imagePreview');
+            const old = $('.oldImage');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.attr('src', e.target.result);
+                    preview.show();
+                    old.hide();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.attr('src', '#');
+                preview.hide();
+                old.show();
+            }
+        });
+
         $('#summernote').summernote({
             placeholder: 'Saran dan Solusi yang Diberikan',
             tabsize: 2,
