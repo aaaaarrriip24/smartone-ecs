@@ -65,15 +65,18 @@
             </div>
 
             <div class="col-3">
-                <div class="form-group">
-                    <label class="form-label mb-1 labelInput">Foto Pertemuan</label>
-                    @if(!empty($data->foto_pertemuan) && $data->foto_pertemuan != "")
-                        <img src="{{ asset('foto_pertemuan/'.$data->foto_pertemuan) }}" class="img-fluid mt-2" alt="Preview" style="max-height: 150px; object-fit: cover;">
+                <div class="form-group mb-2">
+                    <label class="form-label mb-1 mt-2 labelInput">Foto Pertemuan</label>
+                    <!-- <input type="text" name="foto_pertemuan" class="form-control form-control-sm"
+                        value="{{ $data->tempat_pertemuan }}" disabled> -->
+                    @if(!empty($data->foto_pertemuan))
+                    <img id="oldImage" src="{{ asset('foto_pertemuan/'.$data->foto_pertemuan ) }}" class="rounded" style="max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" alt="Preview">
                     @else
-                        <div class="form-control btn btn-sm btn-warning mt-2" disabled>Foto Masih Kosong</div>
+                    <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih Kosong</a>
                     @endif
                 </div>
             </div>
+
             <!-- <div class="col-3 mt-2">
                 <div class="card mb-0" style="max-width: 18rem;">
                     <div class="card-header">

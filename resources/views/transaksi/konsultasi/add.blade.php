@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="mt-2">
-                    <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" />
+                    <img id="imagePreview" class="rounded" src="#" alt="Image Preview" style="display: none; max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" />
                 </div>
                 <div class="col-12">
                     <div class="form-group">

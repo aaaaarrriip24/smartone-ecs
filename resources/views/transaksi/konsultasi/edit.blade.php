@@ -85,7 +85,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Upload File Foto Pertemuan</label>
-                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm">
+                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm" id="fotoInput">
                     </div>
                 </div>
                 <div class="col-3">
@@ -113,10 +113,12 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 labelInput">Foto Pertemuan</label>
-                        @if(!empty($data->foto_pertemuan) && $data->foto_pertemuan != "")
-                            <img src="{{ asset('foto_pertemuan/'.$data->foto_pertemuan) }}" class="img-fluid mt-2" alt="Preview" style="max-height: 150px; object-fit: cover;">
+                        @if(!empty($data->foto_pertemuan))
+                        <img id="oldImage" src="{{ asset('foto_pertemuan/'.$data->foto_pertemuan ) }}" class="rounded" style="max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" alt="Preview">
+                        <img id="imagePreview" src="#" alt="Image Preview" class="rounded" style="display: none; max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" />
                         @else
-                            <div class="form-control btn btn-sm btn-warning mt-2" disabled>Foto Masih Kosong</div>
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
+                            Kosong</a>
                         @endif
                     </div>
                 </div>
@@ -141,6 +143,28 @@
 <script>
     $(document).ready(function () {
         // Select
+
+        $('#fotoInput').on('change', function(event) {
+            const input = this;
+            const preview = $('#imagePreview');
+            const old = $('#oldImage');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.attr('src', e.target.result);
+                    preview.show();
+                    old.hide();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.attr('src', '#');
+                preview.hide();
+            }
+        });
+
         $('#summernote').summernote({
             placeholder: 'Saran dan Solusi yang Diberikan',
             tabsize: 2,
