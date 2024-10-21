@@ -73,11 +73,8 @@
                             <a href="{{ url('/') }}" class="logo logo-dark text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
-                                        <!-- <div class="col-lg-2">
-                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
-                                        </div> -->
-                                        <div class="col-lg-8 text-start">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                        <div class="col-lg-12 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail w-50" alt=""
                                                 height="50">
                                             <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
@@ -85,11 +82,8 @@
                                 </span>
                                 <span class="logo-lg">
                                     <div class="d-flex align-items-center gap-3">
-                                        <!-- <div class="col-lg-2">
-                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
-                                        </div> -->
-                                        <div class="col-lg-8 text-start">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                        <div class="col-lg-12 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail w-50" alt=""
                                                 height="50">
                                             <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
@@ -100,11 +94,8 @@
                             <a href="{{ url('/') }}" class="logo logo-light text-decoration-none text-white">
                                 <span class="logo-sm">
                                     <div class="d-flex align-items-center gap-3">
-                                        <!-- <div class="col-lg-2">
-                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
-                                        </div> -->
-                                        <div class="col-lg-8 text-start">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                        <div class="col-lg-12 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail w-50" alt=""
                                                 height="50">
                                             <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
@@ -112,11 +103,8 @@
                                 </span>
                                 <span class="logo-lg">
                                     <div class="d-flex align-items-center gap-3">
-                                        <!-- <div class="col-lg-2">
-                                            <img src="{{ asset('assets/images/kemendag.png')}}" class="img-thumbnail">
-                                        </div> -->
-                                        <div class="col-lg-8 text-start">
-                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail" style="max-width: 9% !important;" alt=""
+                                        <div class="col-lg-12 text-start">
+                                            <img src="{{ asset('assets/images/ecs.jpg') }}" class="img-thumbnail w-25" alt=""
                                                 height="50">
                                             <!-- <h3 class="text-start">ECS</h3> -->
                                         </div>
