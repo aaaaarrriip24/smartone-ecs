@@ -219,13 +219,23 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
-                        <input type="file" name="foto_produk_1" class="form-control form-control-sm">
+                        <input type="file" name="foto_produk_1" class="form-control form-control-sm" id="foto_produk_1">
                     </div>
                 </div>
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
-                        <input type="file" name="foto_produk_2" class="form-control form-control-sm">
+                        <input type="file" name="foto_produk_2" class="form-control form-control-sm" id="foto_produk_2">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-4">
+                            <img id="preview_produk_1" src="" alt="Preview" class="img-fluid mt-2" style="display: none; width: 100%; max-height: 540px;">
+                        </div>
+                        <div class="col-4">
+                            <img id="preview_produk_2" src="" alt="Preview" class="img-fluid mt-2" style="display: none; width: 100%; max-height: 540px;">
+                        </div>
                     </div>
                 </div>
                 <!-- <div class="col-3">
@@ -283,6 +293,34 @@
     $(document).ready(function () {
         // Select
         // year_picker
+
+        $('#foto_produk_1').on('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#preview_produk_1').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $('#preview_produk_1').hide();
+            }
+        });
+
+        // Preview for Foto Produk 2
+        $('#foto_produk_2').on('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#preview_produk_2').attr('src', e.target.result).show();
+                };
+                reader.readAsDataURL(file);
+            } else {
+                $('#preview_produk_2').hide();
+            }
+        });
+
         $('.year_picker').datepicker({
             format: "yyyy",
             weekStart: 1,

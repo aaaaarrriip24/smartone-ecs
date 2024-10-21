@@ -249,13 +249,14 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
-                        <input type="file" name="foto_produk_1" class="form-control form-control-sm">
+                        <input type="file" name="foto_produk_1" class="form-control form-control-sm" id="foto_produk_1">
                     </div>
                 </div>
+
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
-                        <input type="file" name="foto_produk_2" class="form-control form-control-sm">
+                        <input type="file" name="foto_produk_2" class="form-control form-control-sm" id="foto_produk_2">
                     </div>
                 </div>
                 <div class="col-9">
@@ -288,8 +289,10 @@
                     <div class="form-group mb-2">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 1</label>
                         @if(!empty($data->foto_produk_1))
-                        <a href="{{ asset('foto_produk_1/'.$data->foto_produk_1 ) }}"
-                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                        <!-- <a href="{{ asset('foto_produk_1/'.$data->foto_produk_1 ) }}"
+                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a> -->
+                        <img id="oldImage1" src="{{ asset('foto_produk_1/'.$data->foto_produk_1 ) }}" alt="Old Preview" class="img-fluid mt-2" style="width: 100%; max-height: 540px;">
+                        <img id="preview_produk_1" src="" alt="New Preview" class="img-fluid mt-2" style="display: none; width: 100%; max-height: 540px;">
                         @else
                         <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
                             Kosong</a>
@@ -300,8 +303,10 @@
                     <div class="form-group mb-2">
                         <label class="form-label mb-1 mt-2 labelInput">Foto Produk 2</label>
                         @if(!empty($data->foto_produk_2))
-                        <a href="{{ asset('foto_produk_2/'.$data->foto_produk_2 ) }}"
-                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a>
+                        <!-- <a href="{{ asset('foto_produk_2/'.$data->foto_produk_2 ) }}"
+                            class="form-control btn btn-sm btn-primary" target="_blank">Lihat Foto</a> -->
+                        <img id="oldImage2" src="{{ asset('foto_produk_2/'.$data->foto_produk_2 ) }}" alt="Old Preview" class="img-fluid mt-2" style="width: 100%; max-height: 540px;">
+                        <img id="preview_produk_2" src="" alt="New Preview" class="img-fluid mt-2" style="display: none; width: 100%; max-height: 540px;">
                         @else
                         <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
                             Kosong</a>
@@ -322,6 +327,47 @@
 <script>
     $(document).ready(function () {
         // Select
+        $('#foto_produk_1').on('change', function(event) {
+            const input = this;
+            const preview = $('#preview_produk_1');
+            const old = $('#oldImage1');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.attr('src', e.target.result).show();
+                    old.hide(); // Hide old image
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.attr('src', '#').hide();
+                old.show(); // Show old image if no new file
+            }
+        });
+
+        // Preview for Foto Produk 2
+        $('#foto_produk_2').on('change', function(event) {
+            const input = this;
+            const preview = $('#preview_produk_2');
+            const old = $('#oldImage2');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.attr('src', e.target.result).show();
+                    old.hide(); // Hide old image
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.attr('src', '#').hide();
+                old.show(); // Show old image if no new file
+            }
+        });
+        
         $('.year_picker').datepicker({
             format: "yyyy",
             weekStart: 1,

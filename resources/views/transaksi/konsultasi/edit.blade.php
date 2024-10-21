@@ -162,6 +162,7 @@
             } else {
                 preview.attr('src', '#');
                 preview.hide();
+                old.show();
             }
         });
 
