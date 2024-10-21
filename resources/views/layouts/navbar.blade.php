@@ -50,7 +50,11 @@
                 <img src="{{ asset('assets/images/negara/id.png') }}" width="25px">
                 @break
                 @default
+                @if( empty(session('locale')) )
+                <img src="{{ asset('assets/images/negara/en.png') }}" width="25px">
+                @else
                 <img src="{{ asset('assets/images/negara/id.png') }}" width="25px">
+                @endif
                 @endswitch
                 <span class="caret"></span>
             </a>
