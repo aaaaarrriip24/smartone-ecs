@@ -63,7 +63,7 @@
                     <p class="text-justify mb-5">
                         Export Center Surabaya (ECS) dapat menawarkan berbagai peluang pasar yang menarik kepada calon klien, antara lain:
                     </p>
-                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-globe-asia text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
                             <h5>Pasar Negara Berkembang</h5>
@@ -81,7 +81,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
                         <i class="fa fa-solid fa-leaf text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
                             <h5>Pasar Produk yang Spesifik</h5>
@@ -90,7 +90,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.9s">
                         <i class="fa fa-solid fa-mosque text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
                             <h5>Pasar Timur Tengah</h5>
@@ -99,7 +99,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="d-flex  mb-4 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="d-flex  mb-4 wow fadeInUp" data-wow-delay="0.11s">
                         <i class="fa fa-solid fa-laptop text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
                             <h5>Pasar Digital Global</h5>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
+                <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.13s" style="min-height: 400px;">
                     <div class="position-relative h-100">
                         <img class="position-absolute img-fluid w-100 h-100"
                             src="{{ asset('assets_users/img/inquiry.jpg')}}" style="object-fit: cover;" alt="">
@@ -123,7 +123,7 @@
     <!-- Fact Start -->
     <div class="container py-5 ">
         <div class="row">
-            <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
+            <div class="col-lg-12 fadeInUp" data-wow-delay="0.15s">
                 <h6 class="text-secondary text-uppercase mb-3">Some Facts</h6>
                 <h3 class="mb-3">Bawa Produk Lokal ke Pasar Global: Eropa, Timur Tengah, dan Pasar Digital, Kami Siap Membuka Peluang Baru.</h3>
                 <div class = "page-ekspor p-5">
