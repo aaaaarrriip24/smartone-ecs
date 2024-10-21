@@ -76,7 +76,7 @@
                 <div class="col-3">
                     <div class="form-group">
                         <label class="form-label mb-1 mt-2 labelInput">Foto</label>
-                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm">
+                        <input type="file" name="foto_pertemuan" class="form-control form-control-sm" id="fotoInput">
                     </div>
                 </div>
                 <div class="col-3">
@@ -91,6 +91,10 @@
                         <select name="id_topik[]" class="form-control form-control-sm select_topik" multiple="multiple"
                             required></select>
                     </div>
+                </div>
+
+                <div class="mt-2">
+                    <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" />
                 </div>
                 <div class="col-12">
                     <div class="form-group">
@@ -125,6 +129,25 @@
                 ['table', ['table']],
                 ['view', ['help']]
             ]
+        });
+
+        $('#fotoInput').on('change', function(event) {
+            const input = this;
+            const preview = $('#imagePreview');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    preview.attr('src', e.target.result);
+                    preview.show();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.attr('src', '#');
+                preview.hide();
+            }
         });
 
         $(".cara_konsultasi").select2({});
