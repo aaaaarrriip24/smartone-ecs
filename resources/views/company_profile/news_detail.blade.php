@@ -54,12 +54,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">News</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Berita' : 'News' }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">News</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Halaman' : 'Pages' }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ session('locale') == 'id' ? 'Berita' : 'News' }}</li>
             </ol>
         </nav>
     </div>
@@ -92,7 +92,7 @@
             <p class="text-muted mb-3">{{ \Carbon\Carbon::parse($berita->created_at)->format('d F Y') }}</p>
             <p class="text-justify">{{ $berita->isi }}</p>
             <br>
-            <a href="{{ url('berita') }}" class="btn btn-primary mt-4">Kembali ke Daftar Berita</a>
+            <a href="{{ url('berita') }}" class="btn btn-primary mt-4">{{ session('locale') == 'id' ? 'Kembali ke Daftar Berita' : 'Back to News List' }}</a>
         </div>
 
         <!-- Berita Lainnya Start -->
@@ -115,7 +115,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ session('locale') == 'id' ? $item->judul : $item->judul }}</h5>
                                 <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit($item->isi, 70, '...') }}</p>
-                                <a href="{{ url('news/detail/' . $item->id) }}" class="btn btn-primary">Read More</a>
+                                <a href="{{ url('news/detail/' . $item->id) }}" class="btn btn-primary">{{ session('locale') == 'id' ? 'Baca Selengkapnya' : 'Read More' }}</a>
                             </div>
                         </div>
                     </div>

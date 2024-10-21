@@ -19,12 +19,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">News</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Berita' : 'News' }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">News</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Halaman' : 'Pages' }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ session('locale') == 'id' ? 'Berita' : 'News' }}</li>
             </ol>
         </nav>
     </div>
@@ -36,8 +36,8 @@
 <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">ECS News</h6>
-            <h1 class="mb-5">Explore Our News</h1>
+            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Berita ECS' : 'ECS News' }}</h6>
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Berita Kami' : 'Explore Our News' }}</h1>
         </div>
         <div class="row g-4">
             @foreach($berita as $item)
@@ -58,7 +58,7 @@
                         <p class="text-justify">{{ Str::limit($item->isi, 150, '...') }}</p>
                         <a class="btn-slide mt-2" href="{{ url('news/detail/' . $item->id) }}">
                             <i class="fa fa-arrow-right"></i>
-                            <span>Read More</span>
+                            <span>{{ session('locale') == 'id' ? 'Baca Selengkapnya' : 'Read More' }}</span>
                         </a>
                     </div>
                 </div>

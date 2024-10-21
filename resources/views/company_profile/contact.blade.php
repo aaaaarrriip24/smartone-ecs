@@ -20,8 +20,8 @@
         <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Hubungi Kami' : 'Contact Us' }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Halaman' : 'Pages' }}</a></li>
                 <li class="breadcrumb-item text-white active" aria-current="page">{{ session('locale') == 'id' ? 'Hubungi Kami' : 'Contact Us' }}</li>
             </ol>
         </nav>
@@ -36,9 +36,9 @@
         <div class="row g-5 mx-lg-0">
             <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
                 <h1 class="">ExportCenter Surabaya</h1>
-                <p class="mb-2">Send us an email:</p>
+                <p class="mb-2">{{ session('locale') == 'id' ? 'Kirim email kepada kami:' : 'Send us an email:' }}</p>
                 <p class="mb-2">exportcenter.surabaya@kemendag.go.id</p>
-                <p class="mb-2">Visit us:</p>
+                <p class="mb-2">{{ session('locale') == 'id' ? 'Kunjungi kami:' : 'Visit us:' }}</p>
                 <p class="mb-2">Jl. Kedung Doro No.80-90, Sawahan, Kec. Sawahan, Surabaya, Jawa Timur 60251</p>
                 <div class="bg-light p-4">
                 @if(session('success'))
@@ -49,31 +49,30 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your Name">
-                                    <label for="name">Your Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="{{ session('locale') == 'id' ? 'Nama Anda' : 'Your Name' }}">
+                                    <label for="name">{{ session('locale') == 'id' ? 'Nama Anda' : 'Your Name' }}</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Your Email">
-                                    <label for="email">Your Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="{{ session('locale') == 'id' ? 'Email Anda' : 'Your Email' }}">
+                                    <label for="email">{{ session('locale') == 'id' ? 'Email Anda' : 'Your Email' }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
-                                    <label for="subject">Subject</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="{{ session('locale') == 'id' ? 'Subjek' : 'Subject' }}">
+                                    <label for="subject">{{ session('locale') == 'id' ? 'Subjek' : 'Subject' }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a message here" id="message" name="message"
-                                        style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
+                                    <textarea class="form-control" placeholder="{{ session('locale') == 'id' ? 'Tinggalkan pesan di sini' : 'Leave a message here' }}" id="message" name="message" style="height: 100px"></textarea>
+                                    <label for="message">{{ session('locale') == 'id' ? 'Pesan' : 'Message' }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">{{ session('locale') == 'id' ? 'Kirim Pesan' : 'Send Message' }}</button>
                             </div>
                         </div>
                     </form>
@@ -88,6 +87,7 @@
     </div>
 </div>
 <!-- Contact End -->
+
 <script>
     $(document).ready(function() {
         $('#contact-form').on('submit', function(e) {
