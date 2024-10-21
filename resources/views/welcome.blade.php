@@ -482,13 +482,12 @@
 </div> -->
 <!-- Quote End -->
 
-
 <!-- Team Start -->
 <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Tim Kami' : 'Our Team' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Anggota Tim Ahli' : 'Expert Team Members' }}</h1>
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Anggota Tim' : 'Expert Team Members' }}</h1>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -497,7 +496,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Dirgantoro.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Toto Dirgantoro</h5>
-                    <p>{{ Str::limit(session('locale') == 'id' ? 'Kepala Pengelola Export Center Surabaya' : 'Head of Surabaya Export Center', 150, '...') }}</p>
+                    <p>{{ Str::limit('Kepala Pengelola Export Center Surabaya', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -514,7 +513,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Adistiar-Prayoga.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Adistiar Prayoga</h5>
-                    <p>{{ Str::limit(session('locale') == 'id' ? 'Staff Senior Bidang Keuangan' : 'Senior Staff in Finance', 150, '...') }}</p>
+                    <p>{{ Str::limit('Staff Senior Bidang Keuangan', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -531,7 +530,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Bu Rima.jpg')}}" alt="">
                     </div>
                     <h5 class="mb-0">Lies Rimayani</h5>
-                    <p>{{ Str::limit(session('locale') == 'id' ? 'Staff Junior Keuangan' : 'Junior Staff in Finance', 150, '...') }}</p>
+                    <p>{{ Str::limit('Staff Junior Keuangan', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -548,7 +547,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Jalian Setiarsa.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Jalian Setiarsa</h5>
-                    <p>{{ Str::limit(session('locale') == 'id' ? 'Koordinator Tenaga Teknis' : 'Technical Coordinator', 150, '...') }}</p>
+                    <p>{{ Str::limit('Koordinator Tenaga Teknis', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -559,15 +558,13 @@
                     </div>
                 </div>
             </div>
-            <!-- Repeat the same structure for other team members -->
-            <!-- Example for Arie Indarwanto -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Arie Indarwanto.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Arie Indarwanto</h5>
-                    <p>{{ Str::limit(session('locale') == 'id' ? 'Tenaga Teknis Bidang Prosedur Ekspor, Logistik dan Kepabeanan' : 'Technical Staff in Export Procedures, Logistics, and Customs', 150, '...') }}</p>
+                    <p>{{ Str::limit('Tenaga Teknis Bidang Prosedur Ekspor, Logistik dan Kepabeanan ', 150, $end='...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -578,12 +575,95 @@
                     </div>
                 </div>
             </div>
-            <!-- Add other team members similarly -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Aksamil Khair.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Aksamil Khair</h5>
+                    <p>{{ Str::limit('Tenaga Teknis Bidang Implementasi Hasil Perjanjian Perdagangan Internasional, Inaexport dan Hubungan Antar Lembaga ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Permadani Anggi Palupi.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Permadani Anggi Palupi</h5>
+                    <p>{{ Str::limit('Koordinator Tenaga Pendukung Bidang Keuangan ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Faya Valentia.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Faya Valentia Ivany</h5>
+                    <p>{{ Str::limit('Tenaga Pendukung Bidang Sekretariat ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Maulidina Fahria.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Maulidina Fahria W</h5>
+                    <p>{{ Str::limit('Tenaga Pendukung Bidang Kegiatan ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item p-4">
+                    <div class="overflow-hidden mb-4">
+                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Layla Novia Rahmah.png')}}" alt="">
+                    </div>
+                    <h5 class="mb-0">Layla Novia Rahmah</h5>
+                    <p>{{ Str::limit('Tenaga Pendukung Bidang Konsultasi ', 150, $end='...') }}</p>
+                    <div class="btn-slide mt-1">
+                        <i class="fa fa-share"></i>
+                        <span>
+                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 <!-- Team End -->
-
 
 <!-- Testimonial Start -->
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
