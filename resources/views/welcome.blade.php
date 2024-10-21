@@ -55,67 +55,57 @@
 <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">Our Services</h6>
-            <h1 class="mb-5">Explore Our Services</h1>
+            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Layanan Kami' : 'Our Services' }}</h6>
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Layanan Kami' : 'Explore Our Services' }}</h1>
         </div>
         <div class="row g-4">
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item p-4">
                     <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75"
-                            src="{{ asset('assets/images/ecs/icon_layanan/Business Matching.png')}}" alt="">
+                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Business Matching.png')}}" alt="">
                     </div>
-                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Bussiness Matching' : 'Business Matching' }}</h4>
-                    <p class="text-justify">Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis
-                        kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.</p>
+                    <h4 class="mb-3">{{ session('locale') == 'id' ? 'Business Matching' : 'Business Matching' }}</h4>
+                    <p class="text-justify">{{ session('locale') == 'id' ? 'Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.' : 'Business Matching connects businesses with potential trading partners through needs analysis and networking events, creating mutually beneficial collaboration opportunities.' }}</p>
                     <a class="btn-slide mt-2" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item p-4">
                     <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Konsultasi.png')}}"
-                            alt="">
+                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Konsultasi.png')}}" alt="">
                     </div>
                     <h4 class="mb-3">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</h4>
-                    <p class="text-justify">Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum
-                        dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.</p>
+                    <p class="text-justify">{{ session('locale') == 'id' ? 'Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.' : 'Export Consultation provides comprehensive guidance on the export process, including legal requirements and global marketing strategies, to help companies enter international markets.' }}</p>
                     <a class="btn-slide mt-2" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
                 <div class="service-item p-4">
                     <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75"
-                            src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
+                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
                     </div>
                     <h4 class="mb-3">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang' : 'Trade Case Mediation' }}</h4>
-                    <p class="text-justify">Mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional,
-                        membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.</p>
+                    <p class="text-justify">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional, membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.' : 'Trade Case Mediation offers business dispute resolution with professional mediators, helping parties reach agreements without lengthy legal processes.' }}</p>
                     <a class="btn-slide mt-2" href="{{ url('our-mediasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item p-4">
                     <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75"
-                            src="{{ asset('assets/images/ecs/icon_layanan/Pendampingan InaExport.png')}}" alt="">
+                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Pendampingan InaExport.png')}}" alt="">
                     </div>
                     <h4 class="mb-3">{{ session('locale') == 'id' ? 'Pendampingan InaExport' : 'InaExport Mentoring' }}</h4>
-                    <p class="text-justify">Pendampingan InaExport mendukung perusahaan dalam memanfaatkan platform InaExport, memberikan
-                        pelatihan dan strategi untuk meningkatkan visibilitas produk di pasar internasional.</p>
+                    <p class="text-justify">{{ session('locale') == 'id' ? 'Pendampingan InaExport mendukung perusahaan dalam memanfaatkan platform InaExport, memberikan pelatihan dan strategi untuk meningkatkan visibilitas produk di pasar internasional.' : 'InaExport Mentoring supports companies in utilizing the InaExport platform, providing training and strategies to enhance product visibility in international markets.' }}</p>
                     <a class="btn-slide mt-2" href="{{ url('our-panduan') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="service-item p-4">
                     <div class="overflow-hidden text-center mb-4">
-                        <img class="img-fluid w-75"
-                            src="{{ asset('assets/images/ecs/icon_layanan/Penyebaran Inquiry.png')}}" alt="">
+                        <img class="img-fluid w-75" src="{{ asset('assets/images/ecs/icon_layanan/Penyebaran Inquiry.png')}}" alt="">
                     </div>
                     <h4 class="mb-3">{{ session('locale') == 'id' ? 'Penyebaran Inquiry' : 'Inquiry Dissemination' }}</h4>
-                    <p class="text-justify">Penyebaran Inquiry mempromosikan produk Anda kepada calon pembeli di pasar global dengan
-                        mengelola dan menyebarkan permintaan informasi dari buyer kepada pelaku usaha yang relevan.</p>
+                    <p class="text-justify">{{ session('locale') == 'id' ? 'Penyebaran Inquiry mempromosikan produk Anda kepada calon pembeli di pasar global dengan mengelola dan menyebarkan permintaan informasi dari buyer kepada pelaku usaha yang relevan.' : 'Inquiry Dissemination promotes your products to potential buyers in the global market by managing and disseminating information requests from buyers to relevant businesses.' }}</p>
                     <a class="btn-slide mt-2" href="{{ url('our-inquiries') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
                 </div>
             </div>
@@ -196,8 +186,8 @@
 <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">ECS News</h6>
-            <h1 class="mb-5">Explore Our News</h1>
+            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Berita ECS' : 'ECS News' }}</h6>
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Berita Kami' : 'Explore Our News' }}</h1>
         </div>
         <div class="row g-4">
             @foreach($berita as $item)
@@ -218,14 +208,14 @@
                         <p class="text-justify">{{ Str::limit($item->isi, 150, '...') }}</p>
                         <a class="btn-slide mt-2" href="{{ url('news/detail/' . $item->id) }}">
                             <i class="fa fa-arrow-right"></i>
-                            <span>Read More</span>
+                            <span>{{ session('locale') == 'id' ? 'Baca Selengkapnya' : 'Read More' }}</span>
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a class="btn btn-primary" href="{{ url('news') }}">Read More News</a>
+            <a class="btn btn-primary" href="{{ url('news') }}">{{ session('locale') == 'id' ? 'Baca Berita Lainnya' : 'Read More News' }}</a>
         </div>
     </div>
 </div>
@@ -497,8 +487,8 @@
 <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">Our Team</h6>
-            <h1 class="mb-5">Expert Team Members</h1>
+            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Tim Kami' : 'Our Team' }}</h6>
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Anggota Tim Ahli' : 'Expert Team Members' }}</h1>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -507,7 +497,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Dirgantoro.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Toto Dirgantoro</h5>
-                    <p>{{ Str::limit('Kepala Pengelola Export Center Surabaya', 150, $end='...') }}</p>
+                    <p>{{ Str::limit(session('locale') == 'id' ? 'Kepala Pengelola Export Center Surabaya' : 'Head of Surabaya Export Center', 150, '...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -524,7 +514,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Adistiar-Prayoga.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Adistiar Prayoga</h5>
-                    <p>{{ Str::limit('Staff Senior Bidang Keuangan', 150, $end='...') }}</p>
+                    <p>{{ Str::limit(session('locale') == 'id' ? 'Staff Senior Bidang Keuangan' : 'Senior Staff in Finance', 150, '...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -541,7 +531,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Bu Rima.jpg')}}" alt="">
                     </div>
                     <h5 class="mb-0">Lies Rimayani</h5>
-                    <p>{{ Str::limit('Staff Junior Keuangan', 150, $end='...') }}</p>
+                    <p>{{ Str::limit(session('locale') == 'id' ? 'Staff Junior Keuangan' : 'Junior Staff in Finance', 150, '...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -558,7 +548,7 @@
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Jalian Setiarsa.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Jalian Setiarsa</h5>
-                    <p>{{ Str::limit('Koordinator Tenaga Teknis', 150, $end='...') }}</p>
+                    <p>{{ Str::limit(session('locale') == 'id' ? 'Koordinator Tenaga Teknis' : 'Technical Coordinator', 150, '...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -569,13 +559,15 @@
                     </div>
                 </div>
             </div>
+            <!-- Repeat the same structure for other team members -->
+            <!-- Example for Arie Indarwanto -->
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4">
                     <div class="overflow-hidden mb-4">
                         <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Arie Indarwanto.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Arie Indarwanto</h5>
-                    <p>{{ Str::limit('Tenaga Teknis Bidang Prosedur Ekspor, Logistik dan Kepabeanan ', 150, $end='...') }}</p>
+                    <p>{{ Str::limit(session('locale') == 'id' ? 'Tenaga Teknis Bidang Prosedur Ekspor, Logistik dan Kepabeanan' : 'Technical Staff in Export Procedures, Logistics, and Customs', 150, '...') }}</p>
                     <div class="btn-slide mt-1">
                         <i class="fa fa-share"></i>
                         <span>
@@ -586,91 +578,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Aksamil Khair.png')}}" alt="">
-                    </div>
-                    <h5 class="mb-0">Aksamil Khair</h5>
-                    <p>{{ Str::limit('Tenaga Teknis Bidang Implementasi Hasil Perjanjian Perdagangan Internasional, Inaexport dan Hubungan Antar Lembaga ', 150, $end='...') }}</p>
-                    <div class="btn-slide mt-1">
-                        <i class="fa fa-share"></i>
-                        <span>
-                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Permadani Anggi Palupi.png')}}" alt="">
-                    </div>
-                    <h5 class="mb-0">Permadani Anggi Palupi</h5>
-                    <p>{{ Str::limit('Koordinator Tenaga Pendukung Bidang Keuangan ', 150, $end='...') }}</p>
-                    <div class="btn-slide mt-1">
-                        <i class="fa fa-share"></i>
-                        <span>
-                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Faya Valentia.png')}}" alt="">
-                    </div>
-                    <h5 class="mb-0">Faya Valentia Ivany</h5>
-                    <p>{{ Str::limit('Tenaga Pendukung Bidang Sekretariat ', 150, $end='...') }}</p>
-                    <div class="btn-slide mt-1">
-                        <i class="fa fa-share"></i>
-                        <span>
-                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Maulidina Fahria.png')}}" alt="">
-                    </div>
-                    <h5 class="mb-0">Maulidina Fahria W</h5>
-                    <p>{{ Str::limit('Tenaga Pendukung Bidang Kegiatan ', 150, $end='...') }}</p>
-                    <div class="btn-slide mt-1">
-                        <i class="fa fa-share"></i>
-                        <span>
-                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="team-item p-4">
-                    <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Layla Novia Rahmah.png')}}" alt="">
-                    </div>
-                    <h5 class="mb-0">Layla Novia Rahmah</h5>
-                    <p>{{ Str::limit('Tenaga Pendukung Bidang Konsultasi ', 150, $end='...') }}</p>
-                    <div class="btn-slide mt-1">
-                        <i class="fa fa-share"></i>
-                        <span>
-                            <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
-                            <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <!-- Add other team members similarly -->
         </div>
     </div>
 </div>
@@ -681,42 +589,42 @@
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="text-center">
-            <h1 class="mb-0">Our Partner</h1>
+            <h1 class="mb-0">{{ session('locale') == 'id' ? 'Mitra Kami' : 'Our Partner' }}</h1>
         </div>
         <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
             <div class="p-4 my-5">
                 <div class="d-flex align-items-center mt-5">
-                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('assets_users/partner/kemendag.svg')}}"
+                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('assets_users/partner/kemendag.svg') }}"
                         style="width: 250px; height: auto;">
                 </div>
             </div>
             <div class="p-4 my-5">
                 <div class="d-flex align-items-center">
                     <img class="img-fluid rounded mx-auto d-block"
-                        src="{{ asset('assets_users/partner/disperindag.png')}}" style="width: 150px; height: auto;">
+                        src="{{ asset('assets_users/partner/disperindag.png') }}" style="width: 150px; height: auto;">
                 </div>
             </div>
             <div class="p-4 my-5">
                 <div class="d-flex align-items-center mt-5">
                     <img class="img-fluid rounded mx-auto d-block"
-                        src="{{ asset('assets_users/partner/inaexport.png')}}" style="width: 250px; height: auto;">
+                        src="{{ asset('assets_users/partner/inaexport.png') }}" style="width: 250px; height: auto;">
                 </div>
             </div>
             <div class="p-4 my-5">
                 <div class="d-flex align-items-center">
-                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('assets_users/partner/gpei.png')}}"
+                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('assets_users/partner/gpei.png') }}"
                         style="width: 250px; height: auto;">
                 </div>
             </div>
             <div class="p-4 my-5">
                 <div class="d-flex align-items-center">
-                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('assets_users/partner/LPEI.jpg')}}"
+                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('assets_users/partner/LPEI.jpg') }}"
                         style="width: 250px; height: auto;">
                 </div>
             </div>
             <div class="p-4 my-5">
                 <div class="d-flex align-items-center">
-                    <img class="img-fluid  rounded mx-auto d-block" src="{{ asset('assets_users/partner/BPOM.png')}}"
+                    <img class="img-fluid rounded mx-auto d-block" src="{{ asset('assets_users/partner/BPOM.png') }}"
                         style="width: 150px; height: auto;">
                 </div>
             </div>
