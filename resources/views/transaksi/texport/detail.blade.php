@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label class="form-label mb-1 mt-0 labelInput">Nama Perusahaan</label>
                     <select name="id_perusahaan" class="form-control form-control-sm select_perusahaan" disabled>
-                        <option value="{{ $data->id_perusahaan }}">{{ $data->kode_perusahaan }}</option>
+                        <option value="{{ $data->id_perusahaan }}">{{ $data->nama_perusahaan }}{{ !empty($data->nama_tipe) ? ', ' . $data->nama_tipe : "" }}</option>
                     </select>
                 </div>
             </div>

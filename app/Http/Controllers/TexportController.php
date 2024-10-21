@@ -188,7 +188,7 @@ class TexportController extends Controller
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->whereNull('tc.deleted_at')
-        ->select('ta.*', 'tb.kode_perusahaan', 'tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
+        ->select('ta.*', 'tb.kode_perusahaan', 'td.nama_tipe','tb.nama_perusahaan', 'tb.detail_produk_utama', 'td.nama_tipe', 'tc.en_short_name')
         ->where('ta.id', $id)
         ->first();
 
