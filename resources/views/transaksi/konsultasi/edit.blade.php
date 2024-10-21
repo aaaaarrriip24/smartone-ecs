@@ -114,11 +114,12 @@
                     <div class="form-group">
                         <label class="form-label mb-1 labelInput">Foto Pertemuan</label>
                         @if(!empty($data->foto_pertemuan))
-                        <img id="oldImage" src="{{ asset('foto_pertemuan/'.$data->foto_pertemuan ) }}" class="rounded" style="max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" alt="Preview">
-                        <img id="imagePreview" src="#" alt="Image Preview" class="rounded" style="display: none; max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" />
+                        <img src="{{ asset('foto_pertemuan/'.$data->foto_pertemuan ) }}" class="rounded oldImage" style="max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" alt="Preview">
+                        <img src="#" alt="Image Preview" class="rounded imagePreview" style="display: none; max-width: 100%; max-height: 540px; height: auto; object-fit: contain;" />
                         @else
-                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning" disabled>Foto Masih
+                        <a href="javascript:void(0);" class="form-control btn btn-sm btn-warning oldImage" disabled>Foto Masih
                             Kosong</a>
+                        <img src="#" alt="Image Preview" class="rounded imagePreview" style="display: none; max-width: 100%; max-height: 480px; height: auto; object-fit: contain;" />
                         @endif
                     </div>
                 </div>
@@ -146,8 +147,8 @@
 
         $('#fotoInput').on('change', function(event) {
             const input = this;
-            const preview = $('#imagePreview');
-            const old = $('#oldImage');
+            const preview = $('.imagePreview');
+            const old = $('.oldImage');
 
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
