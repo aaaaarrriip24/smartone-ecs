@@ -32,7 +32,7 @@
 
 <!-- Content -->
     <!-- Panduan Aplikasi InaExport Start -->
-    <div class="container-fluid overflow-hidden py-3 px-lg-0">
+    <div class="container-fluid overflow-hidden px-lg-0">
         <div class="container about py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
@@ -59,7 +59,7 @@
                 <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="text-secondary text-uppercase mb-3">{{ session('locale') == 'id' ? 'Panduan Aplikasi InaExport' : 'InaExport Application Guide' }}</h6>
                     <h1 class="mb-5">{{ session('locale') == 'id' ? 'Aspek yang Mencakup Panduan Aplikasi InaExport' : 'Aspects of the InaExport Application Guide' }}</h1>
-                    
+
                     <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.7s">
                         <i class="fa fa-solid fa-user-plus text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
@@ -69,7 +69,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="d-flex gap-2 mb-4 wow fadeIn" data-wow-delay="0.5s">
                         <i class="fa fa-solid fa-paper-plane text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
@@ -79,7 +79,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="d-flex gap-3 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-award text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
@@ -89,7 +89,7 @@
                             </p>
                         </div>
                     </div>
-                    
+
                     <div class="d-flex gap-1 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-globe text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">

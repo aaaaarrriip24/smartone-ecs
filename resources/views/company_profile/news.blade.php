@@ -17,7 +17,7 @@
 
 
 <!-- Page Header Start -->
-<div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
+<div class="container-fluid page-header py-5" style="margin-bottom: 4rem;">
     <div class="container py-5">
         <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Berita' : 'News' }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
@@ -33,7 +33,7 @@
 
 
 <!-- Service Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Berita ECS' : 'ECS News' }}</h6>

@@ -32,7 +32,7 @@
 
 <!-- Content -->
     <!-- Business Matching Start -->
-    <div class="container-fluid overflow-hidden py-3 px-lg-0">
+    <div class="container-fluid overflow-hidden px-lg-0">
         <div class="container about py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
@@ -60,7 +60,7 @@
                 <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="text-secondary text-uppercase mb-3">{{ session('locale') == 'id' ? 'Business Matching' : 'Business Matching' }}</h6>
                     <h1 class="mb-5">{{ session('locale') == 'id' ? 'Aspek yang Mencakup Business Matching' : 'Aspects of Business Matching' }}</h1>
-                    
+
                     <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.7s">
                         <i class="fa fa-solid fa-handshake text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">

@@ -31,7 +31,7 @@
 
 
 <!-- Service Start -->
-<div class="container-xxl py-3">
+<div class="container-xxl">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Hubungan Kami' : 'Our Relations' }}</h6>

@@ -32,7 +32,7 @@
 
 <!-- Content -->
     <!-- Our Market Start -->
-    <div class="container-fluid overflow-hidden py-3 px-lg-0">
+    <div class="container-fluid overflow-hidden px-lg-0">
         <div class="container about px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
@@ -64,7 +64,7 @@
                     <p class="text-justify mb-5">
                         {{ session('locale') == 'id' ? 'Export Center Surabaya (ECS) dapat menawarkan berbagai peluang pasar yang menarik kepada calon klien, antara lain:' : 'Export Center Surabaya (ECS) can offer a variety of exciting market opportunities to potential clients, including:' }}
                     </p>
-                    
+
                     <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-globe-asia text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">

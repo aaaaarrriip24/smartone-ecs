@@ -32,7 +32,7 @@
 
 
 <!-- Fact Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl pb-5">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-7 wow fadeInUp" data-wow-delay="0.1s">

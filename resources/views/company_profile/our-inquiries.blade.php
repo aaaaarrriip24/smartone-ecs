@@ -32,7 +32,7 @@
 
 <!-- Content -->
     <!-- Inquiry Distribution Start -->
-    <div class="container-fluid overflow-hidden py-3 px-lg-0">
+    <div class="container-fluid overflow-hidden px-lg-0">
         <div class="container about py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px;">
@@ -60,7 +60,7 @@
                 <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
                     <h6 class="text-secondary text-uppercase mb-3">{{ session('locale') == 'id' ? 'Penyebaran Inquiry' : 'Inquiry Distribution' }}</h6>
                     <h1 class="mb-5">{{ session('locale') == 'id' ? 'Aspek yang Mencakup Penyebaran Inquiry' : 'Aspects of Inquiry Distribution' }}</h1>
-                    
+
                     <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
                         <i class="fa fa-solid fa-paper-plane text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
