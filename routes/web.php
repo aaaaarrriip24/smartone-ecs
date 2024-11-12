@@ -29,6 +29,7 @@ use App\Http\Controllers\TransaksiLayananController;
 use App\Http\Controllers\ManagementUserController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ArtikelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +57,14 @@ Route::get('other-service', [HomePageController::class, 'other_service']);
 Route::get('our-supplier', [HomePageController::class, 'our_supplier']);
 Route::get('our-market', [HomePageController::class, 'our_market']);
 Route::get('other-relasi', [HomePageController::class, 'other_relasi']);
+
+// Artikel
+Route::get('artikel/{spices}', [HomePageController::class, 'artikel']);
+Route::get('artikel/{fish}', [HomePageController::class, 'artikel']);
+Route::get('artikel/{furniture}', [HomePageController::class, 'artikel']);
+Route::get('artikel/{coffee}', [HomePageController::class, 'artikel']);
+Route::get('artikel/{food}', [HomePageController::class, 'artikel']);
+Route::get('artikel/{manufacture}', [HomePageController::class, 'artikel']);
 
 // Data
 Route::get('data_topik', [HomePageController::class, 'data_topik']);
@@ -100,6 +109,14 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     });
 
     Route::group(['middleware' => 'admin'],function() {
+        // Artikel
+        Route::get('master/artikel', [ArtikelController::class, 'index'])->name('artikel'); // Tampilkan semua artikel
+        Route::get('artikel/trashed', [ArtikelController::class, 'trashed']); // Tampilkan artikel yang dihapus
+        Route::get('artikel/{id}', [ArtikelController::class, 'show']); // Tampilkan satu artikel
+        Route::post('artikel/store', [ArtikelController::class, 'store']); // Buat artikel baru
+        Route::delete('artikel/{id}', [ArtikelController::class, 'destroy']); // Hapus artikel secara soft delete
+        Route::patch('artikel/restore/{id}', [ArtikelController::class, 'restore']); // Pulihkan artikel yang dihapus
+
         // News
         Route::get('master/berita', [BeritaController::class, 'index'])->name('berita');
         Route::post('berita/store', [BeritaController::class, 'store']);

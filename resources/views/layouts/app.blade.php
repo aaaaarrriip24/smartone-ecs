@@ -933,6 +933,11 @@
                                             </a>
                                         </li>
                                         <li class="nav-item">
+                                            <a href="{{ url('master/artikel') }}" class="nav-link" data-key="t-lain">
+                                                Artikel
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
                                             <a href="{{ url('master/berita') }}" class="nav-link" data-key="t-lain">
                                                 Berita
                                             </a>

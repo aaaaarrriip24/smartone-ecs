@@ -297,4 +297,9 @@ class HomePageController extends Controller
     {
         return view('company_profile/other-relasi');
     }
+
+    public function artikel($name)
+    {
+        return view('artikel/'.$name);
+    }
 }

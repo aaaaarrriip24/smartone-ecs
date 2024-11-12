@@ -110,17 +110,6 @@
                     <a class="btn-slide mt-auto" href="{{ url('our-inquiries') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
                 </div>
             </div>
-            {{-- our mediasi --}}
-            {{-- <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.7s">
-                <div class="service-item p-3 h-100 d-flex flex-column ">
-                    <div class="overflow-hidden p-3 text-center mb-4">
-                        <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
-                    </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang' : 'Trade Case Mediation' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional, membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.' : 'Trade Case Mediation offers business dispute resolution with professional mediators, helping parties reach agreements without lengthy legal processes.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-mediasi') }}"><i class="fa fa-arrow-right"></i><span>Read More</span></a>
-                </div>
-            </div> --}}
 
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.7s">
                 <div class="service-item p-3 h-100 d-flex flex-column ">
@@ -182,7 +171,7 @@
 
 <!-- News Start -->
 <div class="container-xxl pb-5">
-    <div class="container py-5">
+    <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Berita ECS' : 'ECS News' }}</h6>
             <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Berita Kami' : 'Explore Our News' }}</h1>
@@ -218,6 +207,78 @@
     </div>
 </div>
 <!-- News End -->
+
+<!-- Service Start -->
+<div class="container p-0 pb-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-secondary text-uppercase mb-3"> {{ session('locale') == 'id' ? 'Sebuah Fakta' : 'Some Facts' }}</h6>
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Produk Indonesia yang Berpotensi Besar' : "Indonesia's Great Potential Product" }}</h1>
+        </div>
+        <div class="row w-100 justify-content-center px-0">
+            <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item p-3 h-100 d-flex flex-column ">
+                    <div class="overflow-hidden p-3 text-center mb-4">
+                        <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Spices.png')}}" alt="">
+                    </div>
+                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Rempah' : 'Spices' }}</h6>
+                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan negara kepulauan yang memiliki kekayaan sumber daya alam, dan dikenal sebagai penghasil rempah-rempah sejak zaman dahulu.' : 'Indonesia is an archipelagic country that has rich natural resources, and has been known as a producer of spices since ancient times.' }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/spices') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item p-3 h-100 d-flex flex-column ">
+                    <div class="overflow-hidden p-3 text-center mb-4">
+                        <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Fish.png')}}" alt="">
+                    </div>
+                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Ikan' : 'Fish' }}</h6>
+                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan salah satu negara maritim yang kaya akan sumber daya laut, hal tersebut menjadikan Indonesia sebagai salah satu pemasok produk perikanan dunia dan produk perikanan ini sebagai salah satu komoditas unggulan Indonesia yang memiliki potensi besar untuk diekspor.' : 'Indonesia is a maritime country that is rich in marine resources, this makes Indonesia one of the world`s suppliers of fishery products and these fishery products are one of Indonesia`s leading commodities that have great potential for export.' }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/fish') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item p-3 h-100 d-flex flex-column ">
+                    <div class="overflow-hidden p-3 text-center mb-4">
+                        <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Furniture.png')}}" alt="">
+                    </div>
+                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Mebel' : 'Furniture' }}</h6>
+                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan salah satu negara penghasil produk furniture berkualitas tinggi yang diakui secara global.' : 'Indonesia is one of the countries producing high quality furniture products that are recognized globally.' }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/furniture') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item p-3 h-100 d-flex flex-column ">
+                    <div class="overflow-hidden p-3 text-center mb-4">
+                        <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Coffee.png')}}" alt="">
+                    </div>
+                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Kopi' : 'Coffee' }}</h6>
+                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Kopi merupakan salah satu komoditi hasil perkebunan yang memiliki peranan cukup penting dalam perekonomian di Indonesia. Kopi juga merupakan salah satu komoditas ekspor yang telah menghasilkan devisa negara.' : 'Coffee is one of the plantation commodities that has a significant role in the economy in Indonesia. Coffee is also one of the export commodities that has generated foreign exchange for the country.' }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/coffee') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item p-3 h-100 d-flex flex-column ">
+                    <div class="overflow-hidden p-3 text-center mb-4">
+                        <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Food Processing.png')}}" alt="">
+                    </div>
+                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Pengelolahan Makanan' : 'Food Processing' }}</h6>
+                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan salah satu negara dengan potensi besar dalam industri food processing atau pengolahan makanan, berkat melimpahnya sumber daya alam dan keanekaragaman hasil pertanian serta perikanan.' : 'Indonesia is one of the countries with great potential in the food processing industry, thanks to its abundant natural resources and diversity of agricultural and fishery products.' }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/food') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item p-3 h-100 d-flex flex-column ">
+                    <div class="overflow-hidden p-3 text-center mb-4">
+                        <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Manufacture product.png')}}" alt="">
+                    </div>
+                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Memproduksi Produk' : 'Manufacture product' }}</h6>
+                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia memiliki potensi besar dalam industri manufaktur yang berkontribusi signifikan terhadap perekonomian nasional.' : 'Indonesia has great potential in the manufacturing industry which contributes significantly to the national economy.' }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/manufacture') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- Service End -->
 
 <div class="container-xxl mb-5 mt-5">
     <div class="row">
@@ -267,64 +328,69 @@
 </div>
 
 <!-- Dashboard -->
-<div class="container mt-3">
-    <div class="row justify-content-center">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">ECS Performance</div>
-                <div class="card-body">
-                    <div class="row">
-                        <!-- Template -->
-                        <div class="col-md-12">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" scope="col" style="background-color: rgb(255, 99, 132);">
-                                            Perusahaan&nbsp;Terdaftar</th>
-                                        <th class="text-center" scope="col" style="background-color: rgb(75, 192, 192);">
-                                            Business&nbsp;Matching</th>
-                                        <th class="text-center" scope="col" width="250px" style="background-color: rgb(189,156,255);">
-                                            Inquiry</th>
-                                        <th class="text-center" scope="col" style="background-color: rgb(255, 205, 86);">
-                                            Realisasi&nbsp;Export&nbsp;(USD)</th>
-                                        <th class="text-center" scope="col" style="background-color: rgb(255, 159, 64);">
-                                            Jumlah&nbsp;Konsultasi</th>
-                                        <th class="text-center" scope="col" style="background-color: rgb(124,194,242);">InaExport</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="text-end">{{ number_format($perusahaan) }}</td>
-                                        <td class="text-end">
-                                            {{ number_format($bm) }}/{{ number_format( $ptbm2->jumlah_perusahaan )}}</td>
-                                        <td class="text-end">
-                                            {{ number_format($iq) }}/{{ number_format( $ptiq2->jumlah_perusahaan )}}</td>
-                                        <td class="text-end">{{ number_format($export->total) }}</td>
-                                        <td class="text-end">{{ number_format($layanan) }}</td>
-                                        <td class="text-end">{{ number_format( $ptina->count_perusahaan )}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-6">
-                            <canvas id="chart_layanan_konsultasi" style="width: 900px; height: 500px"></canvas>
-                        </div>
-                        <!-- <div class="col-md-6">
-                            <canvas id="chart_topik" style="width: 900px; height: 500px"></canvas>
-                        </div> -->
-                        <div class="col-md-6">
-                            <table id="dt_topik" class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" style="background-color: rgb(255, 99, 132);">No.
-                                        </th>
-                                        <th scope="col" style="background-color: rgb(255, 205, 86);">Topik Konsultasi
-                                        </th>
-                                        <th scope="col" style="background-color: rgb(75, 192, 192);">Data Konsultasi
-                                        </th>
-                                    </tr>
-                                </thead>
-                            </table>
+<div class="container-xxl pb-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Performa ECS' : 'ECS Performance' }}</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">ECS Performance</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Template -->
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" scope="col" style="background-color: rgb(255, 99, 132);">
+                                                Perusahaan&nbsp;Terdaftar</th>
+                                            <th class="text-center" scope="col" style="background-color: rgb(75, 192, 192);">
+                                                Business&nbsp;Matching</th>
+                                            <th class="text-center" scope="col" width="250px" style="background-color: rgb(189,156,255);">
+                                                Inquiry</th>
+                                            <th class="text-center" scope="col" style="background-color: rgb(255, 205, 86);">
+                                                Realisasi&nbsp;Export&nbsp;(USD)</th>
+                                            <th class="text-center" scope="col" style="background-color: rgb(255, 159, 64);">
+                                                Jumlah&nbsp;Konsultasi</th>
+                                            <th class="text-center" scope="col" style="background-color: rgb(124,194,242);">InaExport</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-end">{{ number_format($perusahaan) }}</td>
+                                            <td class="text-end">
+                                                {{ number_format($bm) }}/{{ number_format( $ptbm2->jumlah_perusahaan )}}</td>
+                                            <td class="text-end">
+                                                {{ number_format($iq) }}/{{ number_format( $ptiq2->jumlah_perusahaan )}}</td>
+                                            <td class="text-end">{{ number_format($export->total) }}</td>
+                                            <td class="text-end">{{ number_format($layanan) }}</td>
+                                            <td class="text-end">{{ number_format( $ptina->count_perusahaan )}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <canvas id="chart_layanan_konsultasi" style="width: 900px; height: 500px"></canvas>
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <canvas id="chart_topik" style="width: 900px; height: 500px"></canvas>
+                            </div> -->
+                            <div class="col-md-6">
+                                <table id="dt_topik" class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="background-color: rgb(255, 99, 132);">No.
+                                            </th>
+                                            <th scope="col" style="background-color: rgb(255, 205, 86);">Topik Konsultasi
+                                            </th>
+                                            <th scope="col" style="background-color: rgb(75, 192, 192);">Data Konsultasi
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
