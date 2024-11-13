@@ -109,14 +109,6 @@ Route::group(['middleware' => 'prevent-back-history'],function(){
     });
 
     Route::group(['middleware' => 'admin'],function() {
-        // Artikel
-        Route::get('master/artikel', [ArtikelController::class, 'index'])->name('artikel'); // Tampilkan semua artikel
-        Route::get('artikel/trashed', [ArtikelController::class, 'trashed']); // Tampilkan artikel yang dihapus
-        Route::get('artikel/{id}', [ArtikelController::class, 'show']); // Tampilkan satu artikel
-        Route::post('artikel/store', [ArtikelController::class, 'store']); // Buat artikel baru
-        Route::delete('artikel/{id}', [ArtikelController::class, 'destroy']); // Hapus artikel secara soft delete
-        Route::patch('artikel/restore/{id}', [ArtikelController::class, 'restore']); // Pulihkan artikel yang dihapus
-
         // News
         Route::get('master/berita', [BeritaController::class, 'index'])->name('berita');
         Route::post('berita/store', [BeritaController::class, 'store']);

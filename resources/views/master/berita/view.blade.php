@@ -289,11 +289,6 @@
                 }
             });
         });
-
-
-        // $('.select2').select2(
-        //     dropdownParent: $('#modalAdd')
-        // );
         
         $(document).on('click', '.btn-detail', function () {
             var id = $(this).val();
