@@ -160,7 +160,7 @@
                         "The purpose of organizing Export Center Surabaya is to optimize export market opportunities in international markets so they can be utilized by export business actors. The aim of the activities at Export Center Surabaya is to provide public services that function as a place for business actors to obtain consultation and information about export market opportunities, including buyers' inquiries from Trade Representatives abroad, market intelligence, Free Trade Agreement utilization, and export promotion."}}
                     </p>
                 </div>
-                <a href="#moreText" class="btn btn-link p-0" data-bs-toggle="collapse" data-bs-target="#moreText" aria-expanded="false" aria-controls="moreText" onclick="hideButton(this)">
+                <a href="#moreText" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#moreText" aria-expanded="false" aria-controls="moreText" onclick="hideButton(this)">
                     {{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}
                 </a>
                 <!-- Read More Button -->
