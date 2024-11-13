@@ -408,11 +408,11 @@
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Tim Kami' : 'Our Team' }}</h6>
             <h1 class="mb-5">{{ session('locale') == 'id' ? 'Anggota Tim' : 'Expert Team Members' }}</h1>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="row g-4 mb-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4 h-100 d-flex flex-column">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Dirgantoro.png')}}" alt="">
+                        <img class="img" style="width:350px; height:350px;" src="{{ asset('assets/images/ecs/tim/Dirgantoro.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Toto Dirgantoro</h5>
                     <p>{{ Str::limit('Kepala Pengelola Export Center Surabaya', 150, $end='...') }}</p>
@@ -426,10 +426,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4 h-100 d-flex flex-column">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Adistiar-Prayoga.png')}}" alt="">
+                        <img class="img" style="width:350px; height:350px;" src="{{ asset('assets/images/ecs/tim/Adistiar-Prayoga.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Adistiar Prayoga</h5>
                     <p>{{ Str::limit('Staff Senior Bidang Keuangan', 150, $end='...') }}</p>
@@ -443,10 +443,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4 h-100 d-flex flex-column">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Bu Rima.jpg')}}" alt="">
+                        <img class="img" style="width:350px; height:350px;" src="{{ asset('assets/images/ecs/tim/Bu Rima.jpg')}}" alt="">
                     </div>
                     <h5 class="mb-0">Lies Rimayani</h5>
                     <p>{{ Str::limit('Staff Junior Keuangan', 150, $end='...') }}</p>
@@ -460,10 +460,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+        </div>
+        <div class="row g-4 mb-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4 h-100 d-flex flex-column">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Jalian Setiarsa.png')}}" alt="">
+                        <img class="img" style="width:350px; height:350px;" src="{{ asset('assets/images/ecs/tim/Jalian Setiarsa.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Jalian Setiarsa</h5>
                     <p>{{ Str::limit('Koordinator Tenaga Teknis', 150, $end='...') }}</p>
@@ -477,10 +479,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4 h-100 d-flex flex-column">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Arie Indarwanto.png')}}" alt="">
+                        <img class="img" style="width:350px; height:350px;" src="{{ asset('assets/images/ecs/tim/Arie Indarwanto.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Arie Indarwanto</h5>
                     <p>{{ Str::limit('Tenaga Teknis Bidang Prosedur Ekspor, Logistik dan Kepabeanan ', 150, $end='...') }}</p>
@@ -494,10 +496,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4 h-100 d-flex flex-column">
                     <div class="overflow-hidden mb-4">
-                        <img class="img" style="width:250px; height:250px;" src="{{ asset('assets/images/ecs/tim/Aksamil Khair.png')}}" alt="">
+                        <img class="img" style="width:350px; height:350px;" src="{{ asset('assets/images/ecs/tim/Aksamil Khair.png')}}" alt="">
                     </div>
                     <h5 class="mb-0">Aksamil Khair</h5>
                     <p>{{ Str::limit('Tenaga Teknis Bidang Implementasi Hasil Perjanjian Perdagangan Internasional, Inaexport dan Hubungan Antar Lembaga ', 150, $end='...') }}</p>
@@ -511,6 +513,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row g-4 mb-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item p-4 h-100 d-flex flex-column">
                     <div class="overflow-hidden mb-4">
