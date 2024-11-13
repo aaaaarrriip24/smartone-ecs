@@ -64,7 +64,7 @@
 <!-- Carousel End -->
 
 <!-- Service Start -->
-<div class="container-fluid p-0 pb-5">
+<div class="container-fluid p-0 py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Layanan Kami' : 'Our Services' }}</h6>
             <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Layanan Kami' : 'Explore Our Services' }}</h1>
@@ -126,7 +126,7 @@
 <!-- Service End -->
 
 {{-- about --}}
-<div class="container-xxl pb-5 mt-5">
+<div class="container-xxl py-5 my-5">
     <div class="row">
         <div class="col-12">
             <!-- Header Section -->
@@ -170,7 +170,7 @@
 </div>
 
 <!-- News Start -->
-<div class="container-xxl pb-5">
+<div class="container-xxl py-2">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Berita ECS' : 'ECS News' }}</h6>
@@ -209,7 +209,7 @@
 <!-- News End -->
 
 <!-- Service Start -->
-<div class="container p-0 pb-5">
+<div class="container p-0 py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase mb-3"> {{ session('locale') == 'id' ? 'Sebuah Fakta' : 'Some Facts' }}</h6>
             <h1 class="mb-5">{{ session('locale') == 'id' ? 'Produk Indonesia yang Berpotensi Besar' : "Indonesia's Great Potential Product" }}</h1>
@@ -278,58 +278,10 @@
             </div>
         </div>
 </div>
-<!-- Service End -->
-
-<div class="container-xxl mb-5 mt-5">
-    <div class="row">
-        <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase mb-3"> {{ session('locale') == 'id' ? 'Sebuah Fakta' : 'Some Facts' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Produk Indonesia yang Berpotensi Besar' : "Indonesia's Great Potential Product" }}</h1>
-
-            <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.7s">
-                <i class="fa fa-solid fa-handshake text-primary fa-3x flex-shrink-0"></i>
-                <div class="ms-4">
-                    <h5>{{ session('locale') == 'id' ? 'Menyelesaikan Sengketa' : 'Dispute Resolution' }}</h5>
-                    <p class="mb-0 text-justify">
-                        {{ session('locale') == 'id' ? 'Jika terjadi sengketa antara eksportir dan buyer, ECS berperan sebagai mediator. Mereka dapat menghubungi Perwakilan Perdagangan untuk membantu mengorganisir pertemuan antara kedua belah pihak, guna mencari solusi yang adil dan menghindari konflik yang lebih serius.' : 'In the event of a dispute between exporters and buyers, ECS acts as a mediator. They can contact Trade Representatives to help organize meetings between both parties to find a fair solution and avoid more serious conflicts.' }}
-                    </p>
-                </div>
-            </div>
-
-            <div class="d-flex gap-2 mb-4 wow fadeIn" data-wow-delay="0.5s">
-                <i class="fa fa-solid fa-tools text-primary fa-3x flex-shrink-0"></i>
-                <div class="ms-4">
-                    <h5>{{ session('locale') == 'id' ? 'Penyelesaian Masalah Bisnis' : 'Business Problem Resolution' }}</h5>
-                    <p class="mb-0 text-justify">
-                        {{ session('locale') == 'id' ? 'ECS siap membantu pelaku usaha dalam menghadapi berbagai tantangan yang terkait dengan ekspor, termasuk keterlambatan pengiriman, kualitas produk yang tidak sesuai, dan masalah komunikasi dengan buyer.' : 'ECS is ready to assist entrepreneurs in facing various challenges related to exports, including delivery delays, product quality issues, and communication problems with buyers.' }}
-                    </p>
-                </div>
-            </div>
-
-            <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
-                <i class="fa fa-solid fa-arrows-alt-h text-primary fa-3x flex-shrink-0"></i>
-                <div class="ms-4">
-                    <h5>{{ session('locale') == 'id' ? 'Jembatan ke Lembaga Terkait' : 'Bridge to Relevant Institutions' }}</h5>
-                    <p class="mb-0 text-justify">
-                        {{ session('locale') == 'id' ? 'ECS berfungsi sebagai jembatan untuk menghubungkan pelaku usaha dengan lembaga pemerintah atau organisasi lain yang dapat memberikan dukungan, baik itu dalam hal hukum, keuangan, atau aspek teknis dari bisnis ekspor.' : 'ECS serves as a bridge to connect entrepreneurs with government agencies or other organizations that can provide support, whether in legal, financial, or technical aspects of export business.' }}
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-6 pe-lg-0 wow fadeInRight" data-wow-delay="0.1s" style="min-height: 400px;">
-            <div class="position-relative h-100">
-                <img class="position-absolute img-fluid w-100 h-100"
-                    src="{{ asset('assets_users/img/other1.jpg')}}" style="object-fit: cover;" alt="">
-            </div>
-        </div>
-            
-        
-    </div>
-</div>
 
 <!-- Dashboard -->
-<div class="container-xxl pb-5">
-    <div class="container">
+<div class="container-xxl py-4">
+    <div class="container py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h1 class="mb-5">{{ session('locale') == 'id' ? 'Performa ECS' : 'ECS Performance' }}</h1>
         </div>
@@ -402,8 +354,8 @@
 
 
 <!-- Team Start -->
-<div class="container-xxl py-5">
-    <div class="container py-5">
+<div class="container-xxl py-4">
+    <div class="container py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
             <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Tim Kami' : 'Our Team' }}</h6>
             <h1 class="mb-5">{{ session('locale') == 'id' ? 'Anggota Tim' : 'Expert Team Members' }}</h1>
@@ -589,8 +541,8 @@
 <!-- Team End -->
 
 <!-- Testimonial Start -->
-<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="container py-5">
+<div class="container-xxl wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
         <div class="text-center">
             <h1 class="mb-0">{{ session('locale') == 'id' ? 'Mitra Kami' : 'Our Partner' }}</h1>
         </div>
