@@ -40,6 +40,10 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/2.0.3/css/dataTables.bootstrap5.css" rel="stylesheet">
 
+    {{-- splide js --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+
+
     <style>
         .text-justify {
             text-align: justify;
@@ -143,6 +147,9 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('assets_users/js/main.js')}}"></script>
+
+    {{-- splide js --}}
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
         var base_url = document.querySelector('meta[name="base_url"]').getAttribute('content') + '/';
     </script>

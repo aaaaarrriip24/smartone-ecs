@@ -30,8 +30,81 @@
 </div>
 <!-- Page Header End -->
 
+<!-- Service Start -->
+<div class="container-fluid px-5">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Hubungan Kami' : 'Our Relations' }}</h6>
+            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Hubungan Lainnya' : 'Explore Other Relations' }}</h1>
+        </div>
+        <div class="row g-4">
 
-<!-- Fact Start -->
+            @foreach ( $data_suplier as $data )
+
+
+            <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item p-4 h-100 d-flex flex-column shadow rounded border">
+                    <!-- Header Section -->
+                    <div class="overflow-hidden text-center mb-4">
+                        <h4 class="fw-bold mb-2">{{ $data->nama_perusahaan}}</h4>
+                        <p class="text-muted mb-1">{{ $data->alamat_perusahaan}}</p>
+                        <p class="text-muted mb-1">{{ $data->cities}}, {{ $data->provinsi}}</p>
+                        <p class="text-muted">Indonesia</p>
+                    </div>
+
+                    <!-- Body Section -->
+                    <div class="mt-auto">
+                        <h5 class="fw-bold text-secondary">Product Details:</h5>
+                        <p class="text-dark mb-1">
+                            <strong>{{ session('locale') == 'id' ? 'Produk Utama:' : 'Main Product:' }}</strong>
+                            {{ $data->detail_produk_utama }}
+                        </p>
+                        <p class="text-dark mb-1">
+                            <strong>{{ session('locale') == 'id' ? 'Kategori:' : 'Category:' }}</strong>
+                            {{ $data->sub_kategori }}
+                        </p>
+                        <p class="text-dark mb-1">
+                            <strong>{{ session('locale') == 'id' ? 'Kapasitas Produksi:' : 'Production Capacity:' }}</strong>
+                            {{ $data->kapasitas_produksi }} {{ $data->satuan_kapasitas_produksi }}
+                        </p>
+                        <p class="text-dark mb-3">
+                            <strong>{{ session('locale') == 'id' ? 'Skala:' : 'Scale:' }}</strong>
+                            {{ $data->skala_perusahaan }}
+                        </p>
+
+                        <!-- Image Section -->
+                        <div class="text-center mb-3">
+                            <img class="img-fluid w-75 rounded" src="{{ asset($data->foto_produk_1)}}" alt="Logo Bea Cukai">
+                        </div>
+
+                        <!-- Contact Section -->
+                        <div class="">
+                            <p class="fw-bold">{{ session('locale') == 'id' ? 'untuk informasi lebih detail' : 'For more detail Information:' }}</p>
+                            <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="far fa-envelope"></i>  <a href="mailto:exportcenter.surabaya@kemendag.go.id" class="text-decoration-none">exportcenter.surabaya@kemendag.go.id</a></p>
+                            <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="fas fa-phone"></i>  <a href="tel:+623135979106" class="text-decoration-none">+62 31 3597 9106</a></p>
+                            <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="fas fa-comment-alt"></i>  <a href="tel:+6285755879497" class="text-decoration-none">+62 8575 5879 497</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            {{-- <div id="splide" class="splide">
+                <div class="splide__track">
+                    <div class="splide__list" id="card-container">
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                {!! $data_suplier->links() !!}
+            </div> --}}
+            {{ $data_suplier->links() }}
+
+        </div>
+</div>
+<!-- Service End -->
+
+
+{{-- <!-- Fact Start -->
 <div class="container-xxl pb-5">
     <div class="container py-5">
         <div class="row g-5">
@@ -75,46 +148,63 @@
         </div>
     </div>
 </div>
-<!-- Fact End -->
+<!-- Fact End --> --}}
 @endsection
 @section('js')
 <script>
-    let table;
     $(document).ready(function () {
-        table = $('#dt_topik').DataTable({
-            autoWidth: false,
-            responsive: false,
-            scrollCollapse: true,
-            processing: true,
-            serverSide: true,
-            displayLength: 5,
-            paginate: true,
-            lengthChange: true,
-            filter: true,
-            sort: true,
-            info: true,
-            searching: true,
-            ajax: base_url + "our-supplier", // Pastikan endpoint ini benar
-            columns: [
-                {
-                    data: 'DT_RowIndex',
-                    name: 'DT_RowIndex',
-                    orderable: false,
-                    searchable: false,
-                    className: 'text-center',
-                    width: '5%'
-                },
-                {
-                    data: null, // Menggunakan 'null' untuk custom render
-                    render: function (data, type, row) {
-                        return row.nama_perusahaan + ', ' + row.kode_perusahaan; // Format yang diinginkan
-                    },
-                    orderable: true,
-                }
-            ]
-        });
+            const suppliers = @json($data_suplier);
+            // Lokasi untuk menempatkan kartu
+            const $cardContainer = $('#card-container');
 
-        $(".dt-length").addClass("d-none");
+            $.each(suppliers.data, function (index, supplier) {
+                const html = `
+                    <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="service-item p-4 h-100 d-flex flex-column shadow rounded border">
+                            <!-- Header Section -->
+                            <div class="overflow-hidden text-center mb-4">
+                                <h4 class="fw-bold mb-2">${supplier.nama_perusahaan}</h4>
+                                <p class="text-muted mb-1">${supplier.alamat_perusahaan}</p>
+                                <p class="text-muted mb-1">${supplier.cities}, ${supplier.provinsi}</p>
+                                <p class="text-muted">Indonesia</p>
+                            </div>
+
+                            <!-- Body Section -->
+                            <div class="mt-auto">
+                                <h5 class="fw-bold text-secondary">Product Details:</h5>
+                                <p class="text-dark mb-1"><strong>Produk Utama:</strong> ${supplier.detail_produk_utama}</p>
+                                <p class="text-dark mb-1"><strong>Kategori:</strong> ${supplier.sub_kategori}</p>
+                                <p class="text-dark mb-1"><strong>Kapasitas Produksi:</strong> ${supplier.kapasitas_produksi} ${supplier.satuan_kapasitas_produksi}</p>
+                                <p class="text-dark mb-3"><strong>Skala:</strong> ${supplier.skala_perusahaan}</p>
+
+                                <!-- Image Section -->
+                                <div class="text-center mb-3">
+                                    <img class="img-fluid w-75 rounded" src="{{ asset('logo_relations/Logo Bea Cukai.png')}}" alt="Logo Bea Cukai">
+                                </div>
+
+                                <!-- Contact Section -->
+                                <div class="">
+                                    <p class="fw-bold">For more detail Information:</p>
+                                    <p class="text-muted mb-1"><i class="far fa-envelope"></i> <a href="mailto:exportcenter.surabaya@kemendag.go.id" class="text-decoration-none">exportcenter.surabaya@kemendag.go.id</a></p>
+                                    <p class="text-muted"><i class="fas fa-phone"></i> <a href="tel:+623135979106" class="text-decoration-none">+62 31 3597 9106</a></p>
+                                    <p class="text-muted mb-1"><i class="fas fa-comment-alt"></i> <a href="tel:+6285755879497" class="text-decoration-none">+62 8575 5879 497</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+`;
+                $cardContainer.append(html);
+            });
+
+
+            // Inisialisasi Splide
+            new Splide('#splide', {
+                type       : 'loop',
+                perPage    : 3,
+                pagination : true,
+                arrows     : true,
+                gap        : '4rem',
+            }).mount();
     });
 </script>
 @endsection

@@ -35,7 +35,7 @@ class HomePageController extends Controller
         ->whereNull('ta.deleted_at')
         ->whereNull('tb.deleted_at')
         ->count();
-        
+
         $topik = DB::table('t_konsultasi as ta')
         ->leftJoin('t_konsultasi_topik as td', 'ta.id', '=', 'td.id_konsultasi')
         ->leftJoin('m_topik as tb', 'td.id_topik', '=', 'tb.id')
@@ -82,12 +82,12 @@ class HomePageController extends Controller
         $iq = Tinquiry::all()->whereNull('deleted_at')->count();
         $ptiq = PPInquiry::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
         $ptina = PPInaexport::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
-        return view('welcome', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptiq2', 'ptbm2', 'ptina', 'berita')); 
+        return view('welcome', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptiq2', 'ptbm2', 'ptina', 'berita'));
     }
 
     public function berita() {
         $berita = Berita::whereNull('deleted_at')->orderBy('created_at', 'DESC')->get();
-        return view('company_profile/news', compact('berita')); 
+        return view('company_profile/news', compact('berita'));
     }
 
     public function berita_detail($id) {
@@ -98,7 +98,7 @@ class HomePageController extends Controller
         ->limit(3)
         ->get();
 
-        return view('company_profile/news_detail', compact('berita', 'otherBerita')); 
+        return view('company_profile/news_detail', compact('berita', 'otherBerita'));
     }
 
     public function data_topik(Request $request) {
@@ -116,7 +116,7 @@ class HomePageController extends Controller
 
         // return DataTables::of($topik)->toJson();
         // $query = DB::table('users');
-        
+
         if ($request->ajax()) {
             return DataTables::of($topik)->addIndexColumn()->toJson();
         }
@@ -136,20 +136,20 @@ class HomePageController extends Controller
         ->whereNull('tb.deleted_at')
         ->groupByRaw('MONTH(tanggal_konsultasi)')
         ->get();
-        
+
         $arrData = array();
-        for ($i=1; $i <= 12 ; $i++) { 
+        for ($i=1; $i <= 12 ; $i++) {
             $toMonth = str_pad($i,2,0,STR_PAD_LEFT);
             $toMonthName = date('M', strtotime("2024-".$toMonth."-01"));
-            
+
             $row = collect($data)->where('month', $i)->first();
-            $arrData[] = array('bulan' => $toMonthName , 'total' => (!empty($row) ? $row->total : 0) ); 
+            $arrData[] = array('bulan' => $toMonthName , 'total' => (!empty($row) ? $row->total : 0) );
         }
         $label = collect($arrData)->pluck("bulan")->toArray();
         $dataset = collect($arrData)->pluck("total")->toArray();
         return response()->json([
             "label"=> $label,
-            "data" => $dataset 
+            "data" => $dataset
         ]);
     }
 
@@ -166,15 +166,15 @@ class HomePageController extends Controller
         ->groupBy('td.id_topik')
         ->get();
 
-     
+
         $label = collect($data)->pluck("nama_topik")->toArray();
         $dataset = collect($data)->pluck("total")->toArray();
         return response()->json([
             "label"=> $label,
-            "data" => $dataset 
+            "data" => $dataset
         ]);
     }
-    
+
     public function send(Request $request) {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -182,7 +182,7 @@ class HomePageController extends Controller
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
         ]);
-    
+
         // Siapkan data yang akan dikirim
         $data = [
             'name' => $request->input('name'),
@@ -190,13 +190,13 @@ class HomePageController extends Controller
             'header_email' => $request->input('subject'), // Pastikan ini sesuai
             'body_email' => $request->input('message'),
         ];
-    
+
         // Simpan pesan ke database
         EmailContact::create($data);
-    
+
         // Alamat email tujuan
         $recipientEmail = 'arifsyahputra137@gmail.com'; // Ganti dengan alamat email tujuan
-    
+
         // Kirim email
         Mail::send('email.contact', $data, function($message) use ($recipientEmail, $data) {
             $message->to($recipientEmail)
@@ -256,6 +256,50 @@ class HomePageController extends Controller
         ->whereNull('tb.deleted_at')
         ->count();
 
+        DB::enableQueryLog();
+        $data_suplier = DB::table('m_perusahaan as ta')
+        ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
+        ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+        ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+        ->leftJoin('m_k_produk as tf', 'ta.id_kategori_produk', '=', 'tf.id')
+        ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
+        ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
+        ->whereNull('ta.deleted_at')
+        ->where(function ($query) {
+            $query->whereNotNull('ta.id_tipe')
+                  ->whereNotNull('ta.id_provinsi')
+                  ->whereNotNull('ta.id_kabkota')
+                  ->whereNotNull('ta.alamat_perusahaan')
+                  ->whereNotNull('ta.alamat_pabrik')
+                  ->whereNotNull('ta.kode_pos')
+                  ->whereNotNull('ta.nama_contact_person')
+                  ->whereNotNull('ta.jabatan')
+                  ->whereNotNull('ta.telp_contact_person')
+                  ->whereNotNull('ta.telp_kantor')
+                  ->whereNotNull('ta.email')
+                  ->whereNotNull('ta.website')
+                  ->whereNotNull('ta.status_kepemilikan')
+                  ->whereNotNull('ta.skala_perusahaan')
+                  ->whereNotNull('ta.jumlah_karyawan')
+                  ->whereNotNull('ta.id_kategori_produk')
+                  ->whereNotNull('ta.detail_produk_utama')
+                  ->whereNotNull('ta.merek_produk')
+                  ->whereNotNull('ta.hs_code')
+                  ->whereNotNull('ta.kapasitas_produksi')
+                  ->whereNotNull('ta.satuan_kapasitas_produksi')
+                  ->whereNotNull('ta.kepemilikan_legalitas')
+                  ->whereNotNull('ta.kepemilikan_sertifikat')
+                  ->whereNotNull('ta.foto_produk_1')
+                  ->whereNotNull('ta.foto_produk_2')
+                  ->whereNotNull('ta.tanggal_registrasi')
+                  ->whereNotNull('ta.id_petugas');
+        })
+        ->select(DB::raw('ta.*, tf.nama_kategori_produk, group_concat(th.nama_sub_kategori) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
+        ->groupBy('ta.id')
+        ->orderBy('ta.id', 'ASC')
+        ->paginate(12);
+        // dd(DB::getQueryLog(),$data_suplier);
+
         $ptina = PPInaexport::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
 
         if ($request->ajax()) {
@@ -267,14 +311,14 @@ class HomePageController extends Controller
             ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
             ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
             ->whereNull('ta.deleted_at');
-            
+
             if(isset($request->searchbox)) {
                 $data->where('ta.nama_perusahaan', 'LIKE', '%'. $request->searchbox. '%');
             }
             if($request->term) {
                 $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
             }
-            
+
             $data->select(DB::raw('ta.*, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
             ->groupBy('ta.id')
             ->orderBy('ta.id', 'ASC')
@@ -287,7 +331,7 @@ class HomePageController extends Controller
             ->make(true);
         }
 
-        return view('company_profile/our-supplier', compact('perusahaan', 'layanan', 'ptina'));
+        return view('company_profile/our-supplier', compact('perusahaan', 'layanan', 'ptina', 'data_suplier'));
     }
     public function our_market()
     {
