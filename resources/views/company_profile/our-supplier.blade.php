@@ -73,7 +73,7 @@
 
                         <!-- Image Section -->
                         <div class="text-center mb-3">
-                            <img class="img-fluid w-75 rounded" src="{{ asset($data->foto_produk_1)}}" alt="Logo Bea Cukai">
+                            <img class="img-fluid w-75 rounded" src="{{ asset('foto_produk_1/'.$data->foto_produk_1) }}" alt="">
                         </div>
 
                         <!-- Contact Section -->
