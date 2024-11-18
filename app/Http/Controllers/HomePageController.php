@@ -21,6 +21,7 @@ use Carbon\Carbon;
 use DB;
 use DataTables;
 use Mail;
+use App;
 
 class HomePageController extends Controller
 {
@@ -345,5 +346,12 @@ class HomePageController extends Controller
     public function artikel($name)
     {
         return view('artikel/'.$name);
+    }
+
+    public function change(Request $request)
+    {
+        App::setLocale($request->lang);
+        session()->put('locale', $request->lang);
+        return redirect()->back();
     }
 }

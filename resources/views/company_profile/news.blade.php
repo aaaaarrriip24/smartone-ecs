@@ -19,12 +19,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 4rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Berita' : 'News' }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Berita", app()->getLocale()) }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Halaman' : 'Pages' }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ session('locale') == 'id' ? 'Berita' : 'News' }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Berita", app()->getLocale()) }}</li>
             </ol>
         </nav>
     </div>
@@ -36,8 +36,8 @@
 <div class="container-xxl">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Berita ECS' : 'ECS News' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Berita Kami' : 'Explore Our News' }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Berita ECS", app()->getLocale()) }}</h6>
+            <h1 class="mb-5">{{ GoogleTranslate::trans("Jelajahi Berita Kami", app()->getLocale()) }}</h1>
         </div>
         <div class="row g-4">
             @foreach($berita as $item)
@@ -54,11 +54,11 @@
                                 <img class="img-fluid w-75" src="{{ asset('assets/images/default.png') }}" alt="Default Image">
                             @endif
                         </div>
-                        <h4 class="mb-3">{{ session('locale') == 'id' ? $item->judul : $item->judul }}</h4>
-                        <p class="text-justify">{{ Str::limit($item->isi, 150, '...') }}</p>
+                        <h4 class="mb-3">{{ GoogleTranslate::trans($item->judul, app()->getLocale()) }}</h4>
+                        <p class="text-justify">{{ Str::limit(GoogleTranslate::trans($item->isi, app()->getLocale()), 150, '...') }}</p>
                         <a class="btn-slide mt-2" href="{{ url('news/detail/' . $item->id) }}">
                             <i class="fa fa-arrow-right"></i>
-                            <span>{{ session('locale') == 'id' ? 'Baca Selengkapnya' : 'Read More' }}</span>
+                            <span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</span>
                         </a>
                     </div>
                 </div>

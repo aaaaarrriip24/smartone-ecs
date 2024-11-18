@@ -66,8 +66,8 @@
 <!-- Service Start -->
 <div class="container-fluid p-0 py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Layanan Kami' : 'Our Services' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Layanan Kami' : 'Explore Our Services' }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Layanan Kami", app()->getLocale()) }}</h6>
+            <h1 class="mb-5">{{ GoogleTranslate::trans("Jelajahi Layanan Kami", app()->getLocale()) }}</h1>
         </div>
         <div class="row w-100 justify-content-center px-0">
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -75,9 +75,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Business Matching.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Business Matching' : 'Business Matching' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.' : 'Business Matching connects businesses with potential trading partners through needs analysis and networking events, creating mutually beneficial collaboration opportunities.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Business Matching", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -85,9 +85,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Konsultasi.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.' : 'Export Consultation provides comprehensive guidance on the export process, including legal requirements and global marketing strategies, to help companies enter international markets.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Konsultasi Ekspor", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -95,9 +95,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Pendampingan InaExport.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Pendampingan InaExport' : 'InaExport Mentoring' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Pendampingan InaExport mendukung perusahaan dalam memanfaatkan platform InaExport, memberikan pelatihan dan strategi untuk meningkatkan visibilitas produk di pasar internasional.' : 'InaExport Mentoring supports companies in utilizing the InaExport platform, providing training and strategies to enhance product visibility in international markets.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-panduan') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Pendampingan InaExport", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Pendampingan InaExport mendukung perusahaan dalam memanfaatkan platform InaExport, memberikan pelatihan dan strategi untuk meningkatkan visibilitas produk di pasar internasional.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-panduan') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -105,9 +105,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Penyebaran Inquiry.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Penyebaran Inquiry' : 'Inquiry Dissemination' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Penyebaran Inquiry mempromosikan produk Anda kepada calon pembeli di pasar global dengan mengelola dan menyebarkan permintaan informasi dari buyer kepada pelaku usaha yang relevan.' : 'Inquiry Dissemination promotes your products to potential buyers in the global market by managing and disseminating information requests from buyers to relevant businesses.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-inquiries') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Penyebaran Inquiry", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Penyebaran Inquiry mempromosikan produk Anda kepada calon pembeli di pasar global dengan mengelola dan menyebarkan permintaan informasi dari buyer kepada pelaku usaha yang relevan.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-inquiries') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
 
@@ -116,9 +116,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Layanan Lainnya' : 'Other Service' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Layanan lainnya termasuk, mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional, membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.' : 'Other services include Trade Case Mediation, offering resolution of business disputes with professional mediators, helping parties reach agreements without lengthy legal proceedings.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('other-service') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Layanan Lainnya", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Layanan lainnya termasuk, mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional, membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('other-service') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
         </div>
@@ -131,37 +131,28 @@
         <div class="col-12">
             <!-- Header Section -->
             <h6 class="text-secondary text-uppercase">
-                {{ session('locale') == 'id' ? 'Tentang Kami' : 'About Us' }}
+                {{ GoogleTranslate::trans("Tentang Kami", app()->getLocale()) }}
             </h6>
             <h1 class="mb-5">
-                {{ session('locale') == 'id' ? 'Tentang' : 'About' }} Export Center Surabaya (ECS)
+                {{ GoogleTranslate::trans("Tentang", app()->getLocale()) }} Export Center Surabaya (ECS)
             </h1>
 
             <!-- Content Section -->
             <div class="text-justify">
-                <p>{{ session('locale') == 'id' ?
-                    'Kementerian Perdagangan Republik Indonesia sebagai pengemban amanah Peraturan Pemerintah Pengganti Undang-Undang (Perpu) Nomor 2 Tahun 2022 tentang Cipta Kerja Pasal 74 yang bertugas melakukan pembinaan terhadap Pelaku Usaha dalam rangka pengembangan Ekspor untuk perluasan akses Pasar bagi Barang dan Jasa produksi dalam negeri.
-                    Pada Peraturan Menteri Perdagangan Republik Indonesia Nomor 29 Tahun 2022, Direktorat Pengembangan Pasar dan Informasi Ekspor, Direktorat Jenderal Pengembangan Ekspor Nasional (Ditjen. PEN), mempunyai tugas melaksanakan perumusan dan pelaksanaan kebijakan di bidang pengembangan dan peningkatan daya saing pasar ekspor, pelaku ekspor, dan pengembangan kelembagaan promosi.'
-                    :
-                    'The Ministry of Trade of the Republic of Indonesia, as the bearer of the mandate of Government Regulation in Lieu of Law (Perpu) Number 2 of 2022 concerning Job Creation Article 74, is tasked with guiding business actors in developing exports to expand market access for domestic goods and services. Under the Regulation of the Minister of Trade of the Republic of Indonesia Number 29 of 2022, the Directorate of Market Development and Export Information, Directorate General of National Export Development (Ditjen PEN), is responsible for formulating and implementing policies in the field of export market development and competitiveness enhancement, export actors, and the development of promotional institutions.'}}
+                <p>{{ GoogleTranslate::trans("Kementerian Perdagangan Republik Indonesia sebagai pengemban amanah Peraturan Pemerintah Pengganti Undang-Undang (Perpu) Nomor 2 Tahun 2022 tentang Cipta Kerja Pasal 74 yang bertugas melakukan pembinaan terhadap Pelaku Usaha dalam rangka pengembangan Ekspor untuk perluasan akses Pasar bagi Barang dan Jasa produksi dalam negeri.
+                    Pada Peraturan Menteri Perdagangan Republik Indonesia Nomor 29 Tahun 2022, Direktorat Pengembangan Pasar dan Informasi Ekspor, Direktorat Jenderal Pengembangan Ekspor Nasional (Ditjen. PEN), mempunyai tugas melaksanakan perumusan dan pelaksanaan kebijakan di bidang pengembangan dan peningkatan daya saing pasar ekspor, pelaku ekspor, dan pengembangan kelembagaan promosi.", app()->getLocale())}}
                 </p>
 
                 <!-- Collapsible Content -->
                 <div id="moreText" class="collapse">
-                    <p>{{ session('locale') == 'id' ?
-                        'Export Center Surabaya (ECS) sebagai perpanjangan tangan Direktorat Pengembangan Pasar dan Informasi Ekspor di daerah, berperan mengoptimalkan peran eksportir daerah dalam memanfaatkan peluang ekspor diantaranya dengan penyebaran inquiry dan hasil Market Intelligence yang diperoleh dari Perwakilan Perdagangan di Luar Negeri, pemanfaatan Free Trade Agreement (FTA) maupun promosi ekspor. Dengan adanya Export Center Surabaya ini, kebijakan yang diterbitkan oleh Kementerian Perdagangan dapat tersampaikan dan dimanfaatkan secara optimal oleh para pelaku usaha. Selain itu informasi yang bersumber Perwakilan Perdagangan di luar negeri dapat tersalurkan secara tepat dan cepat sehingga dapat memperluas pangsa ekspor.'
-                        :
-                        'Export Center Surabaya (ECS), as an extension of the Directorate of Market Development and Export Information at the regional level, plays a role in optimizing the role of regional exporters in leveraging export opportunities. This includes disseminating inquiries and market intelligence obtained from Trade Representatives abroad, utilizing Free Trade Agreements (FTAs), and promoting exports. With the presence of Export Center Surabaya, the policies issued by the Ministry of Trade can be conveyed and utilized optimally by business actors. Moreover, information sourced from Trade Representatives abroad can be channeled accurately and promptly, thereby expanding export markets.'}}
+                    <p>{{ GoogleTranslate::trans("Export Center Surabaya (ECS) sebagai perpanjangan tangan Direktorat Pengembangan Pasar dan Informasi Ekspor di daerah, berperan mengoptimalkan peran eksportir daerah dalam memanfaatkan peluang ekspor diantaranya dengan penyebaran inquiry dan hasil Market Intelligence yang diperoleh dari Perwakilan Perdagangan di Luar Negeri, pemanfaatan Free Trade Agreement (FTA) maupun promosi ekspor. Dengan adanya Export Center Surabaya ini, kebijakan yang diterbitkan oleh Kementerian Perdagangan dapat tersampaikan dan dimanfaatkan secara optimal oleh para pelaku usaha. Selain itu informasi yang bersumber Perwakilan Perdagangan di luar negeri dapat tersalurkan secara tepat dan cepat sehingga dapat memperluas pangsa ekspor.", app()->getLocale())}}
                     </p>
-                    <p>{{ session('locale') == 'id' ?
-                        'Maksud Penyelenggaraan Export Center Surabaya adalah untuk mengoptimalkan peluang pasar ekspor di pasar internasional agar dapat dimanfaatkan oleh para pelaku usaha ekspor.
-                        Tujuan dari kegiatan penyelenggaraan Export Center Surabaya adalah menyediakan layanan publik yang berfungsi sebagai tempat para pelaku usaha untuk memperoleh konsultasi dan informasi mengenai peluang pasar ekspor diantaranya buyers inquiry yang diperoleh dari Perwakilan Perdagangan di Luar Negeri, Market Intelligence, pemanfaatan Free Trade Agreement maupun promosi ekspor.'
-                        :
-                        "The purpose of organizing Export Center Surabaya is to optimize export market opportunities in international markets so they can be utilized by export business actors. The aim of the activities at Export Center Surabaya is to provide public services that function as a place for business actors to obtain consultation and information about export market opportunities, including buyers' inquiries from Trade Representatives abroad, market intelligence, Free Trade Agreement utilization, and export promotion."}}
+                    <p>{{ GoogleTranslate::trans("Maksud Penyelenggaraan Export Center Surabaya adalah untuk mengoptimalkan peluang pasar ekspor di pasar internasional agar dapat dimanfaatkan oleh para pelaku usaha ekspor.
+                        Tujuan dari kegiatan penyelenggaraan Export Center Surabaya adalah menyediakan layanan publik yang berfungsi sebagai tempat para pelaku usaha untuk memperoleh konsultasi dan informasi mengenai peluang pasar ekspor diantaranya buyers inquiry yang diperoleh dari Perwakilan Perdagangan di Luar Negeri, Market Intelligence, pemanfaatan Free Trade Agreement maupun promosi ekspor.", app()->getLocale())}}
                     </p>
                 </div>
                 <a href="#moreText" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#moreText" aria-expanded="false" aria-controls="moreText" onclick="hideButton(this)">
-                    {{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}
+                    {{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}
                 </a>
                 <!-- Read More Button -->
             </div>
@@ -173,8 +164,8 @@
 <div class="container-xxl py-2">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Berita ECS' : 'ECS News' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Berita Kami' : 'Explore Our News' }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Berita ECS", app()->getLocale()) }}</h6>
+            <h1 class="mb-5">{{ GoogleTranslate::trans("Jelajahi Berita Kami", app()->getLocale()) }}</h1>
         </div>
         <div class="row g-4">
             @foreach($berita as $item)
@@ -195,14 +186,14 @@
                         <p class="text-justify">{{ Str::limit($item->isi, 150, '...') }}</p>
                         <a class="btn-slide mt-2" href="{{ url('news/detail/' . $item->id) }}">
                             <i class="fa fa-arrow-right"></i>
-                            <span>{{ session('locale') == 'id' ? 'Baca Selengkapnya' : 'Read More' }}</span>
+                            <span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</span>
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a class="btn btn-primary" href="{{ url('news') }}">{{ session('locale') == 'id' ? 'Baca Berita Lainnya' : 'Read More News' }}</a>
+            <a class="btn btn-primary" href="{{ url('news') }}">{{ GoogleTranslate::trans("Baca Berita Lainnya", app()->getLocale()) }}</a>
         </div>
     </div>
 </div>
@@ -211,8 +202,8 @@
 <!-- Service Start -->
 <div class="container p-0 py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase mb-3"> {{ session('locale') == 'id' ? 'Sebuah Fakta' : 'Some Facts' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Produk Indonesia yang Berpotensi Besar' : "Indonesia's Great Potential Product" }}</h1>
+            <h6 class="text-secondary text-uppercase mb-3"> {{ GoogleTranslate::trans("Sebuah Fakta", app()->getLocale()) }}</h6>
+            <h1 class="mb-5">{{ GoogleTranslate::trans("Produk Indonesia yang Berpotensi Besar", app()->getLocale()) }}</h1>
         </div>
         <div class="row w-100 justify-content-center px-0">
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -220,9 +211,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Spices.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Rempah' : 'Spices' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan negara kepulauan yang memiliki kekayaan sumber daya alam, dan dikenal sebagai penghasil rempah-rempah sejak zaman dahulu.' : 'Indonesia is an archipelagic country that has rich natural resources, and has been known as a producer of spices since ancient times.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/spices') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Rempah", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Indonesia merupakan negara kepulauan yang memiliki kekayaan sumber daya alam, dan dikenal sebagai penghasil rempah-rempah sejak zaman dahulu.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/spices') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -230,9 +221,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Fish.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Ikan' : 'Fish' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan salah satu negara maritim yang kaya akan sumber daya laut, hal tersebut menjadikan Indonesia sebagai salah satu pemasok produk perikanan dunia dan produk perikanan ini sebagai salah satu komoditas unggulan Indonesia yang memiliki potensi besar untuk diekspor.' : 'Indonesia is a maritime country that is rich in marine resources, this makes Indonesia one of the world`s suppliers of fishery products and these fishery products are one of Indonesia`s leading commodities that have great potential for export.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/fish') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Ikan", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Indonesia merupakan salah satu negara maritim yang kaya akan sumber daya laut, hal tersebut menjadikan Indonesia sebagai salah satu pemasok produk perikanan dunia dan produk perikanan ini sebagai salah satu komoditas unggulan Indonesia yang memiliki potensi besar untuk diekspor.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/fish') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -240,9 +231,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Furniture.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Mebel' : 'Furniture' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan salah satu negara penghasil produk furniture berkualitas tinggi yang diakui secara global.' : 'Indonesia is one of the countries producing high quality furniture products that are recognized globally.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/furniture') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Mebel", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Indonesia merupakan salah satu negara penghasil produk furniture berkualitas tinggi yang diakui secara global.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/furniture') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -250,9 +241,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Coffee.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Kopi' : 'Coffee' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Kopi merupakan salah satu komoditi hasil perkebunan yang memiliki peranan cukup penting dalam perekonomian di Indonesia. Kopi juga merupakan salah satu komoditas ekspor yang telah menghasilkan devisa negara.' : 'Coffee is one of the plantation commodities that has a significant role in the economy in Indonesia. Coffee is also one of the export commodities that has generated foreign exchange for the country.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/coffee') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Kopi", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Kopi merupakan salah satu komoditi hasil perkebunan yang memiliki peranan cukup penting dalam perekonomian di Indonesia. Kopi juga merupakan salah satu komoditas ekspor yang telah menghasilkan devisa negara.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/coffee') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
 
@@ -261,9 +252,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Food Processing.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Pengelolahan Makanan' : 'Food Processing' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia merupakan salah satu negara dengan potensi besar dalam industri food processing atau pengolahan makanan, berkat melimpahnya sumber daya alam dan keanekaragaman hasil pertanian serta perikanan.' : 'Indonesia is one of the countries with great potential in the food processing industry, thanks to its abundant natural resources and diversity of agricultural and fishery products.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/food') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Pengelolahan Makanan", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Indonesia merupakan salah satu negara dengan potensi besar dalam industri food processing atau pengolahan makanan, berkat melimpahnya sumber daya alam dan keanekaragaman hasil pertanian serta perikanan.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/food') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.7s">
@@ -271,9 +262,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Manufacture product.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ session('locale') == 'id' ? 'Memproduksi Produk' : 'Manufacture product' }}</h6>
-                    <p class="text-truncate-3">{{ session('locale') == 'id' ? 'Indonesia memiliki potensi besar dalam industri manufaktur yang berkontribusi signifikan terhadap perekonomian nasional.' : 'Indonesia has great potential in the manufacturing industry which contributes significantly to the national economy.' }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/manufacture') }}"><i class="fa fa-arrow-right"></i><span>{{ session('locale') == 'id' ? 'Baca Selengkapnya':'Read More'}}</span></a>
+                    <h6 class="mb-3">{{ GoogleTranslate::trans("Memproduksi Produk", app()->getLocale()) }}</h6>
+                    <p class="text-truncate-3">{{ GoogleTranslate::trans("Indonesia memiliki potensi besar dalam industri manufaktur yang berkontribusi signifikan terhadap perekonomian nasional.", app()->getLocale()) }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/manufacture') }}"><i class="fa fa-arrow-right"></i><span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale())}}</span></a>
                 </div>
             </div>
         </div>
@@ -283,7 +274,7 @@
 <div class="container-xxl py-4">
     <div class="container py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Performa ECS' : 'ECS Performance' }}</h1>
+            <h1 class="mb-5">{{ GoogleTranslate::trans("Performa ECS", app()->getLocale()) }}</h1>
         </div>
         <div class="row g-4">
             <div class="col-md-12">
@@ -357,8 +348,8 @@
 <div class="container-xxl py-4">
     <div class="container py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Tim Kami' : 'Our Team' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Anggota Tim' : 'Expert Team Members' }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Tim Kami", app()->getLocale()) }}</h6>
+            <h1 class="mb-5">{{ GoogleTranslate::trans("Anggota Tim", app()->getLocale()) }}</h1>
         </div>
         <div class="row g-4 mb-4">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -544,7 +535,7 @@
 <div class="container-xxl wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="text-center">
-            <h1 class="mb-0">{{ session('locale') == 'id' ? 'Mitra Kami' : 'Our Partner' }}</h1>
+            <h1 class="mb-0">{{ GoogleTranslate::trans("Mitra Kami", app()->getLocale()) }}</h1>
         </div>
         <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
             <div class="p-4 my-5">

@@ -193,6 +193,7 @@ return [
     */
 
     'aliases' => [
+        'GoogleTranslate' => Stichoza\GoogleTranslate\GoogleTranslate::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Indonesia' => Laravolt\Indonesia\Facade::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,

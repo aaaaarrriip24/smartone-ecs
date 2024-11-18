@@ -1,13 +1,13 @@
 <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
         <a href="{{ url('/') }}"
-            class="nav-item nav-link {{ url()->current()==url('/') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('/') ? 'active' : '' }}">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a>
         <a href="{{ url('about') }}"
-            class="nav-item nav-link {{ url()->current()==url('about') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Tentang' : 'About' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('about') ? 'active' : '' }}">{{ GoogleTranslate::trans("Tentang", app()->getLocale()) }}</a>
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link {{ url()->current()==url('our-konsultasi') || url()->current()==url('our-inquiries') || url()->current()==url('our-bm') || url()->current()==url('our-panduan') || url()->current()==url('other-service') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ session('locale') == 'id' ? 'Layanan' : 'Services' }}
+                {{ GoogleTranslate::trans("Layanan", app()->getLocale()) }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -22,21 +22,21 @@
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link {{ url()->current()==url('our-supplier') || url()->current()==url('our-market') || url()->current()==url('other-relasi') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ session('locale') == 'id' ? 'Rekan' : 'Partner' }}
+                {{ GoogleTranslate::trans("Rekan", app()->getLocale()) }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ url('our-supplier') }}">{{ session('locale') == 'id' ? 'Pemasok' : 'Suppliers' }}</a>
-                <a class="dropdown-item" href="{{ url('our-market') }}">{{ session('locale') == 'id' ? 'Pasar' : 'Market' }}</a>
-                <a class="dropdown-item" href="{{ url('other-relasi') }}">{{ session('locale') == 'id' ? 'Relasi Lain' : 'Other Relations' }}</a>
+                <a class="dropdown-item" href="{{ url('our-supplier') }}">{{ GoogleTranslate::trans("Pemasok", app()->getLocale()) }}</a>
+                <a class="dropdown-item" href="{{ url('our-market') }}">{{ GoogleTranslate::trans("Pasar", app()->getLocale()) }}</a>
+                <a class="dropdown-item" href="{{ url('other-relasi') }}">{{ GoogleTranslate::trans("Relasi Lain", app()->getLocale()) }}</a>
             </div>
         </li>
 
-        <a href="{{ url('news') }}" class="nav-item nav-link {{ url()->current()==url('news') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Kegiatan' : 'News' }}</a>
+        <a href="{{ url('news') }}" class="nav-item nav-link {{ url()->current()==url('news') ? 'active' : '' }}">{{ GoogleTranslate::trans("Kegiatan", app()->getLocale()) }}</a>
         <a href="{{ url('dashboard') }}"
-            class="nav-item nav-link {{ url()->current()==url('dashboard') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Informasi' : 'Information' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('dashboard') ? 'active' : '' }}">{{ GoogleTranslate::trans("Informasi", app()->getLocale()) }}</a>
         <a href="{{ url('contact') }}"
-            class="nav-item nav-link {{ url()->current()==url('contact') ? 'active' : '' }}">{{ session('locale') == 'id' ? 'Kontak' : 'Contact' }}</a>
+            class="nav-item nav-link {{ url()->current()==url('contact') ? 'active' : '' }}">{{ GoogleTranslate::trans("Kontak", app()->getLocale()) }}</a>
 
         @php $locale = session()->get('locale'); @endphp
         <li class="nav-item dropdown">

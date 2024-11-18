@@ -18,12 +18,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ session('locale') == 'id' ? 'Pemasok' : 'Suppliers' }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Pemasok", app()->getLocale()) }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Beranda' : 'Home' }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ session('locale') == 'id' ? 'Halaman' : 'Page' }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ session('locale') == 'id' ? 'Pemasok' : 'Suppliers' }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Pemasok", app()->getLocale()) }}</li>
             </ol>
         </nav>
     </div>
@@ -33,8 +33,8 @@
 <!-- Service Start -->
 <div class="container-fluid px-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ session('locale') == 'id' ? 'Hubungan Kami' : 'Our Relations' }}</h6>
-            <h1 class="mb-5">{{ session('locale') == 'id' ? 'Jelajahi Hubungan Lainnya' : 'Explore Other Relations' }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Hubungan Kami", app()->getLocale()) }}</h6>
+            <h1 class="mb-5">{{ GoogleTranslate::trans("Jelajahi Hubungan Lainnya", app()->getLocale()) }}</h1>
         </div>
         <div class="row g-4">
 
@@ -44,10 +44,10 @@
             <div class="col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-item p-4 h-100 d-flex flex-column shadow rounded border">
                     <!-- Header Section -->
-                    <div class="overflow-hidden text-center mb-4">
-                        <h4 class="fw-bold mb-2">{{ $data->nama_perusahaan}}</h4>
-                        <p class="text-muted mb-1">{{ $data->alamat_perusahaan}}</p>
-                        <p class="text-muted mb-1">{{ $data->cities}}, {{ $data->provinsi}}</p>
+                    <h4 class="fw-bold mb-2">{{ Str::title($data->nama_perusahaan) }}, {{ $data->nama_tipe }}</h4>
+                    <div class="overflow-hidden text-start mb-4">
+                        <p class="text-muted mb-1">{{ Str::title($data->alamat_perusahaan) }}</p>
+                        <p class="text-muted mb-1">{{ Str::title($data->cities) }}, {{ Str::title($data->provinsi) }}</p>
                         <p class="text-muted">Indonesia</p>
                     </div>
 
@@ -55,20 +55,20 @@
                     <div class="mt-auto">
                         <h5 class="fw-bold text-secondary">Product Details:</h5>
                         <p class="text-dark mb-1">
-                            <strong>{{ session('locale') == 'id' ? 'Produk Utama:' : 'Main Product:' }}</strong>
-                            {{ $data->detail_produk_utama }}
+                            <strong>{{ GoogleTranslate::trans("Produk Utama:", app()->getLocale()) }}</strong>
+                            {{ GoogleTranslate::trans($data->detail_produk_utama, app()->getLocale()) }}
                         </p>
                         <p class="text-dark mb-1">
-                            <strong>{{ session('locale') == 'id' ? 'Kategori:' : 'Category:' }}</strong>
-                            {{ $data->sub_kategori }}
+                            <strong>{{ GoogleTranslate::trans("Kategori:", app()->getLocale()) }}</strong>
+                            {{ GoogleTranslate::trans($data->sub_kategori, app()->getLocale()) }}
                         </p>
                         <p class="text-dark mb-1">
-                            <strong>{{ session('locale') == 'id' ? 'Kapasitas Produksi:' : 'Production Capacity:' }}</strong>
-                            {{ $data->kapasitas_produksi }} {{ $data->satuan_kapasitas_produksi }}
+                            <strong>{{ GoogleTranslate::trans("Kapasitas:", app()->getLocale()) }}</strong>
+                            {{ $data->kapasitas_produksi }} {{ GoogleTranslate::trans($data->satuan_kapasitas_produksi, app()->getLocale()) }}
                         </p>
                         <p class="text-dark mb-3">
-                            <strong>{{ session('locale') == 'id' ? 'Skala:' : 'Scale:' }}</strong>
-                            {{ $data->skala_perusahaan }}
+                            <strong>{{ GoogleTranslate::trans("Skala Bisnis :", app()->getLocale()) }}</strong>
+                            {{ GoogleTranslate::trans($data->skala_perusahaan, app()->getLocale()) }}
                         </p>
 
                         <!-- Image Section -->
@@ -78,7 +78,7 @@
 
                         <!-- Contact Section -->
                         <div class="">
-                            <p class="fw-bold">{{ session('locale') == 'id' ? 'untuk informasi lebih detail' : 'For more detail Information:' }}</p>
+                            <p class="fw-bold">{{ GoogleTranslate::trans("untuk informasi lebih detail", app()->getLocale()) }}</p>
                             <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="far fa-envelope"></i>  <a href="mailto:exportcenter.surabaya@kemendag.go.id" class="text-decoration-none">exportcenter.surabaya@kemendag.go.id</a></p>
                             <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="fas fa-phone"></i>  <a href="tel:+623135979106" class="text-decoration-none">+62 31 3597 9106</a></p>
                             <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="fas fa-comment-alt"></i>  <a href="tel:+6285755879497" class="text-decoration-none">+62 8575 5879 497</a></p>

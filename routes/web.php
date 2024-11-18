@@ -57,6 +57,8 @@ Route::get('other-service', [HomePageController::class, 'other_service']);
 Route::get('our-supplier', [HomePageController::class, 'our_supplier']);
 Route::get('our-market', [HomePageController::class, 'our_market']);
 Route::get('other-relasi', [HomePageController::class, 'other_relasi']);
+// Lang
+Route::get('lang/change', [HomePageController::class, 'change'])->name('changeLang');
 
 // Artikel
 Route::get('artikel/{spices}', [HomePageController::class, 'artikel']);
