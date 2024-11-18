@@ -99,6 +99,72 @@
             <a href="{{ url('/') }}" class="btn btn-primary mt-4">{{ GoogleTranslate::trans("Kembali ke Daftar Artikel", app()->getLocale()) }}</a>
         </div>
 
+        <!-- Berita Lainnya Start -->
+        <div class="col-md-4">
+            <div class="row g-4 mt-3">
+                <div class="col-12 mb-3">
+                    <div class="card" style="border-radius: 10px; width: 75%; margin: auto;">
+                        <div class="img-container text-center" style="overflow: hidden; border-radius: 10px 10px 0 0;">
+                            <img class="img-fluid w-50 p-2" src="{{ asset('assets/images/ecs/icon_indonesia_great/Coffee.png') }}" alt="Berita Image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ GoogleTranslate::trans("Coffee", app()->getLocale()) }}</h5>
+                            <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit(GoogleTranslate::trans("Kopi merupakan salah satu komoditi hasil perkebunan yang memiliki peranan cukup penting dalam perekonomian di Indonesia. Kopi juga merupakan salah satu komoditas ekspor yang telah menghasilkan devisa negara. Menurut BPS (2022), perkebunan kopi menurut pengusahaannya dibedakan menjadi Perkebunan Besar (PB) dan Perkebunan Rakyat (PR). Perkebunan Besar (PB) merupakan perkebunan yang dikelola secara komersial oleh perusahaan yang memiliki badan hukum, dan PB terdiri atas Perkebunan Besar Negara (PBN) dan Perkebunan Besar Swasta (PBS) Nasional atau Asing. Sementara itu, Perkebunan Rakyat (PR) merupakan perkebunan yang dikelola oleh rakyat atau pekebunan yang dikelompokkan dalam usaha kecil dan usaha rumah tangga.", app()->getLocale()), 70, '...') }}</p>
+                            <a href="{{ url('artikel/coffee') }}" class="btn btn-primary">{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="card" style="border-radius: 10px; width: 75%; margin: auto;">
+                        <div class="img-container text-center" style="overflow: hidden; border-radius: 10px 10px 0 0;">
+                            <img class="img-fluid w-50 p-2" src="{{ asset('assets/images/ecs/icon_indonesia_great/Fish.png') }}" alt="Berita Image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ GoogleTranslate::trans("Fish", app()->getLocale()) }}</h5>
+                            <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit(GoogleTranslate::trans("Indonesia merupakan salah satu negara maritim yang kaya akan sumber daya laut, hal tersebut menjadikan Indonesia sebagai salah satu pemasok produk perikanan dunia dan produk perikanan ini sebagai salah satu komoditas unggulan Indonesia yang memiliki potensi besar untuk diekspor. Menurut data dari Kementerian Kelautan dan Perikanan, sektor produksi perikanan Indonesia terbagi menjadi dua, yakni sektor produksi perikanan tangkap (Laut dan Perairan Umum) dan sektor perikanan budidaya.", app()->getLocale()), 70, '...') }}</p>
+                            <a href="{{ url('artikel/fish') }}" class="btn btn-primary">{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="card" style="border-radius: 10px; width: 75%; margin: auto;">
+                        <div class="img-container text-center" style="overflow: hidden; border-radius: 10px 10px 0 0;">
+                            <img class="img-fluid w-50 p-2" src="{{ asset('assets/images/ecs/icon_indonesia_great/Furniture.png') }}" alt="Berita Image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ GoogleTranslate::trans("Food Processing", app()->getLocale()) }}</h5>
+                            <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit(GoogleTranslate::trans("Berdasarkan data yang diperoleh dari Trade Map (2024) pada Gambar 1, komoditas utama rempah Indonesia yang diekspor pada tahun 2019-2024 meliputi Pala, Lada, Kayu Manis, Cengkeh, Jahe, dan Vanila. Komoditas pala, mencatat pertumbuhan yang impresif dari tahun 2019 hingga 2021 dengan nilai ekspor terbesar pada tahun 2021 sebesar US$274,9 juta, namun, terjadi penurunan pada tahun 2023, dimana nilai ekspor turun menjadi $239,2 juta.", app()->getLocale()), 70, '...') }}</p>
+                            <a href="{{ url('artikel/food') }}" class="btn btn-primary">{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="card" style="border-radius: 10px; width: 75%; margin: auto;">
+                        <div class="img-container text-center" style="overflow: hidden; border-radius: 10px 10px 0 0;">
+                            <img class="img-fluid w-50 p-2" src="{{ asset('assets/images/ecs/icon_indonesia_great/Manufacture Product.png') }}" alt="Berita Image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ GoogleTranslate::trans("Furniture", app()->getLocale()) }}</h5>
+                            <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit(GoogleTranslate::trans("Berdasarkan data yang diperoleh dari Trade Map (2024) pada Gambar 1, komoditas utama rempah Indonesia yang diekspor pada tahun 2019-2024 meliputi Pala, Lada, Kayu Manis, Cengkeh, Jahe, dan Vanila. Komoditas pala, mencatat pertumbuhan yang impresif dari tahun 2019 hingga 2021 dengan nilai ekspor terbesar pada tahun 2021 sebesar US$274,9 juta, namun, terjadi penurunan pada tahun 2023, dimana nilai ekspor turun menjadi $239,2 juta.", app()->getLocale()), 70, '...') }}</p>
+                            <a href="{{ url('artikel/furniture') }}" class="btn btn-primary">{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="card" style="border-radius: 10px; width: 75%; margin: auto;">
+                        <div class="img-container text-center" style="overflow: hidden; border-radius: 10px 10px 0 0;">
+                            <img class="img-fluid w-50 p-2" src="{{ asset('assets/images/ecs/icon_indonesia_great/Manufacture Product.png') }}" alt="Berita Image">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ GoogleTranslate::trans("Manufacture", app()->getLocale()) }}</h5>
+                            <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit(GoogleTranslate::trans("Berdasarkan data yang diperoleh dari Trade Map (2024) pada Gambar 1, komoditas utama rempah Indonesia yang diekspor pada tahun 2019-2024 meliputi Pala, Lada, Kayu Manis, Cengkeh, Jahe, dan Vanila. Komoditas pala, mencatat pertumbuhan yang impresif dari tahun 2019 hingga 2021 dengan nilai ekspor terbesar pada tahun 2021 sebesar US$274,9 juta, namun, terjadi penurunan pada tahun 2023, dimana nilai ekspor turun menjadi $239,2 juta.", app()->getLocale()), 70, '...') }}</p>
+                            <a href="{{ url('artikel/spices') }}" class="btn btn-primary">{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Berita Lainnya End -->
     </div>
 </div>
 <!-- Berita Detail End -->
