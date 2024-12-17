@@ -28,7 +28,7 @@ class HomePageController extends Controller
     public function index(Request $request)
     {
         $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
-        $berita = Berita::whereNull('deleted_at')->orderBy('created_at', 'ASC')->take(3)->get();
+        $berita = Berita::whereNull('deleted_at')->orderBy('tanggal_berita', 'DESC')->take(3)->get();
 
         // $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
         $layanan = DB::table('t_konsultasi as ta')
@@ -87,7 +87,7 @@ class HomePageController extends Controller
     }
 
     public function berita() {
-        $berita = Berita::whereNull('deleted_at')->orderBy('created_at', 'DESC')->get();
+        $berita = Berita::whereNull('deleted_at')->orderBy('tanggal_berita', 'DESC')->get();
         return view('company_profile/news', compact('berita'));
     }
 

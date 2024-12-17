@@ -50,6 +50,7 @@ class BeritaController extends Controller
         // Validasi input
         $request->validate([
             'judul' => 'required|string|max:255',
+            'tanggal_berita' => 'required|string',
             'isi' => 'required|string',
             'gambar' => 'nullable|array',
             'gambar.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar
@@ -69,6 +70,7 @@ class BeritaController extends Controller
         // Menyimpan data berita
         Berita::insert([
             'judul' => $request->judul,
+            'tanggal_berita' => date('Y-m-d', strtotime($request->tanggal_berita)),
             'isi' => $request->isi,
             'gambar' => json_encode($filenames), // Simpan nama file gambar sebagai JSON
             'id_penulis' => $request->id_penulis, // Simpan id_penulis
@@ -93,6 +95,7 @@ class BeritaController extends Controller
             'data' => [
                 'id' => $berita->id,
                 'judul' => $berita->judul,
+                'tanggal_berita' => date('Y-m-d', strtotime($berita->tanggal_berita)),
                 'isi' => $berita->isi,
                 'gambar' => $berita->gambar, // Asumsi kolom 'gambar' berisi string JSON
                 'id_penulis' => $berita->id_penulis,
@@ -105,6 +108,7 @@ class BeritaController extends Controller
         // Validasi input
         $request->validate([
             'judul' => 'required|string|max:255',
+            'tanggal_berita' => 'required|string',
             'isi' => 'required|string',
             'gambar' => 'nullable|array',
             'gambar.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi gambar
@@ -116,12 +120,12 @@ class BeritaController extends Controller
             Alert::toast('Berita tidak ditemukan!', 'error');
             return redirect()->route('berita');
         }
-
         // Update data judul dan isi
         $berita->judul = $request->judul;
+        $berita->tanggal_berita = date('Y-m-d', strtotime($request->tanggal_berita));
         $berita->isi = $request->isi;
         $berita->updated_at = Carbon::now();
-
+        
         // Proses gambar jika ada
         if ($request->hasFile('gambar')) {
             $imageNames = [];
@@ -132,7 +136,6 @@ class BeritaController extends Controller
             }
             $berita->gambar = json_encode($imageNames); // Simpan nama gambar sebagai JSON
         }
-
         // Simpan perubahan
         $berita->save();
 

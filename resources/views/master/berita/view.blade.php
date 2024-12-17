@@ -1,7 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
 <!-- start page title -->
+<style>
+    .datepicker {
+        top: 230px !important;
+    }
+</style>
 <div class="row">
     <div class="col-12">
         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
@@ -38,6 +42,7 @@
                             <thead>
                                 <th>No.</th>
                                 <th>Judul Berita</th>
+                                <th>Tanggal Berita</th>
                                 <th>Isi Berita</th>
                                 <th>Action</th>
                             </thead>
@@ -51,7 +56,7 @@
 
 <!-- Add Modal -->
 <div class="modal fade" id="modalAdd" tabindex="-1" aria-labelledby="modalAddLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <form method="post" action="{{ url('berita/store') }}" enctype="multipart/form-data">
                 @csrf
@@ -65,8 +70,12 @@
                         <input type="text" name="judul" class="form-control form-control-sm" required>
                     </div>
                     <div class="form-group">
+                        <label>Tanggal Berita</label>
+                        <input type="text" name="tanggal_berita" class="form-control form-control-sm datepicker" required>
+                    </div>
+                    <div class="form-group">
                         <label>Isi Berita</label>
-                        <textarea name="isi" class="form-control form-control-sm" required></textarea>
+                        <textarea name="isi" class="form-control form-control-sm" style="min-height: 400px;" required></textarea>
                     </div>
                     <div class="form-group">
                         <label>Gambar</label>
@@ -96,11 +105,10 @@
 
 <!-- Edit Modal -->
 <div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEditLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <form method="post" action="{{ url('berita/update') }}" enctype="multipart/form-data">
                 @csrf
-                @method('PUT') <!-- Tambahkan ini untuk mengindikasikan metode PUT -->
                 <input type="hidden" name="id" id="editBeritaId"> <!-- Hidden input untuk ID berita yang akan diedit -->
                 
                 <div class="modal-header">
@@ -113,8 +121,12 @@
                         <input type="text" name="judul" class="form-control form-control-sm" id="editJudul" required="required">
                     </div>
                     <div class="form-group">
+                        <label>Tanggal Berita</label>
+                        <input type="text" name="tanggal_berita" class="form-control form-control-sm datepicker" id="editTanggal" required="required">
+                    </div>
+                    <div class="form-group">
                         <label>Isi Berita</label>
-                        <textarea name="isi" class="form-control form-control-sm" id="editIsi" required="required"></textarea>
+                        <textarea name="isi" class="form-control form-control-sm" id="editIsi" style="min-height: 400px;" required="required"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Gambar</label>
@@ -144,7 +156,7 @@
 
 <!-- Detail Modal -->
 <div class="modal fade" id="modalDetail" tabindex="-1" aria-labelledby="modalDetailLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalDetailLabel">Detail Berita</h5>
@@ -156,8 +168,12 @@
                     <input type="text" name="judul" class="form-control form-control-sm" id="detailJudul" disabled>
                 </div>
                 <div class="form-group">
+                    <label>Tanggal Berita</label>
+                    <input type="text" name="tanggal_berita" class="form-control form-control-sm datepicker" id="detailTanggal" disabled>
+                </div>
+                <div class="form-group">
                     <label>Isi Berita</label>
-                    <textarea name="isi" class="form-control form-control-sm" id="detailIsi" disabled></textarea>
+                    <textarea name="isi" class="form-control form-control-sm" id="detailIsi" style="min-height: 400px;" disabled></textarea>
                 </div>
                 <div class="form-group">
                     <label>Gambar</label>
@@ -214,6 +230,14 @@
                     orderable: true,
                 },
                 {
+                    data: 'tanggal_berita', // Sesuaikan dengan nama kolom di database
+                    name: 'tanggal_berita',
+                    orderable: true,
+                    render: function (data, type, row) {
+                        return moment(row.tanggal_berita).format('DD-MMM-YYYY');
+                    }
+                },
+                {
                     data: 'isi', // Sesuaikan dengan nama kolom di database
                     name: 'isi',
                     orderable: true,
@@ -236,6 +260,11 @@
                     width: '10%'
                 },
             ]
+        });
+
+        $(".datepicker").datepicker({
+            format: 'dd-mm-yyyy',
+            autoclose: true,
         });
 
         $('input[type="file"][name="gambar[]"]').on('change', function (event) {
@@ -271,6 +300,7 @@
                     console.log(response);
                     $('#editBeritaId').val(response.data.id);
                     $('#editJudul').val(response.data.judul);
+                    $('#editTanggal').val(moment(response.data.tanggal_berita).format('DD-MM-YYYY'));
                     $('#editIsi').val(response.data.isi);
                     $('#editPenulis').val(response.data.id_penulis);
 
@@ -300,6 +330,7 @@
                 success: function (response) {
                     console.log(response);
                     $('#detailJudul').val(response.data.judul);
+                    $('#detailTanggal').val(moment(response.data.tanggal_berita).format('DD-MM-YYYY'));
                     $('#detailIsi').val(response.data.isi);
                     $('#detailPenulis').val(response.data.id_penulis); // Pastikan ini sesuai dengan respons
 
