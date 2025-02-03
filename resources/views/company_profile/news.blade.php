@@ -19,12 +19,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 4rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Berita", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Berita") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Berita", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Berita") }}</li>
             </ol>
         </nav>
     </div>
@@ -36,8 +36,8 @@
 <div class="container-xxl">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Berita ECS", app()->getLocale()) }}</h6>
-            <h1 class="mb-5">{{ GoogleTranslate::trans("Jelajahi Berita Kami", app()->getLocale()) }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ __("Berita ECS") }}</h6>
+            <h1 class="mb-5">{{ __("Jelajahi Berita Kami") }}</h1>
         </div>
         <div class="row g-4">
             @foreach($berita as $item)
@@ -58,7 +58,7 @@
                         <p class="text-justify">{{ Str::limit(GoogleTranslate::trans($item->isi, app()->getLocale()), 150, '...') }}</p>
                         <a class="btn-slide mt-2" href="{{ url('news/detail/' . $item->id) }}">
                             <i class="fa fa-arrow-right"></i>
-                            <span>{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</span>
+                            <span>{{ __("Baca Selengkapnya") }}</span>
                         </a>
                     </div>
                 </div>

@@ -17,12 +17,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Penyebaran Inquiry", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Penyebaran Inquiry") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Penyebaran Inquiry", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Penyebaran Inquiry") }}</li>
             </ol>
         </nav>
     </div>
@@ -42,10 +42,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="text-secondary text-uppercase mb-2">{{ GoogleTranslate::trans("Layanan Kami", app()->getLocale()) }}</h6>
-                    <h1 class="mb-4">{{ GoogleTranslate::trans("Penyebaran Inquiry", app()->getLocale()) }}</h1>
+                    <h6 class="text-secondary text-uppercase mb-2">{{ __("Layanan Kami") }}</h6>
+                    <h1 class="mb-4">{{ __("Penyebaran Inquiry") }}</h1>
                     <p class="mb-4 text-justify">
-                        {{ GoogleTranslate::trans("Penyebaran inquiry merupakan proses penting yang berfungsi untuk menjembatani komunikasi antara eksportir dan buyer internasional. Melalui penyebaran ini, eksportir dapat menerima informasi terkait permintaan produk dari buyer di luar negeri, yang pada gilirannya membuka peluang untuk menjalin kerjasama dan transaksi perdagangan. Proses ini tidak hanya meningkatkan keterhubungan antara kedua belah pihak, tetapi juga memastikan bahwa eksporter mendapatkan akses ke potensi pasar yang lebih luas, sehingga dapat memperluas jaringan bisnis dan meningkatkan kesempatan untuk sukses di pasar global.", app()->getLocale()) }}
+                        {{ __("Penyebaran inquiry merupakan proses penting yang berfungsi untuk menjembatani komunikasi antara eksportir dan buyer internasional. Melalui penyebaran ini, eksportir dapat menerima informasi terkait permintaan produk dari buyer di luar negeri, yang pada gilirannya membuka peluang untuk menjalin kerjasama dan transaksi perdagangan. Proses ini tidak hanya meningkatkan keterhubungan antara kedua belah pihak, tetapi juga memastikan bahwa eksporter mendapatkan akses ke potensi pasar yang lebih luas, sehingga dapat memperluas jaringan bisnis dan meningkatkan kesempatan untuk sukses di pasar global.") }}
                     </p>
                 </div>
             </div>
@@ -58,15 +58,15 @@
         <div class="container feature py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Penyebaran Inquiry", app()->getLocale()) }}</h6>
-                    <h1 class="mb-5">{{ GoogleTranslate::trans("Aspek yang Mencakup Penyebaran Inquiry", app()->getLocale()) }}</h1>
+                    <h6 class="text-secondary text-uppercase mb-3">{{ __("Penyebaran Inquiry") }}</h6>
+                    <h1 class="mb-5">{{ __("Aspek yang Mencakup Penyebaran Inquiry") }}</h1>
 
                     <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
                         <i class="fa fa-solid fa-paper-plane text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Pengumpulan Inquiry", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Pengumpulan Inquiry") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("ECS berfungsi sebagai penghubung dengan Perwakilan Perdagangan (Perwadag) RI di luar negeri, yang secara rutin menerima permintaan dari buyer yang mencari produk tertentu. Inquiry ini sangat penting bagi eksportir, karena mereka mencerminkan minat pasar terhadap produk Indonesia.", app()->getLocale()) }}
+                                {{ __("ECS berfungsi sebagai penghubung dengan Perwakilan Perdagangan (Perwadag) RI di luar negeri, yang secara rutin menerima permintaan dari buyer yang mencari produk tertentu. Inquiry ini sangat penting bagi eksportir, karena mereka mencerminkan minat pasar terhadap produk Indonesia.") }}
                             </p>
                         </div>
                     </div>
@@ -74,9 +74,9 @@
                     <div class="d-flex gap-3 mb-4 wow fadeIn" data-wow-delay="0.5s">
                         <i class="fa fa-solid fa-share-alt text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Distribusi Inquiry", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Distribusi Inquiry") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Setelah inquiry diterima, ECS mendistribusikan informasi tersebut kepada perusahaan yang dapat memenuhi permintaan. ECS menggunakan database perusahaan yang ada untuk memastikan bahwa inquiry disampaikan kepada eksportir yang tepat, sehingga meningkatkan peluang terjadinya transaksi.", app()->getLocale()) }}
+                                {{ __("Setelah inquiry diterima, ECS mendistribusikan informasi tersebut kepada perusahaan yang dapat memenuhi permintaan. ECS menggunakan database perusahaan yang ada untuk memastikan bahwa inquiry disampaikan kepada eksportir yang tepat, sehingga meningkatkan peluang terjadinya transaksi.") }}
                             </p>
                         </div>
                     </div>
@@ -84,9 +84,9 @@
                     <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-comments text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Proses Respon", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Proses Respon") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("ECS membantu perusahaan untuk memahami cara yang efektif dalam merespon inquiry. Ini termasuk memberikan panduan tentang penyusunan proposal yang menarik dan persiapan untuk negosiasi yang mungkin terjadi setelah inquiry direspon.", app()->getLocale()) }}
+                                {{ __("ECS membantu perusahaan untuk memahami cara yang efektif dalam merespon inquiry. Ini termasuk memberikan panduan tentang penyusunan proposal yang menarik dan persiapan untuk negosiasi yang mungkin terjadi setelah inquiry direspon.") }}
                             </p>
                         </div>
                     </div>
@@ -94,9 +94,9 @@
                     <div class="d-flex gap-1 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-handshake text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Potensi Transaksi", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Potensi Transaksi") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Setelah inquiry direspon dengan baik, ECS berusaha untuk mengubahnya menjadi transaksi dagang. Ini mencakup penyiapan semua dokumen yang diperlukan dan memastikan bahwa produk dapat dikirim sesuai dengan kesepakatan yang dibuat.", app()->getLocale()) }}
+                                {{ __("Setelah inquiry direspon dengan baik, ECS berusaha untuk mengubahnya menjadi transaksi dagang. Ini mencakup penyiapan semua dokumen yang diperlukan dan memastikan bahwa produk dapat dikirim sesuai dengan kesepakatan yang dibuat.") }}
                             </p>
                         </div>
                     </div>
@@ -116,13 +116,13 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Beberapa Fakta", app()->getLocale()) }}</h6>
-                <h1 class="mb-3">{{ GoogleTranslate::trans("Jawab Peluang, Raih Kesempatan Emas", app()->getLocale()) }}</h1>
+                <h6 class="text-secondary text-uppercase mb-3">{{ __("Beberapa Fakta") }}</h6>
+                <h1 class="mb-3">{{ __("Jawab Peluang, Raih Kesempatan Emas") }}</h1>
                 <div class="page-ekspor p-5">
                     <p class="text-justify p-3 text-white">
-                        {{ GoogleTranslate::trans("Jangan lewatkan peluang bisnis internasional dengan layanan penyebaran inquiry kami. Inquiry dari buyer luar negeri adalah kunci untuk membuka potensi transaksi dagang baru. Kami bekerja sama dengan perwakilan perdagangan Indonesia di luar negeri, seperti Atase Perdagangan dan ITPC, untuk menyebarkan permintaan yang kami terima langsung kepada perusahaan yang sesuai. Respon yang cepat dan tepat bisa menjadi pintu masuk bagi perusahaan Anda menuju transaksi yang sukses.", app()->getLocale()) }}
+                        {{ __("Jangan lewatkan peluang bisnis internasional dengan layanan penyebaran inquiry kami. Inquiry dari buyer luar negeri adalah kunci untuk membuka potensi transaksi dagang baru. Kami bekerja sama dengan perwakilan perdagangan Indonesia di luar negeri, seperti Atase Perdagangan dan ITPC, untuk menyebarkan permintaan yang kami terima langsung kepada perusahaan yang sesuai. Respon yang cepat dan tepat bisa menjadi pintu masuk bagi perusahaan Anda menuju transaksi yang sukses.") }}
                     </p>
-                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">{{ GoogleTranslate::trans("Hubungi Kami", app()->getLocale()) }}</a>
+                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">{{ __("Hubungi Kami") }}</a>
                 </div>
             </div>
         </div>

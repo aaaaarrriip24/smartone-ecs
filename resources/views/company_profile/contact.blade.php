@@ -17,12 +17,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Hubungi Kami", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Hubungi Kami") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Hubungi Kami", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Hubungi Kami") }}</li>
             </ol>
         </nav>
     </div>
@@ -36,9 +36,9 @@
         <div class="row g-5 mx-lg-0">
             <div class="col-md-6 contact-form wow fadeIn" data-wow-delay="0.1s">
                 <h1 class="">ExportCenter Surabaya</h1>
-                <p class="mb-2">{{ GoogleTranslate::trans("Kirim email kepada kami:", app()->getLocale()) }}</p>
+                <p class="mb-2">{{ __("Kirim email kepada kami:") }}</p>
                 <p class="mb-2">exportcenter.surabaya@kemendag.go.id</p>
-                <p class="mb-2">{{ GoogleTranslate::trans("Kunjungi kami:", app()->getLocale()) }}</p>
+                <p class="mb-2">{{ __("Kunjungi kami:") }}</p>
                 <p class="mb-2">Jl. Kedung Doro No.80-90, Sawahan, Kec. Sawahan, Surabaya, Jawa Timur 60251</p>
                 <div class="bg-light p-4">
                 @if(session('success'))
@@ -56,23 +56,23 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="email" class="form-control" id="email" name="email" placeholder="{{ GoogleTranslate::trans('Email Anda', app()->getLocale()) }}">
-                                    <label for="email">{{ GoogleTranslate::trans("Email Anda", app()->getLocale()) }}</label>
+                                    <label for="email">{{ __("Email Anda") }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="subject" name="subject" placeholder="{{ GoogleTranslate::trans('Subjek', app()->getLocale()) }}">
-                                    <label for="subject">{{ GoogleTranslate::trans("Subjek", app()->getLocale()) }}</label>
+                                    <label for="subject">{{ __("Subjek") }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea class="form-control" placeholder="{{ GoogleTranslate::trans('Tinggalkan pesan di sini', app()->getLocale()) }}" id="message" name="message" style="height: 100px"></textarea>
-                                    <label for="message">{{ GoogleTranslate::trans("Pesan", app()->getLocale()) }}</label>
+                                    <label for="message">{{ __("Pesan") }}</label>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">{{ GoogleTranslate::trans("Kirim Pesan", app()->getLocale()) }}</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">{{ __("Kirim Pesan") }}</button>
                             </div>
                         </div>
                     </form>

@@ -18,12 +18,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Pemasok", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Pemasok") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Pemasok", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Pemasok") }}</li>
             </ol>
         </nav>
     </div>
@@ -33,8 +33,8 @@
 <!-- Service Start -->
 <div class="container-fluid px-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Hubungan Kami", app()->getLocale()) }}</h6>
-            <h1 class="mb-5">{{ GoogleTranslate::trans("Jelajahi Hubungan Lainnya", app()->getLocale()) }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ __("Hubungan Kami") }}</h6>
+            <h1 class="mb-5">{{ __("Jelajahi Hubungan Lainnya") }}</h1>
         </div>
         <div class="row g-4">
 
@@ -55,19 +55,19 @@
                     <div class="mt-auto">
                         <h5 class="fw-bold text-secondary">Product Details:</h5>
                         <p class="text-dark mb-1">
-                            <strong>{{ GoogleTranslate::trans("Produk Utama:", app()->getLocale()) }}</strong>
+                            <strong>{{ __("Produk Utama:") }}</strong>
                             {{ GoogleTranslate::trans($data->detail_produk_utama, app()->getLocale()) }}
                         </p>
                         <p class="text-dark mb-1">
-                            <strong>{{ GoogleTranslate::trans("Kategori:", app()->getLocale()) }}</strong>
+                            <strong>{{ __("Kategori:") }}</strong>
                             {{ GoogleTranslate::trans($data->sub_kategori, app()->getLocale()) }}
                         </p>
                         <p class="text-dark mb-1">
-                            <strong>{{ GoogleTranslate::trans("Kapasitas:", app()->getLocale()) }}</strong>
+                            <strong>{{ __("Kapasitas:") }}</strong>
                             {{ $data->kapasitas_produksi }} {{ GoogleTranslate::trans($data->satuan_kapasitas_produksi, app()->getLocale()) }}
                         </p>
                         <p class="text-dark mb-3">
-                            <strong>{{ GoogleTranslate::trans("Skala Bisnis :", app()->getLocale()) }}</strong>
+                            <strong>{{ __("Skala Bisnis :") }}</strong>
                             {{ GoogleTranslate::trans($data->skala_perusahaan, app()->getLocale()) }}
                         </p>
 
@@ -78,7 +78,7 @@
 
                         <!-- Contact Section -->
                         <div class="">
-                            <p class="fw-bold">{{ GoogleTranslate::trans("untuk informasi lebih detail", app()->getLocale()) }}</p>
+                            <p class="fw-bold">{{ __("untuk informasi lebih detail") }}</p>
                             <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="far fa-envelope"></i>  <a href="mailto:exportcenter.surabaya@kemendag.go.id" class="text-decoration-none">exportcenter.surabaya@kemendag.go.id</a></p>
                             <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="fas fa-phone"></i>  <a href="tel:+623135979106" class="text-decoration-none">+62 31 3597 9106</a></p>
                             <p class="fs-10 text-muted mb-1" style="font-size: clamp(12px, 2vw, 10px);"><i class="fas fa-comment-alt"></i>  <a href="tel:+6285755879497" class="text-decoration-none">+62 8575 5879 497</a></p>

@@ -17,12 +17,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Tentang Kami", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Tentang Kami") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Tentang", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Tentang") }}</li>
             </ol>
         </nav>
     </div>
@@ -41,28 +41,28 @@
                 </div>
             </div>
             <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
-                <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Tentang Kami", app()->getLocale()) }}</h6>
-                <h1 class="mb-5">{{ GoogleTranslate::trans("Selamat Datang di Export Center Surabaya", app()->getLocale()) }}</h1>
+                <h6 class="text-secondary text-uppercase mb-3">{{ __("Tentang Kami") }}</h6>
+                <h1 class="mb-5">{{ __("Selamat Datang di Export Center Surabaya") }}</h1>
                 <p class="mb-5 text-justify">
-                    {{ GoogleTranslate::trans("Kami hadir untuk mendukung dan memudahkan Anda dalam menjelajahi dunia ekspor. Dengan berbagai layanan komprehensif seperti konsultasi ekspor, penyebaran inquiry, business matching, hingga bantuan dalam aplikasi InaExport, kami siap menjadi mitra terpercaya dalam perjalanan Anda menuju pasar internasional. Mari bersama-sama wujudkan potensi ekspor Anda dan raih kesuksesan di pasar global.", app()->getLocale()) }}
+                    {{ __("Kami hadir untuk mendukung dan memudahkan Anda dalam menjelajahi dunia ekspor. Dengan berbagai layanan komprehensif seperti konsultasi ekspor, penyebaran inquiry, business matching, hingga bantuan dalam aplikasi InaExport, kami siap menjadi mitra terpercaya dalam perjalanan Anda menuju pasar internasional. Mari bersama-sama wujudkan potensi ekspor Anda dan raih kesuksesan di pasar global.") }}
                 </p>
                 <div class="row g-4 mb-5">
                     <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
                         <i class="fa fa-solid fa-comments text-primary fa-3x flex-shrink-0 mb-4"></i>
-                        <h5>{{ GoogleTranslate::trans("Konsultasi Ekspor", app()->getLocale()) }}</h5>
+                        <h5>{{ __("Konsultasi Ekspor") }}</h5>
                         <p class="mb-0 text-justify">
-                            {{ GoogleTranslate::trans("Layanan ini merupakan aktivitas utama dari ECS, yang menyediakan panduan bagi pelaku usaha dari berbagai skala, masyarakat umum, dan mahasiswa terkait ekspor. Konsultasi mencakup prosedur ekspor, legalitas, sertifikasi produk, standar produk ekspor, serta strategi perluasan pasar. ECS juga membantu dalam masalah pembiayaan dan sengketa dengan buyer.", app()->getLocale()) }}
+                            {{ __("Layanan ini merupakan aktivitas utama dari ECS, yang menyediakan panduan bagi pelaku usaha dari berbagai skala, masyarakat umum, dan mahasiswa terkait ekspor. Konsultasi mencakup prosedur ekspor, legalitas, sertifikasi produk, standar produk ekspor, serta strategi perluasan pasar. ECS juga membantu dalam masalah pembiayaan dan sengketa dengan buyer.") }}
                         </p>
                     </div>
                     <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
                         <i class="fa fa-solid fa-envelope-open-text text-primary fa-3x flex-shrink-0 mb-4"></i>
-                        <h5>{{ GoogleTranslate::trans("Penyebaran Inquiry", app()->getLocale()) }}</h5>
+                        <h5>{{ __("Penyebaran Inquiry") }}</h5>
                         <p class="mb-0 text-justify">
-                            {{ GoogleTranslate::trans("Melalui proses penyebaran inquiry yang efisien, perusahaan dapat meningkatkan kepuasan pelanggan sekaligus mengoptimalkan produk dan layanan yang mereka tawarkan.", app()->getLocale()) }}
+                            {{ __("Melalui proses penyebaran inquiry yang efisien, perusahaan dapat meningkatkan kepuasan pelanggan sekaligus mengoptimalkan produk dan layanan yang mereka tawarkan.") }}
                         </p>
                     </div>
                 </div>
-                <a href="#services" class="btn btn-primary py-3 px-5">{{ GoogleTranslate::trans("Jelajahi Lebih Lanjut", app()->getLocale()) }}</a>
+                <a href="#services" class="btn btn-primary py-3 px-5">{{ __("Jelajahi Lebih Lanjut") }}</a>
             </div>
         </div>
     </div>
@@ -76,16 +76,16 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Beberapa Fakta", app()->getLocale()) }}</h6>
-                <h1 class="mb-5">{{ GoogleTranslate::trans("Menuju Pasar Global, Bersama Wujudkan Sukses Ekspor", app()->getLocale()) }}</h1>
+                <h6 class="text-secondary text-uppercase mb-3">{{ __("Beberapa Fakta") }}</h6>
+                <h1 class="mb-5">{{ __("Menuju Pasar Global, Bersama Wujudkan Sukses Ekspor") }}</h1>
                 <p class="text-justify">
-                    {{ GoogleTranslate::trans("ECS menyediakan berbagai layanan untuk mendukung pelaku usaha dalam proses ekspor, mulai dari konsultasi terkait prosedur dan legalitas, penyebaran inquiry dari calon pembeli internasional, hingga business matching untuk memfasilitasi pertemuan dan negosiasi antara eksportir dan buyer. Melalui aplikasi InaExport, ECS juga membantu perusahaan terhubung dengan perwakilan perdagangan di luar negeri. Selain itu, ECS memfasilitasi penyelesaian sengketa antara eksportir dan buyer guna memastikan kelancaran transaksi ekspor.", app()->getLocale()) }}
+                    {{ __("ECS menyediakan berbagai layanan untuk mendukung pelaku usaha dalam proses ekspor, mulai dari konsultasi terkait prosedur dan legalitas, penyebaran inquiry dari calon pembeli internasional, hingga business matching untuk memfasilitasi pertemuan dan negosiasi antara eksportir dan buyer. Melalui aplikasi InaExport, ECS juga membantu perusahaan terhubung dengan perwakilan perdagangan di luar negeri. Selain itu, ECS memfasilitasi penyelesaian sengketa antara eksportir dan buyer guna memastikan kelancaran transaksi ekspor.") }}
                 </p>
 
                 <p class="mb-4 text-justify">
-                    {{ GoogleTranslate::trans("Dengan antarmuka yang intuitif dan dukungan pelanggan yang siap membantu, kami adalah solusi terbaik untuk memastikan pengiriman Anda berjalan lancar. Bergabunglah dengan kami dan rasakan kemudahan dalam mengelola semua pengiriman Anda di satu tempat!", app()->getLocale()) }}
+                    {{ __("Dengan antarmuka yang intuitif dan dukungan pelanggan yang siap membantu, kami adalah solusi terbaik untuk memastikan pengiriman Anda berjalan lancar. Bergabunglah dengan kami dan rasakan kemudahan dalam mengelola semua pengiriman Anda di satu tempat!") }}
                 </p>
-                <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5">{{ GoogleTranslate::trans("Hubungi Kami", app()->getLocale()) }}</a>
+                <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5">{{ __("Hubungi Kami") }}</a>
             </div>
             <div class="col-lg-6">
                 <div class="row g-4 align-items-center">
@@ -93,19 +93,19 @@
                         <div class="bg-primary p-4 mb-4 wow fadeIn" data-wow-delay="0.3s">
                             <i class="fa fa-users fa-2x text-white mb-3"></i>
                             <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
-                            <p class="text-white mb-0">{{ GoogleTranslate::trans("Klien Puas", app()->getLocale()) }}</p>
+                            <p class="text-white mb-0">{{ __("Klien Puas") }}</p>
                         </div>
                         <div class="bg-secondary p-4 wow fadeIn" data-wow-delay="0.5s">
                             <i class="fa fa-ship fa-2x text-white mb-3"></i>
                             <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
-                            <p class="text-white mb-0">{{ GoogleTranslate::trans("Pengiriman Selesai", app()->getLocale()) }}</p>
+                            <p class="text-white mb-0">{{ __("Pengiriman Selesai") }}</p>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="bg-success p-4 wow fadeIn" data-wow-delay="0.7s">
                             <i class="fa fa-star fa-2x text-white mb-3"></i>
                             <h2 class="text-white mb-2" data-toggle="counter-up">1234</h2>
-                            <p class="text-white mb-0">{{ GoogleTranslate::trans("Ulasan Pelanggan", app()->getLocale()) }}</p>
+                            <p class="text-white mb-0">{{ __("Ulasan Pelanggan") }}</p>
                         </div>
                     </div>
                 </div>
@@ -122,41 +122,41 @@
     <div class="container feature py-5 px-lg-0">
         <div class="row g-5 mx-lg-0">
             <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Layanan Kami", app()->getLocale()) }}</h6>
-                <h1 class="mb-5">{{ GoogleTranslate::trans("Layanan Komprehensif ECS untuk Mendukung Kesuksesan Ekspor Bisnis Anda.", app()->getLocale()) }}</h1>
+                <h6 class="text-secondary text-uppercase mb-3">{{ __("Layanan Kami") }}</h6>
+                <h1 class="mb-5">{{ __("Layanan Komprehensif ECS untuk Mendukung Kesuksesan Ekspor Bisnis Anda.") }}</h1>
                 <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
                     <i class="fa fa-solid fa-comments text-primary fa-3x flex-shrink-0"></i>
                     <div class="ms-4">
-                        <h5>{{ GoogleTranslate::trans("Konsultasi Ekspor", app()->getLocale()) }}</h5>
-                        <p class="mb-0 text-justify">{{ GoogleTranslate::trans("Layanan ini merupakan aktivitas utama dari ECS, yang menyediakan panduan bagi pelaku usaha dari berbagai skala, masyarakat umum, dan mahasiswa terkait ekspor. Konsultasi mencakup prosedur ekspor, legalitas, sertifikasi produk, standar produk ekspor, serta strategi perluasan pasar. ECS juga membantu dalam masalah pembiayaan dan sengketa dengan buyer.", app()->getLocale()) }}</p>
+                        <h5>{{ __("Konsultasi Ekspor") }}</h5>
+                        <p class="mb-0 text-justify">{{ __("Layanan ini merupakan aktivitas utama dari ECS, yang menyediakan panduan bagi pelaku usaha dari berbagai skala, masyarakat umum, dan mahasiswa terkait ekspor. Konsultasi mencakup prosedur ekspor, legalitas, sertifikasi produk, standar produk ekspor, serta strategi perluasan pasar. ECS juga membantu dalam masalah pembiayaan dan sengketa dengan buyer.") }}</p>
                     </div>
                 </div>
                 <div class="d-flex gap-3 mb-4 wow fadeIn" data-wow-delay="0.5s">
                     <i class="fa fa-solid fa-envelope-open-text text-primary fa-3x flex-shrink-0"></i>
                     <div class="ms-4">
-                        <h5>{{ GoogleTranslate::trans("Penyebaran Inquiry", app()->getLocale()) }}</h5>
-                        <p class="mb-0 text-justify">{{ GoogleTranslate::trans("Melalui proses penyebaran inquiry yang efisien, perusahaan dapat meningkatkan kepuasan pelanggan sekaligus mengoptimalkan produk dan layanan yang mereka tawarkan.", app()->getLocale()) }}</p>
+                        <h5>{{ __("Penyebaran Inquiry") }}</h5>
+                        <p class="mb-0 text-justify">{{ __("Melalui proses penyebaran inquiry yang efisien, perusahaan dapat meningkatkan kepuasan pelanggan sekaligus mengoptimalkan produk dan layanan yang mereka tawarkan.") }}</p>
                     </div>
                 </div>
                 <div class="d-flex gap-1 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                     <i class="fa fa-solid fa-users text-primary fa-3x flex-shrink-0"></i>
                     <div class="ms-4">
-                        <h5>{{ GoogleTranslate::trans("Business Matching'", app()->getLocale()) }}</h5>
-                        <p class="mb-0 text-justify">{{ GoogleTranslate::trans("Dengan business matching yang efektif, perusahaan dapat memaksimalkan potensi mereka dan menciptakan hubungan yang saling menguntungkan di dunia bisnis.", app()->getLocale()) }}</p>
+                        <h5>{{ __("Business Matching'") }}</h5>
+                        <p class="mb-0 text-justify">{{ __("Dengan business matching yang efektif, perusahaan dapat memaksimalkan potensi mereka dan menciptakan hubungan yang saling menguntungkan di dunia bisnis.") }}</p>
                     </div>
                 </div>
                 <div class="d-flex gap-3 mb-4 wow fadeInUp" data-wow-delay="0.7s">
                     <i class="fa fa-book text-primary fa-3x flex-shrink-0"></i>
                     <div class="ms-4">
-                        <h5>{{ GoogleTranslate::trans("Panduan Aplikasi Inaexport", app()->getLocale()) }}</h5>
-                        <p class="mb-0 text-justify">{{ GoogleTranslate::trans("Aplikasi ini dikembangkan oleh Direktorat Jenderal Pengembangan Ekspor Nasional dan berfungsi sebagai referensi utama bagi Perwadag saat ada inquiry dari buyer. Perusahaan yang terdaftar di aplikasi ini memiliki peluang lebih besar untuk mendapatkan inquiry dari Perwadag.", app()->getLocale()) }}</p>
+                        <h5>{{ __("Panduan Aplikasi Inaexport") }}</h5>
+                        <p class="mb-0 text-justify">{{ __("Aplikasi ini dikembangkan oleh Direktorat Jenderal Pengembangan Ekspor Nasional dan berfungsi sebagai referensi utama bagi Perwadag saat ada inquiry dari buyer. Perusahaan yang terdaftar di aplikasi ini memiliki peluang lebih besar untuk mendapatkan inquiry dari Perwadag.") }}</p>
                     </div>
                 </div>
                 <div class="d-flex gap-3 mb-4 wow fadeInUp" data-wow-delay="0.7s">
                     <i class="fa fa-solid fa-cogs text-primary fa-3x flex-shrink-0"></i>
                     <div class="ms-1">
-                        <h5>{{ GoogleTranslate::trans("Layanan Lainnya", app()->getLocale()) }}</h5>
-                        <p class="mb-0 text-justify">{{ GoogleTranslate::trans("ECS juga membantu menyelesaikan sengketa antara pelaku usaha dan buyer, dengan menghubungkan mereka ke Perwadag untuk mediasi dan penyelesaian masalah.", app()->getLocale()) }}</p>
+                        <h5>{{ __("Layanan Lainnya") }}</h5>
+                        <p class="mb-0 text-justify">{{ __("ECS juga membantu menyelesaikan sengketa antara pelaku usaha dan buyer, dengan menghubungkan mereka ke Perwadag untuk mediasi dan penyelesaian masalah.") }}</p>
                     </div>
                 </div>
             </div>
@@ -175,8 +175,8 @@
 <div class="container-xxl py-5">
     <div class="container py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ GoogleTranslate::trans("Tim Kami", app()->getLocale()) }}</h6>
-            <h1 class="mb-5">{{ GoogleTranslate::trans("Anggota Tim", app()->getLocale()) }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ __("Tim Kami") }}</h6>
+            <h1 class="mb-5">{{ __("Anggota Tim") }}</h1>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">

@@ -34,13 +34,13 @@ class PerusahaanController extends Controller
     {
         $title = 'Delete Perusahaan!';
         $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
+        // confirmDelete($title, $text);
 
         if ($request->ajax()) {
             $data = DB::table('m_perusahaan as ta')
             ->leftJoin('m_tipe_perusahaan as tb', 'ta.id_tipe', '=', 'tb.id')
-            ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
-            ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
+            // ->leftJoin('indonesia_provinces as tc', 'ta.id_provinsi', '=', 'tc.code')
+            // ->leftJoin('indonesia_cities as td', 'ta.id_kabkota', '=', 'td.code')
             ->leftJoin('m_k_produk as tf', 'ta.id_kategori_produk', '=', 'tf.id')
             ->leftJoin('t_sub_kategori_perusahaan as tg', 'tg.id_perusahaan', '=', 'ta.id')
             ->leftJoin('m_sub_kategori as th', 'tg.id_sub_kategori', '=', 'th.id')
@@ -65,7 +65,7 @@ class PerusahaanController extends Controller
                 $data->where('nama_sub_kategori', 'LIKE', '%'. $request->term. '%');
             }
             
-            $data->select(DB::raw('ta.*, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe, tc.NAME AS provinsi, td.NAME AS cities'))
+            $data->select(DB::raw('ta.*, tf.nama_kategori_produk, group_concat( th.nama_sub_kategori ) AS sub_kategori, tb.nama_tipe'))
             ->groupBy('ta.id')
             ->orderBy('ta.id', 'ASC')
             ->get();

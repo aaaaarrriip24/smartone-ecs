@@ -4,6 +4,7 @@
 .idea/*
 /vendor
 .env
+.storage/*
 ## Sublime Text cache files
 *.tmlanguage.cache
 *.tmPreferences.cache

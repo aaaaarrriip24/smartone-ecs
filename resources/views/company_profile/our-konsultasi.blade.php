@@ -17,12 +17,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Konsultasi Ekspor", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Konsultasi Ekspor") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Konsultasi Ekspor", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Konsultasi Ekspor") }}</li>
             </ol>
         </nav>
     </div>
@@ -40,10 +40,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="text-secondary text-uppercase mb-2">{{ GoogleTranslate::trans("Layanan Kami", app()->getLocale()) }}</h6>
-                    <h1 class="mb-4">{{ GoogleTranslate::trans("Konsultasi Ekspor", app()->getLocale()) }}</h1>
+                    <h6 class="text-secondary text-uppercase mb-2">{{ __("Layanan Kami") }}</h6>
+                    <h1 class="mb-4">{{ __("Konsultasi Ekspor") }}</h1>
                     <p class="mb-4 text-justify">
-                        {{ GoogleTranslate::trans("Konsultasi ekspor merupakan layanan unggulan dari ECS yang dirancang khusus untuk mendukung berbagai kalangan, mulai dari pelaku usaha kecil hingga besar, masyarakat umum, hingga mahasiswa yang ingin memahami seluk-beluk proses ekspor. Dengan layanan ini, Anda akan mendapatkan panduan lengkap dan bimbingan praktis untuk menjalani langkah-langkah ekspor dengan percaya diri. ECS siap membantu Anda menjawab setiap pertanyaan dan kebutuhan Anda terkait ekspor, sehingga Anda dapat memaksimalkan potensi bisnis Anda di pasar internasional. Bergabunglah dengan kami dan jadikan perjalanan ekspor Anda lebih mudah dan sukses.", app()->getLocale()) }}
+                        {{ __("Konsultasi ekspor merupakan layanan unggulan dari ECS yang dirancang khusus untuk mendukung berbagai kalangan, mulai dari pelaku usaha kecil hingga besar, masyarakat umum, hingga mahasiswa yang ingin memahami seluk-beluk proses ekspor. Dengan layanan ini, Anda akan mendapatkan panduan lengkap dan bimbingan praktis untuk menjalani langkah-langkah ekspor dengan percaya diri. ECS siap membantu Anda menjawab setiap pertanyaan dan kebutuhan Anda terkait ekspor, sehingga Anda dapat memaksimalkan potensi bisnis Anda di pasar internasional. Bergabunglah dengan kami dan jadikan perjalanan ekspor Anda lebih mudah dan sukses.") }}
                     </p>
                 </div>
             </div>
@@ -56,15 +56,15 @@
         <div class="container feature py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Konsultasi Ekspor", app()->getLocale()) }}</h6>
-                    <h1 class="mb-5">{{ GoogleTranslate::trans("Aspek yang Mencakup Konsultasi Ekspor", app()->getLocale()) }}</h1>
+                    <h6 class="text-secondary text-uppercase mb-3">{{ __("Konsultasi Ekspor") }}</h6>
+                    <h1 class="mb-5">{{ __("Aspek yang Mencakup Konsultasi Ekspor") }}</h1>
 
                     <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.7s">
                         <i class="fa fa-paper-plane text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Prosedur Ekspor", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Prosedur Ekspor") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Memberikan panduan langkah demi langkah tentang bagaimana mengekspor produk, mulai dari riset pasar hingga pengiriman. Ini termasuk penjelasan tentang cara mengisi dokumen ekspor yang diperlukan.", app()->getLocale()) }}
+                                {{ __("Memberikan panduan langkah demi langkah tentang bagaimana mengekspor produk, mulai dari riset pasar hingga pengiriman. Ini termasuk penjelasan tentang cara mengisi dokumen ekspor yang diperlukan.") }}
                             </p>
                         </div>
                     </div>
@@ -72,9 +72,9 @@
                     <div class="d-flex gap-4 mb-4 wow fadeIn" data-wow-delay="0.5s">
                         <i class="fa fa-solid fa-file-contract text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Legalitas Perusahaan", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Legalitas Perusahaan") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Membantu pelaku usaha memahami aspek hukum terkait ekspor, termasuk izin yang diperlukan dan regulasi yang harus diikuti.", app()->getLocale()) }}
+                                {{ __("Membantu pelaku usaha memahami aspek hukum terkait ekspor, termasuk izin yang diperlukan dan regulasi yang harus diikuti.") }}
                             </p>
                         </div>
                     </div>
@@ -82,9 +82,9 @@
                     <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-check-circle text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Sertifikasi Produk", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Sertifikasi Produk") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Memberikan informasi tentang jenis sertifikasi yang diperlukan agar produk sesuai dengan standar internasional.", app()->getLocale()) }}
+                                {{ __("Memberikan informasi tentang jenis sertifikasi yang diperlukan agar produk sesuai dengan standar internasional.") }}
                             </p>
                         </div>
                     </div>
@@ -92,9 +92,9 @@
                     <div class="d-flex gap-2 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-chart-line text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Strategi Perluasan Pasar", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Strategi Perluasan Pasar") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Membantu pelaku usaha memahami spesifikasi teknis yang diperlukan untuk berbagai negara tujuan.", app()->getLocale()) }}
+                                {{ __("Membantu pelaku usaha memahami spesifikasi teknis yang diperlukan untuk berbagai negara tujuan.") }}
                             </p>
                         </div>
                     </div>
@@ -102,9 +102,9 @@
                     <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-money-bill-wave text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Pembiayaan dan Sengketa", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Pembiayaan dan Sengketa") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Menyediakan saran dan dukungan untuk masalah keuangan atau sengketa dengan buyer, serta menghubungkan pelaku usaha dengan lembaga yang tepat.", app()->getLocale()) }}
+                                {{ __("Menyediakan saran dan dukungan untuk masalah keuangan atau sengketa dengan buyer, serta menghubungkan pelaku usaha dengan lembaga yang tepat.") }}
                             </p>
                         </div>
                     </div>
@@ -124,13 +124,13 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Beberapa Fakta", app()->getLocale()) }}</h6>
-                <h1 class="mb-3">{{ GoogleTranslate::trans("Panduan Tepat, Sukses di Pasar Global", app()->getLocale()) }}</h1>
+                <h6 class="text-secondary text-uppercase mb-3">{{ __("Beberapa Fakta") }}</h6>
+                <h1 class="mb-3">{{ __("Panduan Tepat, Sukses di Pasar Global") }}</h1>
                 <div class="page-ekspor p-5">
                     <p class="text-justify p-3 text-white">
-                        {{ GoogleTranslate::trans("Konsultasi Ekspor kami memberikan panduan lengkap untuk setiap tahap proses ekspor Anda. Dengan bimbingan dari para ahli yang berpengalaman, kami membantu Anda memahami prosedur ekspor, persyaratan legalitas, sertifikasi produk, serta strategi untuk memperluas pasar ke luar negeri. Layanan ini dirancang khusus untuk bisnis dari berbagai skala, dari pemula hingga yang sudah berpengalaman, agar dapat meraih peluang sukses di pasar global.", app()->getLocale()) }}
+                        {{ __("Konsultasi Ekspor kami memberikan panduan lengkap untuk setiap tahap proses ekspor Anda. Dengan bimbingan dari para ahli yang berpengalaman, kami membantu Anda memahami prosedur ekspor, persyaratan legalitas, sertifikasi produk, serta strategi untuk memperluas pasar ke luar negeri. Layanan ini dirancang khusus untuk bisnis dari berbagai skala, dari pemula hingga yang sudah berpengalaman, agar dapat meraih peluang sukses di pasar global.") }}
                     </p>
-                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">{{ GoogleTranslate::trans("Hubungi Kami", app()->getLocale()) }}</a>
+                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">{{ __("Hubungi Kami") }}</a>
                 </div>
             </div>
         </div>

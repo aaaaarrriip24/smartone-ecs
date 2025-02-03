@@ -17,12 +17,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Panduan Aplikasi InaExport", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Panduan Aplikasi InaExport") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Panduan Aplikasi InaExport", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="{{ url('/') }}">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="javascript:void(0)">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Panduan Aplikasi InaExport") }}</li>
             </ol>
         </nav>
     </div>
@@ -41,10 +41,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
-                    <h6 class="text-secondary text-uppercase mb-2">{{ GoogleTranslate::trans("Layanan Kami", app()->getLocale()) }}</h6>
-                    <h1 class="mb-4">{{ GoogleTranslate::trans("Panduan Aplikasi InaExport", app()->getLocale()) }}</h1>
+                    <h6 class="text-secondary text-uppercase mb-2">{{ __("Layanan Kami") }}</h6>
+                    <h1 class="mb-4">{{ __("Panduan Aplikasi InaExport") }}</h1>
                     <p class="mb-4 text-justify">
-                        {{ GoogleTranslate::trans("Export Center Surabaya (ECS) menyediakan panduan bagi pelaku usaha untuk mendaftar di aplikasi InaExport, sebuah platform penting yang mendukung kegiatan perdagangan internasional. Dengan bantuan ECS, pelaku usaha dapat memahami cara memaksimalkan potensi aplikasi ini untuk mempromosikan produk mereka kepada calon buyer di berbagai negara. Aplikasi InaExport menjadi jembatan antara eksportir dan Perwakilan Perdagangan Indonesia di luar negeri, membuka peluang lebih besar bagi pelaku usaha untuk menerima inquiry dan menjangkau pasar global dengan lebih efektif.", app()->getLocale()) }}
+                        {{ __("Export Center Surabaya (ECS) menyediakan panduan bagi pelaku usaha untuk mendaftar di aplikasi InaExport, sebuah platform penting yang mendukung kegiatan perdagangan internasional. Dengan bantuan ECS, pelaku usaha dapat memahami cara memaksimalkan potensi aplikasi ini untuk mempromosikan produk mereka kepada calon buyer di berbagai negara. Aplikasi InaExport menjadi jembatan antara eksportir dan Perwakilan Perdagangan Indonesia di luar negeri, membuka peluang lebih besar bagi pelaku usaha untuk menerima inquiry dan menjangkau pasar global dengan lebih efektif.") }}
                     </p>
                 </div>
             </div>
@@ -57,15 +57,15 @@
         <div class="container feature py-5 px-lg-0">
             <div class="row g-5 mx-lg-0">
                 <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
-                    <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Panduan Aplikasi InaExport", app()->getLocale()) }}</h6>
-                    <h1 class="mb-5">{{ GoogleTranslate::trans("Aspek yang Mencakup Panduan Aplikasi InaExport", app()->getLocale()) }}</h1>
+                    <h6 class="text-secondary text-uppercase mb-3">{{ __("Panduan Aplikasi InaExport") }}</h6>
+                    <h1 class="mb-5">{{ __("Aspek yang Mencakup Panduan Aplikasi InaExport") }}</h1>
 
                     <div class="d-flex mb-4 wow fadeInUp" data-wow-delay="0.7s">
                         <i class="fa fa-solid fa-user-plus text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Pendaftaran di InaExport", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Pendaftaran di InaExport") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("ECS berfungsi sebagai penghubung dengan Perwakilan Perdagangan (Perwadag) RI di luar negeri, yang secara rutin menerima permintaan dari buyer yang mencari produk tertentu. Inquiry ini sangat penting bagi eksportir, karena mereka mencerminkan minat pasar terhadap produk Indonesia.", app()->getLocale()) }}
+                                {{ __("ECS berfungsi sebagai penghubung dengan Perwakilan Perdagangan (Perwadag) RI di luar negeri, yang secara rutin menerima permintaan dari buyer yang mencari produk tertentu. Inquiry ini sangat penting bagi eksportir, karena mereka mencerminkan minat pasar terhadap produk Indonesia.") }}
                             </p>
                         </div>
                     </div>
@@ -73,9 +73,9 @@
                     <div class="d-flex gap-2 mb-4 wow fadeIn" data-wow-delay="0.5s">
                         <i class="fa fa-solid fa-paper-plane text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Distribusi Inquiry", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Distribusi Inquiry") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("ECS membantu pelaku usaha memahami proses pendaftaran di aplikasi InaExport, yang melibatkan pengisian formulir, penyediaan dokumen yang diperlukan, dan pemahaman tentang kriteria yang harus dipenuhi.", app()->getLocale()) }}
+                                {{ __("ECS membantu pelaku usaha memahami proses pendaftaran di aplikasi InaExport, yang melibatkan pengisian formulir, penyediaan dokumen yang diperlukan, dan pemahaman tentang kriteria yang harus dipenuhi.") }}
                             </p>
                         </div>
                     </div>
@@ -83,9 +83,9 @@
                     <div class="d-flex gap-3 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-award text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Manfaat Keanggotaan", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Manfaat Keanggotaan") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Dengan terdaftar di InaExport, perusahaan berpotensi menerima inquiry dari buyer internasional yang mencari produk dari Indonesia. ECS menjelaskan bagaimana keanggotaan ini dapat membuka peluang baru dan meningkatkan visibilitas perusahaan di pasar global.", app()->getLocale()) }}
+                                {{ __("Dengan terdaftar di InaExport, perusahaan berpotensi menerima inquiry dari buyer internasional yang mencari produk dari Indonesia. ECS menjelaskan bagaimana keanggotaan ini dapat membuka peluang baru dan meningkatkan visibilitas perusahaan di pasar global.") }}
                             </p>
                         </div>
                     </div>
@@ -93,9 +93,9 @@
                     <div class="d-flex gap-1 mb-4 wow fadeInUp" data-wow-delay="0.3s">
                         <i class="fa fa-solid fa-globe text-primary fa-3x flex-shrink-0"></i>
                         <div class="ms-4">
-                            <h5>{{ GoogleTranslate::trans("Rujukan untuk Perwakilan Perdagangan", app()->getLocale()) }}</h5>
+                            <h5>{{ __("Rujukan untuk Perwakilan Perdagangan") }}</h5>
                             <p class="mb-0 text-justify">
-                                {{ GoogleTranslate::trans("Data dalam aplikasi InaExport digunakan oleh Perwakilan Perdagangan untuk mengidentifikasi perusahaan yang dapat memenuhi permintaan dari buyer. ECS memastikan bahwa perusahaan yang terdaftar mendapat perhatian yang layak dari Perwakilan Perdagangan.", app()->getLocale()) }}
+                                {{ __("Data dalam aplikasi InaExport digunakan oleh Perwakilan Perdagangan untuk mengidentifikasi perusahaan yang dapat memenuhi permintaan dari buyer. ECS memastikan bahwa perusahaan yang terdaftar mendapat perhatian yang layak dari Perwakilan Perdagangan.") }}
                             </p>
                         </div>
                     </div>
@@ -114,13 +114,13 @@
     <div class="container py-5 ">
         <div class="row">
             <div class="col-lg-12 fadeInUp" data-wow-delay="0.1s">
-                <h6 class="text-secondary text-uppercase mb-3">{{ GoogleTranslate::trans("Beberapa Fakta", app()->getLocale()) }}</h6>
-                <h1 class="mb-3">{{ GoogleTranslate::trans("Terdaftar di InaExport, Buka Pintu Ekspor Lebih Lebar", app()->getLocale()) }}</h1>
+                <h6 class="text-secondary text-uppercase mb-3">{{ __("Beberapa Fakta") }}</h6>
+                <h1 class="mb-3">{{ __("Terdaftar di InaExport, Buka Pintu Ekspor Lebih Lebar") }}</h1>
                 <div class="page-ekspor p-5">
                     <p class="text-justify p-3 text-white">
-                        {{ GoogleTranslate::trans("Daftarkan perusahaan Anda di aplikasi InaExport dan perluas peluang ekspor dengan bimbingan dari tim kami. Aplikasi ini menjadi referensi utama bagi perwakilan perdagangan RI di luar negeri saat mencari produk Indonesia yang diminati buyer. Dengan panduan kami, Anda akan memahami cara bergabung dengan platform ini dan meningkatkan kesempatan untuk mendapatkan inquiry langsung dari pembeli internasional. Pastikan produk Anda terdaftar dan siap bersaing di pasar global.", app()->getLocale()) }}
+                        {{ __("Daftarkan perusahaan Anda di aplikasi InaExport dan perluas peluang ekspor dengan bimbingan dari tim kami. Aplikasi ini menjadi referensi utama bagi perwakilan perdagangan RI di luar negeri saat mencari produk Indonesia yang diminati buyer. Dengan panduan kami, Anda akan memahami cara bergabung dengan platform ini dan meningkatkan kesempatan untuk mendapatkan inquiry langsung dari pembeli internasional. Pastikan produk Anda terdaftar dan siap bersaing di pasar global.") }}
                     </p>
-                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">{{ GoogleTranslate::trans("Hubungi Kami", app()->getLocale()) }}</a>
+                    <a href="{{ url('contact') }}" class="btn btn-primary py-3 px-5 ms-3 mb-4">{{ __("Hubungi Kami") }}</a>
                 </div>
             </div>
         </div>

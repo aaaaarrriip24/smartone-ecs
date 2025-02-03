@@ -54,12 +54,12 @@
 <!-- Page Header Start -->
 <div class="container-fluid page-header py-5" style="margin-bottom: 6rem;">
     <div class="container py-5">
-        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ GoogleTranslate::trans("Berita", app()->getLocale()) }}</h1>
+        <h1 class="display-3 text-white mb-3 animated slideInDown">{{ __("Berita") }}</h1>
         <nav aria-label="breadcrumb animated slideInDown">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item"><a class="text-white" href="#">{{ GoogleTranslate::trans("Halaman", app()->getLocale()) }}</a></li>
-                <li class="breadcrumb-item text-white active" aria-current="page">{{ GoogleTranslate::trans("Berita", app()->getLocale()) }}</li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Beranda") }}</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="#">{{ __("Halaman") }}</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">{{ __("Berita") }}</li>
             </ol>
         </nav>
     </div>
@@ -92,7 +92,7 @@
             <p class="text-muted mb-3">{{ \Carbon\Carbon::parse(($berita->created_at))->format('d F Y') }}</p>
             <p class="text-justify">{{ GoogleTranslate::trans($berita->isi, app()->getLocale()) }}</p>
             <br>
-            <a href="{{ url('berita') }}" class="btn btn-primary mt-4">{{ GoogleTranslate::trans("Kembali ke Daftar Berita", app()->getLocale()) }}</a>
+            <a href="{{ url('berita') }}" class="btn btn-primary mt-4">{{ __("Kembali ke Daftar Berita") }}</a>
         </div>
 
         <!-- Berita Lainnya Start -->
@@ -115,7 +115,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ GoogleTranslate::trans($item->judul, app()->getLocale()) }}</h5>
                                 <p class="card-text" style="font-size: 0.9rem; color: #555;">{{ Str::limit(GoogleTranslate::trans($item->isi, app()->getLocale()), 70, '...') }}</p>
-                                <a href="{{ url('news/detail/' . $item->id) }}" class="btn btn-primary">{{ GoogleTranslate::trans("Baca Selengkapnya", app()->getLocale()) }}</a>
+                                <a href="{{ url('news/detail/' . $item->id) }}" class="btn btn-primary">{{ __("Baca Selengkapnya") }}</a>
                             </div>
                         </div>
                     </div>

@@ -1,42 +1,42 @@
 <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto p-4 p-lg-0">
         <a href="{{ url('/') }}"
-            class="nav-item nav-link {{ url()->current()==url('/') ? 'active' : '' }}">{{ GoogleTranslate::trans("Beranda", app()->getLocale()) }}</a>
+            class="nav-item nav-link {{ url()->current()==url('/') ? 'active' : '' }}">  {{ trans('Beranda') }} </a>
         <a href="{{ url('about') }}"
-            class="nav-item nav-link {{ url()->current()==url('about') ? 'active' : '' }}">{{ GoogleTranslate::trans("Tentang", app()->getLocale()) }}</a>
+            class="nav-item nav-link {{ url()->current()==url('about') ? 'active' : '' }}">{{ __("Tentang") }}</a>
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link {{ url()->current()==url('our-konsultasi') || url()->current()==url('our-inquiries') || url()->current()==url('our-bm') || url()->current()==url('our-panduan') || url()->current()==url('other-service') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ GoogleTranslate::trans("Layanan", app()->getLocale()) }}
+                {{ __("Layanan") }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ url('our-konsultasi') }}">{{ session('locale') == 'id' ? 'Konsultasi Ekspor' : 'Export Consultation' }}</a>
-                <a class="dropdown-item" href="{{ url('our-inquiries') }}">{{ session('locale') == 'id' ? 'Penyebaran Inquiry' : 'Inquiry Dissemination' }}</a>
-                <a class="dropdown-item" href="{{ url('our-bm') }}">{{ session('locale') == 'id' ? 'Bussiness Matching' : 'Business Matching' }}</a>
-                <a class="dropdown-item" href="{{ url('our-panduan') }}">{{ session('locale') == 'id' ? 'Pendampingan InaExport' : 'InaExport Mentoring' }}</a>
-                <a class="dropdown-item" href="{{ url('other-service') }}">{{ session('locale') == 'id' ? 'Layanan Lainnya' : 'Other Services' }}</a>
+                <a class="dropdown-item" href="{{ url('our-konsultasi') }}">{{  __("Konsultasi Ekspor") }}</a>
+                <a class="dropdown-item" href="{{ url('our-inquiries') }}">{{  __("Penyebaran Inquiry") }}</a>
+                <a class="dropdown-item" href="{{ url('our-bm') }}">{{  __("Bussiness Matching") }}</a>
+                <a class="dropdown-item" href="{{ url('our-panduan') }}">{{  __("Pendampingan InaExport") }}</a>
+                <a class="dropdown-item" href="{{ url('other-service') }}">{{  __("Layanan Lainnya") }}</a>
             </div>
         </li>
 
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link {{ url()->current()==url('our-supplier') || url()->current()==url('our-market') || url()->current()==url('other-relasi') ? 'active' : '' }} dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ GoogleTranslate::trans("Rekan", app()->getLocale()) }}
+                {{ __("Rekan") }}
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ url('our-supplier') }}">{{ GoogleTranslate::trans("Pemasok", app()->getLocale()) }}</a>
-                <a class="dropdown-item" href="{{ url('our-market') }}">{{ GoogleTranslate::trans("Pasar", app()->getLocale()) }}</a>
-                <a class="dropdown-item" href="{{ url('other-relasi') }}">{{ GoogleTranslate::trans("Relasi Lain", app()->getLocale()) }}</a>
+                <a class="dropdown-item" href="{{ url('our-supplier') }}">{{ __("Pemasok") }}</a>
+                <a class="dropdown-item" href="{{ url('our-market') }}">{{ __("Pasar") }}</a>
+                <a class="dropdown-item" href="{{ url('other-relasi') }}">{{ __("Relasi Lain") }}</a>
             </div>
         </li>
 
-        <a href="{{ url('news') }}" class="nav-item nav-link {{ url()->current()==url('news') ? 'active' : '' }}">{{ GoogleTranslate::trans("Kegiatan", app()->getLocale()) }}</a>
+        <a href="{{ url('news') }}" class="nav-item nav-link {{ url()->current()==url('news') ? 'active' : '' }}">{{ __("Kegiatan") }}</a>
         <a href="{{ url('dashboard') }}"
-            class="nav-item nav-link {{ url()->current()==url('dashboard') ? 'active' : '' }}">{{ GoogleTranslate::trans("Informasi", app()->getLocale()) }}</a>
+            class="nav-item nav-link {{ url()->current()==url('dashboard') ? 'active' : '' }}">{{ __("Informasi") }}</a>
         <a href="{{ url('contact') }}"
-            class="nav-item nav-link {{ url()->current()==url('contact') ? 'active' : '' }}">{{ GoogleTranslate::trans("Kontak", app()->getLocale()) }}</a>
+            class="nav-item nav-link {{ url()->current()==url('contact') ? 'active' : '' }}">{{ __("Kontak") }}</a>
 
         @php $locale = session()->get('locale'); @endphp
         <li class="nav-item dropdown">
@@ -59,9 +59,9 @@
                 <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('change-language', ['locale' => 'en']) }}"><img
+                <a class="dropdown-item" href="{{ route('change.language', 'en') }} "><img
                         src="{{ asset('assets/images/negara/en.png') }}" width="25px"> English</a>
-                <a class="dropdown-item" href="{{ route('change-language', ['locale' => 'id']) }}"><img
+                <a class="dropdown-item" href="{{ route('change.language', 'id') }}"><img
                         src="{{ asset('assets/images/negara/id.png') }}" width="25px"> Indonesia</a>
             </div>
         </li>

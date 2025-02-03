@@ -22,15 +22,18 @@ use DB;
 use DataTables;
 use Mail;
 use App;
+use Illuminate\Support\Facades\Session;
 
 class HomePageController extends Controller
 {
     public function index(Request $request)
     {
-        $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
+        $perusahaan = Perusahaan::whereNull('deleted_at')->count();
         $berita = Berita::whereNull('deleted_at')->orderBy('tanggal_berita', 'DESC')->take(3)->get();
 
-        // $layanan = TKonsultasi::all()->whereNull('deleted_at')->count();
+        // dd(__("message.Tentang"));
+
+        // $layanan = TKonsultasi::whereNull('deleted_at')->count();
         $layanan = DB::table('t_konsultasi as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
         ->whereNull('ta.deleted_at')
@@ -78,9 +81,9 @@ class HomePageController extends Controller
         ->orderBy('ta.tanggal_bm', 'ASC')
         ->first();
 
-        $bm = TBm::all()->whereNull('deleted_at')->count();
+        $bm = TBm::whereNull('deleted_at')->count();
         $ptbm = PPBm::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
-        $iq = Tinquiry::all()->whereNull('deleted_at')->count();
+        $iq = Tinquiry::whereNull('deleted_at')->count();
         $ptiq = PPInquiry::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
         $ptina = PPInaexport::select(DB::raw('COUNT(DISTINCT id_perusahaan) as count_perusahaan'))->whereNull('deleted_at')->first();
         return view('welcome', compact('perusahaan', 'layanan', 'export', 'bm', 'ptbm', 'iq', 'ptiq', 'ptiq2', 'ptbm2', 'ptina', 'berita'));
@@ -249,7 +252,7 @@ class HomePageController extends Controller
     }
     public function our_supplier(Request $request)
     {
-        $perusahaan = Perusahaan::all()->whereNull('deleted_at')->count();
+        $perusahaan = Perusahaan::whereNull('deleted_at')->count();
 
         $layanan = DB::table('t_konsultasi as ta')
         ->leftJoin('m_perusahaan as tb', 'ta.id_perusahaan', '=', 'tb.id')
@@ -354,4 +357,15 @@ class HomePageController extends Controller
         session()->put('locale', $request->lang);
         return redirect()->back();
     }
+
+    public function changeLanguage($lang)
+{
+    if (in_array($lang, ['en', 'id'])) {
+        Session::put('locale', $lang);
+        App::setLocale($lang);
+    }
+
+    
+    return redirect()->back();
+}
 }

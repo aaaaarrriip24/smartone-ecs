@@ -43,6 +43,8 @@ use App\Http\Controllers\ArtikelController;
 */
 Auth::routes();
 
+Route::get('change-language/{lang}', [HomePageController::class, 'changeLanguage'])->name('change.language');
+
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('about', [HomePageController::class, 'about']);
 Route::get('services', [HomePageController::class, 'services']);
