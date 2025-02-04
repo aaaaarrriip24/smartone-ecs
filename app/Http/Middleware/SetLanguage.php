@@ -20,7 +20,7 @@ class SetLanguage
         }
 
         // Debug log untuk memeriksa locale yang aktif
-        Log::info('Locale aktif: ' . App::getLocale());
+        // Log::info('Locale aktif: ' . App::getLocale());
 
         return $next($request);
     }

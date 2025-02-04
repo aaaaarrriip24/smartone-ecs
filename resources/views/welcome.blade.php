@@ -66,8 +66,8 @@
 <!-- Service Start -->
 <div class="container-fluid p-0 py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ __("Layanan Kami") }}</h6>
-            <h1 class="mb-5">{{ __("Jelajahi Layanan Kami") }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ lng("Layanan Kami") }}</h6>
+            <h1 class="mb-5">{{ lng("Jelajahi Layanan Kami") }}</h1>
         </div>
         <div class="row w-100 justify-content-center px-0">
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -75,9 +75,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Business Matching.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Business Matching") }}</h6>
-                    <p class="text-truncate-3">{{ __("Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Business Matching") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Business Matching menghubungkan pelaku bisnis dengan mitra dagang potensial melalui analisis kebutuhan dan acara networking, menciptakan peluang kerjasama yang saling menguntungkan.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-bm') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -85,9 +85,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Konsultasi.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Konsultasi Ekspor") }}</h6>
-                    <p class="text-truncate-3">{{ __("Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Konsultasi Ekspor") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Konsultasi Ekspor memberikan panduan lengkap tentang proses ekspor, termasuk persyaratan hukum dan strategi pemasaran global, untuk membantu perusahaan memasuki pasar internasional.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-konsultasi') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -95,9 +95,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Pendampingan InaExport.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Pendampingan InaExport") }}</h6>
-                    <p class="text-truncate-3">{{ __("Pendampingan InaExport mendukung perusahaan dalam memanfaatkan platform InaExport, memberikan pelatihan dan strategi untuk meningkatkan visibilitas produk di pasar internasional.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-panduan') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Pendampingan InaExport") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Pendampingan InaExport mendukung perusahaan dalam memanfaatkan platform InaExport, memberikan pelatihan dan strategi untuk meningkatkan visibilitas produk di pasar internasional.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-panduan') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -105,9 +105,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Penyebaran Inquiry.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Penyebaran Inquiry") }}</h6>
-                    <p class="text-truncate-3">{{ __("Penyebaran Inquiry mempromosikan produk Anda kepada calon pembeli di pasar global dengan mengelola dan menyebarkan permintaan informasi dari buyer kepada pelaku usaha yang relevan.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('our-inquiries') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Penyebaran Inquiry") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Penyebaran Inquiry mempromosikan produk Anda kepada calon pembeli di pasar global dengan mengelola dan menyebarkan permintaan informasi dari buyer kepada pelaku usaha yang relevan.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('our-inquiries') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
 
@@ -116,9 +116,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_layanan/Mediasi Kasus Dagang.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Layanan Lainnya") }}</h6>
-                    <p class="text-truncate-3">{{ __("Layanan lainnya termasuk, mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional, membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('other-service') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Layanan Lainnya") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Layanan lainnya termasuk, mediasi Kasus Dagang menawarkan penyelesaian sengketa bisnis dengan mediator profesional, membantu pihak-pihak mencapai kesepakatan tanpa jalur hukum yang panjang.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('other-service') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
         </div>
@@ -131,28 +131,28 @@
         <div class="col-12">
             <!-- Header Section -->
             <h6 class="text-secondary text-uppercase">
-                {{ __("Tentang Kami") }}
+                {{ lng("Tentang Kami") }}
             </h6>
             <h1 class="mb-5">
-                {{ __("Tentang") }} Export Center Surabaya (ECS)
+                {{ lng("Tentang") }} Export Center Surabaya (ECS)
             </h1>
 
             <!-- Content Section -->
             <div class="text-justify">
-                <p>{{ __("Kementerian Perdagangan Republik Indonesia sebagai pengemban amanah Peraturan Pemerintah Pengganti Undang-Undang (Perpu) Nomor 2 Tahun 2022 tentang Cipta Kerja Pasal 74 yang bertugas melakukan pembinaan terhadap Pelaku Usaha dalam rangka pengembangan Ekspor untuk perluasan akses Pasar bagi Barang dan Jasa produksi dalam negeri.
+                <p>{{ lng("Kementerian Perdagangan Republik Indonesia sebagai pengemban amanah Peraturan Pemerintah Pengganti Undang-Undang (Perpu) Nomor 2 Tahun 2022 tentang Cipta Kerja Pasal 74 yang bertugas melakukan pembinaan terhadap Pelaku Usaha dalam rangka pengembangan Ekspor untuk perluasan akses Pasar bagi Barang dan Jasa produksi dalam negeri.
                     Pada Peraturan Menteri Perdagangan Republik Indonesia Nomor 29 Tahun 2022, Direktorat Pengembangan Pasar dan Informasi Ekspor, Direktorat Jenderal Pengembangan Ekspor Nasional (Ditjen. PEN), mempunyai tugas melaksanakan perumusan dan pelaksanaan kebijakan di bidang pengembangan dan peningkatan daya saing pasar ekspor, pelaku ekspor, dan pengembangan kelembagaan promosi.")}}
                 </p>
 
                 <!-- Collapsible Content -->
                 <div id="moreText" class="collapse">
-                    <p>{{ __("Export Center Surabaya (ECS) sebagai perpanjangan tangan Direktorat Pengembangan Pasar dan Informasi Ekspor di daerah, berperan mengoptimalkan peran eksportir daerah dalam memanfaatkan peluang ekspor diantaranya dengan penyebaran inquiry dan hasil Market Intelligence yang diperoleh dari Perwakilan Perdagangan di Luar Negeri, pemanfaatan Free Trade Agreement (FTA) maupun promosi ekspor. Dengan adanya Export Center Surabaya ini, kebijakan yang diterbitkan oleh Kementerian Perdagangan dapat tersampaikan dan dimanfaatkan secara optimal oleh para pelaku usaha. Selain itu informasi yang bersumber Perwakilan Perdagangan di luar negeri dapat tersalurkan secara tepat dan cepat sehingga dapat memperluas pangsa ekspor.")}}
+                    <p>{{ lng("Export Center Surabaya (ECS) sebagai perpanjangan tangan Direktorat Pengembangan Pasar dan Informasi Ekspor di daerah, berperan mengoptimalkan peran eksportir daerah dalam memanfaatkan peluang ekspor diantaranya dengan penyebaran inquiry dan hasil Market Intelligence yang diperoleh dari Perwakilan Perdagangan di Luar Negeri, pemanfaatan Free Trade Agreement (FTA) maupun promosi ekspor. Dengan adanya Export Center Surabaya ini, kebijakan yang diterbitkan oleh Kementerian Perdagangan dapat tersampaikan dan dimanfaatkan secara optimal oleh para pelaku usaha. Selain itu informasi yang bersumber Perwakilan Perdagangan di luar negeri dapat tersalurkan secara tepat dan cepat sehingga dapat memperluas pangsa ekspor.")}}
                     </p>
-                    <p>{{ __("Maksud Penyelenggaraan Export Center Surabaya adalah untuk mengoptimalkan peluang pasar ekspor di pasar internasional agar dapat dimanfaatkan oleh para pelaku usaha ekspor.
+                    <p>{{ lng("Maksud Penyelenggaraan Export Center Surabaya adalah untuk mengoptimalkan peluang pasar ekspor di pasar internasional agar dapat dimanfaatkan oleh para pelaku usaha ekspor.
                         Tujuan dari kegiatan penyelenggaraan Export Center Surabaya adalah menyediakan layanan publik yang berfungsi sebagai tempat para pelaku usaha untuk memperoleh konsultasi dan informasi mengenai peluang pasar ekspor diantaranya buyers inquiry yang diperoleh dari Perwakilan Perdagangan di Luar Negeri, Market Intelligence, pemanfaatan Free Trade Agreement maupun promosi ekspor.")}}
                     </p>
                 </div>
                 <a href="#moreText" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#moreText" aria-expanded="false" aria-controls="moreText" onclick="hideButton(this)">
-                    {{ __("Baca Selengkapnya")}}
+                    {{ lng("Baca Selengkapnya")}}
                 </a>
                 <!-- Read More Button -->
             </div>
@@ -164,8 +164,8 @@
 <div class="container-xxl py-2">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ __("Berita ECS") }}</h6>
-            <h1 class="mb-5">{{ __("Jelajahi Berita Kami") }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ lng("Berita ECS") }}</h6>
+            <h1 class="mb-5">{{ lng("Jelajahi Berita Kami") }}</h1>
         </div>
         <div class="row g-4">
             @foreach($berita as $item)
@@ -186,14 +186,14 @@
                         <p class="text-justify">{{ Str::limit($item->isi, 150, '...') }}</p>
                         <a class="btn-slide mt-2" href="{{ url('news/detail/' . $item->id) }}">
                             <i class="fa fa-arrow-right"></i>
-                            <span>{{ __("Baca Selengkapnya") }}</span>
+                            <span>{{ lng("Baca Selengkapnya") }}</span>
                         </a>
                     </div>
                 </div>
             @endforeach
         </div>
         <div class="text-center mt-4">
-            <a class="btn btn-primary" href="{{ url('news') }}">{{ __("Baca Berita Lainnya") }}</a>
+            <a class="btn btn-primary" href="{{ url('news') }}">{{ lng("Baca Berita Lainnya") }}</a>
         </div>
     </div>
 </div>
@@ -202,8 +202,8 @@
 <!-- Service Start -->
 <div class="container p-0 py-5">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase mb-3"> {{ __("Sebuah Fakta") }}</h6>
-            <h1 class="mb-5">{{ __("Produk Indonesia yang Berpotensi Besar") }}</h1>
+            <h6 class="text-secondary text-uppercase mb-3"> {{ lng("Sebuah Fakta") }}</h6>
+            <h1 class="mb-5">{{ lng("Produk Indonesia yang Berpotensi Besar") }}</h1>
         </div>
         <div class="row w-100 justify-content-center px-0">
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -211,9 +211,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Spices.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Rempah") }}</h6>
-                    <p class="text-truncate-3">{{ __("Indonesia merupakan negara kepulauan yang memiliki kekayaan sumber daya alam, dan dikenal sebagai penghasil rempah-rempah sejak zaman dahulu.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/spices') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Rempah") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Indonesia merupakan negara kepulauan yang memiliki kekayaan sumber daya alam, dan dikenal sebagai penghasil rempah-rempah sejak zaman dahulu.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/spices') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -221,9 +221,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Fish.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Ikan") }}</h6>
-                    <p class="text-truncate-3">{{ __("Indonesia merupakan salah satu negara maritim yang kaya akan sumber daya laut, hal tersebut menjadikan Indonesia sebagai salah satu pemasok produk perikanan dunia dan produk perikanan ini sebagai salah satu komoditas unggulan Indonesia yang memiliki potensi besar untuk diekspor.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/fish') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Ikan") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Indonesia merupakan salah satu negara maritim yang kaya akan sumber daya laut, hal tersebut menjadikan Indonesia sebagai salah satu pemasok produk perikanan dunia dan produk perikanan ini sebagai salah satu komoditas unggulan Indonesia yang memiliki potensi besar untuk diekspor.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/fish') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
@@ -231,9 +231,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Furniture.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Mebel") }}</h6>
-                    <p class="text-truncate-3">{{ __("Indonesia merupakan salah satu negara penghasil produk furniture berkualitas tinggi yang diakui secara global.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/furniture') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Mebel") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Indonesia merupakan salah satu negara penghasil produk furniture berkualitas tinggi yang diakui secara global.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/furniture') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.5s">
@@ -241,9 +241,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Coffee.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Kopi") }}</h6>
-                    <p class="text-truncate-3">{{ __("Kopi merupakan salah satu komoditi hasil perkebunan yang memiliki peranan cukup penting dalam perekonomian di Indonesia. Kopi juga merupakan salah satu komoditas ekspor yang telah menghasilkan devisa negara.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/coffee') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Kopi") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Kopi merupakan salah satu komoditi hasil perkebunan yang memiliki peranan cukup penting dalam perekonomian di Indonesia. Kopi juga merupakan salah satu komoditas ekspor yang telah menghasilkan devisa negara.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/coffee') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
 
@@ -252,9 +252,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Food Processing.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Pengelolahan Makanan") }}</h6>
-                    <p class="text-truncate-3">{{ __("Indonesia merupakan salah satu negara dengan potensi besar dalam industri food processing atau pengolahan makanan, berkat melimpahnya sumber daya alam dan keanekaragaman hasil pertanian serta perikanan.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/food') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Pengelolahan Makanan") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Indonesia merupakan salah satu negara dengan potensi besar dalam industri food processing atau pengolahan makanan, berkat melimpahnya sumber daya alam dan keanekaragaman hasil pertanian serta perikanan.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/food') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-2 wow fadeInUp" data-wow-delay="0.7s">
@@ -262,9 +262,9 @@
                     <div class="overflow-hidden p-3 text-center mb-4">
                         <img class="img-fluid w-100" src="{{ asset('assets/images/ecs/icon_indonesia_great/Manufacture product.png')}}" alt="">
                     </div>
-                    <h6 class="mb-3">{{ __("Memproduksi Produk") }}</h6>
-                    <p class="text-truncate-3">{{ __("Indonesia memiliki potensi besar dalam industri manufaktur yang berkontribusi signifikan terhadap perekonomian nasional.") }}</p>
-                    <a class="btn-slide mt-auto" href="{{ url('artikel/manufacture') }}"><i class="fa fa-arrow-right"></i><span>{{ __("Baca Selengkapnya")}}</span></a>
+                    <h6 class="mb-3">{{ lng("Memproduksi Produk") }}</h6>
+                    <p class="text-truncate-3">{{ lng("Indonesia memiliki potensi besar dalam industri manufaktur yang berkontribusi signifikan terhadap perekonomian nasional.") }}</p>
+                    <a class="btn-slide mt-auto" href="{{ url('artikel/manufacture') }}"><i class="fa fa-arrow-right"></i><span>{{ lng("Baca Selengkapnya")}}</span></a>
                 </div>
             </div>
         </div>
@@ -274,7 +274,7 @@
 <div class="container-xxl py-4">
     <div class="container py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h1 class="mb-5">{{ __("Performa ECS") }}</h1>
+            <h1 class="mb-5">{{ lng("Performa ECS") }}</h1>
         </div>
         <div class="row g-4">
             <div class="col-md-12">
@@ -348,8 +348,8 @@
 <div class="container-xxl py-4">
     <div class="container py-4">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="text-secondary text-uppercase">{{ __("Tim Kami") }}</h6>
-            <h1 class="mb-5">{{ __("Anggota Tim") }}</h1>
+            <h6 class="text-secondary text-uppercase">{{ lng("Tim Kami") }}</h6>
+            <h1 class="mb-5">{{ lng("Anggota Tim") }}</h1>
         </div>
         <div class="row g-4 mb-4">
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
@@ -535,7 +535,7 @@
 <div class="container-xxl wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="text-center">
-            <h1 class="mb-0">{{ __("Mitra Kami") }}</h1>
+            <h1 class="mb-0">{{ lng("Mitra Kami") }}</h1>
         </div>
         <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
             <div class="p-4 my-5">
